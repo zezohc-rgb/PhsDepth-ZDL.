@@ -1,0 +1,14 @@
+name: Reference DSP tests (not ZDL build)
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile portable DSP smoke test
+        run: cc -std=c99 -Wall -Wextra -Werror -O2 src/phsdepth_dsp.c tests/test_phsdepth.c -lm -o /tmp/phsdepth-test
+      - name: Run test
+        run: /tmp/phsdepth-test
