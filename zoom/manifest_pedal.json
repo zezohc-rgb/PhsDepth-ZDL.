@@ -1,0 +1,32 @@
+{
+  "effect_name": "PhsDepth",
+  "comment": "FIRST BUILD: 4-knob UI-only pass-through; no phaser audio yet. Set a verified unused fxid before building.",
+  "audio_func_name": "Fx_DLY_PhsDepth",
+  "gid": 8,
+  "fxid": 0,
+  "fxid_version": "1.00",
+  "flags_byte": 1,
+  "params": [
+    {
+      "name": "Rate",
+      "max": 100,
+      "default": 35
+    },
+    {
+      "name": "Color",
+      "max": 3,
+      "default": 0
+    },
+    {
+      "name": "Level",
+      "max": 100,
+      "default": 50
+    },
+    {
+      "name": "Depth",
+      "max": 100,
+      "default": 50
+    }
+  ],
+  "audio_nop": true
+}
