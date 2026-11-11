@@ -1,10 +1,11 @@
-# Hardware target
+# Hardware alvo
 
-- Pedal: original blue Zoom MS-70CDR (not MS-70CDR+)
-- Firmware: **2.10** (confirmed by pedal owner)
-- Desired effect: PhsDepth.ZDL, separate from stock phaser
-- Controls: Rate, Color (4/8 stages, normal/inverted), Level, Depth (all-pass sweep width)
+- Zoom MS-70CDR original azul (não CDR+).
+- Firmware 2.10, conforme informado pelo proprietário.
+- `PhsDepth.ZDL`, nome de oito caracteres, efeito adicional de Modulation.
+- Identidade `gid 6 / fxid 947`, índice `0x060003B3`.
+- Quatro controles: Rate, Color (4/8 estágios normal/invertido), Level e Depth (largura da varredura).
 
-The upstream ZoomMultistompZDL project reports successful custom-effect testing on original MS-70CDR firmware 2.10. This does **not** establish that the PhsDepth effect itself has been compiled or tested.
+O binário foi compilado, verificado estruturalmente e executado em emulador C674x. **Não houve teste físico, instalação nem alteração dos efeitos da pedaleira.** O código se baseia no ABI documentado da referência; isso não confirma compatibilidade completa com o aparelho.
 
-Before first installation: back up existing patches/effects, verify unique effect ID, binary size and DSP cost, and use a verified installer. Never install unverified source code renamed as a .ZDL.
+Próximo passo: [teste físico controlado](INSTALLATION.md), sem excluir ou substituir efeitos originais.

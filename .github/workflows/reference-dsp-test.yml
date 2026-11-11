@@ -1,14 +1,46 @@
-name: Reference DSP tests (not ZDL build)
+name: DSP, Zoom ABI and ZDL validation
 on:
   push:
   pull_request:
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compile portable DSP smoke test
-        run: cc -std=c99 -Wall -Wextra -Werror -O2 src/phsdepth_dsp.c tests/test_phsdepth.c -lm -o /tmp/phsdepth-test
-      - name: Run test
-        run: /tmp/phsdepth-test
+      - name: DSP invariants, actual wrapper, ASan/UBSan and ZDL checks
+        run: ./tools/test.sh
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with official TI C6000 and pinned ZoomMultistompZDL
+        run: ./tools/build.sh --output-dir work/rebuilt
+      - name: Compare the actual DSP binary byte for byte
+        run: cmp dist/PhsDepth.ZDL work/rebuilt/PhsDepth.ZDL
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PhsDepth-experimental-MS70CDR-2.10
+          path: |
+            work/rebuilt/PhsDepth.ZDL
+            work/rebuilt/build-report.json
+            work/rebuilt/SHA256SUMS
+            licenses/
+  emulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned Ziddle source and verify checksum
+        run: |
+          mkdir -p work
+          curl -fL --retry 2 https://berbasoft.com/ziddle/ziddle-1793487371.zip -o work/ziddle.zip
+          echo 'c45f11a0ffa51c327169c3c8c6965043882d39b4a8f5f0ac624603e5941579a3  work/ziddle.zip' | sha256sum -c -
+          unzip -q work/ziddle.zip -d work
+      - name: Execute the actual C674x binary and compare with host DSP
+        run: python3 tools/emulator/run.py --ziddle work/ziddle-1793487371
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PhsDepth-emulator-report
+          path: dist/emulator-report.json

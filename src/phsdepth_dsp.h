@@ -1,6 +1,8 @@
 #ifndef PHSDEPTH_DSP_H
 #define PHSDEPTH_DSP_H
-/* Portable DSP reference only: not a Zoom ZDL effect binary. */
+/* Shared DSP state. Host API and the pedal wrapper execute the same kernel.
+ * phsdepth_process supports 44100 Hz; other rates leave buffers/state unchanged.
+ * Color: 0=4 normal, 1=8 normal, 2=4 inverted, 3=8 inverted. */
 #define PHSDEPTH_MAX_STAGES 8
 typedef struct {
     float state[2][PHSDEPTH_MAX_STAGES];

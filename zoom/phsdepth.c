@@ -1,83 +1,63 @@
-/*
- * PhsDepth experimental pedal DSP for original Zoom MS-70CDR firmware 2.10.
- * Not hardware tested. Uses the upstream 8-frame stereo buffer ABI.
- * Four controls: Rate, Color (4/8 stages, normal/inverted), Level, Depth.
- * Depth changes the all-pass coefficient sweep span, not the wet/dry mix.
- * No math library, heap, uninitialised globals or per-sample divisions.
+/* Original blue MS-70CDR 2.10 candidate. NOT physically tested.
+ * ctx[5]: planar float L[8],R[8]. ctx[3]: per-instance state descriptor.
+ * All controls come from the runtime's normalized parameter block.
  */
 #include <stdint.h>
+#include "../src/phsdepth_core.h"
 #ifndef PHSDEPTH_AUDIO_FUNC
-#define PHSDEPTH_AUDIO_FUNC Fx_DLY_PhsDepth
+#define PHSDEPTH_AUDIO_FUNC Fx_MOD_PhsDepth
 #endif
-#define PD_DO_PRAGMA(x) _Pragma(#x)
-#define PD_EXPAND_PRAGMA(x) PD_DO_PRAGMA(x)
-#define PD_CODE_SECTION(f) PD_EXPAND_PRAGMA(CODE_SECTION(f, ".audio"))
-PD_CODE_SECTION(PHSDEPTH_AUDIO_FUNC)
+#ifdef __TI_COMPILER_VERSION__
+#define PD_AUDIO(f) PD_INLINE_PRAGMA_(CODE_SECTION(f, ".audio"))
+PD_AUDIO(PHSDEPTH_AUDIO_FUNC)
+#endif
+/* Host ABI tests use pointer-width words; the actual DSP ABI is 32-bit. */
+#ifdef PHSDEPTH_HOST_TEST
+typedef uintptr_t PdWord;
+#else
+typedef unsigned int PdWord;
+#endif
 #define PD_PTR(type, word) ((type)(uintptr_t)(word))
 #define PD_MAGIC 0x50485344u
-#define PD_VERSION 1u
-#define PD_INV_SR (1.0f/44100.0f)
+#define PD_VERSION 2u
 typedef struct {
     uint32_t magic,version,initialized,pad;
-    float phase;
-    float zL[8],zR[8];
+    PhsDepth dsp;
 } PhsDepthState;
-static inline float pd_norm(float x,float fallback){
-    if (!(x>=0.0f && x<=100.0f)) return fallback;
-    if(x>1.0f)x*=0.01f;
-    if(x>1.0f)x=1.0f;
-    return x;
+PD_INLINE(pd_norm)
+static inline float pd_norm(float x,float fallback) {
+    /* No ambiguous 0..100 auto-detection: the own-runtime contract is 0..1. */
+    return x>=0.0f && x<=1.0f ? x : fallback;
 }
-void PHSDEPTH_AUDIO_FUNC(unsigned int *ctx){
+void PHSDEPTH_AUDIO_FUNC(PdWord *ctx) {
     float *params=PD_PTR(float *,ctx[1]);
     float *buf=PD_PTR(float *,ctx[5]);
-    unsigned int *magicSrc=PD_PTR(unsigned int *,ctx[12]);
-    unsigned int *magicDst=PD_PTR(unsigned int *,*(unsigned int *)PD_PTR(unsigned int *,ctx[11]));
+    PdWord *magicSrc=PD_PTR(PdWord *,ctx[12]);
+    PdWord *magicDst=PD_PTR(PdWord *,*PD_PTR(PdWord *,ctx[11]));
     *magicDst=*magicSrc;
     if(params[0]<0.5f)return;
-    volatile unsigned int *desc=PD_PTR(volatile unsigned int *,ctx[3]);
+    volatile PdWord *desc=PD_PTR(volatile PdWord *,ctx[3]);
+    uintptr_t base,end;
+    PhsDepthState *st;
+    float color;
+    int i;
     if(!desc)return;
-    uintptr_t base=(uintptr_t)desc[0],end=(uintptr_t)desc[1];
-    if(base==0u||end<=base||(base&3u)!=0u)return;
+    base=(uintptr_t)desc[0]; end=(uintptr_t)desc[1];
+    if(base==0u || end<=base || (base&3u)!=0u)return;
     if(end-base<(uintptr_t)sizeof(PhsDepthState))return;
-    PhsDepthState *st=(PhsDepthState *)base;
-    if(st->magic!=PD_MAGIC||st->version!=PD_VERSION||!st->initialized){
-        int k;
-        st->magic=PD_MAGIC;st->version=PD_VERSION;st->phase=0.0f;
-        for(k=0;k<8;k++){st->zL[k]=0.0f;st->zR[k]=0.0f;}
-        st->initialized=1u;
+    st=(PhsDepthState *)base;
+    if(st->magic!=PD_MAGIC || st->version!=PD_VERSION || st->initialized!=1u) {
+        pd_reset(&st->dsp);
+        st->magic=PD_MAGIC; st->version=PD_VERSION; st->initialized=1u; st->pad=0u;
     }
-    /* Upstream param handlers deliver normalized 0..1 floats. */
-    float rate=pd_norm(params[5],0.35f);
-    float color=pd_norm(params[6],0.0f);
-    float level=pd_norm(params[7],0.50f);
-    float depth=pd_norm(params[8],0.50f);
-    float hz=0.08f+rate*5.92f;
-    float inc=hz*PD_INV_SR;
-    int mode=(int)(color*3.0f+0.5f);
-    int stages=(mode==1||mode==3)?8:4;
-    float polarity=(mode>=2)?-1.0f:1.0f;
-    float gain=level*2.0f;
-    float phase=st->phase;
-    int i,k;
-    for(i=0;i<8;i++){
-        phase+=inc;
-        if(phase>=1.0f)phase-=1.0f;
-        /* Triangle 0..1; sweep coefficient bounded to [0.10, 0.90]. */
-        float tri=phase<0.5f?phase*2.0f:2.0f-phase*2.0f;
-        float coeff=0.50f+(tri*2.0f-1.0f)*depth*0.40f;
-        float dryL=buf[i],dryR=buf[i+8];
-        float wetL=dryL,wetR=dryR;
-        for(k=0;k<stages;k++){
-            /* First-order all-pass: y = -a*x + z; z = x + a*y. */
-            float yL=-coeff*wetL+st->zL[k];
-            float yR=-coeff*wetR+st->zR[k];
-            st->zL[k]=wetL+coeff*yL;
-            st->zR[k]=wetR+coeff*yR;
-            wetL=yL;wetR=yR;
-        }
-        buf[i]=0.5f*gain*(dryL+polarity*wetL);
-        buf[i+8]=0.5f*gain*(dryR+polarity*wetR);
-    }
-    st->phase=phase;
+    st->dsp.rate_hz=0.08f+pd_norm(params[5],0.35f)*5.92f;
+    /* Runtime maps all raw knobs by /100, including discrete Color 0..3.
+     * Thus Color arrives as 0, .01, .02, .03, NOT 0, 1/3, 2/3, 1. */
+    color=pd_norm(params[6],0.0f)*100.0f;
+    if(color>3.0f)color=3.0f;
+    pd_color(&st->dsp,(int)(color+0.5f));
+    st->dsp.level=pd_norm(params[7],0.50f)*2.0f;
+    st->dsp.depth=pd_norm(params[8],0.50f);
+    for(i=0;i<8;i++)pd_frame(&st->dsp,buf[i],buf[i+8],
+        st->dsp.rate_hz*(1.0f/44100.0f),&buf[i],&buf[i+8]);
 }

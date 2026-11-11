@@ -1,9 +1,9 @@
 {
   "effect_name": "PhsDepth",
-  "comment": "FIRST BUILD: 4-knob UI-only pass-through; no phaser audio yet. Set a verified unused fxid before building.",
-  "audio_func_name": "Fx_DLY_PhsDepth",
-  "gid": 8,
-  "fxid": 0,
+  "comment": "Experimental four-control phaser; local validation only, no physical pedal test.",
+  "audio_func_name": "Fx_MOD_PhsDepth",
+  "gid": 6,
+  "fxid": 947,
   "fxid_version": "1.00",
   "flags_byte": 1,
   "params": [
@@ -15,7 +15,8 @@
     {
       "name": "Color",
       "max": 3,
-      "default": 0
+      "default": 0,
+      "comment": "0=4 normal, 1=8 normal, 2=4 inverted, 3=8 inverted; handler writes raw/100."
     },
     {
       "name": "Level",
@@ -28,5 +29,9 @@
       "default": 50
     }
   ],
-  "audio_nop": true
+  "audio_nop": false,
+  "own_runtime": true,
+  "materialize_init": true,
+  "dsp_cost": 40.0,
+  "fxid_comment": "0x060003B3, candidate audited against public stock/community sources; see docs/id-audit.json. No global ID registry exists."
 }

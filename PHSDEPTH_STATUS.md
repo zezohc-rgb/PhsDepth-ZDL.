@@ -1,7 +1,9 @@
-# PhsDepth status
+# Estado — 11/11/2026
 
-This repository is preparing a custom phaser effect for the original Zoom MS-70CDR.
+`dist/PhsDepth.ZDL` gerado com TI C6000 8.5.0.LTS e linker/runtime próprio de ZoomMultistompZDL. Áudio ativo; Rate, Color, Level e Depth integrados. ID `0x060003B3`, sem conflito nas sete coleções auditadas.
 
-Target controls: Rate, Color (4/8 stages, normal/inverted), Level, and Depth (all-pass sweep width).
+Testes de DSP, ABI host, sanitizers, estrutura do binário e emulação C674x passaram. O arquivo tem 5.542 bytes (3.344 bytes de código + constantes). A compilação reproduzível e os hashes são verificados no CI.
 
-Status: planning only. No validated or installable .ZDL exists yet. Building a pedal-ready effect requires adapting DSP code to the ZDL runtime, generating metadata, compiling and testing on hardware.
+**Pendente:** teste físico na MS-70CDR original, firmware 2.10. Carregamento, paginação, valores salvos, estéreo e custo DSP real ainda não foram confirmados. A declaração de custo 40 é provisória. Nenhum efeito original foi alterado ou substituído.
+
+Veja [README](README.md), [validação](docs/VALIDATION.md) e [instalação experimental](docs/INSTALLATION.md).
