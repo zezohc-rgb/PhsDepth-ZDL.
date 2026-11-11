@@ -1,0 +1,148 @@
+{
+  "baseline_commit": "41530f017c9246016aef3b36cacd739e0ed8d79a",
+  "baseline_binary_sha256": "f530c9a7472836adcf7b8c17a383453ec6bce6da6e1e022b48e0cb97efcb98df",
+  "scope": "Host float32 audio fingerprints captured from unmodified 1.00 source at baseline_commit, GCC -O2 -ffp-contract=off, little-endian. Owner reported the prior version worked after delivery; exact on-pedal hash was not independently confirmed.",
+  "frames_per_case": 32768,
+  "cases": [
+    {
+      "rate_hz": 2.152,
+      "color": 0,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "dc495317fdd5951b6c5a0257a7b9df80568ab8fc1c3c672695f59bf280302189"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "52426cb69d90461b1bbbe84de996644f71a35e3e3bc0ee9fa36b7d89d265760a"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "9af8199a03112ff289e8281430b42806fb3f6ba4fde1f3e9b7fd2a1283ed0e25"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 1,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "43aff3457c5b9ea5405f73df599400cfa49f229153fc9d3b2ebb0b156c592418"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "a991d7c8505a0be5c7905fae73ec1e73ecd5e0e8af7a0fd3d47a2604eb9f0f22"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "d975fb516b1889be0d708f62046f5fc1646fb568b3b01a15ac5344213a136d02"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 2,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "22dee8fd0a1b791e4b071dfc08a91b0ccbc36ed688c9f8a23b87d4aa46435790"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "14d2470bb2ead05a7c5ef5dd6ed3e2f71476e35cccfd6326f77b5e8d83f8a4b7"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "51b2f3183ca55edb5e3edae0825b1dcbaa69d2ceccc817fe8ccc8b288ca6ab02"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 3,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "960ba8eb26ef458caeaa4c860c1a30f834c4e01d02d2b0704c9fcf4c6bbbf9b4"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "cdc8ee52f947e5932ce45988c7a6dda28d33581687ca1160f48ab835ccbd026f"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "5655138f975b683e87a3f5da05d227e5349ada72a99a4f4b8d6c77afd9abff88"
+    }
+  ]
+}

@@ -1,21 +1,22 @@
 # PhsDepth — Zoom MS-70CDR original (azul), firmware 2.10
 
-Candidato experimental compilado: **[dist/PhsDepth.ZDL](dist/PhsDepth.ZDL)**, 5.582 bytes. É um contêiner ZDL com código TI C674x, áudio ativo e quatro controles; **não foi instalado nem testado fisicamente na pedaleira**. A compatibilidade completa com o carregador, a interface e o áudio do firmware 2.10 ainda depende desse teste.
+**Versão 1.10 com Wave:** [dist/PhsDepth.ZDL](dist/PhsDepth.ZDL), 6.358 bytes. O proprietário informou que a versão anterior 1.00 funcionou na pedaleira ([registro](docs/HARDWARE_TESTS.md)); **esta atualização com cinco controles ainda não foi testada fisicamente**. Há testes locais e emulação do binário TI C674x.
 
 | Controle | Valores | Função |
 |---|---|---|
-| Rate | 0–100 | Velocidade do LFO triangular, 0,08–6 Hz; padrão 35 |
+| Rate | 0–100 | Velocidade do LFO selecionado, 0,08–6 Hz; padrão 35 |
 | Color | 0 / 1 / 2 / 3 | 4 normal / 8 normal / 4 invertido / 8 invertido |
 | Level | 0–100 | Ganho de saída, 0–2×; 50 = ganho nominal unitário |
 | Depth | 0–100 | Excursão logarítmica dos filtros em torno de 550 Hz, até ±3 oitavas |
+| Wave | 0–6 | 0 Triangle (padrão), 1 Sine, 2 Square, 3 Saw Up, 4 Saw Down, 5 Random, 6 Step |
 
-Depth em zero mantém um phaser estático; não mistura seco/molhado. A soma é sempre 50% seco + 50% sinal dos filtros (polaridade definida por Color), multiplicada por Level. Os canais L/R têm memória independente. Rate, Color e Level ficam na primeira página; Depth na segunda. Color é mostrado numericamente.
+Depth em zero mantém um phaser estático; não mistura seco/molhado. A soma é sempre 50% seco + 50% sinal dos filtros (polaridade definida por Color), multiplicada por Level. Os canais L/R têm memória independente. Rate, Color e Level ficam na primeira página; Depth e Wave na segunda. Color e Wave são mostrados numericamente. [Detalhes e diferenças em relação ao Boss PH-3](docs/WAVE.md).
 
 Identidade: categoria Modulation (`gid 6`), `fxid 947`, índice **`0x060003B3`**. Não reutiliza o ID de um Phaser original. A [auditoria](docs/id-audit.json) de 11/11/2026 consultou 581 arquivos de sete coleções públicas, incluindo efeitos Zoom, manifests e bancos de IDs. Não encontrou esse fxid em nenhum grupo nas fontes consultadas. Não existe reserva global de IDs; a lista de efeitos realmente instalados também deve ser conferida.
 
 ## Imagem no pedal
 
-Capa monocromática de 128×64 pixels, inspirada no Phaser da MS-70CDR+, adaptada à tela original. O preview abaixo está ampliado 6×, sem interpolação. As caixas vazias recebem os valores desenhados pelo firmware; Depth permanece na segunda página. A visualização física ainda não foi confirmada.
+Capa monocromática de 128×64 pixels, inspirada no Phaser da MS-70CDR+, adaptada à tela original. O preview abaixo está ampliado 6×, sem interpolação. As caixas vazias recebem os valores desenhados pelo firmware; Depth e Wave ficam na segunda página. O relato de funcionamento da versão anterior está registrado acima; a nova paginação ainda precisa de teste físico.
 
 ![Capa PhsDepth com pedal Phaser e controles Rate, Color e Level](dist/PhsDepth-cover.png)
 
@@ -24,10 +25,11 @@ O sprite em `zoom/art/pedal.pbm` foi criado com geração de imagem a partir da 
 ## Validação concluída
 
 - Compilação com **TI C6000 CGT 8.5.0.LTS**, C674x, EABI, dados `far`; sem símbolos DSP externos, heap, BSS ou globais graváveis no DSP.
-- Linker de [repeat98/ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL), fixado em `32f3d6877d892409c6defeeeec57040ad004d31f`. Runtime próprio (`own_runtime`) com handlers para os quatro controles e inicialização dos valores salvos; dispensa blobs extraídos de efeitos Zoom.
+- Linker de [repeat98/ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL), fixado em `32f3d6877d892409c6defeeeec57040ad004d31f`. Runtime próprio (`own_runtime`) com handlers para os cinco controles e inicialização dos valores salvos; dispensa blobs extraídos de efeitos Zoom.
 - Invariantes de áudio, limites dos buffers, bypass, instâncias independentes, controles inválidos, comparação host/wrapper, AddressSanitizer e UndefinedBehaviorSanitizer.
 - Verificação independente de ZDL/ELF, arquitetura, exports, relocations, parâmetros, ID e tamanho; testes de rejeição de arquivos corrompidos.
-- **Ziddle C674x**: 36 combinações, 655.360 amostras de canal comparadas ao DSP host; erro máximo **0,000000522**, nenhuma instrução não implementada. Inicialização e handlers também executados. [Relatório](dist/emulator-report.json).
+- **Triangle compatível com 1.00**: 20 renders comparados aos fingerprints do código anterior, áudio host idêntico bit a bit. As sete ondas também passam por oráculos de forma/frequência, limites, profundidade e edição em execução.
+- **Ziddle C674x**: matriz de 252 combinações das sete ondas e quatro Color, com defaults e extremos. Inicialização, cinco handlers e áudio comparados ao DSP host. 9.175.040 amostras de canal, erro máximo 0,000001281 e nenhuma instrução não implementada. Resultados em [dist/emulator-report.json](dist/emulator-report.json).
 
 O emulador usa callbacks de host simulados; não prova a ordem de inicialização do firmware, a paginação na tela, o roteamento estéreo real ou a ausência de travamentos na pedaleira. O custo DSP declarado (40) é uma estimativa provisória, sem medição física; ciclos do emulador não equivalem à carga real.
 

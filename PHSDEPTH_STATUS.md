@@ -1,9 +1,9 @@
-# Estado — 11/11/2026
+# Estado — versão 1.10 com Wave
 
-`dist/PhsDepth.ZDL` gerado com TI C6000 8.5.0.LTS e linker/runtime próprio de ZoomMultistompZDL. Áudio ativo; Rate, Color, Level e Depth integrados. ID `0x060003B3`, sem conflito nas sete coleções auditadas.
+O proprietário informou que a versão anterior 1.00 funcionou na pedaleira. [Registro e limites do relato](docs/HARDWARE_TESTS.md).
 
-Testes de DSP, ABI host, sanitizers, estrutura do binário e emulação C674x passaram. O arquivo tem 5.582 bytes (3.384 bytes de código + constantes). A compilação reproduzível e os hashes são verificados no CI.
+A atualização acrescenta Wave como quinto controle: Triangle, Sine, Square, Saw Up, Saw Down, Random e Step. Wave=0 preserva o som anterior e é o padrão. Rate/Color/Level continuam na primeira página; Depth/Wave na segunda. Identidade `0x060003B3` e capa preservadas; versão do efeito incrementada para 1.10.
 
-**Pendente:** teste físico na MS-70CDR original, firmware 2.10. Carregamento, paginação, valores salvos, estéreo e custo DSP real ainda não foram confirmados. A declaração de custo 40 é provisória. Nenhum efeito original foi alterado ou substituído.
+`dist/PhsDepth.ZDL`: 6358 bytes, código + constantes 4048 bytes. TI C6000 8.5.0.LTS, runtime próprio sem blobs Zoom. Testes de DSP, sanitizers, regressão de Triangle, estrutura e emulação estão documentados em [VALIDATION.md](docs/VALIDATION.md).
 
-Veja [README](README.md), [validação](docs/VALIDATION.md) e [instalação experimental](docs/INSTALLATION.md).
+**A versão 1.10 com Wave ainda não foi testada fisicamente.** Faltam confirmação do quinto parâmetro na interface real, patches antigos, persistência e custo DSP (40 é estimativa provisória). Nenhum efeito original foi substituído. Atualize apenas o PhsDepth existente; duas versões com o mesmo ID não devem ser instaladas juntas.

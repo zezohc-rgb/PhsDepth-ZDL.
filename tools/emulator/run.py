@@ -28,25 +28,28 @@ def main():
         f'ziddle-effect-runtime={{path="{zroot}/ziddle/runtime/effect-runtime"}}\n')
     subprocess.run(['cc','-std=c99','-O2','-ffp-contract=off','-fPIC','-shared',str(ROOT/'src/phsdepth_dsp.c'),'-o',str(work/'host.so')],check=True)
     class State(C.Structure):
-        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int)]
+        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int),('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float)]
     lib=C.CDLL(str(work/'host.so'))
     lib.phsdepth_init.argtypes=[C.POINTER(State)]
     lib.phsdepth_set.argtypes=[C.POINTER(State),C.c_float,C.c_int,C.c_float,C.c_float]
     lib.phsdepth_process.argtypes=[C.POINTER(State)]+[C.POINTER(C.c_float)]*4+[C.c_uint,C.c_float]
+    lib.phsdepth_set_wave.argtypes=[C.POINTER(State),C.c_int]
     cases=[]
-    for mode in range(4):
-        cases.append((35,mode,50,50))
-        for rate in [0,100]:
-            for depth in [0,100]:
-                for level in [0,100]:cases.append((rate,mode,level,depth))
+    for wave in range(7):
+        for mode in range(4):
+            cases.append((35,mode,50,50,wave))
+            for rate in [0,100]:
+                for depth in [0,100]:
+                    for level in [0,100]:cases.append((rate,mode,level,depth,wave))
     # Exact binary rational input: both channels, impulse, deterministic noise and tail.
     # Some zero runs verify decay without asking libm for a matched test signal.
     rand=0x12345678
     vector=bytearray(struct.pack('<I',len(cases)))
-    for rate,mode,level,depth in cases:
-        blocks=2048 if rate==35 else 1024
-        vector.extend(struct.pack('<4fI',rate,mode,level,depth,blocks))
+    for rate,mode,level,depth,wave in cases:
+        blocks=4096 if rate==35 else 2048
+        vector.extend(struct.pack('<5fI',rate,mode,level,depth,wave,blocks))
         s=State();lib.phsdepth_init(C.byref(s));lib.phsdepth_set(C.byref(s),C.c_float(.08+rate*.0592),mode,level*.02,depth*.01)
+        lib.phsdepth_set_wave(C.byref(s),wave)
         for block in range(blocks):
             l=(C.c_float*8)();r=(C.c_float*8)();ol=(C.c_float*8)();orr=(C.c_float*8)()
             for i in range(8):

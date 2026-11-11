@@ -29,7 +29,9 @@ class ZdlTests(unittest.TestCase):
         self.assertTrue(report['passed'])
         self.assertEqual(report['artifact_sha256'],hashlib.sha256(self.data).hexdigest())
         self.assertFalse(report['physical_hardware_test'])
-        self.assertEqual(report['cases'],36)
+        self.assertEqual(report['cases'],252)
+        self.assertEqual([p['name'] for p in self.manifest['params']],['Rate','Color','Level','Depth','Wave'])
+        self.assertEqual(self.manifest['params'][4]['default'],0)
 
     def test_identity_audit(self):
         audit=json.loads((ROOT/'docs/id-audit.json').read_text())

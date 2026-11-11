@@ -1,12 +1,20 @@
 {
   "artifact": "PhsDepth.ZDL",
-  "sha256": "f530c9a7472836adcf7b8c17a383453ec6bce6da6e1e022b48e0cb97efcb98df",
-  "bytes": 5582,
-  "code_data_bytes": 3384,
+  "sha256": "4c4218f6d15fd58cec8568a90e5b96fe40eaeb40400a2070b149c7deed14ab18",
+  "bytes": 6358,
+  "code_data_bytes": 4048,
   "upstream_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
   "ti_compiler": "8.5.0",
   "gid": 6,
   "fxid": 947,
+  "effect_version": "1.10",
+  "controls": [
+    "Rate",
+    "Color",
+    "Level",
+    "Depth",
+    "Wave"
+  ],
   "audio_nop": false,
   "own_runtime": true,
   "materialize_init": true,

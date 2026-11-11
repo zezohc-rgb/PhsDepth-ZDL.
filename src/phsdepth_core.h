@@ -22,10 +22,52 @@ static const float pd_coeff_table[33] = {
     0.682701332f, 0.645428181f, 0.604466981f, 0.559558656f,
     0.510423100f
 };
-PD_INLINE(pd_coefficient)
-static inline float pd_coefficient(float phase, float depth) {
+/* Half-cosine table converts triangle phase to a smooth sine sweep.
+ * Both shapes start at the low-frequency endpoint and have one cycle per Rate.
+ */
+static const float pd_sine_table[33] = {
+    0.000000000f, 0.002407637f, 0.009607360f, 0.021529832f,
+    0.038060234f, 0.059039368f, 0.084265194f, 0.113494773f,
+    0.146446609f, 0.182803358f, 0.222214883f, 0.264301632f,
+    0.308658284f, 0.354857661f, 0.402454839f, 0.450991430f,
+    0.500000000f, 0.549008570f, 0.597545161f, 0.645142339f,
+    0.691341716f, 0.735698368f, 0.777785117f, 0.817196642f,
+    0.853553391f, 0.886505227f, 0.915734806f, 0.940960632f,
+    0.961939766f, 0.978470168f, 0.990392640f, 0.997592363f,
+    1.000000000f
+};
+PD_INLINE(pd_lfo)
+static inline float pd_lfo(float phase, int wave, float random_value) {
     float tri = phase < 0.5f ? phase*2.0f : 2.0f-phase*2.0f;
-    float position = 16.0f + (tri*2.0f-1.0f)*depth*16.0f;
+    if (wave == PHSDEPTH_SINE) {
+        float pos=tri*32.0f;
+        int i=(int)pos;
+        if (i>=32) return 1.0f;
+        return pd_sine_table[i]+(pos-(float)i)*(pd_sine_table[i+1]-pd_sine_table[i]);
+    }
+    if (wave == PHSDEPTH_SQUARE) return phase<0.5f ? 0.0f : 1.0f;
+    if (wave == PHSDEPTH_SAW_UP) return phase;
+    if (wave == PHSDEPTH_SAW_DOWN) return 1.0f-phase;
+    if (wave == PHSDEPTH_RANDOM) return random_value;
+    /* Eight-position triangular staircase; one complete up/down cycle per Rate.
+     * This is stepped modulation, not a clone of the Boss PH-3 DSP. */
+    if (wave == PHSDEPTH_STEP) {
+        int step=(int)(tri*8.0f);
+        if(step>7)step=7;
+        return (float)step*(1.0f/7.0f);
+    }
+    return tri;
+}
+PD_INLINE(pd_next_random)
+static inline void pd_next_random(PhsDepth *s) {
+    uint32_t x=s->random_state;
+    x^=x<<13; x^=x>>17; x^=x<<5;
+    s->random_state=x;
+    s->random_value=(float)(x>>16)*(1.0f/65535.0f);
+}
+PD_INLINE(pd_coefficient)
+static inline float pd_coefficient(float lfo, float depth) {
+    float position = 16.0f + (lfo*2.0f-1.0f)*depth*16.0f;
     int i = (int)position;
     if (i >= 32) return pd_coeff_table[32];
     return pd_coeff_table[i] + (position-(float)i)*(pd_coeff_table[i+1]-pd_coeff_table[i]);
@@ -33,7 +75,7 @@ static inline float pd_coefficient(float phase, float depth) {
 PD_INLINE(pd_frame)
 static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
                             float *ol, float *orr) {
-    float a = pd_coefficient(s->phase, s->depth);
+    float a = pd_coefficient(pd_lfo(s->phase, s->wave, s->random_value), s->depth);
     float wl=l, wr=r;
     int k, stages=(s->color&1)?8:4;
     float sign=(s->color&2)?-1.0f:1.0f;
@@ -47,13 +89,18 @@ static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
     *ol=s->level*0.5f*(l+sign*wl);
     *orr=s->level*0.5f*(r+sign*wr);
     s->phase+=inc;
-    if(s->phase>=1.0f)s->phase-=1.0f;
+    if(s->phase>=1.0f) {
+        s->phase-=1.0f;
+        pd_next_random(s);
+    }
 }
 PD_INLINE(pd_reset)
 static inline void pd_reset(PhsDepth *s) {
     int ch,k;
     for(ch=0;ch<2;ch++) for(k=0;k<8;k++) s->state[ch][k]=0.0f;
     s->phase=0.0f; s->rate_hz=2.152f; s->color=0; s->level=1.0f; s->depth=0.5f;
+    s->wave=PHSDEPTH_TRIANGLE; s->random_state=0x6d2b79f5u;
+    pd_next_random(s);
 }
 PD_INLINE(pd_color)
 static inline void pd_color(PhsDepth *s, int color) {

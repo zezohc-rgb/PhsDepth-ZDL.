@@ -10,6 +10,9 @@ void phsdepth_set(PhsDepth *s,float rate,int color,float level,float depth) {
     s->depth=bounded(depth,0.0f,1.0f,0.5f);
     pd_color(s,color<0?0:(color>3?3:color));
 }
+void phsdepth_set_wave(PhsDepth *s,int wave) {
+    s->wave=wave>=0 && wave<PHSDEPTH_WAVE_COUNT ? wave : PHSDEPTH_TRIANGLE;
+}
 void phsdepth_process(PhsDepth *s,const float *l,const float *r,
                      float *ol,float *orr,unsigned frames,float sample_rate) {
     unsigned i;

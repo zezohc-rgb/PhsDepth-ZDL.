@@ -32,11 +32,16 @@ static void guards(Fixture *f) {
 int main(void) {
     Fixture f,g; PhsDepth ref;
     float l[8],r[8],ol[8],orr[8];
-    int mode,i,b;
-    for(mode=0;mode<4;mode++) {
-        setup(&f); f.params[6]=(float)mode*.01f;
+    int mode,i,b,wave;
+    for(wave=0;wave<PHSDEPTH_WAVE_COUNT;wave++) for(mode=0;mode<4;mode++) {
+        setup(&f); f.params[6]=(float)mode*.01f; f.params[9]=(float)wave*.01f;
         phsdepth_init(&ref); phsdepth_set(&ref,2.152f,mode,1.0f,.5f);
+        phsdepth_set_wave(&ref,wave);
         for(b=0;b<4000;b++) {
+            if(b==2000 || b==3000) {
+                int next=b==2000 ? (wave+1)%PHSDEPTH_WAVE_COUNT : wave;
+                f.params[9]=(float)next*.01f;phsdepth_set_wave(&ref,next);
+            }
             for(i=0;i<8;i++) {
                 l[i]=.3f*sinf((float)(b*8+i)*.063f);
                 r[i]=.2f*cosf((float)(b*8+i)*.043f);
@@ -48,7 +53,8 @@ int main(void) {
                 assert(fabsf(f.buf[1+i]-ol[i])<2e-5f);
                 assert(fabsf(f.buf[9+i]-orr[i])<2e-5f);
             }
-            assert(f.guarded.state.dsp.color==mode); guards(&f);
+            assert(f.guarded.state.dsp.color==mode);
+            assert(f.guarded.state.dsp.wave==ref.wave); guards(&f);
         }
     }
     /* Invalid descriptor must pass audio through without writing state. */
@@ -70,14 +76,26 @@ int main(void) {
     f.params[7]=0; Fx_MOD_PhsDepth(f.ctx);
     for(i=1;i<=16;i++)assert(f.buf[i]==0);
     /* NaN controls recover to finite defaults, not undefined float->int. */
-    for(i=5;i<=8;i++)g.params[i]=NAN;
+    for(i=5;i<=9;i++)g.params[i]=NAN;
     Fx_MOD_PhsDepth(g.ctx); guards(&g);
     assert(g.guarded.state.dsp.color==0);
+    assert(g.guarded.state.dsp.wave==PHSDEPTH_TRIANGLE);
     assert(isfinite(g.guarded.state.dsp.depth));
     /* Regression: exactly 1% is 1%, no sudden 100x jump. */
     g.params[5]=.01f;g.params[7]=.01f;g.params[8]=.01f;
     Fx_MOD_PhsDepth(g.ctx);
     assert(fabsf(g.guarded.state.dsp.level-.02f)<1e-6f);
     assert(fabsf(g.guarded.state.dsp.depth-.01f)<1e-6f);
-    puts("Zoom wrapper: 4 Color modes, host parity, bounds, bypass, isolation, zero and invalid controls passed");
+    /* Endpoints tolerate float conversion round-off from the UI callback. */
+    g.params[9]=.060000006f;Fx_MOD_PhsDepth(g.ctx);
+    assert(g.guarded.state.dsp.wave==PHSDEPTH_STEP);
+    /* An invalid Wave must fall back to the known-working Triangle mode. */
+    g.params[9]=1.0f;Fx_MOD_PhsDepth(g.ctx);
+    assert(g.guarded.state.dsp.wave==PHSDEPTH_TRIANGLE);
+    /* On-the-fly edits, including return to mode zero, reach the fifth slot. */
+    for(wave=PHSDEPTH_WAVE_COUNT-1;wave>=0;wave--) {
+        g.params[9]=wave*.01f;Fx_MOD_PhsDepth(g.ctx);guards(&g);
+        assert(g.guarded.state.dsp.wave==wave);
+    }
+    puts("Zoom wrapper: 7 Wave modes, 4 Color modes, host parity, bounds, bypass, isolation, zero and invalid controls passed");
 }

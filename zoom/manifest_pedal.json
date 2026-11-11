@@ -1,10 +1,10 @@
 {
   "effect_name": "PhsDepth",
-  "comment": "Experimental four-control phaser; local validation only, no physical pedal test.",
+  "comment": "Five-control phaser: Wave appended after Depth; 1.00 worked on owner pedal, 1.10 Wave update awaits physical test.",
   "audio_func_name": "Fx_MOD_PhsDepth",
   "gid": 6,
   "fxid": 947,
-  "fxid_version": "1.00",
+  "fxid_version": "1.10",
   "flags_byte": 1,
   "params": [
     {
@@ -27,6 +27,12 @@
       "name": "Depth",
       "max": 100,
       "default": 50
+    },
+    {
+      "name": "Wave",
+      "max": 6,
+      "default": 0,
+      "comment": "0=Triangle, 1=Sine, 2=Square, 3=Saw Up, 4=Saw Down, 5=Random sample-and-hold, 6=Step (8-level triangle). Handler writes raw/100. Not an emulation of PH-3 Rise/Fall."
     }
   ],
   "audio_nop": false,

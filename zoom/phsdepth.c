@@ -1,4 +1,5 @@
-/* Original blue MS-70CDR 2.10 candidate. NOT physically tested.
+/* Original blue MS-70CDR 2.10, Wave update NOT physically tested.
+ * Previous 1.00 binary: owner reported successful pedal operation.
  * ctx[5]: planar float L[8],R[8]. ctx[3]: per-instance state descriptor.
  * All controls come from the runtime's normalized parameter block.
  */
@@ -19,7 +20,7 @@ typedef unsigned int PdWord;
 #endif
 #define PD_PTR(type, word) ((type)(uintptr_t)(word))
 #define PD_MAGIC 0x50485344u
-#define PD_VERSION 2u
+#define PD_VERSION 3u
 typedef struct {
     uint32_t magic,version,initialized,pad;
     PhsDepth dsp;
@@ -40,6 +41,7 @@ void PHSDEPTH_AUDIO_FUNC(PdWord *ctx) {
     uintptr_t base,end;
     PhsDepthState *st;
     float color;
+    int wave;
     int i;
     if(!desc)return;
     base=(uintptr_t)desc[0]; end=(uintptr_t)desc[1];
@@ -58,6 +60,10 @@ void PHSDEPTH_AUDIO_FUNC(PdWord *ctx) {
     pd_color(&st->dsp,(int)(color+0.5f));
     st->dsp.level=pd_norm(params[7],0.50f)*2.0f;
     st->dsp.depth=pd_norm(params[8],0.50f);
+    /* Fifth control is appended: first four slots and their ranges are stable.
+     * As with Color, a discrete raw Wave 0..6 arrives divided by 100. */
+    wave=(int)(pd_norm(params[9],0.0f)*100.0f+0.5f);
+    st->dsp.wave=wave<PHSDEPTH_WAVE_COUNT ? wave : PHSDEPTH_TRIANGLE;
     for(i=0;i<8;i++)pd_frame(&st->dsp,buf[i],buf[i+8],
         st->dsp.rate_hz*(1.0f/44100.0f),&buf[i],&buf[i+8]);
 }
