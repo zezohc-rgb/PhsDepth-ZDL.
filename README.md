@@ -1,6 +1,6 @@
 # PhsDepth — Zoom MS-70CDR original (azul), firmware 2.10
 
-Candidato experimental compilado: **[dist/PhsDepth.ZDL](dist/PhsDepth.ZDL)**, 5.542 bytes. É um contêiner ZDL com código TI C674x, áudio ativo e quatro controles; **não foi instalado nem testado fisicamente na pedaleira**. A compatibilidade completa com o carregador, a interface e o áudio do firmware 2.10 ainda depende desse teste.
+Candidato experimental compilado: **[dist/PhsDepth.ZDL](dist/PhsDepth.ZDL)**, 5.582 bytes. É um contêiner ZDL com código TI C674x, áudio ativo e quatro controles; **não foi instalado nem testado fisicamente na pedaleira**. A compatibilidade completa com o carregador, a interface e o áudio do firmware 2.10 ainda depende desse teste.
 
 | Controle | Valores | Função |
 |---|---|---|
@@ -12,6 +12,14 @@ Candidato experimental compilado: **[dist/PhsDepth.ZDL](dist/PhsDepth.ZDL)**, 5.
 Depth em zero mantém um phaser estático; não mistura seco/molhado. A soma é sempre 50% seco + 50% sinal dos filtros (polaridade definida por Color), multiplicada por Level. Os canais L/R têm memória independente. Rate, Color e Level ficam na primeira página; Depth na segunda. Color é mostrado numericamente.
 
 Identidade: categoria Modulation (`gid 6`), `fxid 947`, índice **`0x060003B3`**. Não reutiliza o ID de um Phaser original. A [auditoria](docs/id-audit.json) de 11/11/2026 consultou 581 arquivos de sete coleções públicas, incluindo efeitos Zoom, manifests e bancos de IDs. Não encontrou esse fxid em nenhum grupo nas fontes consultadas. Não existe reserva global de IDs; a lista de efeitos realmente instalados também deve ser conferida.
+
+## Imagem no pedal
+
+Capa monocromática de 128×64 pixels, inspirada no Phaser da MS-70CDR+, adaptada à tela original. O preview abaixo está ampliado 6×, sem interpolação. As caixas vazias recebem os valores desenhados pelo firmware; Depth permanece na segunda página. A visualização física ainda não foi confirmada.
+
+![Capa PhsDepth com pedal Phaser e controles Rate, Color e Level](dist/PhsDepth-cover.png)
+
+O sprite em `zoom/art/pedal.pbm` foi criado com geração de imagem a partir da referência fornecida e convertido para bitmap de um bit; `zoom/cover.py` compõe o título e a área dos controles. O build embute essa capa específica no ZDL.
 
 ## Validação concluída
 

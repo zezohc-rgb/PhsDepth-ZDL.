@@ -46,7 +46,7 @@ def main():
     sys.path.insert(0, str(upstream / 'build'))
     sys.path.insert(0, str(upstream / 'src/airwindows/common'))
     from linker import LinkerConfig, link, params_from_manifest, ObjFile
-    from custom_covers import make_cover
+    from cover import make_cover, save_pbm
     from zdl_size_guard import check
     work = ROOT / 'work' / 'build'
     work.mkdir(parents=True, exist_ok=True)
@@ -68,13 +68,14 @@ def main():
     cfg = LinkerConfig(effect_name=m['effect_name'], audio_func_name=m['audio_func_name'],
                        gid=m['gid'], fxid=m['fxid'], params=params_from_manifest(m['params']),
                        obj_path=obj, output_path=out,
-                       screen_image=make_cover(m['effect_name'], [p['name'] for p in m['params']]),
+                       screen_image=make_cover(),
                        fxid_version=m['fxid_version'].encode('ascii'), flags_byte=m['flags_byte'],
                        audio_nop=args.ui_only, own_runtime=True,
                        materialize_init=m['materialize_init'], dsp_cost=m['dsp_cost'],
                        use_object_edit_handlers=False)
     link(cfg)
     size, code_data = check(out)
+    save_pbm(outdir / "PhsDepth-cover.pbm")
     report = {'artifact': out.name, 'sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
               'bytes': size, 'code_data_bytes': code_data, 'upstream_commit': head,
               'ti_compiler': revision,
@@ -82,7 +83,9 @@ def main():
               'own_runtime': True, 'materialize_init': cfg.materialize_init,
               'dsp_cost_declared': m['dsp_cost'], 'dsp_cost_measured_on_pedal': False,
               'physically_tested': False,
-              'dsp_undefined_symbols': undefined}
+              'dsp_undefined_symbols': undefined,
+              'cover': 'PhsDepth-cover.pbm',
+              'cover_sha256': hashlib.sha256((outdir / 'PhsDepth-cover.pbm').read_bytes()).hexdigest()}
     (outdir / 'build-report.json').write_text(json.dumps(report, indent=2)+'\n')
     (outdir / 'SHA256SUMS').write_text(f'{report["sha256"]}  {out.name}\n')
     print(f'Generated experimental {"UI-only" if args.ui_only else "phaser"}: {out} (NOT hardware tested)')

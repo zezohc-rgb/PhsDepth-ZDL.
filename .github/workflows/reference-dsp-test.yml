@@ -27,6 +27,8 @@ jobs:
             work/rebuilt/PhsDepth.ZDL
             work/rebuilt/build-report.json
             work/rebuilt/SHA256SUMS
+            work/rebuilt/PhsDepth-cover.pbm
+            dist/PhsDepth-cover.png
             licenses/
   emulate:
     runs-on: ubuntu-latest

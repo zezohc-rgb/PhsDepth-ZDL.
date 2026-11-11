@@ -1,8 +1,8 @@
 {
   "artifact": "PhsDepth.ZDL",
-  "sha256": "d7654f016e0695460006cfdbb49a73cdd0cb74e8c7b26d3f34d998222ce9e926",
-  "bytes": 5542,
-  "code_data_bytes": 3344,
+  "sha256": "f530c9a7472836adcf7b8c17a383453ec6bce6da6e1e022b48e0cb97efcb98df",
+  "bytes": 5582,
+  "code_data_bytes": 3384,
   "upstream_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
   "ti_compiler": "8.5.0",
   "gid": 6,
@@ -13,5 +13,7 @@
   "dsp_cost_declared": 40.0,
   "dsp_cost_measured_on_pedal": false,
   "physically_tested": false,
-  "dsp_undefined_symbols": []
+  "dsp_undefined_symbols": [],
+  "cover": "PhsDepth-cover.pbm",
+  "cover_sha256": "24af147b05d3208e172caa57a3656652b3f74ea97172852c311ca1defb0bf046"
 }

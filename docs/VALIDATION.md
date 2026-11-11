@@ -1,6 +1,6 @@
 # Validação — 11/11/2026
 
-Artefato `dist/PhsDepth.ZDL`: 5.542 bytes; código + constantes 3.344 bytes, abaixo dos limites publicados pela referência (32.126 / 29.576). SHA256: `d7654f016e0695460006cfdbb49a73cdd0cb74e8c7b26d3f34d998222ce9e926`.
+Artefato `dist/PhsDepth.ZDL`: 5.582 bytes; código + constantes 3.384 bytes, abaixo dos limites publicados pela referência (32.126 / 29.576). SHA256: `f530c9a7472836adcf7b8c17a383453ec6bce6da6e1e022b48e0cb97efcb98df`.
 
 | Verificação | Resultado | Limite |
 |---|---|---|
@@ -15,6 +15,8 @@ Artefato `dist/PhsDepth.ZDL`: 5.542 bytes; código + constantes 3.344 bytes, aba
 | Ziddle C674x | 36 casos, 655.360 amostras de canal, erro máximo host/TI 0,000000522; zero instruções não implementadas | Runtime hermético; não emula toda a inicialização do firmware 2.10 |
 
 Emulação inclui execução de `_init`, materialização dos valores carregados, OnOff e os quatro handlers de edição. Também cobre alterações depois de iniciar o áudio, Level=0 após edição e bypass do binário em execução. Entrada: impulso num canal, ruído determinístico no outro e cauda silenciosa; cobre defaults e extremos Rate/Level/Depth em todos os Color. Compara a memória de saída wet que o DSP escreve com o kernel host, sem depender do mix do firmware simulado. O máximo observado foi 761 pacotes / 1.665 ciclos de emulador por bloco; **não converter isso em porcentagem DSP na pedaleira**.
+
+Capa atualizada: `zoom/cover.py` incorpora o motivo inspirado no Phaser da MS-70CDR+ e reserva as caixas de valores do firmware. A imagem extraída de `picEffectType_PhsDepth` foi comparada ao canvas fonte: todos os 8.192 pixels coincidem. A arte consta em `dist/PhsDepth-cover.pbm`, com preview ampliado em `dist/PhsDepth-cover.png`. O DSP e a identidade permanecem os mesmos; o hash/tamanho do contêiner mudou com a capa.
 
 Relatórios reproduzíveis: `dist/build-report.json`, `dist/emulator-report.json`, `docs/id-audit.json`. `tools/test.sh` executa testes C otimizados, sanitizers e unittest. `tools/build.sh --output-dir work/rebuilt` recompila a dependência fixada e permite `cmp dist/PhsDepth.ZDL work/rebuilt/PhsDepth.ZDL`.
 
