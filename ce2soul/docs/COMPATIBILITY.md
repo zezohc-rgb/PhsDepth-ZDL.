@@ -1,6 +1,6 @@
 # Compatibility and hardware test procedure
 
-Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.40 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner reported running chorus 0.30 in mono, with a level drop and overlapping knob captions. This supports operation of that prior build, not complete compatibility or a physical test of 0.40.
+Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.41 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner reports successful use of 0.40 and a close subjective comparison to Brainworx Blue Chorus, with slightly less bass. Version 0.41 still requires physical verification; this is not a calibrated CE-2 comparison.
 
 Version 0.20 changes the middle of the Rate curve and wet bass filtering. RATE=50 is now approximately 1.89 Hz, compared with 0.59 Hz in 0.10. Review saved presets. Identity, two controls and artwork are unchanged; update the same custom effect, never install two conflicting IDs.
 
@@ -12,7 +12,7 @@ Version 0.40 restores nominal direct/wet gain, adds wet-only warmth and a soft o
 
 ## Limits
 
-- Version 0.40 physical installation/boot, display overlays, audio, repeated activation and patch recall remain pending.
+- Version 0.41 physical installation/boot, display overlays, audio, repeated activation and patch recall remain pending.
 - DSP instruction target is C674x; no claim is made about the exact commercial DSP part inside Zoom's custom chip.
 - 8316 bytes of per-instance descriptor state, with ring priming rather than global arrays. Arena bounds are checked; insufficient memory produces dry passthrough. Hardware allocation and simultaneous instances still need testing.
 - CPU cost descriptor is provisionally 40.0. Emulator cycles are reported only as emulator counts; actual scheduling margin in a six-effect chain is unknown.
@@ -36,3 +36,5 @@ No firmware, factory effect, hardware setting or USB MIDI state was modified dur
 ## Fidelity validation still needed
 
 Use a known original CE-2, calibrated reamp and the same dry recording. Capture dry/effect impulses or sweeps, single tones, transient guitar and chords at documented knob positions and levels. Measure wet delay extrema, LFO period and shape, wet/dry ratio, frequency response and distortion versus input level. Account for polarity, ADC/DAC latency and level before listening comparisons. Avoid confusing CE-2W/CE-1 modes or the CE-2B bass revision with the 1979 reference. These measurements can then replace the provisional constants and knob law.
+
+Version 0.41 adds a +1 dB low-frequency wet shelf (180 Hz pole), folded into the existing two-state voicing filter. No additional memory or controls. See [BASS_041.md](BASS_041.md).
