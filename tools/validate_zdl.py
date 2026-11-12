@@ -62,6 +62,10 @@ def validate(data, manifest):
         row=d[(i+2)*48:(i+3)*48]
         require(cstr(row,0)==p['name'],'control order/name mismatch')
         require(struct.unpack_from('<II',row,12)==(p['max'],p['default']),'control range/default mismatch')
+        if p.get('labels'):
+            label_target=struct.unpack_from('<I',row,36)[0]
+            require(label_target!=0,'missing selector label callback')
+            require(any(s[2]&4 and s[3]<=label_target<s[3]+s[5] for s in sections),'label callback outside executable section')
         target=struct.unpack_from('<I',row,28)[0]
         require(target==syms[audio+'_'+p['name']+'_edit'][1],'missing real edit handler')
         flags=struct.unpack_from('<I',row,44)[0]

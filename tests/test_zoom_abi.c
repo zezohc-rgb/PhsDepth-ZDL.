@@ -35,7 +35,7 @@ int main(void) {
     int mode,i,b,wave;
     for(wave=0;wave<PHSDEPTH_WAVE_COUNT;wave++) for(mode=0;mode<4;mode++) {
         setup(&f); f.params[6]=(float)mode*.01f; f.params[9]=(float)wave*.01f;
-        phsdepth_init(&ref); phsdepth_set(&ref,2.152f,mode,1.0f,.5f);
+        phsdepth_init(&ref); phsdepth_set(&ref,phsdepth_rate_from_control(35),mode,1.0f,.5f);
         phsdepth_set_wave(&ref,wave);
         for(b=0;b<4000;b++) {
             if(b==2000 || b==3000) {
@@ -87,7 +87,7 @@ int main(void) {
     assert(fabsf(g.guarded.state.dsp.level-.02f)<1e-6f);
     assert(fabsf(g.guarded.state.dsp.depth-.01f)<1e-6f);
     /* Endpoints tolerate float conversion round-off from the UI callback. */
-    g.params[9]=.060000006f;Fx_MOD_PhaserZeh(g.ctx);
+    g.params[9]=.020000002f;Fx_MOD_PhaserZeh(g.ctx);
     assert(g.guarded.state.dsp.wave==PHSDEPTH_STEP);
     /* An invalid Wave must fall back to the known-working Triangle mode. */
     g.params[9]=1.0f;Fx_MOD_PhaserZeh(g.ctx);
@@ -97,5 +97,36 @@ int main(void) {
         g.params[9]=wave*.01f;Fx_MOD_PhaserZeh(g.ctx);guards(&g);
         assert(g.guarded.state.dsp.wave==wave);
     }
-    puts("Zoom wrapper: 7 Wave modes, 4 Color modes, host parity, bounds, bypass, isolation, zero and invalid controls passed");
+    g.params[9]=.06f;Fx_MOD_PhaserZeh(g.ctx);assert(g.guarded.state.dsp.wave==PHSDEPTH_STEP);
+    /* Rate edits change speed without resetting the running LFO phase. */
+    {
+        float phase=g.guarded.state.dsp.phase,advance;
+        g.params[5]=0;Fx_MOD_PhaserZeh(g.ctx);assert(g.guarded.state.dsp.rate_hz==.05f);
+        advance=g.guarded.state.dsp.phase-phase;if(advance<0)advance+=1;
+        assert(fabsf(advance-8*.05f/44100)<1e-6f);
+        phase=g.guarded.state.dsp.phase;
+        g.params[5]=1;Fx_MOD_PhaserZeh(g.ctx);assert(g.guarded.state.dsp.rate_hz==3);
+        advance=g.guarded.state.dsp.phase-phase;if(advance<0)advance+=1;
+        assert(fabsf(advance-8*3.0f/44100)<1e-6f);
+    }
+    {
+        const char *colors[]={"4 STG","8 STG","inv 4","inv 8"};
+        const char *waves[]={"Tri","Sine","Step"};
+        struct {unsigned before;char text[8];unsigned after;} label;
+        for(mode=0;mode<4;mode++){
+            memset(&label,0x5a,sizeof(label));
+            assert(ZDL_GetLabel_1((unsigned)mode,label.text)==5);
+            assert(strcmp(label.text,colors[mode])==0);
+            assert(label.before==0x5a5a5a5a&&label.after==0x5a5a5a5a&&label.text[6]==0x5a);
+        }
+        for(wave=0;wave<3;wave++){
+            memset(&label,0x5a,sizeof(label));
+            assert(ZDL_GetLabel_4((unsigned)wave,label.text)==(int)strlen(waves[wave]));
+            assert(strcmp(label.text,waves[wave])==0);
+            assert(label.before==0x5a5a5a5a&&label.after==0x5a5a5a5a);
+        }
+        ZDL_GetLabel_4(6,label.text);assert(strcmp(label.text,"Step")==0);
+        ZDL_GetLabel_4(99,label.text);assert(strcmp(label.text,"Tri")==0);
+    }
+    puts("Zoom wrapper: 3 Wave modes, 4 Color modes, host parity, bounds, bypass, isolation, zero and invalid controls passed");
 }

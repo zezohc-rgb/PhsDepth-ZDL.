@@ -6,7 +6,7 @@ import hashlib
 class State(C.Structure):
     _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),
               ('depth',C.c_float),('level',C.c_float),('color',C.c_int),
-              ('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float),('random_previous',C.c_float),('coefficient',C.c_float)]
+              ('wave',C.c_int),('coefficient',C.c_float)]
 
 
 def fingerprints(library, wave=0):

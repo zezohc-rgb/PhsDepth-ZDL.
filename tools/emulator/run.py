@@ -30,14 +30,16 @@ def main():
         f'ziddle-effect-runtime={{path="{zroot}/ziddle/runtime/effect-runtime"}}\n')
     subprocess.run(['cc','-std=c99','-O2','-ffp-contract=off','-fPIC','-shared',str(ROOT/'src/phsdepth_dsp.c'),'-o',str(work/'host.so')],check=True)
     class State(C.Structure):
-        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int),('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float),('random_previous',C.c_float),('coefficient',C.c_float)]
+        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int),('wave',C.c_int),('coefficient',C.c_float)]
     lib=C.CDLL(str(work/'host.so'))
     lib.phsdepth_init.argtypes=[C.POINTER(State)]
     lib.phsdepth_set.argtypes=[C.POINTER(State),C.c_float,C.c_int,C.c_float,C.c_float]
     lib.phsdepth_process.argtypes=[C.POINTER(State)]+[C.POINTER(C.c_float)]*4+[C.c_uint,C.c_float]
     lib.phsdepth_set_wave.argtypes=[C.POINTER(State),C.c_int]
+    lib.phsdepth_rate_from_control.argtypes=[C.c_float]
+    lib.phsdepth_rate_from_control.restype=C.c_float
     cases=[]
-    for wave in range(7):
+    for wave in range(3):
         for mode in range(4):
             cases.append((35,mode,50,50,wave))
             for rate in [0,100]:
@@ -50,7 +52,7 @@ def main():
     for rate,mode,level,depth,wave in cases:
         blocks=4096 if rate==35 else 2048
         vector.extend(struct.pack('<5fI',rate,mode,level,depth,wave,blocks))
-        s=State();lib.phsdepth_init(C.byref(s));lib.phsdepth_set(C.byref(s),C.c_float(.08+rate*.0592),mode,level*.02,depth*.01)
+        s=State();lib.phsdepth_init(C.byref(s));lib.phsdepth_set(C.byref(s),lib.phsdepth_rate_from_control(rate),mode,level*.02,depth*.01)
         lib.phsdepth_set_wave(C.byref(s),wave)
         for block in range(blocks):
             l=(C.c_float*8)();r=(C.c_float*8)();ol=(C.c_float*8)();orr=(C.c_float*8)()
@@ -71,6 +73,8 @@ def main():
     report={'metrics':metrics,'ziddle_source':'https://berbasoft.com/ziddle/ziddle-1793487371.zip','ziddle_zip_sha256':hashlib.sha256((zroot.parent/'ziddle.zip').read_bytes()).hexdigest() if (zroot.parent/'ziddle.zip').exists() else None,
             'artifact_sha256':hashlib.sha256((artifact).read_bytes()).hexdigest(),
             'passed':result.returncode==0,'cases':len(cases),'result':log,
+            'selector_labels_verified':result.returncode==0,
+            'selector_labels':{'Color':['4 STG','8 STG','inv 4','inv 8'],'Wave':['Tri','Sine','Step']},
             'physical_hardware_test':False,'scope':'C674x instruction execution and host audio parity; hermetic runtime callbacks, not MS-70CDR firmware scheduling or loader compatibility'}
     (ROOT/'dist/emulator-report.json').write_text(json.dumps(report,indent=2)+'\n')
     raise SystemExit(result.returncode)

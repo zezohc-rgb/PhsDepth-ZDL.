@@ -36,51 +36,54 @@ static const float pd_sine_table[33] = {
     0.961939766f, 0.978470168f, 0.990392640f, 0.997592363f,
     1.000000000f
 };
-/* Zero derivative at both ends: no jump at a periodic reset or random target. */
-PD_INLINE(pd_ease)
-static inline float pd_ease(float t) {
-    float y=t*t*(3.0f-2.0f*t);
-    return y>1.0f ? 1.0f : (y<0.0f ? 0.0f : y);
+/* Exact integer-control samples of 0.05 * 60^(Rate/100), linearly
+ * interpolated for fractional callback values. No libm in the pedal. */
+static const float pd_rate_table[101] = {
+    0.050000000f, 0.052089659f, 0.054266652f, 0.056534628f, 0.058897391f,
+    0.061358900f, 0.063923284f, 0.066594842f, 0.069378052f, 0.072277582f,
+    0.075298293f, 0.078445248f, 0.081723725f, 0.085139220f, 0.088697459f,
+    0.092404409f, 0.096266283f, 0.100289558f, 0.104480978f, 0.108847571f,
+    0.113396658f, 0.118135865f, 0.123073140f, 0.128216758f, 0.133575345f,
+    0.139157884f, 0.144973736f, 0.151032650f, 0.157344785f, 0.163920725f,
+    0.170771495f, 0.177908579f, 0.185343946f, 0.193090060f, 0.201159909f,
+    0.209567022f, 0.218325495f, 0.227450014f, 0.236955874f, 0.246859015f,
+    0.257176040f, 0.267924246f, 0.279121654f, 0.290787037f, 0.302939954f,
+    0.315600779f, 0.328790741f, 0.342531954f, 0.356847456f, 0.371761248f,
+    0.387298335f, 0.403484766f, 0.420347680f, 0.437915348f, 0.456217226f,
+    0.475283997f, 0.495147630f, 0.515841427f, 0.537400083f, 0.559859745f,
+    0.583258067f, 0.607634280f, 0.633029253f, 0.659485562f, 0.687047565f,
+    0.715761471f, 0.745675424f, 0.776839575f, 0.809306176f, 0.843129659f,
+    0.878366734f, 0.915076478f, 0.953320440f, 0.993162738f, 1.034670173f,
+    1.077912336f, 1.122961727f, 1.169893875f, 1.218787467f, 1.269724478f,
+    1.322790309f, 1.378073931f, 1.435668031f, 1.495669172f, 1.558177951f,
+    1.623299172f, 1.691142016f, 1.761820229f, 1.835452309f, 1.912161709f,
+    1.992077039f, 2.075332285f, 2.162067033f, 2.252426702f, 2.346562790f,
+    2.444633125f, 2.546802132f, 2.653241107f, 2.764128506f, 2.879650242f,
+    3.000000000f
+};
+PD_INLINE(pd_rate_hz)
+static inline float pd_rate_hz(float normalized) {
+    float position;
+    int i;
+    if(!(normalized>=0.0f && normalized<=1.0f))normalized=.35f;
+    position=normalized*100.0f;i=(int)position;
+    if(i>=100)return 3.0f;
+    return pd_rate_table[i]+(position-(float)i)*(pd_rate_table[i+1]-pd_rate_table[i]);
 }
 PD_INLINE(pd_lfo)
-static inline float pd_lfo(float phase, int wave, float random_value, float random_previous) {
-    float tri = phase < 0.5f ? phase*2.0f : 2.0f-phase*2.0f;
-    if (wave == PHSDEPTH_SINE) {
-        float pos=tri*32.0f;
-        int i=(int)pos;
-        if (i>=32) return 1.0f;
+static inline float pd_lfo(float phase, int wave) {
+    float tri=phase<.5f ? phase*2.0f : 2.0f-phase*2.0f;
+    if(wave==PHSDEPTH_SINE) {
+        float pos=tri*32.0f;int i=(int)pos;
+        if(i>=32)return 1.0f;
         return pd_sine_table[i]+(pos-(float)i)*(pd_sine_table[i+1]-pd_sine_table[i]);
     }
-    /* Soft square: two plateaus, with finite 10%-cycle transitions. */
-    if (wave == PHSDEPTH_SQUARE) {
-        if(phase<0.1f)return 1.0f-pd_ease(phase*10.0f);
-        if(phase<0.5f)return 0.0f;
-        if(phase<0.6f)return pd_ease((phase-0.5f)*10.0f);
-        return 1.0f;
-    }
-    /* 90% sweep, 10% eased return. Pure saw resets caused a full-range
-     * coefficient jump once per cycle and an unwanted step-like transient. */
-    if (wave == PHSDEPTH_SAW_UP || wave == PHSDEPTH_SAW_DOWN) {
-        float ramp=phase<0.9f ? phase*(1.0f/0.9f) : 1.0f-pd_ease((phase-0.9f)*10.0f);
-        return wave==PHSDEPTH_SAW_UP ? ramp : 1.0f-ramp;
-    }
-    /* Random glide instead of sample-and-hold; adjacent periods meet exactly. */
-    if (wave == PHSDEPTH_RANDOM) return random_previous+(random_value-random_previous)*pd_ease(phase);
-    /* Eight-position triangular staircase; one complete up/down cycle per Rate.
-     * This is stepped modulation, not a clone of the Boss PH-3 DSP. */
-    if (wave == PHSDEPTH_STEP) {
+    if(wave==PHSDEPTH_STEP) {
         int step=(int)(tri*8.0f);
         if(step>7)step=7;
         return (float)step*(1.0f/7.0f);
     }
     return tri;
-}
-PD_INLINE(pd_next_random)
-static inline void pd_next_random(PhsDepth *s) {
-    uint32_t x=s->random_state;
-    x^=x<<13; x^=x>>17; x^=x<<5;
-    s->random_state=x;
-    s->random_value=(float)(x>>16)*(1.0f/65535.0f);
 }
 PD_INLINE(pd_coefficient)
 static inline float pd_coefficient(float lfo, float depth) {
@@ -92,11 +95,11 @@ static inline float pd_coefficient(float lfo, float depth) {
 PD_INLINE(pd_frame)
 static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
                             float *ol, float *orr) {
-    float a = pd_coefficient(pd_lfo(s->phase, s->wave, s->random_value, s->random_previous), s->depth);
-    /* Preserve Triangle/Sine bit for bit. Bound only the coefficient changes
-     * of modes 2..6, including intentional Step, to remove single-sample jumps.
+    float a = pd_coefficient(pd_lfo(s->phase, s->wave), s->depth);
+    /* Preserve Triangle/Sine bit for bit at a given Hz. Bound only Step
+     * coefficient changes to remove single-sample jumps.
      * At 44.1 kHz a full-range transition takes at most about 15 ms. */
-    if(s->wave>=PHSDEPTH_SQUARE && s->coefficient>=0.0f) {
+    if(s->wave==PHSDEPTH_STEP && s->coefficient>=0.0f) {
         float delta=a-s->coefficient;
         if(delta>0.00075f)delta=0.00075f;
         if(delta< -0.00075f)delta= -0.00075f;
@@ -116,21 +119,14 @@ static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
     *ol=s->level*0.5f*(l+sign*wl);
     *orr=s->level*0.5f*(r+sign*wr);
     s->phase+=inc;
-    if(s->phase>=1.0f) {
-        s->phase-=1.0f;
-        s->random_previous=s->random_value;
-        pd_next_random(s);
-    }
+    if(s->phase>=1.0f)s->phase-=1.0f;
 }
 PD_INLINE(pd_reset)
 static inline void pd_reset(PhsDepth *s) {
     int ch,k;
     for(ch=0;ch<2;ch++) for(k=0;k<8;k++) s->state[ch][k]=0.0f;
-    s->phase=0.0f; s->rate_hz=2.152f; s->color=0; s->level=1.0f; s->depth=0.5f;
-    s->wave=PHSDEPTH_TRIANGLE; s->random_state=0x6d2b79f5u;
-    pd_next_random(s);
-    s->random_previous=s->random_value;
-    pd_next_random(s);
+    s->phase=0.0f; s->rate_hz=pd_rate_hz(.35f); s->color=0; s->level=1.0f; s->depth=0.5f;
+    s->wave=PHSDEPTH_TRIANGLE;
     s->coefficient= -1.0f;
 }
 PD_INLINE(pd_color)

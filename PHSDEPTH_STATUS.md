@@ -1,9 +1,9 @@
-# PhaserZeh — versão 1.20
+# PhaserZeh 1.30
 
-Atualização/renomeação do PhsDepth: nome da tela **PhaserZeh**, arquivo instalável **PhasrZeh.ZDL** (limite de oito caracteres). Mesmo ID `0x060003B3`; atualizar apenas o efeito personalizado existente, sem instalar duas versões juntas.
+- Rate exponencial 0,05–3 Hz, com mais precisão nas velocidades lentas; 50 ≈ 0,39 Hz.
+- Wave reduzido a Tri/Sine/Step; Step antigo 6 passa a 2. As três formas foram preservadas em 60 renders host na mesma velocidade em Hz.
+- Color com os nomes do original: 4 STG, 8 STG, inv 4, inv 8. Nomes/categorias confirmados no arquivo público analisado; não é clone das tabelas de feedback/LFO/mix da Zoom.
+- Color e Wave exibem textos por callbacks próprios, executados no emulador C674x.
+- Nome PhaserZeh, arquivo `PhasrZeh.ZDL`, mesmo ID `0x060003B3`, mesma arte. Atualizar apenas o efeito personalizado existente.
 
-O proprietário aprovou a aparência da 1.11 e Wave 0/1, mas relatou caráter de Step nas demais ondas. Na 1.20, Square e rampas têm transições contínuas, Random usa glide e os modos 2–6 têm limitação de variação do coeficiente. Step 6 continua em oito posições, com bordas suavizadas. Wave 0 e 1 permanecem bit a bit iguais às referências host anteriores. A arte só mudou dentro do nome.
-
-Binário: 7.074 bytes; código + constantes 4.752 bytes. TI C6000 8.5.0.LTS, runtime próprio. Testes e limites em [VALIDATION.md](docs/VALIDATION.md).
-
-**A correção 1.20 ainda precisa de teste físico.** Os relatos anteriores constam em [HARDWARE_TESTS.md](docs/HARDWARE_TESTS.md). Custo DSP 40 continua provisório, sem medição real. Nenhum efeito original foi substituído.
+A 1.30 ainda não foi testada fisicamente. Os patches antigos mudam de velocidade com o mesmo Rate e podem precisar de regravação do Wave. [Validação](docs/VALIDATION.md), [Color original](docs/COLOR_COMPARISON.md) e [instalação](docs/INSTALLATION.md).

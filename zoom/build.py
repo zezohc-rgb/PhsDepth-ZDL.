@@ -62,8 +62,13 @@ def main():
     if undefined:
         raise RuntimeError(f'unexpected DSP helper calls: {undefined}')
     for section in parsed.sections:
-        if section['size'] and section['name'] in ('.bss', '.far', '.fardata', '.text'):
+        if section['size'] and section['name'] in ('.bss', '.far', '.fardata'):
             raise RuntimeError(f'unexpected DSP storage/outlined helpers: {section["name"]}')
+    text_indices={s['idx'] for s in parsed.sections if s['name'].startswith('.text') and s['size']}
+    text_functions={s['name'] for s in parsed.symbols if s['type']==2 and s['shndx'] in text_indices
+                    and not (s['bind']==0 and s['name'].startswith('$C$L'))}
+    if text_functions!={'ZDL_GetLabel_1','ZDL_GetLabel_4'}:
+        raise RuntimeError(f'unexpected outlined code or missing label callbacks: {text_functions}')
     basename=m['output_basename']
     if not 1<=len(basename)<=8 or not basename.isalnum():
         ap.error('ZDL basename must be 1..8 ASCII letters/digits')
@@ -87,7 +92,7 @@ def main():
               'own_runtime': True, 'materialize_init': cfg.materialize_init,
               'dsp_cost_declared': m['dsp_cost'], 'dsp_cost_measured_on_pedal': False,
               'physically_tested': False,
-              'dsp_undefined_symbols': undefined,
+              'dsp_undefined_symbols': undefined, 'label_callbacks': sorted(text_functions),
               'cover': f'{basename}-cover.pbm',
               'knob_positions': KNOB_POSITIONS,
               'cover_sha256': hashlib.sha256((outdir / f'{basename}-cover.pbm').read_bytes()).hexdigest()}

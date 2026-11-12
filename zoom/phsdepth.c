@@ -20,7 +20,7 @@ typedef unsigned int PdWord;
 #endif
 #define PD_PTR(type, word) ((type)(uintptr_t)(word))
 #define PD_MAGIC 0x50485344u
-#define PD_VERSION 4u
+#define PD_VERSION 5u
 typedef struct {
     uint32_t magic,version,initialized,pad;
     PhsDepth dsp;
@@ -52,7 +52,7 @@ void PHSDEPTH_AUDIO_FUNC(PdWord *ctx) {
         pd_reset(&st->dsp);
         st->magic=PD_MAGIC; st->version=PD_VERSION; st->initialized=1u; st->pad=0u;
     }
-    st->dsp.rate_hz=0.08f+pd_norm(params[5],0.35f)*5.92f;
+    st->dsp.rate_hz=pd_rate_hz(pd_norm(params[5],0.35f));
     /* Runtime maps all raw knobs by /100, including discrete Color 0..3.
      * Thus Color arrives as 0, .01, .02, .03, NOT 0, 1/3, 2/3, 1. */
     color=pd_norm(params[6],0.0f)*100.0f;
@@ -61,9 +61,12 @@ void PHSDEPTH_AUDIO_FUNC(PdWord *ctx) {
     st->dsp.level=pd_norm(params[7],0.50f)*2.0f;
     st->dsp.depth=pd_norm(params[8],0.50f);
     /* Fifth control is appended: first four slots and their ranges are stable.
-     * As with Color, a discrete raw Wave 0..6 arrives divided by 100. */
+     * As with Color, a discrete raw Wave 0..2 arrives divided by 100. */
     wave=(int)(pd_norm(params[9],0.0f)*100.0f+0.5f);
+    if(wave==6)wave=PHSDEPTH_STEP; /* tolerate legacy Step saved as 6 */
     st->dsp.wave=wave<PHSDEPTH_WAVE_COUNT ? wave : PHSDEPTH_TRIANGLE;
     for(i=0;i<8;i++)pd_frame(&st->dsp,buf[i],buf[i+8],
         st->dsp.rate_hz*(1.0f/44100.0f),&buf[i],&buf[i+8]);
 }
+
+#include "labels.h"

@@ -1,15 +1,13 @@
-# Atualizar PhsDepth para PhaserZeh 1.20
+# Atualizar para PhaserZeh 1.30
 
-O arquivo atual é `PhasrZeh.ZDL` (oito caracteres); o nome mostrado no efeito é **PhaserZeh**. Ele mantém o índice `0x060003B3` do PhsDepth. É uma atualização do mesmo efeito personalizado, não um segundo efeito para instalar ao lado do anterior.
+O arquivo é `PhasrZeh.ZDL`, nome na tela PhaserZeh. Mesmo índice `0x060003B3` do PhsDepth/PhaserZeh anterior. **Não instale versões antigas e novas simultaneamente com esse ID e não substitua efeitos originais.**
 
 1. Faça backup dos patches e da lista de efeitos. Confirme MS-70CDR original azul, firmware 2.10.
-2. Confira `dist/SHA256SUMS`. Importe `PhasrZeh.ZDL` no Zoom Effect Manager compatível com o modelo original.
-3. Atualize **somente o PhsDepth personalizado de índice `0x060003B3`**. Se a ferramenta mostrar as duas versões, não grave ambas: remova a seleção da versão antiga desse efeito personalizado. Nenhum efeito original deve ser apagado ou substituído.
-4. Se o mesmo índice estiver associado a um efeito diferente do PhsDepth/PhaserZeh deste projeto, pare e investigue a colisão.
-5. Teste primeiro um patch simples em volume baixo. Compare Wave 0 e 1 com o som anterior; experimente 2 Soft Square, 3 Ramp Up, 4 Ramp Down, 5 Random Glide e 6 Step. Square e Step conservam posições discretas por definição, com transições suavizadas; o teste importante é a redução dos transientes extras nas rampas e no Random.
-6. Confira página 2, valores salvos, patches antigos/novos, bypass e entradas/saídas. Os cinco controles mantêm ordem e faixas, mas a persistência real deve ser verificada após a atualização/renomeação.
-7. Level 50 é ganho nominal 1×; Level 100 pode alcançar 2×. Meça a carga DSP e teste cadeias gradualmente: o custo declarado 40 não é medição física.
+2. Confira `dist/SHA256SUMS`. Importe o novo arquivo no Zoom Effect Manager e atualize apenas o efeito personalizado deste projeto.
+3. Rate continua em 0–100, mas mudou para uma curva 0,05–3 Hz: valores salvos antigos ficam mais lentos. Reajuste de ouvido ou use a tabela do README e salve novamente.
+4. Wave agora é **Tri / Sine / Step**, códigos 0/1/2. O antigo Step 6 corresponde ao novo 2. O DSP tolera o 6, mas não se garante como o firmware limita números fora do novo range; confira o valor no patch. O antigo 2 não é mais Square.
+5. Confira textos de Color: **4 STG / 8 STG / inv 4 / inv 8**. As categorias correspondem às do arquivo Zoom analisado, mas não se afirma timbre idêntico.
+6. Teste primeiro um patch simples em volume baixo: Rate 0/25/50/75/100, três Wave, quatro Color, Level/Depth, bypass, páginas e valores salvos. Level 50 é nominal 1×; Level 100 pode chegar a 2×.
+7. Verifique entradas/saídas e carga DSP em cadeias gradualmente. O custo declarado 40 não é medição física.
 
-A versão anterior permanece no [commit entregue da 1.11](https://github.com/zezohc-rgb/PhsDepth-ZDL./blob/020683f21a14e6581caa6a44aee6b917c07f31e6/dist/PhsDepth.ZDL) para comparação/retorno. Nunca instale versões antigas e novas simultaneamente com o mesmo ID.
-
-O relato do proprietário está em [HARDWARE_TESTS.md](HARDWARE_TESTS.md). A aparência da versão anterior e suas ondas 0/1 foram aprovadas; **a versão 1.20 com a correção ainda não foi testada fisicamente**. O agente não acessou nem escreveu na pedaleira.
+A [1.20 anterior](https://github.com/zezohc-rgb/PhsDepth-ZDL./blob/b82e1a172f335734d3531809fa6ac7056db66ca5/dist/PhasrZeh.ZDL) permanece no histórico para comparação/retorno. O agente não acessou nem escreveu na pedaleira. **A versão 1.30 e os novos textos ainda aguardam teste físico.**

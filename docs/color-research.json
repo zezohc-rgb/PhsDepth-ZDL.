@@ -1,0 +1,89 @@
+{
+  "source_url": "https://github.com/ELynx/zoom-fx-compressed/blob/8798fb9efe103f77c02a857d5bad9f968497ca46/files/effects/PHASER.ZDL",
+  "source_commit": "8798fb9efe103f77c02a857d5bad9f968497ca46",
+  "binary_sha256": "054576b96eda5e05594d6a1d0706fc321cdfa52199dff409a17c61b8231c1577",
+  "binary_bytes": 10228,
+  "labels": [
+    "4 STG",
+    "8 STG",
+    "inv 4",
+    "inv 8"
+  ],
+  "get_string_symbol": "GetString_Phase_color",
+  "get_string_va": "0x000003e0",
+  "color_edit_va": "0x00000170",
+  "mix_table_va": "0x80000548",
+  "feedback_table_va": "0x80000518",
+  "lfo_table_va": "0x80000578",
+  "findings": [
+    "Four text labels confirmed directly in original ZDL.",
+    "Color handler indexes mode-specific mix and feedback rows with 12-byte stride and LFO rows with 8-byte stride.",
+    "Not evidence that the custom DSP matches the original. No stock code or binary is incorporated in PhaserZeh."
+  ],
+  "physical_comparison_performed": false,
+  "stock_descriptor": {
+    "Rate": {
+      "max": 77,
+      "default": 11
+    },
+    "Color": {
+      "max": 3,
+      "default": 3
+    },
+    "Level": {
+      "max": 150,
+      "default": 100
+    }
+  },
+  "emulator_probe": {
+    "color_cases": 4,
+    "init_clean": true,
+    "audio_blocks_per_case": 512,
+    "input": "0.25 impulse on left channel, stereo 8-frame blocks",
+    "unsupported_instructions": 0,
+    "render_calibrated_against_hardware": false,
+    "note": "Host callbacks are hermetic, not calibrated against the stock pedal. Probe execution does not establish faithful stock amplitude, LFO law or audible equivalence."
+  },
+  "static_analysis": {
+    "sha256": "054576b96eda5e05594d6a1d0706fc321cdfa52199dff409a17c61b8231c1577",
+    "bytes": 10228,
+    "labels": [
+      "4 STG",
+      "8 STG",
+      "inv 4",
+      "inv 8"
+    ],
+    "parameters": {
+      "Rate": {
+        "max": 77,
+        "default": 11
+      },
+      "Color": {
+        "max": 3,
+        "default": 3
+      },
+      "Level": {
+        "max": 150,
+        "default": 100
+      }
+    },
+    "tables": {
+      "Fx_Mod_Pha_color_Mix_tbl": {
+        "va": "0x80000548",
+        "row_bytes": 12,
+        "distinct_rows": 4
+      },
+      "Fx_Mod_Pha_color_FB_tbl": {
+        "va": "0x80000518",
+        "row_bytes": 12,
+        "distinct_rows": 4
+      },
+      "Fx_Mod_Pha_color_LFO_tbl": {
+        "va": "0x80000578",
+        "row_bytes": 8,
+        "distinct_rows": 4
+      }
+    },
+    "scope": "Static metadata facts only. Does not establish equivalent audio or firmware matching."
+  }
+}
