@@ -1,6 +1,6 @@
 {
-  "artifact_sha256": "24f02d5a0acbdbd684bb84f556ed8533d4ef9410f9d7e64e78373354da641f83",
-  "effect_version": "0.42",
+  "artifact_sha256": "be95021ef2aa7634ba29ecfb5b8b34dc29674c805224a569613f67a16733f9fa",
+  "effect_version": "0.43",
   "scope": "synthetic host DSP fixtures, not physical or perceptual loudness measurement",
   "sample_rate": 44100,
   "physical_reference": false,
@@ -10,180 +10,180 @@
       "rate": 0,
       "depth": 0,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05702238055351784,
-      "gain_db": 1.1415528618913744,
+      "output_rms": 0.058098332421194734,
+      "gain_db": 1.3039193218254228,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.2612786293029785
+      "output_peak": 0.2702866196632385
     },
     {
       "signal": "bandlimited_noise",
       "rate": 0,
       "depth": 0.5,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.057175763255342044,
-      "gain_db": 1.1648853956284557,
+      "output_rms": 0.058262464558157936,
+      "gain_db": 1.328423013966241,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.29660966992378235
+      "output_peak": 0.2980983257293701
     },
     {
       "signal": "bandlimited_noise",
       "rate": 0,
       "depth": 1,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05706463953199478,
-      "gain_db": 1.1479875437645641,
+      "output_rms": 0.05816309620394731,
+      "gain_db": 1.3135963253573895,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.272565633058548
+      "output_peak": 0.27753084897994995
     },
     {
       "signal": "bandlimited_noise",
       "rate": 0.5,
       "depth": 0,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05702238055351784,
-      "gain_db": 1.1415528618913744,
+      "output_rms": 0.058098332421194734,
+      "gain_db": 1.3039193218254228,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.2612786293029785
+      "output_peak": 0.2702866196632385
     },
     {
       "signal": "bandlimited_noise",
       "rate": 0.5,
       "depth": 0.5,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.057006112906093954,
-      "gain_db": 1.1390745516573895,
+      "output_rms": 0.0580942536785403,
+      "gain_db": 1.3033095151284158,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.2606540024280548
+      "output_peak": 0.260693222284317
     },
     {
       "signal": "bandlimited_noise",
       "rate": 0.5,
       "depth": 1,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05698665066837265,
-      "gain_db": 1.1361086291672453,
+      "output_rms": 0.05806871852850786,
+      "gain_db": 1.299490819817308,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.2625117599964142
+      "output_peak": 0.26793786883354187
     },
     {
       "signal": "bandlimited_noise",
       "rate": 1,
       "depth": 0,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05702238055351784,
-      "gain_db": 1.1415528618913744,
+      "output_rms": 0.058098332421194734,
+      "gain_db": 1.3039193218254228,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.2612786293029785
+      "output_peak": 0.2702866196632385
     },
     {
       "signal": "bandlimited_noise",
       "rate": 1,
       "depth": 0.5,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05709029345862253,
-      "gain_db": 1.1518914868248455,
+      "output_rms": 0.058173704245512,
+      "gain_db": 1.315180351705136,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.3140345811843872
+      "output_peak": 0.3176780939102173
     },
     {
       "signal": "bandlimited_noise",
       "rate": 1,
       "depth": 1,
       "input_rms": 0.04999973482570231,
-      "output_rms": 0.05705385506068161,
-      "gain_db": 1.1463458689730364,
+      "output_rms": 0.05815367676984883,
+      "gain_db": 1.312189543461373,
       "input_peak": 0.2586302161216736,
-      "output_peak": 0.3001730442047119
+      "output_peak": 0.30318981409072876
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0,
       "depth": 0,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.08989730614791161,
-      "gain_db": 1.2029576514500473,
+      "output_rms": 0.08999408737271541,
+      "gain_db": 1.2123036362949622,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.4842644929885864
+      "output_peak": 0.49691295623779297
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0,
       "depth": 0.5,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.09128558105291884,
-      "gain_db": 1.3360677789261253,
+      "output_rms": 0.09140430404708481,
+      "gain_db": 1.3473570188249748,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.5295422077178955
+      "output_peak": 0.5298632979393005
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0,
       "depth": 1,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.09371658987150447,
-      "gain_db": 1.564353638180707,
+      "output_rms": 0.09382930190968555,
+      "gain_db": 1.5747937969396157,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.5316956043243408
+      "output_peak": 0.5404950976371765
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0.5,
       "depth": 0,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.08989730614791161,
-      "gain_db": 1.2029576514500473,
+      "output_rms": 0.08999408737271541,
+      "gain_db": 1.2123036362949622,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.4842644929885864
+      "output_peak": 0.49691295623779297
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0.5,
       "depth": 0.5,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.08752885023966908,
-      "gain_db": 0.9710485673348976,
+      "output_rms": 0.08767923267092752,
+      "gain_db": 0.9859589013842502,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.46170541644096375
+      "output_peak": 0.47300028800964355
     },
     {
       "signal": "synthetic_plucks",
       "rate": 0.5,
       "depth": 1,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.0876694875091931,
-      "gain_db": 0.9849934492346073,
+      "output_rms": 0.08783181183486913,
+      "gain_db": 1.0010609266346964,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.4437132775783539
+      "output_peak": 0.4527825117111206
     },
     {
       "signal": "synthetic_plucks",
       "rate": 1,
       "depth": 0,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.08989730614791161,
-      "gain_db": 1.2029576514500473,
+      "output_rms": 0.08999408737271541,
+      "gain_db": 1.2123036362949622,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.4842644929885864
+      "output_peak": 0.49691295623779297
     },
     {
       "signal": "synthetic_plucks",
       "rate": 1,
       "depth": 0.5,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.0900795400454874,
-      "gain_db": 1.2205472925297105,
+      "output_rms": 0.09019497174835303,
+      "gain_db": 1.231670630586466,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.5059558153152466
+      "output_peak": 0.5161287784576416
     },
     {
       "signal": "synthetic_plucks",
       "rate": 1,
       "depth": 1,
       "input_rms": 0.07827062384890093,
-      "output_rms": 0.09076892730603621,
-      "gain_db": 1.2867681541675535,
+      "output_rms": 0.09085803185042489,
+      "gain_db": 1.2952905927361025,
       "input_peak": 0.26858705282211304,
-      "output_peak": 0.5120716691017151
+      "output_peak": 0.5206074714660645
     }
   ],
   "baseline_version": "0.30",
@@ -192,7 +192,7 @@
     -4.295034446552756
   ],
   "gain_db_range": [
-    0.9710485673348976,
-    1.564353638180707
+    0.9859589013842502,
+    1.5747937969396157
   ]
 }

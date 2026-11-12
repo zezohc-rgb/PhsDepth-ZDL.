@@ -1,8 +1,8 @@
 # CE-2 Soul — original MS-70CDR
 
-Experimental chorus inspired by the **mono Boss CE-2 (1979)**. Original DSP, not a renamed Zoom effect or a claimed indistinguishable clone. Target: blue Zoom MS-70CDR, reported firmware 2.10. **The owner tested 0.40 on the Zoom and reported good results, with a tone very close to Brainworx Blue Chorus but slightly less bass. Versions 0.41 and 0.42 have not yet been physically tested; no physical CE-2 comparison is available.**
+Experimental chorus inspired by the **mono Boss CE-2 (1979)**. Original DSP, not a renamed Zoom effect or a claimed indistinguishable clone. Target: blue Zoom MS-70CDR, reported firmware 2.10. **The owner tested 0.40 on the Zoom and reported good results, with a tone very close to Brainworx Blue Chorus but slightly less bass. The owner supplied clean, Brainworx and Zoom 0.42 recordings of the same take at RATE/DEPTH 50. Version 0.43 has not yet been physically tested; no physical CE-2 comparison is available.**
 
-Download: [build/CE2Soul.ZDL](build/CE2Soul.ZDL). Display name: `CE-2 Soul`, version `0.42`. Only **RATE** and **DEPTH**, 0–100, defaults 50/50. RATE models approximately 0.321–3.561 Hz; DEPTH changes clock/delay modulation, never mix. Center delay is approximately 4.65 ms, informed by partial published clock measurements. Nominal full-depth delay spans approximately 3.53–5.77 ms by extrapolation; this is not a measured factory range. The first 23.2 ms primes the ring, followed by a 5.8 ms wet fade.
+Download: [build/CE2Soul.ZDL](build/CE2Soul.ZDL). Display name: `CE-2 Soul`, version `0.43`. Only **RATE** and **DEPTH**, 0–100, defaults 50/50. RATE models approximately 0.321–3.561 Hz; DEPTH changes clock/delay modulation, never mix. Center delay is approximately 4.65 ms, informed by partial published clock measurements. Nominal full-depth delay spans approximately 3.53–5.77 ms by extrapolation; this is not a measured factory range. The first 23.2 ms primes the ring, followed by a 5.8 ms wet fade.
 
 Use **L/Mono input**. Enabled processing ignores R input and duplicates the same mono result to both outputs. Bypass preserves both incoming channels. This is intentional: no stereo phase inversion, widening or separate modulation.
 
@@ -53,3 +53,5 @@ This project is independent of Boss/Roland and Zoom. Their names identify refere
 Version 0.41 adds a subtle wet-only bass shelf: +1 dB at DC, pole 180 Hz, unity at high frequencies. Direct path, modulation, controls, cover and identity are unchanged. This is listening-driven voicing, not calibration against the Brainworx plugin. [Details and comparison with 0.40](docs/BASS_041.md).
 
 Version 0.42 changes only the cover: removes static knob rings/ticks beneath firmware-drawn knobs after an owner photograph showed overlapping shapes. Blank panels are reserved and checked in the decoded ZDL. Audio is unchanged from 0.41. [Display correction](docs/DISPLAY_042.md).
+
+Version 0.43 opens the wet high shelf from −4 to −2.5 dB, keeping the +1 dB bass shelf and cleared cover. This conservative recording-informed adjustment improves one high-frequency comparison, not a complete plugin match. [Recording comparison and limits](docs/RECORDINGS_043.md).

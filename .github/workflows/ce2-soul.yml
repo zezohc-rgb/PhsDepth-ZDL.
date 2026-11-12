@@ -34,7 +34,7 @@ jobs:
         run: python3 ce2soul/tools/emulator/run.py --ziddle work/ziddle-1793487371
       - uses: actions/upload-artifact@v4
         with:
-          name: CE2Soul-0.42-experimental-original-MS70CDR
+          name: CE2Soul-0.43-experimental-original-MS70CDR
           path: |
             ce2soul/build/
             ce2soul/docs/

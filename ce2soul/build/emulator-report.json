@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "artifact_sha256": "24f02d5a0acbdbd684bb84f556ed8533d4ef9410f9d7e64e78373354da641f83",
+  "artifact_sha256": "be95021ef2aa7634ba29ecfb5b8b34dc29674c805224a569613f67a16733f9fa",
   "physical_hardware_test": false,
   "scope": "C674x execution with hermetic callbacks; not firmware loader, ADC, CPU scheduling or CE-2 sound validation",
   "ziddle_source": "https://berbasoft.com/ziddle/ziddle-1793487371.zip",
@@ -8,10 +8,10 @@
   "metrics": {
     "cases": 12,
     "samples": 1179648,
-    "max_abs_error": 1.9729e-05,
+    "max_abs_error": 2.2173e-05,
     "max_packets": 3668,
     "max_emulated_cycles": 4855,
     "unsupported_instructions": 0
   },
-  "log": "case 0: [0.0, 0.0], 4096 blocks PASS\ncase 1: [0.0, 50.0], 4096 blocks PASS\ncase 2: [0.0, 100.0], 4096 blocks PASS\ncase 3: [50.0, 0.0], 4096 blocks PASS\ncase 4: [50.0, 50.0], 16384 blocks PASS\ncase 5: [50.0, 100.0], 4096 blocks PASS\ncase 6: [100.0, 0.0], 4096 blocks PASS\ncase 7: [100.0, 50.0], 4096 blocks PASS\ncase 8: [100.0, 100.0], 4096 blocks PASS\ncase 9: [50.0, 50.0], 8192 blocks PASS\ncase 10: [0.0, 100.0], 8192 blocks PASS\ncase 11: [100.0, 100.0], 8192 blocks PASS\nPASS: 12 cases, 1179648 samples, max error 0.000019729, max packets 3668, emulator cycles 4855, unsupported 0\n"
+  "log": "case 0: [0.0, 0.0], 4096 blocks PASS\ncase 1: [0.0, 50.0], 4096 blocks PASS\ncase 2: [0.0, 100.0], 4096 blocks PASS\ncase 3: [50.0, 0.0], 4096 blocks PASS\ncase 4: [50.0, 50.0], 16384 blocks PASS\ncase 5: [50.0, 100.0], 4096 blocks PASS\ncase 6: [100.0, 0.0], 4096 blocks PASS\ncase 7: [100.0, 50.0], 4096 blocks PASS\ncase 8: [100.0, 100.0], 4096 blocks PASS\ncase 9: [50.0, 50.0], 8192 blocks PASS\ncase 10: [0.0, 100.0], 8192 blocks PASS\ncase 11: [100.0, 100.0], 8192 blocks PASS\nPASS: 12 cases, 1179648 samples, max error 0.000022173, max packets 3668, emulator cycles 4855, unsupported 0\n"
 }
