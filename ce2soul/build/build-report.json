@@ -1,14 +1,14 @@
 {
   "artifact": "CE2Soul.ZDL",
   "effect_name": "CE-2 Soul",
-  "sha256": "cce85ee86094fe69cddf2b73ef72c93a1ad7ba2992c564fee0a81ae38d27db04",
-  "bytes": 7794,
-  "code_data_bytes": 5328,
+  "sha256": "d6edb2e63b47393d6037179c2bc2c665d15461578218b695dbbfe12817710357",
+  "bytes": 7858,
+  "code_data_bytes": 5392,
   "upstream_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
   "ti_compiler": "8.5.0",
   "gid": 6,
   "fxid": 948,
-  "effect_version": "0.20",
+  "effect_version": "0.21",
   "controls": [
     "RATE",
     "DEPTH"
@@ -26,13 +26,13 @@
     [
       2,
       42,
-      11
+      9
     ],
     [
       3,
-      76,
-      11
+      73,
+      9
     ]
   ],
-  "cover_sha256": "f374c866b86c1d014306955b4327ab4511180581723953e8c99f364acfd5cdf2"
+  "cover_sha256": "df5614e7e544d54380288752320e716dde5007025ca5173fe87a0cea4b81ee40"
 }

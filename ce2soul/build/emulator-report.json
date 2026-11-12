@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "artifact_sha256": "cce85ee86094fe69cddf2b73ef72c93a1ad7ba2992c564fee0a81ae38d27db04",
+  "artifact_sha256": "d6edb2e63b47393d6037179c2bc2c665d15461578218b695dbbfe12817710357",
   "physical_hardware_test": false,
   "scope": "C674x execution with hermetic callbacks; not firmware loader, ADC, CPU scheduling or CE-2 sound validation",
   "ziddle_source": "https://berbasoft.com/ziddle/ziddle-1793487371.zip",

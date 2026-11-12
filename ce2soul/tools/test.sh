@@ -8,3 +8,4 @@ cc -std=c99 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer tests/te
 ASAN_OPTIONS=detect_leaks=1 ./work/test-sanitize
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 python3 tools/validate.py
+python3 tools/inspect_cover.py
