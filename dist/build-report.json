@@ -1,13 +1,13 @@
 {
   "artifact": "PhsDepth.ZDL",
-  "sha256": "4c4218f6d15fd58cec8568a90e5b96fe40eaeb40400a2070b149c7deed14ab18",
-  "bytes": 6358,
-  "code_data_bytes": 4048,
+  "sha256": "7ec8914412f66efa8fd03945d96f746ab28c04ce1f29a6bb8f839c3dfbd48aa8",
+  "bytes": 6478,
+  "code_data_bytes": 4168,
   "upstream_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
   "ti_compiler": "8.5.0",
   "gid": 6,
   "fxid": 947,
-  "effect_version": "1.10",
+  "effect_version": "1.11",
   "controls": [
     "Rate",
     "Color",
@@ -23,5 +23,22 @@
   "physically_tested": false,
   "dsp_undefined_symbols": [],
   "cover": "PhsDepth-cover.pbm",
-  "cover_sha256": "24af147b05d3208e172caa57a3656652b3f74ea97172852c311ca1defb0bf046"
+  "knob_positions": [
+    [
+      2,
+      30,
+      11
+    ],
+    [
+      3,
+      54,
+      11
+    ],
+    [
+      4,
+      78,
+      11
+    ]
+  ],
+  "cover_sha256": "e52680ec54f1d24c6202812ef0c06f4db86c8d8d5d9b100da0a0e17d752014e8"
 }

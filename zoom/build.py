@@ -46,7 +46,7 @@ def main():
     sys.path.insert(0, str(upstream / 'build'))
     sys.path.insert(0, str(upstream / 'src/airwindows/common'))
     from linker import LinkerConfig, link, params_from_manifest, ObjFile
-    from cover import make_cover, save_pbm
+    from cover import make_cover, save_pbm, KNOB_POSITIONS
     from zdl_size_guard import check
     work = ROOT / 'work' / 'build'
     work.mkdir(parents=True, exist_ok=True)
@@ -68,7 +68,7 @@ def main():
     cfg = LinkerConfig(effect_name=m['effect_name'], audio_func_name=m['audio_func_name'],
                        gid=m['gid'], fxid=m['fxid'], params=params_from_manifest(m['params']),
                        obj_path=obj, output_path=out,
-                       screen_image=make_cover(),
+                       screen_image=make_cover(), knob_positions=KNOB_POSITIONS,
                        fxid_version=m['fxid_version'].encode('ascii'), flags_byte=m['flags_byte'],
                        audio_nop=args.ui_only, own_runtime=True,
                        materialize_init=m['materialize_init'], dsp_cost=m['dsp_cost'],
@@ -86,6 +86,7 @@ def main():
               'physically_tested': False,
               'dsp_undefined_symbols': undefined,
               'cover': 'PhsDepth-cover.pbm',
+              'knob_positions': KNOB_POSITIONS,
               'cover_sha256': hashlib.sha256((outdir / 'PhsDepth-cover.pbm').read_bytes()).hexdigest()}
     (outdir / 'build-report.json').write_text(json.dumps(report, indent=2)+'\n')
     (outdir / 'SHA256SUMS').write_text(f'{report["sha256"]}  {out.name}\n')

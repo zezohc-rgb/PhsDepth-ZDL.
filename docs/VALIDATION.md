@@ -1,8 +1,8 @@
-# Validação — versão 1.10 com Wave
+# Validação — versão 1.11 — capa estilo Phaser original
 
-Artefato `dist/PhsDepth.ZDL`: **6.358 bytes**, código + constantes **4.048 bytes**, abaixo dos limites publicados pela referência (32.126 / 29.576). Versão `1.10`, mesmo ID `0x060003B3`. SHA256: `4c4218f6d15fd58cec8568a90e5b96fe40eaeb40400a2070b149c7deed14ab18`.
+Artefato `dist/PhsDepth.ZDL`: **6.478 bytes**, código + constantes **4.168 bytes**, abaixo dos limites publicados pela referência (32.126 / 29.576). Versão `1.11`, mesmo ID `0x060003B3`. SHA256: `7ec8914412f66efa8fd03945d96f746ab28c04ce1f29a6bb8f839c3dfbd48aa8`.
 
-O proprietário informou que a versão anterior 1.00 funcionou. Esse relato está em [HARDWARE_TESTS.md](HARDWARE_TESTS.md); **a atualização 1.10 com Wave ainda não foi testada fisicamente**.
+O proprietário informou que a versão anterior 1.00 funcionou. Esse relato está em [HARDWARE_TESTS.md](HARDWARE_TESTS.md); **a versão 1.11 com Wave e nova capa ainda não foi testada fisicamente**.
 
 | Verificação | Resultado | Limite |
 |---|---|---|
@@ -22,8 +22,8 @@ Emulação executa `_init`, materialização dos cinco valores carregados, OnOff
 
 Máximos observados: **1.122 pacotes / 2.136 ciclos de emulador por bloco**. Não equivalem à carga real na pedaleira. O custo declarado 40 permanece uma estimativa provisória.
 
-A capa 128×64 é a mesma da versão entregue 1.00; a quinta opção está na segunda página. Rebuild independente com dependências fixadas produz binário idêntico byte a byte. Relatórios: `dist/build-report.json`, `dist/emulator-report.json`, `docs/id-audit.json`; a evidência histórica de áudio está em `tests/triangle-v1.00.json`.
+A capa 128×64 reproduz o estilo da foto do Phaser original: pedal grande e knobs no topo. Foram conferidos os 8.192 pixels extraídos do ZDL contra a fonte e as três posições em effectTypeImageInfo: (id 2, x30, y11), (id 3, x54, y11), (id 4, x78, y11). As caixas 20×15 ficam dentro da tela, acima da placa do nome, sem se sobrepor. O contador continua com cinco parâmetros e duas páginas. O objeto de DSP recompilado foi comparado ao da 1.10: idêntico byte a byte. Rebuild independente com dependências fixadas produz binário idêntico byte a byte. Relatórios: `dist/build-report.json`, `dist/emulator-report.json`, `docs/id-audit.json`; a evidência histórica de áudio está em `tests/triangle-v1.00.json`.
 
 Repetir: `./tools/build.sh`, `./tools/test.sh` e `python3 tools/emulator/run.py --ziddle /caminho/ziddle-1793487371`. O CI recompila, compara e emula o binário.
 
-**Pendente na 1.10:** aparência e edição de Wave na página 2, persistência, patches antigos/novos, níveis/transientes e carga DSP real. Nenhum efeito original foi substituído.
+**Pendente na 1.11:** aparência e alinhamento real dos valores sobre os knobs, aparência e edição de Wave na página 2, persistência, patches antigos/novos, níveis/transientes e carga DSP real. Nenhum efeito original foi substituído.

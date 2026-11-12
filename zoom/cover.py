@@ -1,35 +1,28 @@
-"""128x64 one-bit LCD artwork inspired by the supplied MS-70CDR+ Phaser.
+"""Full-size stock-style stompbox artwork for the original MS-70CDR LCD.
 
-The generated stompbox motif is stored as a small PBM sprite, not a dependency
-on an image service at build time. Layout coordinates match the linker UI.
+The 128x64 PBM is a fixed one-bit asset, generated from the owner's hardware
+photo reference. The build never depends on an image-generation service.
+The three value overlays are aligned to its top-row knobs.
 """
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+KNOB_POSITIONS = [(2, 30, 11), (3, 54, 11), (4, 78, 11)]
 
 
 def cover_canvas():
     from screen_image import Canvas
-    c = Canvas()
-    c.rect(0, 0, 127, 63)
-    c.draw_text('PHSDEPTH', 5, 2, scale=2, spacing=1)
-    c.hline(1, 126, 13)
-    # Plain PBM: black is 1, white is 0, matching Zoom's monochrome canvas.
     tokens = []
-    for line in (HERE / 'art/pedal.pbm').read_text().splitlines():
+    for line in (HERE / 'art/stock-style.pbm').read_text().splitlines():
         tokens.extend(line.split('#', 1)[0].split())
-    if tokens[:3] != ['P1', '32', '22'] or len(tokens[3:]) != 32 * 22:
-        raise ValueError('expected an exact 32x22 plain PBM stompbox sprite')
+    if tokens[:3] != ['P1', '128', '64'] or len(tokens[3:]) != 128 * 64:
+        raise ValueError('expected an exact 128x64 plain PBM cover')
+    c = Canvas()
     for i, bit in enumerate(tokens[3:]):
         if bit not in ('0', '1'):
             raise ValueError('PBM must contain only monochrome pixels')
         if bit == '1':
-            c.px(48 + i % 32, 15 + i // 32)
-    # Labels stay above the three firmware-owned 20x15 value boxes.
-    for label, x in [('RATE', 14), ('COLOR', 55), ('LEVEL', 96)]:
-        width = len(label) * 4 - 1
-        c.draw_text(label, x + (20 - width) // 2, 38)
-        c.rect(x, 46, x + 19, 60)
+            c.px(i % 128, i // 128)
     return c
 
 

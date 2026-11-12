@@ -1,6 +1,6 @@
 # PhsDepth — Zoom MS-70CDR original (azul), firmware 2.10
 
-**Versão 1.10 com Wave:** [dist/PhsDepth.ZDL](dist/PhsDepth.ZDL), 6.358 bytes. O proprietário informou que a versão anterior 1.00 funcionou na pedaleira ([registro](docs/HARDWARE_TESTS.md)); **esta atualização com cinco controles ainda não foi testada fisicamente**. Há testes locais e emulação do binário TI C674x.
+**Versão 1.11, nova capa no estilo do Phaser original:** [dist/PhsDepth.ZDL](dist/PhsDepth.ZDL), 6.478 bytes. O proprietário informou que a versão anterior 1.00 funcionou na pedaleira ([registro](docs/HARDWARE_TESTS.md)); **a versão 1.11 ainda não foi testada fisicamente**. Há testes locais e emulação do binário TI C674x.
 
 | Controle | Valores | Função |
 |---|---|---|
@@ -16,11 +16,13 @@ Identidade: categoria Modulation (`gid 6`), `fxid 947`, índice **`0x060003B3`**
 
 ## Imagem no pedal
 
-Capa monocromática de 128×64 pixels, inspirada no Phaser da MS-70CDR+, adaptada à tela original. O preview abaixo está ampliado 6×, sem interpolação. As caixas vazias recebem os valores desenhados pelo firmware; Depth e Wave ficam na segunda página. O relato de funcionamento da versão anterior está registrado acima; a nova paginação ainda precisa de teste físico.
+Capa monocromática 128×64 no estilo da foto da MS-70CDR original fornecida pelo proprietário: pedal grande, três knobs octogonais no topo com Rate/Color/Level, placa PhsDepth no centro e footswitch embaixo. As posições dos valores do firmware foram alinhadas aos knobs no topo. Depth e Wave continuam na segunda página.
 
-![Capa PhsDepth com pedal Phaser e controles Rate, Color e Level](dist/PhsDepth-cover.png)
+![Prévia da capa PhsDepth na proporção aproximada do LCD](dist/PhsDepth-cover-lcd.png)
 
-O sprite em `zoom/art/pedal.pbm` foi criado com geração de imagem a partir da referência fornecida e convertido para bitmap de um bit; `zoom/cover.py` compõe o título e a área dos controles. O build embute essa capa específica no ZDL.
+A prévia acima usa a proporção aproximada dos pixels do LCD original (altura/largura 1,4); a [prévia com pixels quadrados](dist/PhsDepth-cover.png) e o [bitmap 128×64](dist/PhsDepth-cover.pbm) também estão incluídos. Não é fotografia nem confirmação física da nova interface.
+
+A arte gerada a partir da referência está fixada em `zoom/art/stock-style.pbm`; `zoom/cover.py` a codifica para o ZDL e compartilha as posições dos knobs com o linker. A geração da imagem não é uma dependência do build. O objeto C674x do DSP é idêntico byte a byte ao da versão 1.10; esta alteração modifica a arte, suas coordenadas e a versão para 1.11.
 
 ## Validação concluída
 

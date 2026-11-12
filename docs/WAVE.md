@@ -1,6 +1,6 @@
-# Wave — versão 1.10
+# Wave — disponível desde a versão 1.10
 
-Wave é o quinto parâmetro, na segunda página junto de Depth. Os knobs físicos continuam os mesmos. Os controles anteriores mantêm ordem e faixas: Rate, Color, Level e Depth. A capa permanece igual.
+Wave é o quinto parâmetro, na segunda página junto de Depth. Os knobs físicos continuam os mesmos. Os controles anteriores mantêm ordem e faixas: Rate, Color, Level e Depth. Na 1.11, a capa foi atualizada para o estilo da foto do Phaser original, com knobs no topo; o DSP das ondas permanece o da 1.10.
 
 | Wave | Forma | Comportamento |
 |---|---|---|
@@ -20,4 +20,4 @@ O campo Wave foi acrescentado depois dos quatro parâmetros existentes e seu pad
 
 O runtime escreve Wave bruto /100 em `params[9]`; 0–6 chega como 0 / 0,01 / ... / 0,06. Valores inválidos retornam a Triangle. Estado por instância: 112 bytes incluindo cabeçalho de identificação, versão interna 3. Não há heap, estado global gravável ou chamadas libm no pedal. Random usa xorshift32 por instância, seed fixa reproduzível, atualizado só no fechamento de um período. A senoide usa 33 valores de meia cossenoide, com erro máximo absoluto do LFO abaixo de 0,00061.
 
-**Estado dos testes físicos:** o proprietário informou que a versão anterior funcionou. A versão 1.10 com Wave ainda não foi testada na pedaleira. Os testes locais e a emulação não confirmam aparência/paginação, persistência ou carga DSP real dessa atualização.
+**Estado dos testes físicos:** o proprietário informou que a versão anterior funcionou. As versões 1.10/1.11 com Wave ainda não foram confirmadas fisicamente; a 1.11 também altera a arte e as posições dos valores. Os testes locais e a emulação não confirmam aparência/paginação, persistência ou carga DSP real dessa atualização.

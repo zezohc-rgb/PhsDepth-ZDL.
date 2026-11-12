@@ -8,4 +8,4 @@ Esse é um relato de funcionamento geral. Não foram fornecidos medições de ca
 
 A versão anterior permanece disponível no [commit entregue](https://github.com/zezohc-rgb/PhsDepth-ZDL./blob/41530f017c9246016aef3b36cacd739e0ed8d79a/dist/PhsDepth.ZDL).
 
-**A atualização 1.10 acrescenta Wave e um quinto parâmetro; ainda não foi testada fisicamente.** Os relatórios do binário atual mantêm `physically_tested: false`. É necessário conferir seleção das sete ondas, página 2, salvar/recarregar patches antigos/novos, bypass, níveis e carga DSP após a atualização.
+**A 1.10 acrescenta Wave e a 1.11 atualiza a capa e as posições dos valores; ambas ainda aguardam confirmação física.** Os relatórios do binário atual mantêm `physically_tested: false`. É necessário conferir seleção das sete ondas, página 2, salvar/recarregar patches antigos/novos, bypass, níveis e carga DSP após a atualização.

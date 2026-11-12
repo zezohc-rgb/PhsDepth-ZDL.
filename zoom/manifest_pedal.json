@@ -1,10 +1,10 @@
 {
   "effect_name": "PhsDepth",
-  "comment": "Five-control phaser: Wave appended after Depth; 1.00 worked on owner pedal, 1.10 Wave update awaits physical test.",
+  "comment": "Five-control phaser, 1.11 stock-style cover update. Wave DSP unchanged from 1.10. Owner reported 1.00 worked; 1.11 awaits physical validation.",
   "audio_func_name": "Fx_MOD_PhsDepth",
   "gid": 6,
   "fxid": 947,
-  "fxid_version": "1.10",
+  "fxid_version": "1.11",
   "flags_byte": 1,
   "params": [
     {

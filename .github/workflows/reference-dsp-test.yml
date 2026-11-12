@@ -29,6 +29,7 @@ jobs:
             work/rebuilt/SHA256SUMS
             work/rebuilt/PhsDepth-cover.pbm
             dist/PhsDepth-cover.png
+            dist/PhsDepth-cover-lcd.png
             licenses/
   emulate:
     runs-on: ubuntu-latest
