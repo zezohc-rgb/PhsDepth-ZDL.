@@ -1,21 +1,30 @@
 {
-  "effect_name": "PhsDepth",
-  "comment": "FIRST BUILD: 4-knob UI-only pass-through; no phaser audio yet. Set a verified unused fxid before building.",
-  "audio_func_name": "Fx_DLY_PhsDepth",
-  "gid": 8,
-  "fxid": 0,
-  "fxid_version": "1.00",
+  "effect_name": "PhaserZeh",
+  "comment": "1.30: three waves, slow-focused logarithmic Rate 0.05..3 Hz, named Color and Wave selectors. Original Color categories confirmed; DSP is not a stock clone.",
+  "audio_func_name": "Fx_MOD_PhaserZeh",
+  "gid": 6,
+  "fxid": 947,
+  "fxid_version": "1.30",
   "flags_byte": 1,
   "params": [
     {
       "name": "Rate",
       "max": 100,
-      "default": 35
+      "default": 35,
+      "comment": "Exponential curve 0.05*60^(Rate/100), interpolated table. Existing Rate numbers intentionally become slower."
     },
     {
       "name": "Color",
       "max": 3,
-      "default": 0
+      "default": 0,
+      "comment": "0=4 normal, 1=8 normal, 2=4 inverted, 3=8 inverted; handler writes raw/100.",
+      "type": "enum",
+      "labels": [
+        "4 STG",
+        "8 STG",
+        "inv 4",
+        "inv 8"
+      ]
     },
     {
       "name": "Level",
@@ -26,7 +35,24 @@
       "name": "Depth",
       "max": 100,
       "default": 50
+    },
+    {
+      "name": "Wave",
+      "max": 2,
+      "default": 0,
+      "comment": "0=Triangle, 1=Sine, 2=Step; legacy saved code 6 is also treated as Step by DSP. Old 2..5 modes removed.",
+      "type": "enum",
+      "labels": [
+        "Tri",
+        "Sine",
+        "Step"
+      ]
     }
   ],
-  "audio_nop": true
+  "audio_nop": false,
+  "own_runtime": true,
+  "materialize_init": true,
+  "dsp_cost": 40.0,
+  "fxid_comment": "0x060003B3, candidate audited against public stock/community sources; see docs/id-audit.json. No global ID registry exists.",
+  "output_basename": "PhasrZeh"
 }

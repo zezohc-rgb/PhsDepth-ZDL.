@@ -1,48 +1,26 @@
-#include "phsdepth_dsp.h"
-#include <math.h>
-#include <string.h>
-#define PI_F 3.14159265358979323846f
-static float clampf(float v,float lo,float hi){return v<lo?lo:(v>hi?hi:v);}
-void phsdepth_init(PhsDepth *s){
-    memset(s,0,sizeof(*s));
-    s->rate_hz=0.5f;s->depth=0.5f;s->level=1.0f;
+#include "phsdepth_core.h"
+static float bounded(float x,float lo,float hi,float fallback) {
+    if(!(x>=lo))return x<lo?lo:fallback;
+    return x>hi?hi:x;
 }
-void phsdepth_set(PhsDepth *s,float rate_hz,int color,float level,float depth){
-    s->rate_hz=clampf(rate_hz,0.02f,10.0f);
-    s->color=color<0?0:(color>3?3:color);
-    s->level=clampf(level,0.0f,2.0f);
-    s->depth=clampf(depth,0.0f,1.0f);
+void phsdepth_init(PhsDepth *s) { pd_reset(s); }
+float phsdepth_rate_from_control(float value) {
+    return pd_rate_hz(value*.01f);
 }
-void phsdepth_process(PhsDepth *s,const float *left,const float *right,
-                      float *out_left,float *out_right,unsigned frames,float sample_rate){
-    unsigned i;int ch,j;
-    if(sample_rate<=0.0f)return;
-    for(i=0;i<frames;i++){
-        /* Depth changes sweep span, not wet/dry mix. */
-        float lfo=0.5f+0.5f*sinf(2.0f*PI_F*s->phase);
-        float center=550.0f;
-        float octaves=3.0f*s->depth;
-        float freq=center*powf(2.0f,(2.0f*lfo-1.0f)*octaves);
-        float maxf=sample_rate*0.40f;
-        float warped,coeff;
-        int stages=(s->color&1)?8:4;
-        float sign=(s->color&2)?-1.0f:1.0f;
-        freq=clampf(freq,20.0f,maxf);
-        warped=tanf(PI_F*freq/sample_rate);
-        coeff=(1.0f-warped)/(1.0f+warped);
-        for(ch=0;ch<2;ch++){
-            float dry=ch?right[i]:left[i];
-            float wet=dry;
-            for(j=0;j<stages;j++){
-                float y=-coeff*wet+s->state[ch][j];
-                s->state[ch][j]=wet+coeff*y;
-                wet=y;
-            }
-            /* Reference phaser: equal dry and phase-shifted wet. */
-            if(ch)out_right[i]=s->level*0.5f*(dry+sign*wet);
-            else out_left[i]=s->level*0.5f*(dry+sign*wet);
-        }
-        s->phase+=s->rate_hz/sample_rate;
-        if(s->phase>=1.0f)s->phase-=floorf(s->phase);
-    }
+void phsdepth_set(PhsDepth *s,float rate,int color,float level,float depth) {
+    s->rate_hz=bounded(rate,0.05f,6.0f,pd_rate_hz(.35f));
+    s->level=bounded(level,0.0f,2.0f,1.0f);
+    s->depth=bounded(depth,0.0f,1.0f,0.5f);
+    pd_color(s,color<0?0:(color>3?3:color));
+}
+void phsdepth_set_wave(PhsDepth *s,int wave) {
+    if(wave==6)wave=PHSDEPTH_STEP; /* legacy saved Step code */
+    s->wave=wave>=0 && wave<PHSDEPTH_WAVE_COUNT ? wave : PHSDEPTH_TRIANGLE;
+}
+void phsdepth_process(PhsDepth *s,const float *l,const float *r,
+                     float *ol,float *orr,unsigned frames,float sample_rate) {
+    unsigned i;
+    /* Coefficient table targets 44.1 kHz, the original MultiStomp's rate. */
+    if(sample_rate!=44100.0f)return;
+    for(i=0;i<frames;i++)pd_frame(s,l[i],r[i],s->rate_hz*(1.0f/44100.0f),&ol[i],&orr[i]);
 }

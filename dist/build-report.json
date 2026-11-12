@@ -1,0 +1,49 @@
+{
+  "artifact": "PhasrZeh.ZDL",
+  "effect_name": "PhaserZeh",
+  "sha256": "b7927e9db2d446a13973789059fed40f5ec451b082c60807d0a8a215e099d42e",
+  "bytes": 7466,
+  "code_data_bytes": 4880,
+  "upstream_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
+  "ti_compiler": "8.5.0",
+  "gid": 6,
+  "fxid": 947,
+  "effect_version": "1.30",
+  "controls": [
+    "Rate",
+    "Color",
+    "Level",
+    "Depth",
+    "Wave"
+  ],
+  "audio_nop": false,
+  "own_runtime": true,
+  "materialize_init": true,
+  "dsp_cost_declared": 40.0,
+  "dsp_cost_measured_on_pedal": false,
+  "physically_tested": false,
+  "dsp_undefined_symbols": [],
+  "label_callbacks": [
+    "ZDL_GetLabel_1",
+    "ZDL_GetLabel_4"
+  ],
+  "cover": "PhasrZeh-cover.pbm",
+  "knob_positions": [
+    [
+      2,
+      30,
+      11
+    ],
+    [
+      3,
+      54,
+      11
+    ],
+    [
+      4,
+      78,
+      11
+    ]
+  ],
+  "cover_sha256": "67e36a7add2e638579d529ba14d420b0af65aec6fcf241bfb3db60db5c53523f"
+}

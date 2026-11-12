@@ -1,0 +1,148 @@
+{
+  "baseline_commit": "020683f21a14e6581caa6a44aee6b917c07f31e6",
+  "wave": 1,
+  "scope": "Sine host audio fingerprints from unchanged 1.11 source, GCC -O2 -ffp-contract=off. Owner reported Wave 0 and 1 sounded good; no claim of independently measured on-pedal hashes.",
+  "frames_per_case": 32768,
+  "cases": [
+    {
+      "rate_hz": 2.152,
+      "color": 0,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "7afbac892c42eb7d3a7cbaf572a69227b8a12d85fa32fec474e4989e7be5be83"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "4459a617676413be9ff24d3bef05a1dec0aebfb4e0731d116af2d7295be13783"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "25b4dd488cf7ee03fb3696a89ff87c28330051262318a81442c626c586a56fb1"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 1,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "0d0fc0780978db08c815b6de610a238512da7d943a92c54c44cc45d73c49d950"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "5dffe73d960bfe0c96fc4fdc89a7da42d4d2e3f6d5a0bcd8886149ce9beb0e91"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "34b23e0e33cd4374b05ab0adb7ea23a8694b6533aa199d3917e049dcf91a4951"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 2,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "176f54f25914073fc02bc18d6fc618355c55642a6d6535989f0d1a661e16622e"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "751bc818c6fdc8d4e8ed2e9ca6e7571694e1a97c3bb758cbece93a83c6595a21"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "ca36cf0175e330d9188b894f9910dab1d686b998aa5e0f2513e377f91bd61302"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 3,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "5e14cd0339c2ccc1ec946cad85bb8de45d0a244bcbd59f35cccf454c73f96b4f"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "8ce74c210f9d05d95aad3bd425d7398aca47345c42690076148d83dce917944f"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "bbfe9a26fbbb1c7718a8d404454c75bfe06c573c9880754c2213bcfb5f48aeea"
+    }
+  ]
+}

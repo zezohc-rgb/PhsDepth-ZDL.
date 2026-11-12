@@ -1,49 +1,105 @@
 #!/usr/bin/env python3
-"""Build a four-knob pass-through ZDL with upstream ZoomMultistompZDL tools.
-Run from a local clone of the upstream repo, after providing required local
-TI compiler and stock handler blobs (see upstream docs/STOCK-FILES.md).
-This script does NOT work in plain GitHub Actions as shipped.
-"""
+"""Compile a real C674x PhaserZeh ZDL using a pinned ZoomMultistompZDL linker."""
+import argparse
+import hashlib
 import json
 import os
+from pathlib import Path
 import subprocess
 import sys
-from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-UPSTREAM = Path(os.environ.get("ZOOM_ZDL_ROOT", "")).expanduser()
-if not os.environ.get("ZOOM_ZDL_ROOT") or not (UPSTREAM / "build" / "linker.py").is_file():
-    sys.exit("Set ZOOM_ZDL_ROOT to a local ZoomMultistompZDL checkout.")
-TI_ROOT = Path(os.environ.get("TI_C6000_ROOT", "")).expanduser()
-CL6X = TI_ROOT / "bin" / "cl6x"
-if not CL6X.is_file():
-    sys.exit("Set TI_C6000_ROOT to a local TI C6000 compiler installation.")
-manifest = json.loads((HERE / "manifest_pedal.json").read_text())
-if not 1 <= manifest["fxid"] <= 65535:
-    sys.exit("STOP: set a verified unused fxid in manifest_pedal.json first.")
-sys.path.insert(0, str(UPSTREAM / "build"))
-sys.path.insert(0, str(UPSTREAM / "src" / "airwindows" / "common"))
-from linker import LinkerConfig, link, params_from_manifest
-from custom_covers import make_cover
-src = HERE / "phsdepth.c"
-obj = HERE / "phsdepth.obj"
-out = HERE.parent / "dist" / "PhsDepth.ZDL"
-out.parent.mkdir(exist_ok=True)
-subprocess.run([
-    str(CL6X), "--c99", "--opt_level=2", "-mv6740", "--abi=eabi",
-    "--mem_model:data=far", f"--include_path={TI_ROOT / 'include'}",
-    "-c", str(src), f"--output_file={obj}"
-], check=True, cwd=HERE)
-cfg = LinkerConfig(
-    effect_name=manifest["effect_name"],
-    screen_image=make_cover(manifest["effect_name"], [p["name"] for p in manifest["params"]]),
-    audio_func_name=manifest["audio_func_name"],
-    gid=manifest["gid"], fxid=manifest["fxid"],
-    params=params_from_manifest(manifest["params"]),
-    obj_path=obj, output_path=out,
-    fxid_version=manifest["fxid_version"].encode("ascii"),
-    flags_byte=manifest["flags_byte"],
-    audio_nop=manifest["audio_nop"],
-)
-link(cfg)
-print("Generated experimental pass-through:", out)
+ROOT = Path(__file__).resolve().parents[1]
+UPSTREAM_COMMIT = '32f3d6877d892409c6defeeeec57040ad004d31f'
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--upstream', default=os.environ.get('ZOOM_ZDL_ROOT'))
+    ap.add_argument('--ti-root', default=os.environ.get('TI_C6000_ROOT'))
+    ap.add_argument('--output-dir', type=Path, default=ROOT / 'dist')
+    ap.add_argument('--ui-only', action='store_true', help='separate diagnostic; NEVER install alongside the DSP build')
+    args = ap.parse_args()
+    if not args.upstream or not args.ti_root:
+        ap.error('provide --upstream / --ti-root or ZOOM_ZDL_ROOT / TI_C6000_ROOT')
+    upstream, ti = Path(args.upstream).expanduser().resolve(), Path(args.ti_root).expanduser().resolve()
+    head = subprocess.check_output(['git', '-C', str(upstream), 'rev-parse', 'HEAD'], text=True).strip()
+    if head != UPSTREAM_COMMIT:
+        ap.error(f'upstream must be checked out at {UPSTREAM_COMMIT}; got {head}')
+    cl6x = ti / 'bin' / 'cl6x'
+    if not cl6x.is_file():
+        ap.error(f'missing TI compiler: {cl6x}')
+    revision = subprocess.check_output([str(cl6x), '--compiler_revision'], text=True).strip()
+    if revision != '8.5.0':
+        ap.error(f'tested compiler is TI C6000 8.5.0; got {revision}')
+    # own_runtime.py reads this at import; use one compiler for both C and ASM.
+    os.environ['TI_CGT'] = str(ti)
+    # Explicit build variants, unaffected by upstream's ambient diagnostic flags.
+    for name in ('ZDL_MATERIALIZE_INIT', 'ZDL_SELECTOR_OUTPUT_DIR', 'ZDL_MATERIALIZE_INIT_MAX_CALLS'):
+        if name in os.environ:
+            ap.error(f'unset upstream diagnostic override {name} for a reproducible build')
+    m = json.loads((ROOT / 'zoom/manifest_pedal.json').read_text())
+    if (m['gid'], m['fxid']) != (6, 947) or m['audio_nop'] or not m['own_runtime']:
+        ap.error('unexpected identity/runtime/audio mode; review the ID audit and build script')
+    audit = json.loads((ROOT / 'docs/id-audit.json').read_text())
+    if audit['candidate'] != {'gid': m['gid'], 'fxid': m['fxid']} or not audit['clear_in_audited_sources']:
+        ap.error('ID audit does not clear this identity')
+    sys.path.insert(0, str(upstream / 'build'))
+    sys.path.insert(0, str(upstream / 'src/airwindows/common'))
+    from linker import LinkerConfig, link, params_from_manifest, ObjFile
+    from cover import make_cover, save_pbm, KNOB_POSITIONS
+    from zdl_size_guard import check
+    work = ROOT / 'work' / 'build'
+    work.mkdir(parents=True, exist_ok=True)
+    outdir = args.output_dir.resolve()
+    outdir.mkdir(parents=True, exist_ok=True)
+    obj = work / 'phsdepth.obj'
+    subprocess.run([str(cl6x), '--c99', '--opt_level=2', '-mv6740', '--abi=eabi',
+                    '--mem_model:data=far', '--keep_asm', f'--include_path={ti / "include"}',
+                    f'--define=PHSDEPTH_AUDIO_FUNC={m["audio_func_name"]}',
+                    '-c', str(ROOT / 'zoom/phsdepth.c'), f'--output_file={obj}'], check=True, cwd=work)
+    parsed = ObjFile(obj)
+    undefined = [s['name'] for s in parsed.symbols if s['shndx'] == 0 and s['name']]
+    if undefined:
+        raise RuntimeError(f'unexpected DSP helper calls: {undefined}')
+    for section in parsed.sections:
+        if section['size'] and section['name'] in ('.bss', '.far', '.fardata'):
+            raise RuntimeError(f'unexpected DSP storage/outlined helpers: {section["name"]}')
+    text_indices={s['idx'] for s in parsed.sections if s['name'].startswith('.text') and s['size']}
+    text_functions={s['name'] for s in parsed.symbols if s['type']==2 and s['shndx'] in text_indices
+                    and not (s['bind']==0 and s['name'].startswith('$C$L'))}
+    if text_functions!={'ZDL_GetLabel_1','ZDL_GetLabel_4'}:
+        raise RuntimeError(f'unexpected outlined code or missing label callbacks: {text_functions}')
+    basename=m['output_basename']
+    if not 1<=len(basename)<=8 or not basename.isalnum():
+        ap.error('ZDL basename must be 1..8 ASCII letters/digits')
+    out = outdir / f'{basename}.ZDL'
+    cfg = LinkerConfig(effect_name=m['effect_name'], audio_func_name=m['audio_func_name'],
+                       gid=m['gid'], fxid=m['fxid'], params=params_from_manifest(m['params']),
+                       obj_path=obj, output_path=out,
+                       screen_image=make_cover(), knob_positions=KNOB_POSITIONS,
+                       fxid_version=m['fxid_version'].encode('ascii'), flags_byte=m['flags_byte'],
+                       audio_nop=args.ui_only, own_runtime=True,
+                       materialize_init=m['materialize_init'], dsp_cost=m['dsp_cost'],
+                       use_object_edit_handlers=False)
+    link(cfg)
+    size, code_data = check(out)
+    save_pbm(outdir / f'{basename}-cover.pbm')
+    report = {'artifact': out.name, 'effect_name': m['effect_name'], 'sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
+              'bytes': size, 'code_data_bytes': code_data, 'upstream_commit': head,
+              'ti_compiler': revision,
+              'gid': m['gid'], 'fxid': m['fxid'], 'effect_version': m['fxid_version'],
+              'controls': [p['name'] for p in m['params']], 'audio_nop': args.ui_only,
+              'own_runtime': True, 'materialize_init': cfg.materialize_init,
+              'dsp_cost_declared': m['dsp_cost'], 'dsp_cost_measured_on_pedal': False,
+              'physically_tested': False,
+              'dsp_undefined_symbols': undefined, 'label_callbacks': sorted(text_functions),
+              'cover': f'{basename}-cover.pbm',
+              'knob_positions': KNOB_POSITIONS,
+              'cover_sha256': hashlib.sha256((outdir / f'{basename}-cover.pbm').read_bytes()).hexdigest()}
+    (outdir / 'build-report.json').write_text(json.dumps(report, indent=2)+'\n')
+    (outdir / 'SHA256SUMS').write_text(f'{report["sha256"]}  {out.name}\n')
+    print(f'Generated experimental {"UI-only" if args.ui_only else "phaser"}: {out} (NOT hardware tested)')
+
+
+if __name__ == '__main__':
+    main()

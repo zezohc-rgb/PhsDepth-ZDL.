@@ -1,0 +1,148 @@
+{
+  "baseline_commit": "b82e1a172f335734d3531809fa6ac7056db66ca5",
+  "legacy_wave": 6,
+  "current_wave": 2,
+  "frames_per_case": 32768,
+  "cases": [
+    {
+      "rate_hz": 2.152,
+      "color": 0,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "187f3a0cabe83352d25079561f902753b101fcdfeee6f496c4899c13602537cc"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "c7c05fb0ea9a3255bbe3eb5f500cfe9f78131dc20ef88fa3906b1489f2c02848"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 0,
+      "sha256": "19d901cde239fbd3b678c5aed86a28d326a4d1449dc19229fb9db1303ce11bbd"
+    },
+    {
+      "rate_hz": 6,
+      "color": 0,
+      "level": 1,
+      "depth": 1,
+      "sha256": "1bb7b7959f0d4a646c69823afc1040c7475229be8f6579fd3b3144596f40f8a0"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 1,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "df61ad24c2b27dd1bf24173f8aa73a8336e44a081c13dc4c5ce714717235b0c6"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "afca1d73d7aa6badca577fd6a1c23284321a288c0ffd815247d7fc722902ff7d"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e17e4e06389fc030862e848a4461dbb7d3104c48060e12acccde65255192f92a"
+    },
+    {
+      "rate_hz": 6,
+      "color": 1,
+      "level": 1,
+      "depth": 1,
+      "sha256": "c6ce1a2b1fcbd103b3b13bac63e4b99d4f3544fe716f8d44b66ba276650c5eec"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 2,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "d376066bc1f381b099b25e97b801b986fdff92bc98a00142fea8e9aceb8fdc46"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "0e50edfdeb620087287c5e0ee5b5542c37220e5719c3afa1e19705898640cc3c"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 0,
+      "sha256": "94327949d0f97bb0c5de644ae68fb65277637bb5b3ba3db66e3348eaefd56b3c"
+    },
+    {
+      "rate_hz": 6,
+      "color": 2,
+      "level": 1,
+      "depth": 1,
+      "sha256": "17762f9847005cb21dcef6780a91cc766ea10787066a789fe15b2ba1d2ea549f"
+    },
+    {
+      "rate_hz": 2.152,
+      "color": 3,
+      "level": 1,
+      "depth": 0.5,
+      "sha256": "6a2f37e0c85026a6a5d39244f0792be5f4395a3bcc090c78519d86d494ee1e25"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 0.08,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "c155da1d899eab7a07ae2cf8c210669b83fabd93a30726378b067ad1c075ef17"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 0,
+      "sha256": "e8d5ae5936e7ea4997a629e2191401e0477e154a63cbd7ba1f1f201bb9342955"
+    },
+    {
+      "rate_hz": 6,
+      "color": 3,
+      "level": 1,
+      "depth": 1,
+      "sha256": "88d17e62ca942dc8203b24ef81c799ecc509e63a95148b27110d2dbe224f2b89"
+    }
+  ]
+}
