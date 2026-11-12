@@ -32,6 +32,9 @@ def inspect():
  assert tokens[:3]==['P1','128','64'];assert list(map(int,tokens[3:]))==[v for row in pixels for v in row]
  positions=[struct.unpack_from('<III',info,36+i*16) for i in range(2)]
  assert positions==[(2,42,9),(3,73,9)]
+ # Reserve blank panels around firmware-rendered knobs: no fixed rings/ticks.
+ for left,right in ((36,61),(67,91)):
+  assert not any(pixels[y][x] for y in range(7,27) for x in range(left,right+1)), 'static art overlaps live knob panel'
  assert struct.unpack_from('<III',info,68)==(0,0,0),'unexpected third knob'
  # Grayscale PNG magnifies the decoded one-bit device pixels using integer replication.
  scale=8;scan=bytearray()

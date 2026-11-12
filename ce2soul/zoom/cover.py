@@ -4,7 +4,7 @@ Reference: public Roland CE-2 pedal image. No vendor photo/bitmap is embedded.
 The lower pad says SOUL to identify this independent custom effect.
 """
 from pathlib import Path
-# Values sit in the light knob centers; only RATE and DEPTH have overlays.
+# Firmware draws the live knobs here; the static bitmap reserves blank space.
 KNOB_POSITIONS=[(2,42,9),(3,73,9)]
 
 def cover_canvas():
@@ -16,13 +16,9 @@ def cover_canvas():
  for x,y in ((34,1),(33,2),(93,1),(94,2),(33,61),(34,62),(94,61),(93,62)):c.px(x,y)
  c.vline(34,3,59);c.vline(93,3,59)
  c.hline(35,92,28);c.hline(35,92,29)
- # CHECK light, two silver-center black knobs and small scale marks.
+ # CHECK light only. Do not draw static knobs or ticks beneath firmware knobs.
+ # Owner hardware photo showed overlapping rings/markers in this top panel.
  c.circle(64,4,2);c.px(64,4)
- for x in (48,79):
-  c.filled_circle(x,13,8);c.filled_circle(x,13,6,0)
-  c.vline(x,5,8)
-  for dx,dy in ((-7,-7),(7,-7),(-8,7),(8,7)):c.px(x+dx,13+dy)
- # Static knob captions omitted: owner reported overlap on the real LCD.
  # Side sockets and small direction marks.
  c.rect(29,30,31,35);c.rect(96,30,98,35)
  c.hline(37,41,31);c.px(37,30);c.px(37,32)
