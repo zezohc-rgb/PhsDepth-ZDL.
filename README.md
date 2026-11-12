@@ -16,3 +16,7 @@ Next: integrate the DSP with the Zoom runtime/parameter ABI; package effect meta
 Reference tooling: [ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL).
 
 **Safety:** Back up pedal patches and effects before installing experimental effects. Never rename a C file to `.ZDL` and install it.
+
+## DmTrem development
+
+The original Diamond TRM-1-inspired tremolo now has an experimental TI-built ZDL, native tests and C674x emulator validation. See [tremolo/README.md](tremolo/README.md) for controls, downloads and the [fidelity limits](tremolo/docs/FIDELITY.md). It has not been physically tested or calibrated against a real Diamond pedal.

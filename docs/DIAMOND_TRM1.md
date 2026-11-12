@@ -1,6 +1,6 @@
 # Diamond TRM-1 original: fidelity specification
 
-Status: research specification only; no tremolo DSP or installable ZDL delivered.
+Status: initial research specification. DmTrem 0.20 now has a TI-built experimental ZDL and emulator validation; see ../tremolo/README.md and ../tremolo/docs/FIDELITY.md. No physical hardware test or measured Diamond equivalence.
 Target: original Zoom MS-70CDR, firmware 2.10, per existing hardware documentation.
 
 ## Primary reference

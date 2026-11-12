@@ -9,9 +9,9 @@ import tempfile
 import wave
 ROOT = Path(__file__).resolve().parent
 class Params(C.Structure):
-    _fields_ = [(n,C.c_float) for n in ('rate_hz','depth','level','attack_ms','release_ms','accent','duty_min')] + [(n,C.c_int) for n in ('wave','mode','doubled','held')]
+    _fields_ = [(n,C.c_float) for n in ('rate_hz','depth','level','attack_ms','release_ms','accent','duty_min')] + [(n,C.c_int) for n in ('wave','mode','doubled','held','ramp_hold')]
 class State(C.Structure):
-    _fields_ = [(n,C.c_float) for n in ('inv_sr','phase','optical','last_gain','chaos')] + [('rng',C.c_uint32),('cycle',C.c_uint32),('previous_held',C.c_int)]
+    _fields_ = [(n,C.c_float) for n in ('inv_sr','optical','last_gain','chaos','double_mix')] + [(n,C.c_uint32) for n in ('phase','rng','cycle','pulse')] + [(n,C.c_int) for n in ('previous_held','previous_mode','previous_doubled')]
 def main():
     out=ROOT/'dist';out.mkdir(exist_ok=True)
     sr=44100

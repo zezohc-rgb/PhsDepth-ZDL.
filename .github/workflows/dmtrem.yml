@@ -1,0 +1,38 @@
+name: DmTrem DSP and executable ZDL
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sh tremolo/tools/test.sh
+  binary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild pinned TI binary
+        run: |
+          sh tremolo/tools/build.sh --output-dir work/rebuilt
+          cmp tremolo/build/DmTrem.ZDL tremolo/work/rebuilt/DmTrem.ZDL
+      - uses: dtolnay/rust-toolchain@1.91.1
+      - name: Fetch pinned emulator and verify archive
+        run: |
+          mkdir -p work
+          curl -fL --retry 2 https://berbasoft.com/ziddle/ziddle-1793487371.zip -o work/ziddle.zip
+          echo 'c45f11a0ffa51c327169c3c8c6965043882d39b4a8f5f0ac624603e5941579a3  work/ziddle.zip' | sha256sum -c -
+          unzip -q work/ziddle.zip -d work
+      - name: Execute C674x and compare audio
+        run: python3 tremolo/tools/emulator/run.py --ziddle work/ziddle-1793487371
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DmTrem-0.20-experimental-original-MS70CDR
+          path: |
+            tremolo/build/
+            tremolo/docs/
+            tremolo/LICENSE
+            tremolo/licenses/

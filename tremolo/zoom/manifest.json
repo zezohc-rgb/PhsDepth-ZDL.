@@ -1,17 +1,72 @@
 {
- "effect_name":"DmTrem",
- "audio_func_name":"Fx_MOD_DmTrem",
- "gid":6,
- "fxid":0,
- "fxid_version":"0.10",
- "flags_byte":1,
- "audio_nop":false,
- "params":[
-  {"name":"Speed","max":100,"default":12},
-  {"name":"Depth","max":100,"default":50},
-  {"name":"Level","max":100,"default":50},
-  {"name":"Wave","max":3,"default":0},
-  {"name":"Mode","max":4,"default":0},
-  {"name":"DBL","max":1,"default":0}
- ]
+  "effect_name": "DmTrem",
+  "audio_func_name": "Fx_MOD_DmTrem",
+  "gid": 6,
+  "fxid": 949,
+  "fxid_version": "0.20",
+  "flags_byte": 1,
+  "audio_nop": false,
+  "params": [
+    {
+      "name": "Speed",
+      "max": 100,
+      "default": 12
+    },
+    {
+      "name": "Depth",
+      "max": 100,
+      "default": 50
+    },
+    {
+      "name": "Vol",
+      "max": 100,
+      "default": 50
+    },
+    {
+      "name": "Wave",
+      "max": 3,
+      "default": 0,
+      "labels": [
+        "Shark",
+        "Sine",
+        "Squar",
+        "Chop"
+      ]
+    },
+    {
+      "name": "Mode",
+      "max": 5,
+      "default": 0,
+      "labels": [
+        "Qtr",
+        "8th",
+        "Trip",
+        "Rhyth",
+        "Chaos",
+        "Man"
+      ]
+    },
+    {
+      "name": "DBL",
+      "max": 1,
+      "default": 0,
+      "labels": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "name": "Hold",
+      "max": 1,
+      "default": 0,
+      "labels": [
+        "Off",
+        "On"
+      ]
+    }
+  ],
+  "dsp_cost": 40.0,
+  "own_runtime": true,
+  "materialize_init": true,
+  "output_basename": "DmTrem"
 }

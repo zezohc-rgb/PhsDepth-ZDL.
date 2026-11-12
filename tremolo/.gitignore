@@ -3,3 +3,4 @@ __pycache__/
 zoom/*.obj
 zoom/compiler.opt
 zoom/linker.cmd
+work/
