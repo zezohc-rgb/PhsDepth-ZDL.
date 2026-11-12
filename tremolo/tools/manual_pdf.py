@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Portuguese user manual for the actual DmTrem 0.30 controls. Requires reportlab."""
+"""Portuguese user manual for the actual DmTrem 0.31 controls. Requires reportlab."""
 from pathlib import Path
 from functools import partial
 from reportlab.pdfgen.canvas import Canvas
@@ -12,7 +12,7 @@ from reportlab.lib.enums import TA_LEFT
 import json
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'build/DmTrem-0.30-Manual-PT.pdf'
+OUT=ROOT/'build/DmTrem-0.31-Manual-PT.pdf'
 FONTS=Path('/usr/share/fonts/truetype/liberation')
 for name,file in [('DM','LiberationSans-Regular.ttf'),('DM-Bold','LiberationSans-Bold.ttf')]:
     pdfmetrics.registerFont(TTFont(name,str(FONTS/file)))
@@ -42,7 +42,7 @@ def page(c,doc):
     c.saveState();c.setFillColor(GREEN);c.rect(0,H-77,W,77,fill=1,stroke=0)
     c.setFont('DM-Bold',25);c.setFillColor(WHITE);c.drawString(48,H-43,'DM TREM')
     c.setFont('DM',9);c.drawRightString(W-48,H-34,'MANUAL DO USUÁRIO')
-    c.drawRightString(W-48,H-50,'VERSÃO 0.30  /  PORTUGUÊS')
+    c.drawRightString(W-48,H-50,'VERSÃO 0.31  /  PORTUGUÊS')
     c.setStrokeColor(GOLD);c.setLineWidth(2);c.line(48,H-77,W-48,H-77)
     c.setStrokeColor(colors.HexColor('#d5dfd4'));c.setLineWidth(.6);c.line(48,43,W-48,43)
     c.setFont('DM',8);c.setFillColor(MUTED);c.drawString(48,29,'Projeto independente · MS-70CDR original · Firmware 2.10')
@@ -52,13 +52,13 @@ story=[]
 # 1 — Cover and orientation
 story += [p('Pulso vintage. Controle musical.','h1'),p('Um tremolo digital inspirado no Diamond TRM-1 original, desenvolvido para a Zoom MS-70CDR azul.'),Spacer(1,12)]
 story += [Image(str(ROOT/'build/DmTrem-LCD.png'),width=440,height=220),Spacer(1,13),p('Prévia da arte do LCD. A miniatura externa também acompanha o pacote em verde escuro.','small')]
-story += [box('Sobre esta versão','O DmTrem 0.30 foi compilado e validado no emulador. O funcionamento no pedal físico, incluindo tap tempo, ainda precisa ser confirmado. A curva Sharkfin e a resposta óptica são aproximações; não há comparação medida com uma unidade Diamond.'),Spacer(1,16)]
+story += [box('Sobre esta versão','O DmTrem 0.31 foi compilado e validado no emulador. O funcionamento no pedal físico, incluindo tap tempo, ainda precisa ser confirmado. A curva Sharkfin e a resposta óptica são aproximações; não há comparação medida com uma unidade Diamond.'),Spacer(1,16)]
 story += [p('Encontre rapidamente','h2'),table([['Página','Conteúdo'],['2','Instalação, atualização e ligação'],['3','Os oito controles e as quatro ondas'],['4','Tap tempo, modos e DBL'],['5','Regulagens para começar'],['6','Primeiro teste, dúvidas e referências']],[58,CW-58])]
 story += [PageBreak()]
 # 2 — Installation
 story += [p('01  Instalar e conectar','h1'),p('Arquivo do efeito: <b>DmTrem.ZDL</b><br/>Destino: Zoom MS-70CDR original, firmware 2.10. Categoria: modulação, grupo 6, ID 949.')]
 story += [p('Antes de instalar','h2'),p('Faça backup dos patches e efeitos no programa de instalação que você já utiliza. Extraia o pacote ZIP para uma pasta no computador. O ZIP é o pacote de distribuição; o arquivo importado como efeito é o <b>.ZDL</b>.')]
-story += [p('Instalação ou atualização','h2'),p('1. Importe <b>DmTrem.ZDL</b> no Zoom Effect Manager ou na ferramenta de instalação que você já usa.'),p('2. Se importar efeitos a partir de uma pasta, deixe <b>DmTrem.png</b> ao lado do ZDL para que ferramentas compatíveis encontrem a miniatura.'),p('3. Se a versão 0.20 já estiver instalada, <b>substitua-a pela 0.30</b>. As duas usam o mesmo ID e representam o mesmo efeito.'),p('4. Carregue o DmTrem em um patch de teste sem outros efeitos. Comece com o volume de escuta baixo e confira o bypass.')]
+story += [p('Instalação ou atualização','h2'),p('1. Importe <b>DmTrem.ZDL</b> no Zoom Effect Manager ou na ferramenta de instalação que você já usa.'),p('2. Se importar efeitos a partir de uma pasta, deixe <b>DmTrem.png</b> ao lado do ZDL para que ferramentas compatíveis encontrem a miniatura.'),p('3. Se a versão 0.20 ou 0.30 já estiver instalada, <b>substitua-a pela 0.31</b>. Elas usam o mesmo ID. Em patches já salvos, ajuste Vol para 63 manualmente; a atualização preserva os valores do patch.'),p('4. Carregue o DmTrem em um patch de teste sem outros efeitos. Comece com o volume de escuta baixo e confira o bypass.')]
 story += [p('Ligação inicial','h2'),table([['Guitarra','MS-70CDR','Amplificador ou interface'],['Saída do instrumento','Entrada L/Mono → DmTrem','Saída L/Mono']],[120,190,CW-310]),Spacer(1,10),p('Com o efeito ligado, somente a entrada <b>L/Mono</b> alimenta o tremolo. O resultado é enviado igualmente às duas saídas. A entrada direita é ignorada durante o processamento; em bypass, os canais recebidos são preservados.')]
 story += [box('O que vem no pacote','ZDL, miniatura verde, prévia monocromática ampliada, guia em português, relatórios de validação e avisos de licença. O desenho com dois footswitches é uma referência visual ao TRM-1: a Zoom continua usando seu único footswitch.')]
 story += [PageBreak()]
@@ -67,7 +67,7 @@ story += [p('02  Controles e ondas','h1'),table([
  ['Controle','Como usar'],
  ['Speed · 0–100','Velocidade em <b>Tap = Free</b>. Em Host, Speed é ignorado. A faixa e o comportamento do knob ainda são provisórios.'],
  ['Depth · 0–100','Profundidade da modulação. Em <b>Chop</b>, controla a proporção entre som e silêncio: 50 dá tempos iguais; valores maiores encurtam o som.'],
- ['Vol · 0–100','Ganho de saída independente. 50 corresponde a ganho unitário <b>antes</b> da modulação; o volume percebido pode cair com maior profundidade.'],
+ ['Vol · 0–100','Ganho de saída independente. 50 corresponde a ganho unitário <b>antes</b> da modulação; o volume percebido depende da profundidade. <b>O novo padrão 63 equilibra o ajuste inicial</b>; não normaliza todos os ajustes.'],
  ['Wave','Escolhe Shark, Sine, Squar ou Chop.'],
  ['Mode','Escolhe Qtr, 8th, Trip, Rhyth, Chaos ou Man.'],
  ['DBL · Off/On','Dobra a velocidade nos modos aplicáveis ou seleciona o padrão alternativo. A transição de velocidade é gradual.'],
@@ -95,11 +95,11 @@ story += [PageBreak()]
 # 5 — Presets
 story += [p('04  Regulagens para começar','h1'),p('Sugestões de escuta para explorar o DmTrem. São pontos de partida deste projeto, não presets medidos do Diamond. Em todos: <b>Hold = Off</b>; ajuste Vol de ouvido para comparar ligado e bypass.')]
 recipes=[
- ('Vintage suave','Shark · Tap Free · Speed 5 · Depth 35 · Vol 50 · Qtr · DBL Off','Pulso lento e discreto para acordes sustentados. Se estiver profundo demais, reduza Depth antes de alterar a velocidade.'),
- ('Balanço redondo','Sine · Tap Free · Speed 10 · Depth 45 · Vol 50 · Qtr · DBL Off','Modulação regular e macia. Útil para ouvir o desenho do pulso com uma guitarra limpa.'),
- ('Vintage mais marcado','Squar · Tap Free · Speed 12 · Depth 65 · Vol 50 · Qtr · DBL Off','Mais contraste de volume, mantendo o arredondamento óptico. Compare com Chop usando a mesma velocidade.'),
- ('Corte no andamento','Chop · Tap Host · Depth 50 · Vol 50 · Qtr · DBL Off','Bata o tempo na Zoom. Depth 50 divide som e silêncio igualmente. Aumente Depth para deixar o som mais curto.'),
- ('Textura rítmica','Shark · Tap Host · Depth 55 · Vol 50 · Rhyth · DBL Off','Explore o padrão curto-curto-longo. Depois ligue DBL para ouvir o padrão alternativo.'),
+ ('Vintage suave','Shark · Tap Free · Speed 5 · Depth 35 · Vol 58 · Qtr · DBL Off','Pulso lento e discreto para acordes sustentados. Se estiver profundo demais, reduza Depth antes de alterar a velocidade.'),
+ ('Balanço redondo','Sine · Tap Free · Speed 10 · Depth 45 · Vol 61 · Qtr · DBL Off','Modulação regular e macia. Útil para ouvir o desenho do pulso com uma guitarra limpa.'),
+ ('Vintage mais marcado','Squar · Tap Free · Speed 12 · Depth 65 · Vol 64 · Qtr · DBL Off','Mais contraste de volume, mantendo o arredondamento óptico. Compare com Chop usando a mesma velocidade.'),
+ ('Corte no andamento','Chop · Tap Host · Depth 50 · Vol 71 · Qtr · DBL Off','Bata o tempo na Zoom. Depth 50 divide som e silêncio igualmente. Aumente Depth para deixar o som mais curto.'),
+ ('Textura rítmica','Shark · Tap Host · Depth 55 · Vol 64 · Rhyth · DBL Off','Explore o padrão curto-curto-longo. Depois ligue DBL para ouvir o padrão alternativo.'),
 ]
 for title,settings,desc in recipes:
  story += [p(title,'h2'),box(settings,desc),Spacer(1,4)]
@@ -112,7 +112,7 @@ story += [p('05  Testar e ajustar','h1'),table([
  ['Speed não muda o pulso','Em Tap Host, isso é esperado. Selecione Tap Free para usar Speed.'],
  ['Tap não acompanha','Confira Tap Host e a configuração global TAP TEMPO. Compare dois andamentos distintos em Qtr + Chop. Se falhar, use Free e relate o resultado.'],
  ['Man parece não fazer nada','Com Shark, Sine ou Squar, ative Hold. Com Chop, Hold funciona como corte de áudio.'],
- ['O volume parece mais baixo','A modulação reduz o nível médio. Aumente Vol com cuidado e compare ligado/bypass. Não há compensação automática de volume.'],
+ ['O volume parece mais baixo','O novo Vol 63 equilibra Shark / Depth 50. Para outros ajustes, regule Vol e compare ligado/bypass. Não há compensação automática; o ganho também eleva os picos.'],
  ['Há cliques nas mudanças','Chop e mudanças bruscas de parâmetros podem produzir cliques. Compare com Sine ou Shark e anote em qual ajuste ocorre.'],
  ['O pedal trava ou não carrega','Interrompa o teste e informe a etapa exata. Use o procedimento de restauração da sua ferramenta e o backup; não repita instalações às cegas.'],
  ],[116,CW-116])]
@@ -123,6 +123,6 @@ story += [p(f"Compilação TI C6000; formato do ZDL; controles e seletores; bypa
 story += [p('Para orientar a próxima revisão, informe: firmware, se carregou, se saiu áudio, se o tap acompanhou dois tempos e qual configuração soou diferente do esperado. Uma gravação limpa com os valores dos controles ajuda.','small')]
 story += [p('Referências e projeto','h2'),p('<link href="https://zoomcorp.com/documents/87/MS-70CDR_operationManual_English.pdf" color="#164c38">Zoom MS-70CDR — manual de operação</link><br/><link href="https://www.diamondpedals.com/pages/legacy-support" color="#164c38">Diamond — manuais dos produtos originais</link><br/><link href="https://github.com/zezohc-rgb/PhsDepth-ZDL./tree/diamond-trm1-spec/tremolo" color="#164c38">DmTrem — código, arquivos e limites de fidelidade</link>','small'),p('Manual independente do projeto DmTrem. Sem afiliação com Diamond Pedals ou Zoom. Os nomes das marcas identificam a referência sonora e o equipamento de destino.','small')]
 
-doc=SimpleDocTemplate(str(OUT),pagesize=(W,H),rightMargin=48,leftMargin=48,topMargin=102,bottomMargin=56,title='DmTrem 0.30 — Manual do usuário',author='Projeto DmTrem',subject='Instalação, controles, tap tempo e teste na MS-70CDR original',pageCompression=1)
+doc=SimpleDocTemplate(str(OUT),pagesize=(W,H),rightMargin=48,leftMargin=48,topMargin=102,bottomMargin=56,title='DmTrem 0.31 — Manual do usuário',author='Projeto DmTrem',subject='Instalação, controles, tap tempo e teste na MS-70CDR original',pageCompression=1)
 doc.build(story,onFirstPage=page,onLaterPages=page,canvasmaker=partial(Canvas,invariant=1))
 print(OUT)

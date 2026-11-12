@@ -3,7 +3,7 @@
   "audio_func_name": "Fx_MOD_DmTrem",
   "gid": 6,
   "fxid": 949,
-  "fxid_version": "0.30",
+  "fxid_version": "0.31",
   "flags_byte": 1,
   "audio_nop": false,
   "params": [
@@ -20,7 +20,7 @@
     {
       "name": "Vol",
       "max": 100,
-      "default": 50
+      "default": 63
     },
     {
       "name": "Wave",

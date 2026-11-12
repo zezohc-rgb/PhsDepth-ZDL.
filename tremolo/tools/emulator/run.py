@@ -11,6 +11,7 @@ l.dm_host_set_bpm.argtypes=[C.c_uint];l.dm_host_reset.argtypes=[C.c_void_p];l.dm
 cases=[(40,75,50,wave,mode,float(mode%2),1,0) for wave in range(4) for mode in range(6)]
 cases += [(speed,depth,volume,wave,0,0,0,0) for speed in (0,100) for depth in (0,100) for volume in (0,100) for wave in range(4)]
 cases += [(40,75,50,wave,mode,float(mode%2),1,1) for wave in range(4) for mode in range(6)]
+cases += [(12,50,63,0,0,0,0,1), (12,0,50,0,0,0,0,1)]
 v=bytearray(struct.pack('<I',len(cases)));rng=12345
 for knobs in cases:
  blocks=16384 if knobs[:3]==(0,100,100) else (4096 if knobs[0]==40 else 1024)
@@ -33,5 +34,5 @@ subprocess.run(['cargo','build','--locked','--release','--manifest-path',str(w/'
 r=subprocess.run([str(w/'target/release/dmtrem-binary-test'),str(ROOT/'build/DmTrem.ZDL'),str(w/'vectors.bin')],capture_output=True,text=True)
 log=r.stdout+r.stderr;print(log);(w/'result.txt').write_text(log)
 m=re.search(r'PASS: (\d+) cases, (\d+) samples, max error ([\d.]+), max packets (\d+), emulator cycles (\d+), unsupported 0',log)
-report={'passed':r.returncode==0,'artifact_sha256':hashlib.sha256((ROOT/'build/DmTrem.ZDL').read_bytes()).hexdigest(),'physical_hardware_test':False,'scope':'C674x execution with hermetic callbacks; not firmware loader, ADC, CPU scheduling or Diamond sound validation','ziddle_source':'https://berbasoft.com/ziddle/ziddle-1793487371.zip','ziddle_zip_sha256':'c45f11a0ffa51c327169c3c8c6965043882d39b4a8f5f0ac624603e5941579a3','metrics':None if not m else {'cases':int(m[1]),'samples':int(m[2]),'max_abs_error':float(m[3]),'max_packets':int(m[4]),'max_emulated_cycles':int(m[5]),'unsupported_instructions':0},'host_tempo_changes_bpm':[100,60,180],'tap_service':'STATE[24](quarter=6, ceiling=8000), captured by Tap_edit','physical_tap_test_pending':True,'independent_tap_period_oracle_passed':r.returncode==0 and 'PASS TAP:' in log,'log':log}
+report={'passed':r.returncode==0,'artifact_sha256':hashlib.sha256((ROOT/'build/DmTrem.ZDL').read_bytes()).hexdigest(),'physical_hardware_test':False,'scope':'C674x execution with hermetic callbacks; not firmware loader, ADC, CPU scheduling or Diamond sound validation','ziddle_source':'https://berbasoft.com/ziddle/ziddle-1793487371.zip','ziddle_zip_sha256':'c45f11a0ffa51c327169c3c8c6965043882d39b4a8f5f0ac624603e5941579a3','metrics':None if not m else {'cases':int(m[1]),'samples':int(m[2]),'max_abs_error':float(m[3]),'max_packets':int(m[4]),'max_emulated_cycles':int(m[5]),'unsupported_instructions':0},'host_tempo_changes_bpm':[100,60,180],'tap_service':'STATE[24](quarter=6, ceiling=8000), captured by Tap_edit','physical_tap_test_pending':True,'independent_volume_oracle_passed':r.returncode==0 and 'PASS VOLUME:' in log,'independent_tap_period_oracle_passed':r.returncode==0 and 'PASS TAP:' in log,'log':log}
 (ROOT/'build/emulator-report.json').write_text(json.dumps(report,indent=2)+'\n');raise SystemExit(r.returncode)

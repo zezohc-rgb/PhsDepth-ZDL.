@@ -29,10 +29,10 @@
 #define DM_VOL_TYPE_KNOB 1
 #define DM_VOL_UI_MIN 0
 #define DM_VOL_UI_MAX 100
-#define DM_VOL_UI_DEFAULT 50
+#define DM_VOL_UI_DEFAULT 63
 #define DM_VOL_AUDIO_MIN 0.0f
 #define DM_VOL_AUDIO_MAX 1.0f
-#define DM_VOL_DEFAULT_NORM 0.5f
+#define DM_VOL_DEFAULT_NORM 0.63f
 
 #define DM_WAVE_INDEX 3
 #define DM_WAVE_SLOT 8

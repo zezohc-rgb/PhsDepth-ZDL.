@@ -25,9 +25,29 @@ fn tap_oracle(z:&[u8]) {
  }
  println!("PASS TAP: independent 60/120/180 BPM periods; changes after init without edit callbacks");
 }
+fn volume_oracle(z:&[u8]) {
+ let knobs=[12.0,50.0,63.0,0.0,0.0,0.0,0.0,1.0];
+ let mut e=AudioEngine::load(z,&knobs,100.0,2_000_000,LoadInputs::hermetic()).unwrap();
+ assert!(e.load_report().init_clean());e.set_engaged(true).unwrap();
+ let desc=e.host_mut().harness.named_symbols_sorted().into_iter().find(|(_,name)|name=="SonicStomp").unwrap().0;
+ assert_eq!(e.host_mut().harness.mem.read_u32(desc+4*48+16).unwrap(),63,"factory Vol must be 63");
+ let actual=f32::from_bits(e.host_mut().harness.mem.read_u32(PARAMS_ADDR+28).unwrap());
+ assert!((actual-0.63).abs()<1e-6,"restored Vol must reach DSP without extra attenuation");
+ let mut power=0f64;let mut n=0u64;let mut peak=0f32;
+ for block in 0..66150 {
+  let mut out=[0f32;16];let h=e.process_zoom_block(&[0.25f32;16],&mut out).unwrap();
+  assert_eq!(h.unimplemented_total(),0);
+  if block>=11025 {for i in 0..8u32 {
+   let y=f32::from_bits(e.host_mut().harness.mem.read_u32(WET_ADDR+i*4).unwrap());
+   power+=f64::from(y)*f64::from(y);n+=1;peak=peak.max(y.abs());
+  }}
+ }
+ let delta=10.0*(power/n as f64/0.0625).log10();assert!(delta.abs()<0.25);assert!(peak<0.316);
+ println!("PASS VOLUME: corrected default {delta:+.6} dB RMS vs bypass, peak {peak:.6} for input .25; factory Vol 63 restored");
+}
 fn main(){
  let args:Vec<_>=env::args().collect();let z=fs::read(&args[1]).unwrap();let v=fs::read(&args[2]).unwrap();
- tap_oracle(&z);
+ tap_oracle(&z);volume_oracle(&z);
  let mut p=0;let cases=u(&v,&mut p);let(mut worst,mut packets,mut cycles,mut samples)=(0f32,0u64,0u64,0u64);
  for case in 0..cases{
   let mut knobs=[0f32;8];for x in &mut knobs{*x=f(&v,&mut p);}let blocks=u(&v,&mut p);

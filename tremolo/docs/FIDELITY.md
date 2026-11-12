@@ -5,7 +5,7 @@ https://cdn.shopify.com/s/files/1/0716/1387/4479/files/Manual-Diamond_Tremolo_v1
 
 This is an original digital approximation. No original TRM-1 was measured. A passing emulator comparison verifies our implementation across architectures, NOT equality with a Diamond pedal.
 
-| Original behavior | DmTrem 0.30 | Remaining difference |
+| Original behavior | DmTrem 0.31 | Remaining difference |
 |---|---|---|
 | Sharkfin, Sine, optical Square, JFET Chop | All four wave choices | Sharkfin curve and optical response not measured |
 | Rounded optical Square, sharp full-mute Chop | Separate stateful and hard-gate paths | Real transition shapes and leakage unknown |
@@ -20,7 +20,7 @@ This is an original digital approximation. No original TRM-1 was measured. A pas
 | Tap tempo | Host quarter-period service integrated and emulated; see TAP_TEMPO.md | Physical Zoom tap test pending; Diamond averaging, timeout and knob arbitration not reproduced |
 | Underlying rate retained across modes | Speed control retained | Pattern phase continuity during mode changes not measured |
 | Analog mono pedal, true bypass | L/Mono processed and copied to both outputs; bypass leaves both input channels untouched | Zoom's conversion/latency/hardware bypass cannot become TRM-1 analog true bypass |
-| Vol compensates apparent loudness; clean boost possible | Independent gain, no automatic normalization | Original gain range and taper unknown; current 0–2 linear |
+| Vol compensates apparent loudness; clean boost possible | Independent gain, no automatic normalization | Original gain range and taper unknown; current 0–2 linear; factory Vol 63 compensates the default pulse only |
 
 ## Provisional sonic constants
 

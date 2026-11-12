@@ -19,4 +19,4 @@ Reference tooling: [ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistom
 
 ## DmTrem development
 
-The original Diamond TRM-1-inspired tremolo now has an experimental TI-built ZDL, native tests and C674x emulator validation. See [tremolo/README.md](tremolo/README.md) for controls, downloads and the [fidelity limits](tremolo/docs/FIDELITY.md). Host tap-tempo integration and TRM-1-inspired artwork are included in version 0.30. Physical Zoom testing and calibration against a real Diamond remain pending.
+The original Diamond TRM-1-inspired tremolo now has an experimental TI-built ZDL, native tests and C674x emulator validation. See [tremolo/README.md](tremolo/README.md) for controls, downloads and the [fidelity limits](tremolo/docs/FIDELITY.md). Host tap-tempo integration and TRM-1-inspired artwork are included in version 0.31. Physical Zoom testing and calibration against a real Diamond remain pending.

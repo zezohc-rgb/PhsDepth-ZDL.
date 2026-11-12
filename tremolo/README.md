@@ -1,4 +1,4 @@
-# DmTrem 0.30 — original Diamond TRM-1-inspired ZDL
+# DmTrem 0.31 — original Diamond TRM-1-inspired ZDL
 
 Experimental build for original blue Zoom MS-70CDR, firmware 2.10.
 Real TI C674x binary and portable reference DSP. Tap follows the host tempo through a STATE service, validated in emulation; physical MS-70CDR tap behavior and measured Diamond equivalence remain unverified. See [fidelity matrix](docs/FIDELITY.md) for the exact scope.
@@ -11,7 +11,7 @@ Real TI C674x binary and portable reference DSP. Tap follows the host tempo thro
 |---|---|
 | Speed | Base rate in Tap=Free; provisional range/taper |
 | Depth | Modulation depth; in Chop, on/off ratio with 50% at center |
-| Vol | Independent output gain; 50 = unity before modulation |
+| Vol | Independent output gain; default 63 balances the default pulse; 50 = unity before modulation |
 | Wave | Shark, Sine, Squar (optical Square), Chop |
 | Mode | Qtr, 8th, Trip, Rhyth, Chaos, Man |
 | DBL | Doubled rate/alternate accent or rhythmic pattern; gradual rate change |
@@ -63,4 +63,8 @@ The embedded 128x64 monochrome image uses a horizontal enclosure, four top knobs
 
 ## Manual em português
 
-[Baixar manual em PDF — DmTrem 0.30](build/DmTrem-0.30-Manual-PT.pdf). Seis páginas com instalação, controles, tap tempo, regulagens e solução de problemas. Para gerar novamente: `python3 tremolo/tools/manual_pdf.py` (ReportLab e fontes Liberation Sans).
+[Baixar manual em PDF — DmTrem 0.31](build/DmTrem-0.31-Manual-PT.pdf). Seis páginas com instalação, controles, tap tempo, regulagens e solução de problemas. Para gerar novamente: `python3 tremolo/tools/manual_pdf.py` (ReportLab e fontes Liberation Sans).
+
+## Volume check (0.31)
+
+Vol now defaults to 63. At Shark / Depth 50 / Qtr, measured L/Mono RMS moved from about −1.99 dB to +0.02 dB at 100 BPM. This is a factory-preset trim, not automatic normalization or a change to the tremolo shape. Existing patches retain saved values: change Vol to 63 yourself if still at 50. Other waves, depths and rhythms need their own Vol setting. See [volume measurements](docs/VOLUME.md) and `build/volume-report.json`.
