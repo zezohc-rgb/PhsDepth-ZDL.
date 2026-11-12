@@ -1,0 +1,17 @@
+{
+ "effect_name":"DmTrem",
+ "audio_func_name":"Fx_MOD_DmTrem",
+ "gid":6,
+ "fxid":0,
+ "fxid_version":"0.10",
+ "flags_byte":1,
+ "audio_nop":false,
+ "params":[
+  {"name":"Speed","max":100,"default":12},
+  {"name":"Depth","max":100,"default":50},
+  {"name":"Level","max":100,"default":50},
+  {"name":"Wave","max":3,"default":0},
+  {"name":"Mode","max":4,"default":0},
+  {"name":"DBL","max":1,"default":0}
+ ]
+}

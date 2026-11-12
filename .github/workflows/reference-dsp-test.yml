@@ -12,3 +12,8 @@ jobs:
         run: cc -std=c99 -Wall -Wextra -Werror -O2 src/phsdepth_dsp.c tests/test_phsdepth.c -lm -o /tmp/phsdepth-test
       - name: Run test
         run: /tmp/phsdepth-test
+      - name: Compile and run tremolo behavior tests
+        run: |
+          cc -std=c99 -Wall -Wextra -Werror -O2 tremolo/dm_trem.c tremolo/test_dm_trem.c -lm -o /tmp/dm-test
+          /tmp/dm-test
+          cc -std=c99 -Wall -Wextra -Werror -fsyntax-only tremolo/zoom/dmtrem.c
