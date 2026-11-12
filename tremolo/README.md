@@ -60,3 +60,7 @@ Runtime/TI notices are included under `licenses/`.
 ## Appearance
 
 The embedded 128x64 monochrome image uses a horizontal enclosure, four top knobs, central toggle, a faceted diamond motif and two illustrated footswitches inspired by the original TRM-1. `build/DmTrem.png` is a dark-green external thumbnail; `build/DmTrem-LCD.png` previews the actual monochrome design. The MS-70CDR LCD cannot display the green enclosure color. These are original procedural drawings, not copied vendor image assets.
+
+## Manual em português
+
+[Baixar manual em PDF — DmTrem 0.30](build/DmTrem-0.30-Manual-PT.pdf). Seis páginas com instalação, controles, tap tempo, regulagens e solução de problemas. Para gerar novamente: `python3 tremolo/tools/manual_pdf.py` (ReportLab e fontes Liberation Sans).
