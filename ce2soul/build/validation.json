@@ -1,0 +1,13 @@
+{
+  "sha256": "1b9d2a5814eedfbbfd8528dbf332852ae5154e5c4904bbd5f5db26db3399855a",
+  "bytes": 7530,
+  "controls": [
+    "RATE",
+    "DEPTH"
+  ],
+  "gid": 6,
+  "fxid": 948,
+  "sections": 13,
+  "structurally_valid": true,
+  "physically_tested": false
+}

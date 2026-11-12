@@ -1,0 +1,7978 @@
+{
+  "checked_at_utc": "2026-11-12T12:08:42.906113+00:00",
+  "candidate": {
+    "gid": 6,
+    "fxid": 948
+  },
+  "clear_in_audited_sources": true,
+  "conflicts": [],
+  "same_fxid_any_group": [],
+  "limitations": "Public files at pinned commits only; not a global reservation, no pedal inventory. Retired IDs and generated slots also checked against upstream FXID-REGISTRY.md.",
+  "repositories": [
+    {
+      "repository": "repeat98/ZoomMultistompZDL",
+      "commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
+      "files": [
+        {
+          "path": "build/selector-pilot/Hydra.ZDL",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rewire.ZDL",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rooms.ZDL",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rooms6.ZDL",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Spiral.ZDL",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Spool.ZDL",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Stasis.ZDL",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "dist/Arrakis.ZDL",
+          "identities": [
+            [
+              8,
+              473
+            ]
+          ]
+        },
+        {
+          "path": "dist/Breather.ZDL",
+          "identities": [
+            [
+              8,
+              493
+            ]
+          ]
+        },
+        {
+          "path": "dist/Choral.ZDL",
+          "identities": [
+            [
+              8,
+              486
+            ]
+          ]
+        },
+        {
+          "path": "dist/Corrupt.ZDL",
+          "identities": [
+            [
+              8,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "dist/DirtBox.ZDL",
+          "identities": [
+            [
+              8,
+              491
+            ]
+          ]
+        },
+        {
+          "path": "dist/Dissolve.ZDL",
+          "identities": [
+            [
+              8,
+              461
+            ]
+          ]
+        },
+        {
+          "path": "dist/DualShft.ZDL",
+          "identities": [
+            [
+              8,
+              480
+            ]
+          ]
+        },
+        {
+          "path": "dist/DubSiren.ZDL",
+          "identities": [
+            [
+              8,
+              485
+            ]
+          ]
+        },
+        {
+          "path": "dist/Dustbox.ZDL",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "dist/EuGate.ZDL",
+          "identities": [
+            [
+              8,
+              488
+            ]
+          ]
+        },
+        {
+          "path": "dist/Flower.ZDL",
+          "identities": [
+            [
+              8,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "dist/Galactic.ZDL",
+          "identities": [
+            [
+              8,
+              408
+            ]
+          ]
+        },
+        {
+          "path": "dist/GenLoss.ZDL",
+          "identities": [
+            [
+              8,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "dist/GridDly.ZDL",
+          "identities": [
+            [
+              8,
+              495
+            ]
+          ]
+        },
+        {
+          "path": "dist/Gyre.ZDL",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "dist/Howl.ZDL",
+          "identities": [
+            [
+              8,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "dist/Hydra.ZDL",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "dist/Klang.ZDL",
+          "identities": [
+            [
+              8,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "dist/Loop.ZDL",
+          "identities": [
+            [
+              8,
+              467
+            ]
+          ]
+        },
+        {
+          "path": "dist/Mangle.ZDL",
+          "identities": [
+            [
+              8,
+              470
+            ]
+          ]
+        },
+        {
+          "path": "dist/Microlm.ZDL",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "dist/Oxide.ZDL",
+          "identities": [
+            [
+              8,
+              403
+            ]
+          ]
+        },
+        {
+          "path": "dist/Rewire.ZDL",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "dist/Ring.ZDL",
+          "identities": [
+            [
+              8,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "dist/Rooms.ZDL",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "dist/SGNL.ZDL",
+          "identities": [
+            [
+              8,
+              489
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scope.ZDL",
+          "identities": [
+            [
+              8,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scorch.ZDL",
+          "identities": [
+            [
+              8,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scrub.ZDL",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "dist/Shatter.ZDL",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "dist/Skull.ZDL",
+          "identities": [
+            [
+              8,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spectrum.ZDL",
+          "identities": [
+            [
+              8,
+              468
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spiral.ZDL",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spool.ZDL",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "dist/Stasis.ZDL",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "dist/Sweep.ZDL",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "dist/SyncEQ.ZDL",
+          "identities": [
+            [
+              8,
+              494
+            ]
+          ]
+        },
+        {
+          "path": "dist/Taffy.ZDL",
+          "identities": [
+            [
+              8,
+              466
+            ]
+          ]
+        },
+        {
+          "path": "dist/Tonic.ZDL",
+          "identities": [
+            [
+              8,
+              499
+            ]
+          ]
+        },
+        {
+          "path": "dist/WaveFold.ZDL",
+          "identities": [
+            [
+              8,
+              487
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/gain/manifest.json",
+          "identities": [
+            [
+              2,
+              400
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/galactic/manifest.json",
+          "identities": [
+            [
+              8,
+              408
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/hello/manifest.json",
+          "identities": [
+            [
+              2,
+              464
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/purestdrive/manifest.json",
+          "identities": [
+            [
+              2,
+              401
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/stereochorus/manifest.json",
+          "identities": [
+            [
+              8,
+              404
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tapeecho4/manifest.json",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tapehack/manifest.json",
+          "identities": [
+            [
+              8,
+              402
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/totape9/manifest.json",
+          "identities": [
+            [
+              8,
+              403
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tovinyl4/manifest.json",
+          "identities": [
+            [
+              7,
+              406
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/verbtiny/manifest.json",
+          "identities": [
+            [
+              8,
+              405
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/arrakis/manifest.json",
+          "identities": [
+            [
+              6,
+              453
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/arrakis/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              473
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/corrupt/manifest.json",
+          "identities": [
+            [
+              3,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/corrupt/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dissolve/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              461
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dustbox/manifest.json",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dustbox/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/flower/manifest.json",
+          "identities": [
+            [
+              6,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/flower/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/genloss/manifest.json",
+          "identities": [
+            [
+              6,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/genloss/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/gyre/manifest.json",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/gyre/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/howl/manifest.json",
+          "identities": [
+            [
+              2,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/howl/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/hydra/manifest.json",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/hydra/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/klang/manifest.json",
+          "identities": [
+            [
+              6,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/klang/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/loop/manifest.json",
+          "identities": [
+            [
+              8,
+              467
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/mangle/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              470
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/microloom/manifest.json",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/microloom/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/ott/manifest.json",
+          "identities": [
+            [
+              8,
+              410
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/reel/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              443
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rewire/manifest.json",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rewire/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/ring/manifest.json",
+          "identities": [
+            [
+              8,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rooms/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scope/manifest.json",
+          "identities": [
+            [
+              8,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scorch/manifest.json",
+          "identities": [
+            [
+              3,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scorch/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/shatter/manifest.json",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/shatter/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/skull/manifest.json",
+          "identities": [
+            [
+              8,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spectrum/manifest.json",
+          "identities": [
+            [
+              8,
+              468
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spiral/manifest.json",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spiral/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/stasis/manifest.json",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/stasis/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/taffy/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              466
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/tonic/manifest.json",
+          "identities": [
+            [
+              8,
+              499
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/blink/manifest.json",
+          "identities": [
+            [
+              8,
+              413
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/bpmhunt/manifest.json",
+          "identities": [
+            [
+              2,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/coverrw/manifest.json",
+          "identities": [
+            [
+              8,
+              412
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxgate/manifest.json",
+          "identities": [
+            [
+              2,
+              446
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxmap/manifest.json",
+          "identities": [
+            [
+              2,
+              444
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxnib/manifest.json",
+          "identities": [
+            [
+              2,
+              441
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxwatch/manifest.json",
+          "identities": [
+            [
+              7,
+              447
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/desccomb/manifest.json",
+          "identities": [
+            [
+              2,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/desciso/manifest.json",
+          "identities": [
+            [
+              2,
+              426
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/descsize/manifest.json",
+          "identities": [
+            [
+              2,
+              417
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/edgewatch/manifest.json",
+          "identities": [
+            [
+              7,
+              448
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/initprobe/manifest.json",
+          "identities": [
+            [
+              2,
+              407
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/matprobe/manifest.json",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/matprobe/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/namlite/manifest.json",
+          "identities": [
+            [
+              8,
+              498
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/namtest/manifest.json",
+          "identities": [
+            [
+              2,
+              497
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/paramtap/manifest.json",
+          "identities": [
+            [
+              2,
+              445
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/redraw/manifest.json",
+          "identities": [
+            [
+              8,
+              411
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/slo_ir/manifest.json",
+          "identities": [
+            [
+              8,
+              908
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/statecomb/manifest.json",
+          "identities": [
+            [
+              2,
+              460
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/stateiso/manifest.json",
+          "identities": [
+            [
+              2,
+              413
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/stateping/manifest.json",
+          "identities": [
+            [
+              2,
+              442
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/synccalc/manifest.json",
+          "identities": [
+            [
+              2,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobe/manifest.json",
+          "identities": [
+            [
+              2,
+              453
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobv2/manifest.json",
+          "identities": [
+            [
+              2,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobv3/manifest.json",
+          "identities": [
+            [
+              2,
+              462
+            ]
+          ]
+        },
+        {
+          "path": "tools/effects_db.json",
+          "identities": [
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              16
+            ],
+            [
+              1,
+              24
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              1,
+              48
+            ],
+            [
+              1,
+              53
+            ],
+            [
+              1,
+              58
+            ],
+            [
+              1,
+              64
+            ],
+            [
+              1,
+              80
+            ],
+            [
+              1,
+              96
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              1,
+              128
+            ],
+            [
+              1,
+              144
+            ],
+            [
+              1,
+              160
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              16
+            ],
+            [
+              2,
+              24
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              2,
+              36
+            ],
+            [
+              2,
+              40
+            ],
+            [
+              2,
+              44
+            ],
+            [
+              2,
+              48
+            ],
+            [
+              2,
+              64
+            ],
+            [
+              2,
+              80
+            ],
+            [
+              2,
+              88
+            ],
+            [
+              2,
+              96
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              2,
+              136
+            ],
+            [
+              2,
+              144
+            ],
+            [
+              2,
+              149
+            ],
+            [
+              2,
+              154
+            ],
+            [
+              2,
+              160
+            ],
+            [
+              2,
+              176
+            ],
+            [
+              2,
+              192
+            ],
+            [
+              2,
+              208
+            ],
+            [
+              2,
+              224
+            ],
+            [
+              2,
+              256
+            ],
+            [
+              2,
+              497
+            ],
+            [
+              2,
+              498
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              3,
+              48
+            ],
+            [
+              3,
+              64
+            ],
+            [
+              3,
+              80
+            ],
+            [
+              3,
+              96
+            ],
+            [
+              3,
+              112
+            ],
+            [
+              3,
+              128
+            ],
+            [
+              3,
+              144
+            ],
+            [
+              3,
+              160
+            ],
+            [
+              3,
+              176
+            ],
+            [
+              3,
+              192
+            ],
+            [
+              3,
+              208
+            ],
+            [
+              3,
+              224
+            ],
+            [
+              3,
+              240
+            ],
+            [
+              3,
+              256
+            ],
+            [
+              3,
+              272
+            ],
+            [
+              3,
+              288
+            ],
+            [
+              3,
+              304
+            ],
+            [
+              3,
+              320
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              16
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              4,
+              48
+            ],
+            [
+              4,
+              64
+            ],
+            [
+              4,
+              80
+            ],
+            [
+              4,
+              96
+            ],
+            [
+              4,
+              112
+            ],
+            [
+              4,
+              128
+            ],
+            [
+              4,
+              144
+            ],
+            [
+              4,
+              160
+            ],
+            [
+              4,
+              176
+            ],
+            [
+              4,
+              192
+            ],
+            [
+              4,
+              208
+            ],
+            [
+              4,
+              224
+            ],
+            [
+              4,
+              240
+            ],
+            [
+              4,
+              256
+            ],
+            [
+              4,
+              272
+            ],
+            [
+              4,
+              288
+            ],
+            [
+              4,
+              304
+            ],
+            [
+              4,
+              320
+            ],
+            [
+              4,
+              336
+            ],
+            [
+              5,
+              16
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              5,
+              48
+            ],
+            [
+              5,
+              64
+            ],
+            [
+              5,
+              80
+            ],
+            [
+              5,
+              96
+            ],
+            [
+              5,
+              112
+            ],
+            [
+              5,
+              128
+            ],
+            [
+              5,
+              144
+            ],
+            [
+              5,
+              160
+            ],
+            [
+              5,
+              176
+            ],
+            [
+              5,
+              192
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              6,
+              32
+            ],
+            [
+              6,
+              48
+            ],
+            [
+              6,
+              53
+            ],
+            [
+              6,
+              58
+            ],
+            [
+              6,
+              64
+            ],
+            [
+              6,
+              112
+            ],
+            [
+              6,
+              120
+            ],
+            [
+              6,
+              128
+            ],
+            [
+              6,
+              136
+            ],
+            [
+              6,
+              144
+            ],
+            [
+              6,
+              160
+            ],
+            [
+              6,
+              176
+            ],
+            [
+              6,
+              184
+            ],
+            [
+              6,
+              208
+            ],
+            [
+              6,
+              216
+            ],
+            [
+              6,
+              224
+            ],
+            [
+              6,
+              232
+            ],
+            [
+              6,
+              240
+            ],
+            [
+              6,
+              256
+            ],
+            [
+              6,
+              272
+            ],
+            [
+              6,
+              280
+            ],
+            [
+              6,
+              288
+            ],
+            [
+              6,
+              304
+            ],
+            [
+              6,
+              312
+            ],
+            [
+              6,
+              320
+            ],
+            [
+              6,
+              336
+            ],
+            [
+              6,
+              352
+            ],
+            [
+              6,
+              368
+            ],
+            [
+              6,
+              384
+            ],
+            [
+              6,
+              400
+            ],
+            [
+              6,
+              416
+            ],
+            [
+              6,
+              432
+            ],
+            [
+              6,
+              448
+            ],
+            [
+              6,
+              464
+            ],
+            [
+              6,
+              480
+            ],
+            [
+              6,
+              496
+            ],
+            [
+              6,
+              512
+            ],
+            [
+              7,
+              16
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              7,
+              48
+            ],
+            [
+              7,
+              56
+            ],
+            [
+              7,
+              64
+            ],
+            [
+              7,
+              80
+            ],
+            [
+              7,
+              96
+            ],
+            [
+              7,
+              112
+            ],
+            [
+              7,
+              128
+            ],
+            [
+              7,
+              144
+            ],
+            [
+              7,
+              160
+            ],
+            [
+              7,
+              192
+            ],
+            [
+              7,
+              208
+            ],
+            [
+              7,
+              447
+            ],
+            [
+              7,
+              448
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              8,
+              32
+            ],
+            [
+              8,
+              40
+            ],
+            [
+              8,
+              48
+            ],
+            [
+              8,
+              64
+            ],
+            [
+              8,
+              80
+            ],
+            [
+              8,
+              96
+            ],
+            [
+              8,
+              112
+            ],
+            [
+              8,
+              128
+            ],
+            [
+              8,
+              144
+            ],
+            [
+              8,
+              160
+            ],
+            [
+              8,
+              176
+            ],
+            [
+              8,
+              192
+            ],
+            [
+              8,
+              208
+            ],
+            [
+              8,
+              224
+            ],
+            [
+              8,
+              240
+            ],
+            [
+              8,
+              256
+            ],
+            [
+              8,
+              272
+            ],
+            [
+              8,
+              288
+            ],
+            [
+              8,
+              304
+            ],
+            [
+              8,
+              320
+            ],
+            [
+              8,
+              336
+            ],
+            [
+              8,
+              352
+            ],
+            [
+              8,
+              368
+            ],
+            [
+              8,
+              384
+            ],
+            [
+              8,
+              403
+            ],
+            [
+              8,
+              408
+            ],
+            [
+              8,
+              409
+            ],
+            [
+              8,
+              414
+            ],
+            [
+              8,
+              415
+            ],
+            [
+              8,
+              416
+            ],
+            [
+              8,
+              440
+            ],
+            [
+              8,
+              449
+            ],
+            [
+              8,
+              450
+            ],
+            [
+              8,
+              451
+            ],
+            [
+              8,
+              452
+            ],
+            [
+              8,
+              453
+            ],
+            [
+              8,
+              454
+            ],
+            [
+              8,
+              455
+            ],
+            [
+              8,
+              456
+            ],
+            [
+              8,
+              457
+            ],
+            [
+              8,
+              458
+            ],
+            [
+              8,
+              459
+            ],
+            [
+              8,
+              460
+            ],
+            [
+              8,
+              461
+            ],
+            [
+              8,
+              462
+            ],
+            [
+              8,
+              463
+            ],
+            [
+              8,
+              464
+            ],
+            [
+              8,
+              465
+            ],
+            [
+              8,
+              466
+            ],
+            [
+              8,
+              467
+            ],
+            [
+              8,
+              468
+            ],
+            [
+              8,
+              469
+            ],
+            [
+              8,
+              470
+            ],
+            [
+              8,
+              471
+            ],
+            [
+              8,
+              472
+            ],
+            [
+              8,
+              473
+            ],
+            [
+              8,
+              474
+            ],
+            [
+              8,
+              475
+            ],
+            [
+              8,
+              476
+            ],
+            [
+              8,
+              477
+            ],
+            [
+              8,
+              478
+            ],
+            [
+              8,
+              479
+            ],
+            [
+              8,
+              480
+            ],
+            [
+              8,
+              481
+            ],
+            [
+              8,
+              482
+            ],
+            [
+              8,
+              483
+            ],
+            [
+              8,
+              484
+            ],
+            [
+              8,
+              485
+            ],
+            [
+              8,
+              486
+            ],
+            [
+              8,
+              487
+            ],
+            [
+              8,
+              488
+            ],
+            [
+              8,
+              489
+            ],
+            [
+              8,
+              490
+            ],
+            [
+              8,
+              491
+            ],
+            [
+              8,
+              493
+            ],
+            [
+              8,
+              494
+            ],
+            [
+              8,
+              495
+            ],
+            [
+              8,
+              496
+            ],
+            [
+              8,
+              498
+            ],
+            [
+              8,
+              499
+            ],
+            [
+              8,
+              900
+            ],
+            [
+              8,
+              901
+            ],
+            [
+              8,
+              902
+            ],
+            [
+              8,
+              903
+            ],
+            [
+              8,
+              904
+            ],
+            [
+              8,
+              905
+            ],
+            [
+              8,
+              906
+            ],
+            [
+              8,
+              907
+            ],
+            [
+              8,
+              908
+            ],
+            [
+              8,
+              909
+            ],
+            [
+              8,
+              910
+            ],
+            [
+              8,
+              911
+            ],
+            [
+              8,
+              912
+            ],
+            [
+              8,
+              913
+            ],
+            [
+              8,
+              914
+            ],
+            [
+              8,
+              920
+            ],
+            [
+              8,
+              921
+            ],
+            [
+              8,
+              922
+            ],
+            [
+              8,
+              930
+            ],
+            [
+              8,
+              931
+            ],
+            [
+              8,
+              932
+            ],
+            [
+              8,
+              933
+            ],
+            [
+              8,
+              934
+            ],
+            [
+              8,
+              935
+            ],
+            [
+              8,
+              936
+            ],
+            [
+              8,
+              937
+            ],
+            [
+              8,
+              938
+            ],
+            [
+              8,
+              939
+            ],
+            [
+              8,
+              940
+            ],
+            [
+              8,
+              941
+            ],
+            [
+              8,
+              942
+            ],
+            [
+              8,
+              943
+            ],
+            [
+              8,
+              944
+            ],
+            [
+              8,
+              945
+            ],
+            [
+              8,
+              950
+            ],
+            [
+              8,
+              951
+            ],
+            [
+              8,
+              952
+            ],
+            [
+              8,
+              953
+            ],
+            [
+              8,
+              954
+            ],
+            [
+              8,
+              955
+            ],
+            [
+              8,
+              956
+            ],
+            [
+              8,
+              957
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              9,
+              16
+            ],
+            [
+              9,
+              32
+            ],
+            [
+              9,
+              48
+            ],
+            [
+              9,
+              64
+            ],
+            [
+              9,
+              80
+            ],
+            [
+              9,
+              96
+            ],
+            [
+              9,
+              112
+            ],
+            [
+              9,
+              144
+            ],
+            [
+              9,
+              160
+            ],
+            [
+              9,
+              176
+            ],
+            [
+              9,
+              192
+            ],
+            [
+              9,
+              208
+            ],
+            [
+              9,
+              224
+            ],
+            [
+              9,
+              240
+            ],
+            [
+              9,
+              256
+            ],
+            [
+              9,
+              272
+            ],
+            [
+              9,
+              288
+            ],
+            [
+              9,
+              304
+            ],
+            [
+              9,
+              320
+            ],
+            [
+              9,
+              336
+            ],
+            [
+              9,
+              352
+            ],
+            [
+              9,
+              368
+            ],
+            [
+              9,
+              384
+            ],
+            [
+              9,
+              400
+            ],
+            [
+              9,
+              416
+            ],
+            [
+              9,
+              432
+            ],
+            [
+              9,
+              448
+            ],
+            [
+              11,
+              16
+            ],
+            [
+              11,
+              32
+            ],
+            [
+              11,
+              48
+            ],
+            [
+              11,
+              64
+            ],
+            [
+              11,
+              80
+            ],
+            [
+              11,
+              96
+            ],
+            [
+              11,
+              112
+            ],
+            [
+              11,
+              128
+            ],
+            [
+              11,
+              144
+            ],
+            [
+              12,
+              16
+            ],
+            [
+              12,
+              32
+            ],
+            [
+              12,
+              48
+            ],
+            [
+              12,
+              80
+            ],
+            [
+              12,
+              144
+            ],
+            [
+              12,
+              160
+            ],
+            [
+              12,
+              176
+            ],
+            [
+              12,
+              192
+            ],
+            [
+              13,
+              16
+            ],
+            [
+              13,
+              32
+            ],
+            [
+              13,
+              48
+            ],
+            [
+              13,
+              64
+            ],
+            [
+              13,
+              80
+            ],
+            [
+              13,
+              96
+            ],
+            [
+              20,
+              16
+            ],
+            [
+              20,
+              32
+            ],
+            [
+              20,
+              48
+            ],
+            [
+              20,
+              80
+            ],
+            [
+              20,
+              144
+            ],
+            [
+              20,
+              160
+            ],
+            [
+              20,
+              176
+            ],
+            [
+              20,
+              192
+            ],
+            [
+              22,
+              16
+            ],
+            [
+              22,
+              32
+            ],
+            [
+              22,
+              48
+            ],
+            [
+              22,
+              64
+            ],
+            [
+              22,
+              80
+            ],
+            [
+              22,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "tools/nam_template/manifest.json",
+          "identities": []
+        }
+      ]
+    },
+    {
+      "repository": "themanro/ZoomMultistompZDL",
+      "commit": "afb3371b0094082991862355f2a47ced8d422247",
+      "files": [
+        {
+          "path": "build/selector-pilot/Hydra.ZDL",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rewire.ZDL",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rooms.ZDL",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Rooms6.ZDL",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Spiral.ZDL",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Spool.ZDL",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "build/selector-pilot/Stasis.ZDL",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "dist/Arrakis.ZDL",
+          "identities": [
+            [
+              8,
+              473
+            ]
+          ]
+        },
+        {
+          "path": "dist/Breather.ZDL",
+          "identities": [
+            [
+              8,
+              493
+            ]
+          ]
+        },
+        {
+          "path": "dist/Choral.ZDL",
+          "identities": [
+            [
+              8,
+              486
+            ]
+          ]
+        },
+        {
+          "path": "dist/Corrupt.ZDL",
+          "identities": [
+            [
+              8,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "dist/DirtBox.ZDL",
+          "identities": [
+            [
+              8,
+              491
+            ]
+          ]
+        },
+        {
+          "path": "dist/Dissolve.ZDL",
+          "identities": [
+            [
+              8,
+              461
+            ]
+          ]
+        },
+        {
+          "path": "dist/DualShft.ZDL",
+          "identities": [
+            [
+              8,
+              480
+            ]
+          ]
+        },
+        {
+          "path": "dist/DubSiren.ZDL",
+          "identities": [
+            [
+              8,
+              485
+            ]
+          ]
+        },
+        {
+          "path": "dist/Dustbox.ZDL",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "dist/EuGate.ZDL",
+          "identities": [
+            [
+              8,
+              488
+            ]
+          ]
+        },
+        {
+          "path": "dist/Flower.ZDL",
+          "identities": [
+            [
+              8,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "dist/Galactic.ZDL",
+          "identities": [
+            [
+              8,
+              408
+            ]
+          ]
+        },
+        {
+          "path": "dist/GenLoss.ZDL",
+          "identities": [
+            [
+              8,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "dist/GridDly.ZDL",
+          "identities": [
+            [
+              8,
+              495
+            ]
+          ]
+        },
+        {
+          "path": "dist/Gyre.ZDL",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "dist/Howl.ZDL",
+          "identities": [
+            [
+              8,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "dist/Hydra.ZDL",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "dist/Klang.ZDL",
+          "identities": [
+            [
+              8,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "dist/Loop.ZDL",
+          "identities": [
+            [
+              8,
+              467
+            ]
+          ]
+        },
+        {
+          "path": "dist/Mangle.ZDL",
+          "identities": [
+            [
+              8,
+              470
+            ]
+          ]
+        },
+        {
+          "path": "dist/Microlm.ZDL",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "dist/Oxide.ZDL",
+          "identities": [
+            [
+              8,
+              403
+            ]
+          ]
+        },
+        {
+          "path": "dist/Rewire.ZDL",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "dist/Ring.ZDL",
+          "identities": [
+            [
+              8,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "dist/Rooms.ZDL",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "dist/SGNL.ZDL",
+          "identities": [
+            [
+              8,
+              489
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scope.ZDL",
+          "identities": [
+            [
+              8,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scorch.ZDL",
+          "identities": [
+            [
+              8,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scrub.ZDL",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "dist/Shatter.ZDL",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "dist/Skull.ZDL",
+          "identities": [
+            [
+              8,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spectrum.ZDL",
+          "identities": [
+            [
+              8,
+              468
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spiral.ZDL",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "dist/Spool.ZDL",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "dist/Stasis.ZDL",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "dist/Sweep.ZDL",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "dist/SyncEQ.ZDL",
+          "identities": [
+            [
+              8,
+              494
+            ]
+          ]
+        },
+        {
+          "path": "dist/Taffy.ZDL",
+          "identities": [
+            [
+              8,
+              466
+            ]
+          ]
+        },
+        {
+          "path": "dist/Tonic.ZDL",
+          "identities": [
+            [
+              8,
+              499
+            ]
+          ]
+        },
+        {
+          "path": "dist/WaveFold.ZDL",
+          "identities": [
+            [
+              8,
+              487
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/gain/manifest.json",
+          "identities": [
+            [
+              2,
+              400
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/galactic/manifest.json",
+          "identities": [
+            [
+              8,
+              408
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/hello/manifest.json",
+          "identities": [
+            [
+              2,
+              464
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/purestdrive/manifest.json",
+          "identities": [
+            [
+              2,
+              401
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/stereochorus/manifest.json",
+          "identities": [
+            [
+              8,
+              404
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tapeecho4/manifest.json",
+          "identities": [
+            [
+              8,
+              914
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tapehack/manifest.json",
+          "identities": [
+            [
+              8,
+              402
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/totape9/manifest.json",
+          "identities": [
+            [
+              8,
+              403
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/tovinyl4/manifest.json",
+          "identities": [
+            [
+              7,
+              406
+            ]
+          ]
+        },
+        {
+          "path": "src/airwindows/verbtiny/manifest.json",
+          "identities": [
+            [
+              8,
+              405
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/arrakis/manifest.json",
+          "identities": [
+            [
+              6,
+              453
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/arrakis/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              473
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/corrupt/manifest.json",
+          "identities": [
+            [
+              3,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/corrupt/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              454
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dissolve/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              461
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dustbox/manifest.json",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dustbox/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              463
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/flower/manifest.json",
+          "identities": [
+            [
+              6,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/flower/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              451
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/genloss/manifest.json",
+          "identities": [
+            [
+              6,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/genloss/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              456
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/gyre/manifest.json",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/gyre/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              484
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/howl/manifest.json",
+          "identities": [
+            [
+              2,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/howl/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              458
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/hydra/manifest.json",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/hydra/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              459
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/klang/manifest.json",
+          "identities": [
+            [
+              6,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/klang/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              455
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/loop/manifest.json",
+          "identities": [
+            [
+              8,
+              467
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/mangle/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              470
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/microloom/manifest.json",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/microloom/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              450
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/ott/manifest.json",
+          "identities": [
+            [
+              8,
+              410
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/reel/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              443
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rewire/manifest.json",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rewire/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              465
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/ring/manifest.json",
+          "identities": [
+            [
+              8,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/rooms/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              472
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scope/manifest.json",
+          "identities": [
+            [
+              8,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scorch/manifest.json",
+          "identities": [
+            [
+              3,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scorch/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              457
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/shatter/manifest.json",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/shatter/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              452
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/skull/manifest.json",
+          "identities": [
+            [
+              8,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spectrum/manifest.json",
+          "identities": [
+            [
+              8,
+              468
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spiral/manifest.json",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/spiral/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              449
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/stasis/manifest.json",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/stasis/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              440
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/taffy/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              466
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/tonic/manifest.json",
+          "identities": [
+            [
+              8,
+              499
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/blink/manifest.json",
+          "identities": [
+            [
+              8,
+              413
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/bpmhunt/manifest.json",
+          "identities": [
+            [
+              2,
+              415
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/coverrw/manifest.json",
+          "identities": [
+            [
+              8,
+              412
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxgate/manifest.json",
+          "identities": [
+            [
+              2,
+              446
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxmap/manifest.json",
+          "identities": [
+            [
+              2,
+              444
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxnib/manifest.json",
+          "identities": [
+            [
+              2,
+              441
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/ctxwatch/manifest.json",
+          "identities": [
+            [
+              7,
+              447
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/desccomb/manifest.json",
+          "identities": [
+            [
+              2,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/desciso/manifest.json",
+          "identities": [
+            [
+              2,
+              426
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/descsize/manifest.json",
+          "identities": [
+            [
+              2,
+              417
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/edgewatch/manifest.json",
+          "identities": [
+            [
+              7,
+              448
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/initprobe/manifest.json",
+          "identities": [
+            [
+              2,
+              407
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/matprobe/manifest.json",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/matprobe/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/namlite/manifest.json",
+          "identities": [
+            [
+              8,
+              498
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/namtest/manifest.json",
+          "identities": [
+            [
+              2,
+              497
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/paramtap/manifest.json",
+          "identities": [
+            [
+              2,
+              445
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/redraw/manifest.json",
+          "identities": [
+            [
+              8,
+              411
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/slo_ir/manifest.json",
+          "identities": [
+            [
+              8,
+              908
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/statecomb/manifest.json",
+          "identities": [
+            [
+              2,
+              460
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/stateiso/manifest.json",
+          "identities": [
+            [
+              2,
+              413
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/stateping/manifest.json",
+          "identities": [
+            [
+              2,
+              442
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobe/manifest.json",
+          "identities": [
+            [
+              2,
+              453
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobv2/manifest.json",
+          "identities": [
+            [
+              2,
+              414
+            ]
+          ]
+        },
+        {
+          "path": "src/hardware_probes/syncprobv3/manifest.json",
+          "identities": [
+            [
+              2,
+              462
+            ]
+          ]
+        },
+        {
+          "path": "tools/effects_db.json",
+          "identities": [
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              16
+            ],
+            [
+              1,
+              24
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              1,
+              48
+            ],
+            [
+              1,
+              53
+            ],
+            [
+              1,
+              58
+            ],
+            [
+              1,
+              64
+            ],
+            [
+              1,
+              80
+            ],
+            [
+              1,
+              96
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              1,
+              128
+            ],
+            [
+              1,
+              144
+            ],
+            [
+              1,
+              160
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              16
+            ],
+            [
+              2,
+              24
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              2,
+              36
+            ],
+            [
+              2,
+              40
+            ],
+            [
+              2,
+              44
+            ],
+            [
+              2,
+              48
+            ],
+            [
+              2,
+              64
+            ],
+            [
+              2,
+              80
+            ],
+            [
+              2,
+              88
+            ],
+            [
+              2,
+              96
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              2,
+              136
+            ],
+            [
+              2,
+              144
+            ],
+            [
+              2,
+              149
+            ],
+            [
+              2,
+              154
+            ],
+            [
+              2,
+              160
+            ],
+            [
+              2,
+              176
+            ],
+            [
+              2,
+              192
+            ],
+            [
+              2,
+              208
+            ],
+            [
+              2,
+              224
+            ],
+            [
+              2,
+              256
+            ],
+            [
+              2,
+              497
+            ],
+            [
+              2,
+              498
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              3,
+              48
+            ],
+            [
+              3,
+              64
+            ],
+            [
+              3,
+              80
+            ],
+            [
+              3,
+              96
+            ],
+            [
+              3,
+              112
+            ],
+            [
+              3,
+              128
+            ],
+            [
+              3,
+              144
+            ],
+            [
+              3,
+              160
+            ],
+            [
+              3,
+              176
+            ],
+            [
+              3,
+              192
+            ],
+            [
+              3,
+              208
+            ],
+            [
+              3,
+              224
+            ],
+            [
+              3,
+              240
+            ],
+            [
+              3,
+              256
+            ],
+            [
+              3,
+              272
+            ],
+            [
+              3,
+              288
+            ],
+            [
+              3,
+              304
+            ],
+            [
+              3,
+              320
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              16
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              4,
+              48
+            ],
+            [
+              4,
+              64
+            ],
+            [
+              4,
+              80
+            ],
+            [
+              4,
+              96
+            ],
+            [
+              4,
+              112
+            ],
+            [
+              4,
+              128
+            ],
+            [
+              4,
+              144
+            ],
+            [
+              4,
+              160
+            ],
+            [
+              4,
+              176
+            ],
+            [
+              4,
+              192
+            ],
+            [
+              4,
+              208
+            ],
+            [
+              4,
+              224
+            ],
+            [
+              4,
+              240
+            ],
+            [
+              4,
+              256
+            ],
+            [
+              4,
+              272
+            ],
+            [
+              4,
+              288
+            ],
+            [
+              4,
+              304
+            ],
+            [
+              4,
+              320
+            ],
+            [
+              4,
+              336
+            ],
+            [
+              5,
+              16
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              5,
+              48
+            ],
+            [
+              5,
+              64
+            ],
+            [
+              5,
+              80
+            ],
+            [
+              5,
+              96
+            ],
+            [
+              5,
+              112
+            ],
+            [
+              5,
+              128
+            ],
+            [
+              5,
+              144
+            ],
+            [
+              5,
+              160
+            ],
+            [
+              5,
+              176
+            ],
+            [
+              5,
+              192
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              6,
+              32
+            ],
+            [
+              6,
+              48
+            ],
+            [
+              6,
+              53
+            ],
+            [
+              6,
+              58
+            ],
+            [
+              6,
+              64
+            ],
+            [
+              6,
+              112
+            ],
+            [
+              6,
+              120
+            ],
+            [
+              6,
+              128
+            ],
+            [
+              6,
+              136
+            ],
+            [
+              6,
+              144
+            ],
+            [
+              6,
+              160
+            ],
+            [
+              6,
+              176
+            ],
+            [
+              6,
+              184
+            ],
+            [
+              6,
+              208
+            ],
+            [
+              6,
+              216
+            ],
+            [
+              6,
+              224
+            ],
+            [
+              6,
+              232
+            ],
+            [
+              6,
+              240
+            ],
+            [
+              6,
+              256
+            ],
+            [
+              6,
+              272
+            ],
+            [
+              6,
+              280
+            ],
+            [
+              6,
+              288
+            ],
+            [
+              6,
+              304
+            ],
+            [
+              6,
+              312
+            ],
+            [
+              6,
+              320
+            ],
+            [
+              6,
+              336
+            ],
+            [
+              6,
+              352
+            ],
+            [
+              6,
+              368
+            ],
+            [
+              6,
+              384
+            ],
+            [
+              6,
+              400
+            ],
+            [
+              6,
+              416
+            ],
+            [
+              6,
+              432
+            ],
+            [
+              6,
+              448
+            ],
+            [
+              6,
+              464
+            ],
+            [
+              6,
+              480
+            ],
+            [
+              6,
+              496
+            ],
+            [
+              6,
+              512
+            ],
+            [
+              7,
+              16
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              7,
+              48
+            ],
+            [
+              7,
+              56
+            ],
+            [
+              7,
+              64
+            ],
+            [
+              7,
+              80
+            ],
+            [
+              7,
+              96
+            ],
+            [
+              7,
+              112
+            ],
+            [
+              7,
+              128
+            ],
+            [
+              7,
+              144
+            ],
+            [
+              7,
+              160
+            ],
+            [
+              7,
+              192
+            ],
+            [
+              7,
+              208
+            ],
+            [
+              7,
+              447
+            ],
+            [
+              7,
+              448
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              8,
+              32
+            ],
+            [
+              8,
+              40
+            ],
+            [
+              8,
+              48
+            ],
+            [
+              8,
+              64
+            ],
+            [
+              8,
+              80
+            ],
+            [
+              8,
+              96
+            ],
+            [
+              8,
+              112
+            ],
+            [
+              8,
+              128
+            ],
+            [
+              8,
+              144
+            ],
+            [
+              8,
+              160
+            ],
+            [
+              8,
+              176
+            ],
+            [
+              8,
+              192
+            ],
+            [
+              8,
+              208
+            ],
+            [
+              8,
+              224
+            ],
+            [
+              8,
+              240
+            ],
+            [
+              8,
+              256
+            ],
+            [
+              8,
+              272
+            ],
+            [
+              8,
+              288
+            ],
+            [
+              8,
+              304
+            ],
+            [
+              8,
+              320
+            ],
+            [
+              8,
+              336
+            ],
+            [
+              8,
+              352
+            ],
+            [
+              8,
+              368
+            ],
+            [
+              8,
+              384
+            ],
+            [
+              8,
+              403
+            ],
+            [
+              8,
+              408
+            ],
+            [
+              8,
+              409
+            ],
+            [
+              8,
+              414
+            ],
+            [
+              8,
+              415
+            ],
+            [
+              8,
+              416
+            ],
+            [
+              8,
+              440
+            ],
+            [
+              8,
+              449
+            ],
+            [
+              8,
+              450
+            ],
+            [
+              8,
+              451
+            ],
+            [
+              8,
+              452
+            ],
+            [
+              8,
+              453
+            ],
+            [
+              8,
+              454
+            ],
+            [
+              8,
+              455
+            ],
+            [
+              8,
+              456
+            ],
+            [
+              8,
+              457
+            ],
+            [
+              8,
+              458
+            ],
+            [
+              8,
+              459
+            ],
+            [
+              8,
+              460
+            ],
+            [
+              8,
+              461
+            ],
+            [
+              8,
+              462
+            ],
+            [
+              8,
+              463
+            ],
+            [
+              8,
+              464
+            ],
+            [
+              8,
+              465
+            ],
+            [
+              8,
+              466
+            ],
+            [
+              8,
+              467
+            ],
+            [
+              8,
+              468
+            ],
+            [
+              8,
+              469
+            ],
+            [
+              8,
+              470
+            ],
+            [
+              8,
+              471
+            ],
+            [
+              8,
+              472
+            ],
+            [
+              8,
+              473
+            ],
+            [
+              8,
+              474
+            ],
+            [
+              8,
+              475
+            ],
+            [
+              8,
+              476
+            ],
+            [
+              8,
+              477
+            ],
+            [
+              8,
+              478
+            ],
+            [
+              8,
+              479
+            ],
+            [
+              8,
+              480
+            ],
+            [
+              8,
+              481
+            ],
+            [
+              8,
+              482
+            ],
+            [
+              8,
+              483
+            ],
+            [
+              8,
+              484
+            ],
+            [
+              8,
+              485
+            ],
+            [
+              8,
+              486
+            ],
+            [
+              8,
+              487
+            ],
+            [
+              8,
+              488
+            ],
+            [
+              8,
+              489
+            ],
+            [
+              8,
+              490
+            ],
+            [
+              8,
+              491
+            ],
+            [
+              8,
+              493
+            ],
+            [
+              8,
+              494
+            ],
+            [
+              8,
+              495
+            ],
+            [
+              8,
+              496
+            ],
+            [
+              8,
+              498
+            ],
+            [
+              8,
+              499
+            ],
+            [
+              8,
+              900
+            ],
+            [
+              8,
+              901
+            ],
+            [
+              8,
+              902
+            ],
+            [
+              8,
+              903
+            ],
+            [
+              8,
+              904
+            ],
+            [
+              8,
+              905
+            ],
+            [
+              8,
+              906
+            ],
+            [
+              8,
+              907
+            ],
+            [
+              8,
+              908
+            ],
+            [
+              8,
+              909
+            ],
+            [
+              8,
+              910
+            ],
+            [
+              8,
+              911
+            ],
+            [
+              8,
+              912
+            ],
+            [
+              8,
+              913
+            ],
+            [
+              8,
+              914
+            ],
+            [
+              8,
+              920
+            ],
+            [
+              8,
+              921
+            ],
+            [
+              8,
+              922
+            ],
+            [
+              8,
+              930
+            ],
+            [
+              8,
+              931
+            ],
+            [
+              8,
+              932
+            ],
+            [
+              8,
+              933
+            ],
+            [
+              8,
+              934
+            ],
+            [
+              8,
+              935
+            ],
+            [
+              8,
+              936
+            ],
+            [
+              8,
+              937
+            ],
+            [
+              8,
+              938
+            ],
+            [
+              8,
+              939
+            ],
+            [
+              8,
+              940
+            ],
+            [
+              8,
+              941
+            ],
+            [
+              8,
+              942
+            ],
+            [
+              8,
+              943
+            ],
+            [
+              8,
+              944
+            ],
+            [
+              8,
+              945
+            ],
+            [
+              8,
+              950
+            ],
+            [
+              8,
+              951
+            ],
+            [
+              8,
+              952
+            ],
+            [
+              8,
+              953
+            ],
+            [
+              8,
+              954
+            ],
+            [
+              8,
+              955
+            ],
+            [
+              8,
+              956
+            ],
+            [
+              8,
+              957
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              9,
+              16
+            ],
+            [
+              9,
+              32
+            ],
+            [
+              9,
+              48
+            ],
+            [
+              9,
+              64
+            ],
+            [
+              9,
+              80
+            ],
+            [
+              9,
+              96
+            ],
+            [
+              9,
+              112
+            ],
+            [
+              9,
+              144
+            ],
+            [
+              9,
+              160
+            ],
+            [
+              9,
+              176
+            ],
+            [
+              9,
+              192
+            ],
+            [
+              9,
+              208
+            ],
+            [
+              9,
+              224
+            ],
+            [
+              9,
+              240
+            ],
+            [
+              9,
+              256
+            ],
+            [
+              9,
+              272
+            ],
+            [
+              9,
+              288
+            ],
+            [
+              9,
+              304
+            ],
+            [
+              9,
+              320
+            ],
+            [
+              9,
+              336
+            ],
+            [
+              9,
+              352
+            ],
+            [
+              9,
+              368
+            ],
+            [
+              9,
+              384
+            ],
+            [
+              9,
+              400
+            ],
+            [
+              9,
+              416
+            ],
+            [
+              9,
+              432
+            ],
+            [
+              9,
+              448
+            ],
+            [
+              11,
+              16
+            ],
+            [
+              11,
+              32
+            ],
+            [
+              11,
+              48
+            ],
+            [
+              11,
+              64
+            ],
+            [
+              11,
+              80
+            ],
+            [
+              11,
+              96
+            ],
+            [
+              11,
+              112
+            ],
+            [
+              11,
+              128
+            ],
+            [
+              11,
+              144
+            ],
+            [
+              12,
+              16
+            ],
+            [
+              12,
+              32
+            ],
+            [
+              12,
+              48
+            ],
+            [
+              12,
+              80
+            ],
+            [
+              12,
+              144
+            ],
+            [
+              12,
+              160
+            ],
+            [
+              12,
+              176
+            ],
+            [
+              12,
+              192
+            ],
+            [
+              13,
+              16
+            ],
+            [
+              13,
+              32
+            ],
+            [
+              13,
+              48
+            ],
+            [
+              13,
+              64
+            ],
+            [
+              13,
+              80
+            ],
+            [
+              13,
+              96
+            ],
+            [
+              20,
+              16
+            ],
+            [
+              20,
+              32
+            ],
+            [
+              20,
+              48
+            ],
+            [
+              20,
+              80
+            ],
+            [
+              20,
+              144
+            ],
+            [
+              20,
+              160
+            ],
+            [
+              20,
+              176
+            ],
+            [
+              20,
+              192
+            ],
+            [
+              22,
+              16
+            ],
+            [
+              22,
+              32
+            ],
+            [
+              22,
+              48
+            ],
+            [
+              22,
+              64
+            ],
+            [
+              22,
+              80
+            ],
+            [
+              22,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "tools/nam_template/manifest.json",
+          "identities": []
+        }
+      ]
+    },
+    {
+      "repository": "matujuice/zoom-ms-zdl-effects-pack",
+      "commit": "826ebb963315ee4eda99cd3f9cdf87b5095e20f6",
+      "files": [
+        {
+          "path": "dist/Breather.ZDL",
+          "identities": [
+            [
+              8,
+              493
+            ]
+          ]
+        },
+        {
+          "path": "dist/Choral.ZDL",
+          "identities": [
+            [
+              8,
+              486
+            ]
+          ]
+        },
+        {
+          "path": "dist/DJFilter.ZDL",
+          "identities": [
+            [
+              8,
+              502
+            ]
+          ]
+        },
+        {
+          "path": "dist/DirtBox.ZDL",
+          "identities": [
+            [
+              8,
+              491
+            ]
+          ]
+        },
+        {
+          "path": "dist/DualShft.ZDL",
+          "identities": [
+            [
+              8,
+              480
+            ]
+          ]
+        },
+        {
+          "path": "dist/DubSiren.ZDL",
+          "identities": [
+            [
+              8,
+              485
+            ]
+          ]
+        },
+        {
+          "path": "dist/EuGate.ZDL",
+          "identities": [
+            [
+              8,
+              488
+            ]
+          ]
+        },
+        {
+          "path": "dist/GRDELAY.ZDL",
+          "identities": [
+            [
+              8,
+              495
+            ]
+          ]
+        },
+        {
+          "path": "dist/GRDLOOP.ZDL",
+          "identities": [
+            [
+              8,
+              497
+            ]
+          ]
+        },
+        {
+          "path": "dist/Gooey.ZDL",
+          "identities": [
+            [
+              8,
+              501
+            ]
+          ]
+        },
+        {
+          "path": "dist/LOUDER.ZDL",
+          "identities": [
+            [
+              8,
+              481
+            ]
+          ]
+        },
+        {
+          "path": "dist/SGNL.ZDL",
+          "identities": [
+            [
+              8,
+              489
+            ]
+          ]
+        },
+        {
+          "path": "dist/Scrub.ZDL",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "dist/Sweep.ZDL",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "dist/Takeoff.ZDL",
+          "identities": [
+            [
+              8,
+              494
+            ]
+          ]
+        },
+        {
+          "path": "dist/Washout.ZDL",
+          "identities": [
+            [
+              8,
+              492
+            ]
+          ]
+        },
+        {
+          "path": "dist/WaveFold.ZDL",
+          "identities": [
+            [
+              8,
+              487
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/breather/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              493
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dirtbox/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              491
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/djfilter/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              502
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dualshft/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              480
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/dubsiren/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              485
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/eugate/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              488
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/formant/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              486
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/gooey/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              501
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/griddly/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              495
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/looper/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              497
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/louder/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              481
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/scrub/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              490
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/sgnl/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              489
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/sweep/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/takeoff/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              494
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/washout/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              492
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/wavefold/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              487
+            ]
+          ]
+        },
+        {
+          "path": "src/probes/dryprb/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              498
+            ]
+          ]
+        },
+        {
+          "path": "src/probes/routeprb/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              500
+            ]
+          ]
+        },
+        {
+          "path": "src/probes/tempoprb/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              499
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "Leemuzhko/Zoom-ZDL-FX",
+      "commit": "85a490f664dc25447876e4010d250066fdeab946",
+      "files": [
+        {
+          "path": "zdl/drive/nam/NAM5150/NAM5150.ZDL",
+          "identities": [
+            [
+              3,
+              581
+            ]
+          ]
+        },
+        {
+          "path": "zdl/drive/nam/NAMPLEX/NAMPLEX.ZDL",
+          "identities": [
+            [
+              3,
+              580
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/DUAL-IR/IRDUAL4/IRDUAL4.ZDL",
+          "identities": [
+            [
+              2,
+              552
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/DUAL-IR/M1960VT1/M1960VT1.ZDL",
+          "identities": [
+            [
+              2,
+              555
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/DUAL-IR/M1960VT2/M1960VT2.ZDL",
+          "identities": [
+            [
+              2,
+              556
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/DUAL-IR/MS1960VS/MS1960VS.ZDL",
+          "identities": [
+            [
+              2,
+              554
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/hybrid-ir/GJ_IR/GJ_IR.ZDL",
+          "identities": [
+            [
+              2,
+              567
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/hybrid-ir/HYBRIDIR/HYBRIDIR.ZDL",
+          "identities": [
+            [
+              2,
+              565
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/hybrid-ir/MS1960/MS1960.ZDL",
+          "identities": [
+            [
+              2,
+              566
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/hybrid-ir/TRUCAB/TRUCAB.ZDL",
+          "identities": [
+            [
+              2,
+              568
+            ]
+          ]
+        },
+        {
+          "path": "zdl/filter/hybrid-ir/TRUCAB2/TRUCAB2.ZDL",
+          "identities": [
+            [
+              2,
+              569
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/CABSIM/CABSIM.ZDL",
+          "identities": [
+            [
+              4,
+              339
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/ENGL/ENGL.ZDL",
+          "identities": [
+            [
+              4,
+              337
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/ENGL2/ENGL2.ZDL",
+          "identities": [
+            [
+              4,
+              338
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/JCM800/JCM800.ZDL",
+          "identities": [
+            [
+              4,
+              351
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/PLEXI/PLEXI.ZDL",
+          "identities": [
+            [
+              4,
+              340
+            ]
+          ]
+        },
+        {
+          "path": "zdl/guitar-amp/modified-amps/PLEXI2/PLEXI2.ZDL",
+          "identities": [
+            [
+              4,
+              370
+            ]
+          ]
+        },
+        {
+          "path": "zdl/pedal-operated/games/LM_DINO/LM_DINO.ZDL",
+          "identities": [
+            [
+              11,
+              13311
+            ]
+          ]
+        },
+        {
+          "path": "zdl/sfx/synthesis/SYNX2/SYNX2.ZDL",
+          "identities": [
+            [
+              7,
+              915
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "Barsik-Barbosik/Custom-Zoom-ZDL-Effects",
+      "commit": "5d293c67c1dceeb109585169a47590cf896d56d0",
+      "files": [
+        {
+          "path": "dist/DrumBox.ZDL",
+          "identities": [
+            [
+              7,
+              520
+            ]
+          ]
+        },
+        {
+          "path": "dist/Floppy.ZDL",
+          "identities": [
+            [
+              7,
+              522
+            ]
+          ]
+        },
+        {
+          "path": "dist/SongBox.ZDL",
+          "identities": [
+            [
+              7,
+              521
+            ]
+          ]
+        },
+        {
+          "path": "src/drumbox/manifest.json",
+          "identities": [
+            [
+              7,
+              520
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "marcfuentes/silverst-zdl",
+      "commit": "801b689d43172b3b2341fc7b7e47a7eeef245578",
+      "files": [
+        {
+          "path": "SilverSt.ZDL",
+          "identities": [
+            [
+              8,
+              505
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/silverst/manifest.json",
+          "identities": [
+            [
+              8,
+              505
+            ]
+          ]
+        },
+        {
+          "path": "src/custom/silverst/manifest_pedal.json",
+          "identities": [
+            [
+              8,
+              505
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "ELynx/zoom-fx-compressed",
+      "commit": "8798fb9efe103f77c02a857d5bad9f968497ca46",
+      "files": [
+        {
+          "path": "files/effects/160_COMP.ZDL",
+          "identities": [
+            [
+              1,
+              53
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/4V_SYN.ZDL",
+          "identities": [
+            [
+              7,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ACOSIM.ZDL",
+          "identities": [
+            [
+              3,
+              320
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/AIR.ZDL",
+          "identities": [
+            [
+              9,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ALIEN.ZDL",
+          "identities": [
+            [
+              4,
+              320
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/AMBIENCE.ZDL",
+          "identities": [
+            [
+              9,
+              272
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ANA234CH.ZDL",
+          "identities": [
+            [
+              6,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ANLGDLY.ZDL",
+          "identities": [
+            [
+              8,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/APANDLY.ZDL",
+          "identities": [
+            [
+              8,
+              368
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ARENA.ZDL",
+          "identities": [
+            [
+              9,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/AUTOPAN.ZDL",
+          "identities": [
+            [
+              7,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/AUTOWAH.ZDL",
+          "identities": [
+            [
+              2,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/A_FILTER.ZDL",
+          "identities": [
+            [
+              2,
+              149
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BENDCHO.ZDL",
+          "identities": [
+            [
+              6,
+              336
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BF_FLG_2.ZDL",
+          "identities": [
+            [
+              6,
+              432
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BGGRID.ZDL",
+          "identities": [
+            [
+              3,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BGN_DRV.ZDL",
+          "identities": [
+            [
+              4,
+              272
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BGTHRTTL.ZDL",
+          "identities": [
+            [
+              3,
+              384
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BG_CRNCH.ZDL",
+          "identities": [
+            [
+              4,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BG_DRV.ZDL",
+          "identities": [
+            [
+              4,
+              288
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BITCRUSH.ZDL",
+          "identities": [
+            [
+              7,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BOMBER.ZDL",
+          "identities": [
+            [
+              7,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BOOSTER.ZDL",
+          "identities": [
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/BOTTOM_B.ZDL",
+          "identities": [
+            [
+              2,
+              44
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_ATWAH.ZDL",
+          "identities": [
+            [
+              2,
+              88
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_BRKR.ZDL",
+          "identities": [
+            [
+              4,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_CHORUS.ZDL",
+          "identities": [
+            [
+              6,
+              120
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_CRY.ZDL",
+          "identities": [
+            [
+              2,
+              154
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_DETUNE.ZDL",
+          "identities": [
+            [
+              6,
+              136
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_ENSMBL.ZDL",
+          "identities": [
+            [
+              6,
+              184
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_FLNGR.ZDL",
+          "identities": [
+            [
+              6,
+              232
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_GEQ.ZDL",
+          "identities": [
+            [
+              2,
+              24
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_OCTAVE.ZDL",
+          "identities": [
+            [
+              6,
+              280
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_PDLMNP.ZDL",
+          "identities": [
+            [
+              11,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_PDLPIT.ZDL",
+          "identities": [
+            [
+              11,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_PEQ.ZDL",
+          "identities": [
+            [
+              2,
+              36
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_PITCH.ZDL",
+          "identities": [
+            [
+              6,
+              312
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/B_SYNTH.ZDL",
+          "identities": [
+            [
+              7,
+              56
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CAR_DRV.ZDL",
+          "identities": [
+            [
+              4,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CAVE.ZDL",
+          "identities": [
+            [
+              9,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CENTAGLD.ZDL",
+          "identities": [
+            [
+              3,
+              336
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CE_CHO5.ZDL",
+          "identities": [
+            [
+              6,
+              384
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CHAMBER.ZDL",
+          "identities": [
+            [
+              9,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CHORUS.ZDL",
+          "identities": [
+            [
+              6,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CHURCH.ZDL",
+          "identities": [
+            [
+              9,
+              240
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CLONECHO.ZDL",
+          "identities": [
+            [
+              6,
+              400
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CMN_DRV.ZDL",
+          "identities": [
+            [
+              15,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/COMBFLTR.ZDL",
+          "identities": [
+            [
+              2,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/COMP.ZDL",
+          "identities": [
+            [
+              1,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CRBNDLY.ZDL",
+          "identities": [
+            [
+              8,
+              240
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CRN_CHO.ZDL",
+          "identities": [
+            [
+              6,
+              480
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CRN_TRI.ZDL",
+          "identities": [
+            [
+              6,
+              512
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/CRY.ZDL",
+          "identities": [
+            [
+              2,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DEFRET.ZDL",
+          "identities": [
+            [
+              7,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DELAY.ZDL",
+          "identities": [
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DELUXE_R.ZDL",
+          "identities": [
+            [
+              4,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DETUNE.ZDL",
+          "identities": [
+            [
+              6,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DIRTYGTE.ZDL",
+          "identities": [
+            [
+              1,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DISTONE.ZDL",
+          "identities": [
+            [
+              3,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DISTPLUS.ZDL",
+          "identities": [
+            [
+              3,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DRV_ECHO.ZDL",
+          "identities": [
+            [
+              8,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DUALDIGD.ZDL",
+          "identities": [
+            [
+              8,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DUAL_CMP.ZDL",
+          "identities": [
+            [
+              1,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DUAL_REV.ZDL",
+          "identities": [
+            [
+              9,
+              448
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DUOPHASE.ZDL",
+          "identities": [
+            [
+              6,
+              53
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DUOTREM.ZDL",
+          "identities": [
+            [
+              6,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DYNADLY.ZDL",
+          "identities": [
+            [
+              8,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DYNAREV.ZDL",
+          "identities": [
+            [
+              9,
+              368
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DYNDRIVE.ZDL",
+          "identities": [
+            [
+              3,
+              528
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DYNFLNGR.ZDL",
+          "identities": [
+            [
+              6,
+              240
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/DZ_DRIVE.ZDL",
+          "identities": [
+            [
+              4,
+              304
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/D_COMP.ZDL",
+          "identities": [
+            [
+              1,
+              24
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Div0.ZDL",
+          "identities": [
+            [
+              2,
+              753
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/EARLYREF.ZDL",
+          "identities": [
+            [
+              9,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ECHO.ZDL",
+          "identities": [
+            [
+              9,
+              320
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ENSEMBLE.ZDL",
+          "identities": [
+            [
+              6,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/EXCITER.ZDL",
+          "identities": [
+            [
+              2,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/EXTRMDS.ZDL",
+          "identities": [
+            [
+              3,
+              304
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FCYCLE.ZDL",
+          "identities": [
+            [
+              2,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FDCOMBO.ZDL",
+          "identities": [
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FD_VIBRO.ZDL",
+          "identities": [
+            [
+              4,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FLANGER.ZDL",
+          "identities": [
+            [
+              6,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FLTERPPD.ZDL",
+          "identities": [
+            [
+              8,
+              352
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FLTRDLY.ZDL",
+          "identities": [
+            [
+              8,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/FUZZSML.ZDL",
+          "identities": [
+            [
+              3,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/GATE_REV.ZDL",
+          "identities": [
+            [
+              9,
+              288
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/GEQ.ZDL",
+          "identities": [
+            [
+              2,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/GOVERNOR.ZDL",
+          "identities": [
+            [
+              3,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/GRAYCOMP.ZDL",
+          "identities": [
+            [
+              1,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/GRTMUFF.ZDL",
+          "identities": [
+            [
+              3,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HALL.ZDL",
+          "identities": [
+            [
+              9,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HDHALL.ZDL",
+          "identities": [
+            [
+              9,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HD_REV.ZDL",
+          "identities": [
+            [
+              9,
+              12
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HOTBOX.ZDL",
+          "identities": [
+            [
+              3,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HPS.ZDL",
+          "identities": [
+            [
+              6,
+              320
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HW_STACK.ZDL",
+          "identities": [
+            [
+              4,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/HolyFLRB.ZDL",
+          "identities": [
+            [
+              9,
+              352
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ICEDLY.ZDL",
+          "identities": [
+            [
+              8,
+              384
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/LEAD.ZDL",
+          "identities": [
+            [
+              3,
+              288
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/LIMITER.ZDL",
+          "identities": [
+            [
+              1,
+              58
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/LINESEL.ZDL",
+          "identities": [
+            [
+              2,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/LOFIDLY.ZDL",
+          "identities": [
+            [
+              8,
+              304
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/LOFI_REV.ZDL",
+          "identities": [
+            [
+              9,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MATCH_30.ZDL",
+          "identities": [
+            [
+              4,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MIRAGECH.ZDL",
+          "identities": [
+            [
+              6,
+              464
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MJROLLE.ZDL",
+          "identities": [
+            [
+              6,
+              352
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MLTTPDLY.ZDL",
+          "identities": [
+            [
+              8,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MNGLD_SP.ZDL",
+          "identities": [
+            [
+              9,
+              432
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MNPIT.ZDL",
+          "identities": [
+            [
+              6,
+              304
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MODDLY.ZDL",
+          "identities": [
+            [
+              8,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MODDLY2.ZDL",
+          "identities": [
+            [
+              8,
+              40
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MODREV.ZDL",
+          "identities": [
+            [
+              9,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MONOSYN.ZDL",
+          "identities": [
+            [
+              7,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/ACOUSTIC.ZDL",
+          "identities": [
+            [
+              5,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/AC_B_PRE.ZDL",
+          "identities": [
+            [
+              13,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/AG_AMP.ZDL",
+          "identities": [
+            [
+              5,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/BASSDRV.ZDL",
+          "identities": [
+            [
+              13,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/BASSMUFF.ZDL",
+          "identities": [
+            [
+              12,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/BASS_BB.ZDL",
+          "identities": [
+            [
+              13,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/BASS_PRE.ZDL",
+          "identities": [
+            [
+              13,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/B_BOOST.ZDL",
+          "identities": [
+            [
+              12,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/B_DIST_1.ZDL",
+          "identities": [
+            [
+              12,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/B_MAN.ZDL",
+          "identities": [
+            [
+              5,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/B_METAL.ZDL",
+          "identities": [
+            [
+              12,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/B_OD.ZDL",
+          "identities": [
+            [
+              12,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/CMN_BASS.ZDL",
+          "identities": [
+            [
+              15,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/DI5.ZDL",
+          "identities": [
+            [
+              13,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/DI_PLUS.ZDL",
+          "identities": [
+            [
+              13,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/HRT3500.ZDL",
+          "identities": [
+            [
+              5,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/MARK_B.ZDL",
+          "identities": [
+            [
+              5,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/SVT.ZDL",
+          "identities": [
+            [
+              5,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_BASS_TS.ZDL",
+          "identities": [
+            [
+              12,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_B_FZSML.ZDL",
+          "identities": [
+            [
+              12,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_B_SQUEK.ZDL",
+          "identities": [
+            [
+              12,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_FlipTop.ZDL",
+          "identities": [
+            [
+              5,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_GKruegr.ZDL",
+          "identities": [
+            [
+              5,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_Heaven.ZDL",
+          "identities": [
+            [
+              5,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_Monoton.ZDL",
+          "identities": [
+            [
+              5,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_SMR.ZDL",
+          "identities": [
+            [
+              5,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS-60B/_SuperB.ZDL",
+          "identities": [
+            [
+              5,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MSCRUNCH.ZDL",
+          "identities": [
+            [
+              4,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS_1959.ZDL",
+          "identities": [
+            [
+              4,
+              240
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MS_DRV.ZDL",
+          "identities": [
+            [
+              4,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/MTLWRLD.ZDL",
+          "identities": [
+            [
+              3,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/M_COMP.ZDL",
+          "identities": [
+            [
+              1,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/M_FILTER.ZDL",
+          "identities": [
+            [
+              2,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/NOISEGTE.ZDL",
+          "identities": [
+            [
+              1,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/NYC_MUFF.ZDL",
+          "identities": [
+            [
+              3,
+              352
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/OCTAVE.ZDL",
+          "identities": [
+            [
+              6,
+              272
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/OCTFUZZ.ZDL",
+          "identities": [
+            [
+              3,
+              400
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/OPTCOMP.ZDL",
+          "identities": [
+            [
+              1,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ORANGELM.ZDL",
+          "identities": [
+            [
+              1,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/OVRDRV.ZDL",
+          "identities": [
+            [
+              3,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PARTICLE.ZDL",
+          "identities": [
+            [
+              9,
+              400
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PDL_RESO.ZDL",
+          "identities": [
+            [
+              11,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEDALCRY.ZDL",
+          "identities": [
+            [
+              11,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEDALMNP.ZDL",
+          "identities": [
+            [
+              11,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEDALPIT.ZDL",
+          "identities": [
+            [
+              11,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEDALVX.ZDL",
+          "identities": [
+            [
+              11,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEDALWAH.ZDL",
+          "identities": [
+            [
+              11,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PEQ.ZDL",
+          "identities": [
+            [
+              2,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PHASEDLY.ZDL",
+          "identities": [
+            [
+              8,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PHASER.ZDL",
+          "identities": [
+            [
+              6,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PITCHDLY.ZDL",
+          "identities": [
+            [
+              8,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PLATE.ZDL",
+          "identities": [
+            [
+              9,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/PTCHSHFT.ZDL",
+          "identities": [
+            [
+              6,
+              288
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RACKCOMP.ZDL",
+          "identities": [
+            [
+              1,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RAINSEL.ZDL",
+          "identities": [
+            [
+              2,
+              241
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RCBOOST.ZDL",
+          "identities": [
+            [
+              3,
+              496
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RED_CRU.ZDL",
+          "identities": [
+            [
+              3,
+              432
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RESONS.ZDL",
+          "identities": [
+            [
+              2,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/REVO_1.ZDL",
+          "identities": [
+            [
+              4,
+              336
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RINGMOD.ZDL",
+          "identities": [
+            [
+              6,
+              368
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RNDMFLTR.ZDL",
+          "identities": [
+            [
+              2,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ROOM.ZDL",
+          "identities": [
+            [
+              9,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RTCLOSET.ZDL",
+          "identities": [
+            [
+              7,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RTFM.ZDL",
+          "identities": [
+            [
+              2,
+              497
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RVRSDLY.ZDL",
+          "identities": [
+            [
+              8,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/RVS_REV.ZDL",
+          "identities": [
+            [
+              9,
+              304
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SEQFLTR.ZDL",
+          "identities": [
+            [
+              2,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SHIMMER.ZDL",
+          "identities": [
+            [
+              9,
+              384
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SILKYCHO.ZDL",
+          "identities": [
+            [
+              6,
+              448
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLAPBACK.ZDL",
+          "identities": [
+            [
+              9,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLAPBKD.ZDL",
+          "identities": [
+            [
+              8,
+              272
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLICER.ZDL",
+          "identities": [
+            [
+              6,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLOWFLTR.ZDL",
+          "identities": [
+            [
+              2,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLWATK.ZDL",
+          "identities": [
+            [
+              1,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SLWATKDL.ZDL",
+          "identities": [
+            [
+              8,
+              320
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SMS_DLY.ZDL",
+          "identities": [
+            [
+              8,
+              288
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SPC_HOLE.ZDL",
+          "identities": [
+            [
+              9,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SPLITTER.ZDL",
+          "identities": [
+            [
+              2,
+              40
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SPRING.ZDL",
+          "identities": [
+            [
+              9,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SPRING63.ZDL",
+          "identities": [
+            [
+              9,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SQUEAK.ZDL",
+          "identities": [
+            [
+              3,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STCHO.ZDL",
+          "identities": [
+            [
+              6,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STDELAY.ZDL",
+          "identities": [
+            [
+              8,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STDSYN.ZDL",
+          "identities": [
+            [
+              7,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STEP.ZDL",
+          "identities": [
+            [
+              2,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STOMPDLY.ZDL",
+          "identities": [
+            [
+              8,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/STONEPHA.ZDL",
+          "identities": [
+            [
+              6,
+              416
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ST_B_GEQ.ZDL",
+          "identities": [
+            [
+              2,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ST_G_GEQ.ZDL",
+          "identities": [
+            [
+              2,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SUPERCHO.ZDL",
+          "identities": [
+            [
+              6,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SWEETDRV.ZDL",
+          "identities": [
+            [
+              3,
+              464
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/SYNTLK.ZDL",
+          "identities": [
+            [
+              7,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TANGERIN.ZDL",
+          "identities": [
+            [
+              4,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TAPEECH3.ZDL",
+          "identities": [
+            [
+              8,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TAPEECHO.ZDL",
+          "identities": [
+            [
+              8,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TB_MK15.ZDL",
+          "identities": [
+            [
+              3,
+              448
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TGHLDDLY.ZDL",
+          "identities": [
+            [
+              8,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/THEVIBE.ZDL",
+          "identities": [
+            [
+              6,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TLDROOM.ZDL",
+          "identities": [
+            [
+              9,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TONECITY.ZDL",
+          "identities": [
+            [
+              4,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TREMDLY.ZDL",
+          "identities": [
+            [
+              8,
+              336
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TREMOLO.ZDL",
+          "identities": [
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TREM_REV.ZDL",
+          "identities": [
+            [
+              9,
+              336
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TS_DRIVE.ZDL",
+          "identities": [
+            [
+              3,
+              368
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/TW_ROCK.ZDL",
+          "identities": [
+            [
+              4,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/T_SCREAM.ZDL",
+          "identities": [
+            [
+              3,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/US_BLUES.ZDL",
+          "identities": [
+            [
+              4,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/VIBRATO.ZDL",
+          "identities": [
+            [
+              6,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/VINFLNGR.ZDL",
+          "identities": [
+            [
+              6,
+              216
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/VTGCE.ZDL",
+          "identities": [
+            [
+              6,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/VX_COMBO.ZDL",
+          "identities": [
+            [
+              4,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/VX_JMI.ZDL",
+          "identities": [
+            [
+              4,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/V_SYN.ZDL",
+          "identities": [
+            [
+              7,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/WH100.ZDL",
+          "identities": [
+            [
+              11,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/WRPPHASE.ZDL",
+          "identities": [
+            [
+              6,
+              58
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/ZNR.ZDL",
+          "identities": [
+            [
+              1,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_BOTTOM.ZDL",
+          "identities": [
+            [
+              3,
+              208
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_CLEAN.ZDL",
+          "identities": [
+            [
+              3,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_DREAM.ZDL",
+          "identities": [
+            [
+              3,
+              224
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_MP1.ZDL",
+          "identities": [
+            [
+              3,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_NEOS.ZDL",
+          "identities": [
+            [
+              3,
+              256
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_ORGAN.ZDL",
+          "identities": [
+            [
+              7,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_SCREAM.ZDL",
+          "identities": [
+            [
+              3,
+              240
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_SYN.ZDL",
+          "identities": [
+            [
+              7,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_TRON.ZDL",
+          "identities": [
+            [
+              2,
+              136
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/Z_WILD.ZDL",
+          "identities": [
+            [
+              3,
+              272
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_ACOSTIC.ZDL",
+          "identities": [
+            [
+              5,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_AC_BPRE.ZDL",
+          "identities": [
+            [
+              22,
+              96
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_AG_AMP.ZDL",
+          "identities": [
+            [
+              5,
+              112
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_BASSDRV.ZDL",
+          "identities": [
+            [
+              22,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_BASSMUF.ZDL",
+          "identities": [
+            [
+              20,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_BASS_BB.ZDL",
+          "identities": [
+            [
+              22,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_BASS_TS.ZDL",
+          "identities": [
+            [
+              20,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_BAS_PRE.ZDL",
+          "identities": [
+            [
+              22,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_BOOST.ZDL",
+          "identities": [
+            [
+              20,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_DST_1.ZDL",
+          "identities": [
+            [
+              20,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_FZSML.ZDL",
+          "identities": [
+            [
+              20,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_MAN.ZDL",
+          "identities": [
+            [
+              5,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_METAL.ZDL",
+          "identities": [
+            [
+              20,
+              144
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_OD.ZDL",
+          "identities": [
+            [
+              20,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_B_SQUEK.ZDL",
+          "identities": [
+            [
+              20,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_DI5.ZDL",
+          "identities": [
+            [
+              22,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_DI_PLUS.ZDL",
+          "identities": [
+            [
+              22,
+              32
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_FlipTop.ZDL",
+          "identities": [
+            [
+              5,
+              80
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_GKruegr.ZDL",
+          "identities": [
+            [
+              5,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_HRT3500.ZDL",
+          "identities": [
+            [
+              5,
+              48
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_Heaven.ZDL",
+          "identities": [
+            [
+              5,
+              176
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_MARK_B.ZDL",
+          "identities": [
+            [
+              5,
+              192
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_Monoton.ZDL",
+          "identities": [
+            [
+              5,
+              128
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_SMR.ZDL",
+          "identities": [
+            [
+              5,
+              64
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_SVT.ZDL",
+          "identities": [
+            [
+              5,
+              16
+            ]
+          ]
+        },
+        {
+          "path": "files/effects/_SuperB.ZDL",
+          "identities": [
+            [
+              5,
+              144
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
