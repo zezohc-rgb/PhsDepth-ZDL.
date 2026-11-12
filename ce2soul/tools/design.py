@@ -4,6 +4,7 @@ from pathlib import Path
 import json, math
 import numpy as np
 from scipy.signal import bilinear,tf2sos
+from delay_model import fit
 ROOT=Path(__file__).resolve().parents[1];FS=44100
 R=1e4;c6=3.3e-9;c7=8.2e-9;c8=470e-12
 # Exact four-node small-signal circuit with ideal unity emitter follower.
@@ -42,6 +43,8 @@ for i in range(101):
  lfo_alpha.append(1-math.exp(-1/(FS*(220000+rt)*10e-9)))
 for name,values in [('RATE',rate),('LFO_ALPHA',lfo_alpha)]:
  lines+=['static const float CE_'+name+'[101]={'+','.join(map(fmt,values))+'};']
+delay=fit()
+lines += [f'#define CE_DELAY_CENTER {fmt(delay["center_samples"])}',f'#define CE_DELAY_AMPLITUDE {fmt(delay["amplitude_samples"])}']
 lines += [f'#define CE_CONTROL_SLEW {1-math.exp(-1/(FS*.02)):.9g}f']
 (ROOT/'src/coefficients.h').write_text('\n'.join(lines)+'\n')
-(ROOT/'docs/design.json').write_text(json.dumps({'sample_rate':FS,'filters':report,'rate_hz':rate,'lfo_alpha':lfo_alpha,'wet_coupling_hz':1/(2*math.pi*wet_r*33e-9),'delay_ms':[8.5,10.75],'delay_range_status':'unchanged provisional estimate; no calibrated original CE-2 clock sweep found'},indent=2)+'\n')
+(ROOT/'docs/design.json').write_text(json.dumps({'sample_rate':FS,'filters':report,'rate_hz':rate,'lfo_alpha':lfo_alpha,'wet_coupling_hz':1/(2*math.pi*wet_r*33e-9),'delay_ms':delay['full_depth_delay_ms_extrapolated'],'delay_model':delay},indent=2)+'\n')

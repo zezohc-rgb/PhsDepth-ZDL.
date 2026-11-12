@@ -2,7 +2,7 @@
 
 Experimental chorus inspired by the **mono Boss CE-2 (1979)**. Original DSP, not a renamed Zoom effect or a claimed indistinguishable clone. Target: blue Zoom MS-70CDR, reported firmware 2.10. **This chorus has not been physically tested on the pedal or compared against a physical CE-2.**
 
-Download: [build/CE2Soul.ZDL](build/CE2Soul.ZDL). Display name: `CE-2 Soul`, version `0.21`. Only **RATE** and **DEPTH**, 0–100, defaults 50/50. RATE models approximately 0.321–3.561 Hz; DEPTH changes clock/delay modulation, never mix. Internal nominal full-depth delay is approximately 8.5–10.75 ms, explicitly provisional. The first 23.2 ms primes the ring, followed by a 5.8 ms wet fade.
+Download: [build/CE2Soul.ZDL](build/CE2Soul.ZDL). Display name: `CE-2 Soul`, version `0.30`. Only **RATE** and **DEPTH**, 0–100, defaults 50/50. RATE models approximately 0.321–3.561 Hz; DEPTH changes clock/delay modulation, never mix. Center delay is approximately 4.65 ms, informed by partial published clock measurements. Nominal full-depth delay spans approximately 3.53–5.77 ms by extrapolation; this is not a measured factory range. The first 23.2 ms primes the ring, followed by a 5.8 ms wet fade.
 
 Use **L/Mono input**. Enabled processing ignores R input and duplicates the same mono result to both outputs. Bypass preserves both incoming channels. This is intentional: no stereo phase inversion, widening or separate modulation.
 
@@ -23,9 +23,11 @@ A byte-identical check: `./ce2soul/tools/build.sh --output-dir work/rebuilt-ce2`
 
 ## Screen and official plugin reference
 
-Version 0.21 adds a CE-2-inspired monochrome cover with two knobs, central indicator, Chorus/CE-2 lettering and a rectangular SOUL pad. [Preview](build/CE2Soul-cover.png). Audio DSP is identical to 0.20. [Official plugin research and capture procedure](docs/PLUGIN_REFERENCE.md) documents why no Boss-plugin measurements have been made here and supplies original test signals for a future authorized comparison.
+Version 0.21 adds a CE-2-inspired monochrome cover with two knobs, central indicator, Chorus/CE-2 lettering and a rectangular SOUL pad. [Preview](build/CE2Soul-cover.png). This cover is preserved in 0.30. [Official plugin research and capture procedure](docs/PLUGIN_REFERENCE.md) documents why no Boss-plugin measurements have been made here and supplies original test signals for a future authorized comparison.
 
 Run `python3 ce2soul/tools/inspect_cover.py` from root to decode the linked image, verify all 8192 pixels and two control-overlay coordinates, and regenerate the PNG without extra image libraries.
+
+Version 0.30 revises the delay center and Depth span and fixes a ring-wrap rounding edge case. [Delay evidence, calculations and limitations](docs/DELAY_REVISION_030.md). Existing presets will sound different; review Depth settings after updating.
 
 ## What is modeled
 

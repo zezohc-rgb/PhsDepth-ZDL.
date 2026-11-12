@@ -1,0 +1,18 @@
+{
+  "scope": "host DSP at slow Rate; compared with proposed model, not our hardware measurements",
+  "physical_hardware_test": false,
+  "results_by_depth": {
+    "0": {
+      "min_ms": 4.654545167676446,
+      "max_ms": 4.654545167676446
+    },
+    "0.5": {
+      "min_ms": 4.095966918668509,
+      "max_ms": 5.213007159243905
+    },
+    "1": {
+      "min_ms": 3.537071383729273,
+      "max_ms": 5.771517591411564
+    }
+  }
+}

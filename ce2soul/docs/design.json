@@ -344,8 +344,33 @@
   ],
   "wet_coupling_hz": 107.43728266744968,
   "delay_ms": [
-    8.5,
-    10.75
+    3.534545454545454,
+    5.774545454545454
   ],
-  "delay_range_status": "unchanged provisional estimate; no calibrated original CE-2 clock sweep found"
+  "delay_model": {
+    "center_ms": 4.654545454545454,
+    "full_depth_amplitude_ms_estimated": 1.12,
+    "depth_middle_delay_ms_observed_derived": [
+      4.0,
+      5.12
+    ],
+    "depth_middle_delay_ms_model": [
+      4.094545454545454,
+      5.214545454545455
+    ],
+    "depth_middle_clock_hz_model": [
+      98186.88981868897,
+      125044.40497335704
+    ],
+    "middle_clock_max_relative_residual": 0.023090586145648073,
+    "full_depth_delay_ms_extrapolated": [
+      3.534545454545454,
+      5.774545454545454
+    ],
+    "sample_rate": 44100,
+    "center_samples": 205.26545454545453,
+    "amplitude_samples": 49.392,
+    "status": "Approximate software tuning to partial published observations. Full Depth is extrapolated, not measured.",
+    "basis": "MN3007: 1024/(2*f_output_clock); no additional MN3101 divide-by-two at these observed pins"
+  }
 }

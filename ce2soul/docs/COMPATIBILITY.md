@@ -1,10 +1,12 @@
 # Compatibility and hardware test procedure
 
-Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.21 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner's successful PhaserZeh test validates that earlier effect, not this new chorus.
+Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.30 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner's successful PhaserZeh test validates that earlier effect, not this new chorus.
 
 Version 0.20 changes the middle of the Rate curve and wet bass filtering. RATE=50 is now approximately 1.89 Hz, compared with 0.59 Hz in 0.10. Review saved presets. Identity, two controls and artwork are unchanged; update the same custom effect, never install two conflicting IDs.
 
 Version 0.21 changes only the cover and numeric overlay positions. The DSP matches 0.20. A rendered preview is supplied; legibility and overlays on the real Zoom LCD still need physical testing.
+
+Version 0.30 revises the delay model from partial published clock observations: center approximately 4.65 ms, nominal full-Depth span 3.53–5.77 ms (extrapolated). Review saved Depth settings. This remains approximate tuning, not a complete calibration; see [DELAY_REVISION_030.md](DELAY_REVISION_030.md).
 
 ## Limits
 

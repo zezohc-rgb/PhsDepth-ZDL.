@@ -59,7 +59,9 @@ DEPTH is applied before the R35/C21 LFO lowpass. The 100k linear pot contributes
 
 ## Clock/BBD: what can and cannot yet be improved
 
-The shared DSP still integrates 512 full BBD clock cycles and uses four-point Lagrange interpolation. Its nominal delay range remains the **provisional 8.5–10.75 ms** chosen in 0.10. No trustworthy, calibrated sweep of a documented original CE-2 was obtained in this research pass. A first-person Pork Barrel measurement is a **clone**; incomplete search excerpts and unspecified circuit-analysis comments are insufficient to calibrate every original unit. Generic chorus advertisements and the MN3007's overall delay capability are not a CE-2 control-sweep measurement.
+The DSP integrates 512 full BBD clock cycles with four-point Lagrange interpolation. Version 0.30 replaces the earlier provisional 8.5–10.75 ms nominal range. A more complete indexed first-person repair report and a separate technician's recollection now support a center around 4.65 ms. The resulting full-Depth 3.53–5.77 ms nominal range remains extrapolated. No complete, calibrated original-unit sweep was obtained. [DELAY_REVISION_030.md](DELAY_REVISION_030.md) records sources, conflicting details, calculations and residuals; [clock-observations.json](clock-observations.json) is the reproducible source input.
+
+The linear modulation law deliberately does not fit unsupported nonlinear detail to rough observations. This is evidence-informed approximate tuning, not certification of a factory range. Clone observations and general BBD capabilities remain separate from actual original-unit reports.
 
 The [Panasonic MN3101 datasheet](https://media.digikey.com/pdf/Data%20Sheets/Panasonic%20Semiconductors%20ICs%20PDFs/MN3101.pdf) distinguishes oscillator frequency from the BBD output clock: the output is divided by two. Confusing the two can create a factor-of-two delay error. This is relevant when interpreting published frequency readings; it does **not** mean the current 512-cycle transport should be divided by two again.
 

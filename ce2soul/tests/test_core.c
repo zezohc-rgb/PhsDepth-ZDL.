@@ -8,6 +8,14 @@
 #include <stdlib.h>
 int main(void){
  Ce2 s,other;float peak=0,maxjump=0;unsigned rng=12345;int r,d,k;
+ /* New delay range changes both reciprocal domains. Check convergence;
+    using the old clock seed here can diverge despite benign audio inputs. */
+ for(k=0;k<=10000;k++){
+  float delay=155.0f+101.0f*(float)k*.0001f;
+  float clock=512.0f/delay;
+  assert(fabsf(ce_recip(delay,1.0f/205.0f)*delay-1)<.0000004f);
+  assert(fabsf(ce_recip(clock,.4f)*clock-1)<.0000004f);
+ }
  /* Interpolator must reproduce polynomials through degree three. */
  for(k=0;k<100;k++){float t=k*.01f;assert(fabsf(ce_cubic(-1,0,1,8,t)-t*t*t)<2e-6f);}
  for(r=0;r<=100;r+=25)for(d=0;d<=100;d+=25){
@@ -22,7 +30,7 @@ int main(void){
    prev=y;
    assert(s.write<CE_RING&&s.read<CE_RING&&s.clock_sum<=512.001f);
    if(s.phase<ph)wraps++;
-   if(k>2048){assert(s.delay_samples>373&&s.delay_samples<476);if(lastdelay)assert(fabsf(s.delay_samples-lastdelay)<.12f);lastdelay=s.delay_samples;}
+   if(k>2048){assert(s.delay_samples>155&&s.delay_samples<256);if(lastdelay)assert(fabsf(s.delay_samples-lastdelay)<.12f);lastdelay=s.delay_samples;}
   }
   assert(abs(wraps-(int)(12*rate))<=1);assert(fabsf(prev)<.0001f);
  }
@@ -30,7 +38,7 @@ int main(void){
  memset(&s,0xff,sizeof(s));ce_reset(&s,ce_rate(0),0);
  for(k=0;k<44100*180;k++){
   float y=ce_frame(&s,0,ce_rate(0),0);assert(y==0);
-  if(k>2048)assert(fabsf(s.delay_samples-424.4625f)<.003f);
+  if(k>2048)assert(fabsf(s.delay_samples-CE_DELAY_CENTER)<.003f);
  }
  /* Two instances, stale arena memory, no shared history. */
  memset(&s,0x7f,sizeof(s));memset(&other,0x51,sizeof(other));ce_reset(&s,1,.5);ce_reset(&other,1,.5);

@@ -68,7 +68,7 @@ class DesignTests(unittest.TestCase):
   n=16384;x=np.zeros(n,dtype=np.float32);x[2048]=.1;y=self.render(x,depth=0)
   H=np.fft.rfft(y)/np.fft.rfft(x);f=np.fft.rfftfreq(n,1/44100);w=2*np.pi*f/44100
   h={k:signal.sosfreqz(m['sos'],worN=w)[1] for k,m in self.models.items()}
-  delay=424.4625;i=int(math.floor(delay));t=delay-i
+  delay=512/110000*44100;i=int(math.floor(delay));t=delay-i
   # cubic read of delayed signal at n-i-t, taps i-1..i+2.
   taps=np.array([-t*(t-1)*(t-2)/6,(t+1)*(t-1)*(t-2)/2,-(t+1)*t*(t-2)/2,(t+1)*t*(t-1)/6])
   D=sum(taps[j]*np.exp(-1j*w*(i-1+j)) for j in range(4))
@@ -101,7 +101,7 @@ class DesignTests(unittest.TestCase):
   tri=np.where(phase<.5,4*phase-1,3-4*phase)
   alpha=1-np.exp(-1/(44100*220000*.01e-6))
   lfo=signal.lfilter([alpha],[1,-(1-alpha)],tri)
-  clocks=512/(424.4625+49.6125*lfo);cumulative=np.cumsum(clocks)
+  clocks=512/((512/110000*44100)+(512/100000-512/128000)*44100*lfo);cumulative=np.cumsum(clocks)
   source=np.interp(cumulative-512,cumulative,np.arange(n))
   state=C.create_string_buffer(self.lib.ce2_state_size());self.lib.ce2_init(state,1,1)
   self.lib.ce2_delay.argtypes=[C.c_void_p];self.lib.ce2_delay.restype=C.c_float
@@ -114,6 +114,30 @@ class DesignTests(unittest.TestCase):
     prev=actual
   self.assertLess(max(errors),.03) # float clock interpolation/quantization is included
   self.assertLess(max(steps),.4)
+ def test_published_clock_conversion(self):
+  source=json.loads((ROOT/'docs/clock-observations.json').read_text())['sources'][0]
+  model=json.loads((ROOT/'docs/design.json').read_text())['delay_model']
+  self.assertAlmostEqual(model['center_ms'],1024/(2*source['depth_zero_clock_hz_approx'])*1000)
+  self.assertAlmostEqual(model['full_depth_amplitude_ms_estimated'],1.12)
+  self.assertLess(model['middle_clock_max_relative_residual'],.03)
+  # Engineering acceptance bound, not an asserted instrument uncertainty.
+  self.assertIn('extrapolated',model['status'])
+ def test_rendered_delay_range(self):
+  self.lib.ce2_delay.argtypes=[C.c_void_p];self.lib.ce2_delay.restype=C.c_float
+  results={}
+  center=512/110000*44100;amp=(512/100000-512/128000)*44100
+  for depth in (0,.5,1):
+   state=C.create_string_buffer(self.lib.ce2_state_size());self.lib.ce2_init(state,0,depth)
+   inp=(C.c_float*8)();out=(C.c_float*8)();delays=[]
+   for block in range(44100*10//8):
+    self.lib.ce2_process(state,inp,out,8,0,depth)
+    if block>512:delays.append(self.lib.ce2_delay(state))
+   low,high=min(delays),max(delays)
+   self.assertGreater(low,155);self.assertLess(high,256)
+   self.assertLess(abs(low-(center-depth*amp)),.2)
+   self.assertLess(abs(high-(center+depth*amp)),.2)
+   results[str(depth)]={'min_ms':low/44.1,'max_ms':high/44.1}
+  (ROOT/'build/delay-validation.json').write_text(json.dumps({'scope':'host DSP at slow Rate; compared with proposed model, not our hardware measurements','physical_hardware_test':False,'results_by_depth':results},indent=2)+'\n')
  def test_interpolation_spectrum(self):
   # Fractional delay amplitude error over the wet passband, all fractions.
   worst=0
