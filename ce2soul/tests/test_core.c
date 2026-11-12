@@ -16,6 +16,15 @@ int main(void){
   assert(fabsf(ce_recip(delay,1.0f/205.0f)*delay-1)<.0000004f);
   assert(fabsf(ce_recip(clock,.4f)*clock-1)<.0000004f);
  }
+ /* Output guard: low-level unity, odd symmetry, monotonic knee, no
+    discontinuity/overshoot or digital full-scale clipping under overdrive. */
+ {float last=0;for(k=0;k<=40000;k++){
+  float x=(float)k*.0001f,y=ce_output_guard(x);
+  assert(isfinite(y)&&y>=last-.0000002f&&y<=.980001f);
+  assert(y-last<=.000101f);assert(fabsf(y+ce_output_guard(-x))<.0000002f);
+  if(x<.78f)assert(y==x);
+  last=y;
+ }}
  /* Interpolator must reproduce polynomials through degree three. */
  for(k=0;k<100;k++){float t=k*.01f;assert(fabsf(ce_cubic(-1,0,1,8,t)-t*t*t)<2e-6f);}
  for(r=0;r<=100;r+=25)for(d=0;d<=100;d+=25){

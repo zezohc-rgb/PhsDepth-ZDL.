@@ -1,6 +1,6 @@
 # Compatibility and hardware test procedure
 
-Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.30 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner's successful PhaserZeh test validates that earlier effect, not this new chorus.
+Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.40 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner reported running chorus 0.30 in mono, with a level drop and overlapping knob captions. This supports operation of that prior build, not complete compatibility or a physical test of 0.40.
 
 Version 0.20 changes the middle of the Rate curve and wet bass filtering. RATE=50 is now approximately 1.89 Hz, compared with 0.59 Hz in 0.10. Review saved presets. Identity, two controls and artwork are unchanged; update the same custom effect, never install two conflicting IDs.
 
@@ -8,15 +8,17 @@ Version 0.21 changes only the cover and numeric overlay positions. The DSP match
 
 Version 0.30 revises the delay model from partial published clock observations: center approximately 4.65 ms, nominal full-Depth span 3.53–5.77 ms (extrapolated). Review saved Depth settings. This remains approximate tuning, not a complete calibration; see [DELAY_REVISION_030.md](DELAY_REVISION_030.md).
 
+Version 0.40 restores nominal direct/wet gain, adds wet-only warmth and a soft output guard, and removes the static captions under the knobs. See [GAIN_WARMTH_040.md](GAIN_WARMTH_040.md). Review levels at moderate monitoring volume when updating from the quieter 0.30.
+
 ## Limits
 
-- Physical installation/boot, displayed two knobs, edit callback initialization, repeated activation and patch recall are pending.
+- Version 0.40 physical installation/boot, display overlays, audio, repeated activation and patch recall remain pending.
 - DSP instruction target is C674x; no claim is made about the exact commercial DSP part inside Zoom's custom chip.
-- 8308 bytes of per-instance descriptor state, with ring priming rather than global arrays. Arena bounds are checked; insufficient memory produces dry passthrough. Hardware allocation and simultaneous instances still need testing.
+- 8316 bytes of per-instance descriptor state, with ring priming rather than global arrays. Arena bounds are checked; insufficient memory produces dry passthrough. Hardware allocation and simultaneous instances still need testing.
 - CPU cost descriptor is provisionally 40.0. Emulator cycles are reported only as emulator counts; actual scheduling margin in a six-effect chain is unknown.
 - RATE minimum/maximum and taper, DEPTH sweep and BBD voltage/clock response remain approximations. This is not a verified CE-2 clone.
 - Only L/Mono input is used when enabled. The same mono output appears at L and R; R-only input is silent, and a stereo effect before it loses its right input. Use it before stereo processing. Bypass preserves incoming L/R unchanged.
-- Fixed equal branch weights with common 0.5 normalization. No output hard limiter: filter ringing can exceed input peaks. Start with moderate signal level; normalized full scale is not mapped to CE-2 input volts. Analog overdrive/noise is intentionally uncalibrated.
+- Nominal equal branch gains are one; a wet-only shelf changes the delayed high-frequency response. A digital soft knee above 0.78 full scale bounds output peaks at 0.98 and can compress hot signals. Normalized full scale is not mapped to CE-2 input volts; analog distortion/noise is uncalibrated.
 - Wet startup delay: about 23.2 ms prime plus 5.8 ms fade. Bypass pauses the internal clock/history; re-engagement can briefly include old wet history. Silent initialization and control changes are tested offline; bypass switching must be auditioned physically.
 - No global ID reservation exists. Public audit is time-limited and cannot inspect a disconnected pedal's inventory.
 

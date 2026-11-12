@@ -72,7 +72,7 @@ class DesignTests(unittest.TestCase):
   # cubic read of delayed signal at n-i-t, taps i-1..i+2.
   taps=np.array([-t*(t-1)*(t-2)/6,(t+1)*(t-1)*(t-2)/2,-(t+1)*t*(t-2)/2,(t+1)*t*(t-1)/6])
   D=sum(taps[j]*np.exp(-1j*w*(i-1+j)) for j in range(4))
-  expected=.5*h['PRE']*h['POST']*(1+h['BBD_IN']*h['BBD_OUT']*h['HP_WET']*D)
+  expected=h['PRE']*h['POST']*(1+h['BBD_IN']*h['BBD_OUT']*h['HP_WET']*h['WARM']*D)
   mask=(f>30)&(f<14000)&(abs(expected)>.05)
   err=np.max(abs(H[mask]-expected[mask]));self.assertLess(err,.004)
  def test_modulation_and_linearity(self):

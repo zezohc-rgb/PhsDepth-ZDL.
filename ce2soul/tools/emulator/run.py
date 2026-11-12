@@ -7,16 +7,16 @@ shutil.copy2(pathlib.Path(__file__).with_name('main.rs'),w/'src/main.rs');shutil
 (w/'Cargo.toml').write_text('[package]\nname="ce2-binary-test"\nversion="0.1.0"\nedition="2021"\n[workspace]\n[dependencies]\n'+f'ziddle-effect-emulator={{path="{z}/ziddle/runtime/effect-emulator"}}\nziddle-effect-runtime={{path="{z}/ziddle/runtime/effect-runtime"}}\n')
 subprocess.run(['cc','-O2','-ffp-contract=off','-shared','-fPIC',str(ROOT/'src/ce2_dsp.c'),'-o',str(w/'host.so')],check=True)
 l=C.CDLL(str(w/'host.so'));l.ce2_state_size.restype=C.c_size_t;l.ce2_init.argtypes=[C.c_void_p,C.c_float,C.c_float];l.ce2_process.argtypes=[C.c_void_p,C.c_void_p,C.c_void_p,C.c_uint,C.c_float,C.c_float]
-cases=[(r,d) for r in (0,50,100) for d in (0,50,100)];v=bytearray(struct.pack('<I',len(cases)));rng=12345
-for rate,depth in cases:
- blocks=16384 if rate==50 and depth==50 else 4096
+cases=[(r,d,False) for r in (0,50,100) for d in (0,50,100)]+[(50,50,True),(0,100,True),(100,100,True)];v=bytearray(struct.pack('<I',len(cases)));rng=12345
+for rate,depth,hot in cases:
+ blocks=8192 if hot else (16384 if rate==50 and depth==50 else 4096)
  v.extend(struct.pack('<2fI',rate,depth,blocks));s=C.create_string_buffer(l.ce2_state_size());l.ce2_init(s,rate/100,depth/100)
  for block in range(blocks):
   rr,dd=(rate,depth) if block<blocks//2 else (100-rate,100-depth)
   inp=(C.c_float*8)();out=(C.c_float*8)()
   for i in range(8):
    rng=(1664525*rng+1013904223)&0xffffffff
-   inp[i]=((rng>>16)-32768)/131072 if block<blocks*3//4 else 0
+   inp[i]=((1.25 if ((block*8+i)//22)%2==0 else -1.25) if hot else ((rng>>16)-32768)/131072) if block<blocks*3//4 else 0
   l.ce2_process(s,inp,out,8,rr/100,dd/100)
   # R deliberately differs; enabled effect must use only L and duplicate mono.
   v.extend(struct.pack('<32f',*inp,*[-x*.5 for x in inp],*out,*out))

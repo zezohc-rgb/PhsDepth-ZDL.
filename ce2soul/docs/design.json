@@ -134,6 +134,26 @@
           0.0
         ]
       ]
+    },
+    "WARM": {
+      "analog_b": [
+        5.0209990127079284e-05,
+        1
+      ],
+      "analog_a": [
+        7.957747154594768e-05,
+        1
+      ],
+      "sos": [
+        [
+          0.6769798994064331,
+          -0.42756393551826477,
+          0.0,
+          1.0,
+          -0.750584065914154,
+          0.0
+        ]
+      ]
     }
   },
   "rate_hz": [
@@ -372,5 +392,16 @@
     "amplitude_samples": 49.392,
     "status": "Approximate software tuning to partial published observations. Full Depth is extrapolated, not measured.",
     "basis": "MN3007: 1024/(2*f_output_clock); no additional MN3101 divide-by-two at these observed pins"
+  },
+  "voicing": {
+    "wet_shelf_high_gain_db": -4,
+    "wet_shelf_pole_hz": 2000,
+    "status": "user-requested voicing, not hardware calibration"
+  },
+  "mix": {
+    "dry_gain": 1,
+    "wet_gain": 1,
+    "output_soft_knee_start": 0.78,
+    "output_soft_ceiling": 0.98
   }
 }

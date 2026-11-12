@@ -23,7 +23,7 @@ fn main(){
    for x in &mut input{*x=f(&v,&mut p);}for x in &mut expected{*x=f(&v,&mut p);}
    let h=e.process_zoom_block(&input,&mut out).unwrap();assert_eq!(h.unimplemented_total(),0);packets=packets.max(h.packets);cycles=cycles.max(h.cycles);
    for i in 0..16{
-    let y=f32::from_bits(e.host_mut().harness.mem.read_u32(WET_ADDR+i as u32*4).unwrap());assert!(y.is_finite());let err=(y-expected[i]).abs();worst=worst.max(err);samples+=1;
+    let y=f32::from_bits(e.host_mut().harness.mem.read_u32(WET_ADDR+i as u32*4).unwrap());assert!(y.is_finite());assert!(y.abs()<=0.98001,"output guard exceeded");let err=(y-expected[i]).abs();worst=worst.max(err);samples+=1;
     assert!(err<0.0005,"case {case} block {block} sample {i}: error {err}: {y} vs {}",expected[i]);
    }
    assert_eq!(out[..8],out[8..],"must be mono");

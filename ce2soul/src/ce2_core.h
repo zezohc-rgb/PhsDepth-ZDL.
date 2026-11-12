@@ -16,7 +16,7 @@ typedef struct {
  uint32_t magic,version,ready,warm;
  uint32_t write,read,phase_acc;
  float phase,lfo,rate,depth,delay_samples,clock_sum,clock_error;
- float pre[4],post[2],lp_in[4],lp_out[4],hp_wet;
+ float pre[4],post[2],lp_in[4],lp_out[4],hp_wet,warm_tone[2];
  float ring[CE_RING],clock[CE_RING];
 } Ce2;
 CE_INLINE(ce_norm)
@@ -33,10 +33,10 @@ CE_INLINE(ce_reset)
 static inline void ce_reset(Ce2 *s,float rate,float depth) {
  unsigned i;
  /* Ring is never read before its current-epoch samples have been written. */
- s->magic=0x43453253u;s->version=3;s->ready=1;s->warm=0;s->write=0;s->read=0;s->clock_sum=0;s->clock_error=0;
+ s->magic=0x43453253u;s->version=4;s->ready=1;s->warm=0;s->write=0;s->read=0;s->clock_sum=0;s->clock_error=0;
  s->phase_acc=0x20000000u;s->phase=0.25f;s->lfo=0;s->rate=rate;s->depth=depth;s->delay_samples=CE_DELAY_CENTER;
  for(i=0;i<4;i++)s->pre[i]=s->lp_in[i]=s->lp_out[i]=0;
- for(i=0;i<2;i++)s->post[i]=0;
+ for(i=0;i<2;i++)s->post[i]=s->warm_tone[i]=0;
  s->hp_wet=0;
 }
 CE_INLINE(ce_sos)
@@ -60,6 +60,14 @@ CE_INLINE(ce_count_add)
 static inline void ce_count_add(Ce2*s,float v){
  float y=v-s->clock_error,t=s->clock_sum+y;
  s->clock_error=(t-s->clock_sum)-y;s->clock_sum=t;
+}
+CE_INLINE(ce_output_guard)
+static inline float ce_output_guard(float x){
+ /* Unity below .78 FS; C1-continuous knee, .98 maximum. This is digital
+    peak protection, not a calibrated model of BBD/transistor distortion. */
+ float a=x<0?-x:x;
+ if(a>.78f){float t=a-.78f;if(t>.4f)t=.4f;a=.78f+t-1.25f*t*t;}
+ return x<0?-a:a;
 }
 CE_INLINE(ce_frame)
 static inline float ce_frame(Ce2 *s,float x,float rate,float depth) {
@@ -101,8 +109,9 @@ static inline float ce_frame(Ce2 *s,float x,float rate,float depth) {
  wet=ce_sos2(wet,s->lp_out,CE_BBD_OUT);
  /* First-order SOS uses a second state identically zero, borrowed local. */
  {float z[2];z[0]=s->hp_wet;z[1]=0;wet=ce_sos(wet,z,CE_HP_WET[0]);s->hp_wet=z[0];}
- /* Both branches pass through the schematic's summing/de-emphasis stage.
-    Common 0.5 normalization keeps relative dry/wet gains equal. No limiter. */
- return ce_sos(.5f*(pre+wet),s->post,CE_POST[0]);
+ /* The requested warmth is confined to the delayed branch. Restore the
+    analog summer's nominal dry gain; the old .5 normalization caused loss. */
+ wet=ce_sos(wet,s->warm_tone,CE_WARM[0]);
+ return ce_output_guard(ce_sos(pre+wet,s->post,CE_POST[0]));
 }
 #endif

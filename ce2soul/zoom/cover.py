@@ -22,7 +22,7 @@ def cover_canvas():
   c.filled_circle(x,13,8);c.filled_circle(x,13,6,0)
   c.vline(x,5,8)
   for dx,dy in ((-7,-7),(7,-7),(-8,7),(8,7)):c.px(x+dx,13+dy)
- c.draw_text('RATE',41,23);c.draw_text('DEPTH',69,23)
+ # Static knob captions omitted: owner reported overlap on the real LCD.
  # Side sockets and small direction marks.
  c.rect(29,30,31,35);c.rect(96,30,98,35)
  c.hline(37,41,31);c.px(37,30);c.px(37,32)
