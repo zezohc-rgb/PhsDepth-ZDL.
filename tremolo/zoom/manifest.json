@@ -3,7 +3,7 @@
   "audio_func_name": "Fx_MOD_DmTrem",
   "gid": 6,
   "fxid": 949,
-  "fxid_version": "0.20",
+  "fxid_version": "0.30",
   "flags_byte": 1,
   "audio_nop": false,
   "params": [
@@ -62,6 +62,15 @@
       "labels": [
         "Off",
         "On"
+      ]
+    },
+    {
+      "name": "Tap",
+      "max": 1,
+      "default": 1,
+      "labels": [
+        "Free",
+        "Host"
       ]
     }
   ],

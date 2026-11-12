@@ -69,8 +69,8 @@ def main():
             raise RuntimeError(f'unexpected DSP storage/outlined helpers: {section["name"]}')
     text_indices={s['idx'] for s in parsed.sections if s['name'].startswith('.text') and s['size']}
     text_functions={s['name'] for s in parsed.symbols if s['type']==2 and s['shndx'] in text_indices
-                    and not (s['bind']==0 and s['name'].startswith('$C$L'))}
-    if any(not name.startswith('ZDL_GetLabel_') for name in text_functions):
+                    and not (s['bind']==0 and s['name'].startswith('$C$'))}
+    if any(not name.startswith('ZDL_GetLabel_') and name != 'Fx_MOD_DmTrem_Tap_edit' for name in text_functions):
         raise RuntimeError(f'unexpected outlined code or missing label callbacks: {text_functions}')
     basename=m['output_basename']
     if not 1<=len(basename)<=8 or not basename.isalnum():
@@ -83,7 +83,7 @@ def main():
                        fxid_version=m['fxid_version'].encode('ascii'), flags_byte=m['flags_byte'],
                        audio_nop=args.ui_only, own_runtime=True,
                        materialize_init=m['materialize_init'], dsp_cost=m['dsp_cost'],
-                       use_object_edit_handlers=False)
+                       use_object_edit_handlers=True, object_edit_start_index=7)
     link(cfg)
     size, code_data = check(out)
     save_pbm(outdir / f'{basename}-cover.pbm')
@@ -95,7 +95,7 @@ def main():
               'own_runtime': True, 'materialize_init': cfg.materialize_init,
               'dsp_cost_declared': m['dsp_cost'], 'dsp_cost_measured_on_pedal': False,
               'physically_tested': False,
-              'dsp_undefined_symbols': undefined, 'label_callbacks': sorted(text_functions),
+              'dsp_undefined_symbols': undefined, 'label_callbacks': sorted(n for n in text_functions if n.startswith('ZDL_GetLabel_')), 'custom_edit_callbacks': sorted(n for n in text_functions if not n.startswith('ZDL_GetLabel_')),
               'cover': f'{basename}-cover.pbm',
               'knob_positions': KNOB_POSITIONS,
               'cover_sha256': hashlib.sha256((outdir / f'{basename}-cover.pbm').read_bytes()).hexdigest()}

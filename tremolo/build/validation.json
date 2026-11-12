@@ -1,6 +1,6 @@
 {
-  "sha256": "9c0027a185d5fb20088f7e81fe80e17ffdd2a388c575a7696a398e70b8d2a99b",
-  "bytes": 10610,
+  "sha256": "9e0cc430983ed4395148a468c70008ad29d02ec5f577b9fd28d89379a10f0593",
+  "bytes": 11634,
   "controls": [
     "Speed",
     "Depth",
@@ -8,7 +8,8 @@
     "Wave",
     "Mode",
     "DBL",
-    "Hold"
+    "Hold",
+    "Tap"
   ],
   "gid": 6,
   "fxid": 949,

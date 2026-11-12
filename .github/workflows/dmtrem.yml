@@ -28,9 +28,11 @@ jobs:
           unzip -q work/ziddle.zip -d work
       - name: Execute C674x and compare audio
         run: python3 tremolo/tools/emulator/run.py --ziddle work/ziddle-1793487371
+      - name: Package validated tap-tempo build
+        run: python3 tremolo/tools/package.py
       - uses: actions/upload-artifact@v4
         with:
-          name: DmTrem-0.20-experimental-original-MS70CDR
+          name: DmTrem-0.30-experimental-original-MS70CDR
           path: |
             tremolo/build/
             tremolo/docs/

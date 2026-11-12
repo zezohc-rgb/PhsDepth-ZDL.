@@ -3,13 +3,18 @@
 #include "../../zoom/dmtrem.c"
 #include <stddef.h>
 #include <string.h>
+static unsigned int dm_bpm=100;
+void dm_host_set_bpm(unsigned int bpm){dm_bpm=bpm;}
+unsigned int dm_host_centi_ms(unsigned int note,unsigned int ceiling){
+ (void)note;(void)ceiling;return 6000000u/dm_bpm;
+}
 size_t dm_host_size(void){return sizeof(PedalState);}
 void dm_host_reset(void *memory){memset(memory,0,sizeof(PedalState));}
 void dm_host_block(void *memory,const float *ui,const float *input,float *output){
- float params[16]={1},buf[16];unsigned i;
+ float params[32]={1},buf[16];unsigned i;
  DmWord source=0x1234,destination=0,dp=(DmWord)&destination;
  DmWord desc[3]={(DmWord)memory,(DmWord)memory+sizeof(PedalState),sizeof(PedalState)},ctx[13]={0};
- for(i=0;i<7;i++){
+ for(i=0;i<8;i++){
   const float scale=0.01f;
   params[i+5]=ui[i]*scale;
  }

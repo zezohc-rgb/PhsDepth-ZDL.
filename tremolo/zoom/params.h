@@ -2,7 +2,7 @@
 #ifndef DM_PARAMS_H
 #define DM_PARAMS_H
 
-#define DM_PARAM_COUNT 7
+#define DM_PARAM_COUNT 8
 
 #define DM_SPEED_INDEX 0
 #define DM_SPEED_SLOT 5
@@ -73,6 +73,16 @@
 #define DM_HOLD_AUDIO_MIN 0.0f
 #define DM_HOLD_AUDIO_MAX 1.0f
 #define DM_HOLD_DEFAULT_NORM 0.0f
+
+#define DM_TAP_INDEX 7
+#define DM_TAP_SLOT 12
+#define DM_TAP_TYPE_KNOB 1
+#define DM_TAP_UI_MIN 0
+#define DM_TAP_UI_MAX 1
+#define DM_TAP_UI_DEFAULT 1
+#define DM_TAP_AUDIO_MIN 0.0f
+#define DM_TAP_AUDIO_MAX 1.0f
+#define DM_TAP_DEFAULT_NORM 1.0f
 int ZDL_GetLabel_3(unsigned int value, char *out) {
     const char *s; int i;
     if (value <= 0u) s = "Shark";
@@ -104,6 +114,13 @@ int ZDL_GetLabel_6(unsigned int value, char *out) {
     const char *s; int i;
     if (value <= 0u) s = "Off";
     else s = "On";
+    for (i=0; i<7; ++i) { out[i]=s[i]; if (!s[i]) return i; }
+    out[7]=0; return 7;
+}
+int ZDL_GetLabel_7(unsigned int value, char *out) {
+    const char *s; int i;
+    if (value <= 0u) s = "Free";
+    else s = "Host";
     for (i=0; i<7; ++i) { out[i]=s[i]; if (!s[i]) return i; }
     out[7]=0; return 7;
 }
