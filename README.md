@@ -1,61 +1,49 @@
-# PhsDepth — Zoom MS-70CDR original (azul), firmware 2.10
+# PhaserZeh — Zoom MS-70CDR original (azul), firmware 2.10
 
-**Versão 1.11, nova capa no estilo do Phaser original:** [dist/PhsDepth.ZDL](dist/PhsDepth.ZDL), 6.478 bytes. O proprietário informou que a versão anterior 1.00 funcionou na pedaleira ([registro](docs/HARDWARE_TESTS.md)); **a versão 1.11 ainda não foi testada fisicamente**. Há testes locais e emulação do binário TI C674x.
+**Versão 1.20:** [dist/PhasrZeh.ZDL](dist/PhasrZeh.ZDL), 7.074 bytes. Nome na tela: **PhaserZeh**. O arquivo se chama **PhasrZeh.ZDL** porque o formato/ferramentas exigem no máximo oito caracteres no nome do arquivo; PhaserZeh tem nove.
+
+Esta é a atualização do PhsDepth, mantendo seu ID `0x060003B3`, controles e patches associados. **Atualize somente o efeito personalizado existente; não instale PhsDepth e PhaserZeh juntos com o mesmo ID.** Nenhum efeito original deve ser substituído.
+
+O proprietário aprovou a aparência da 1.11 e o som de Wave 0/1, mas relatou comportamento parecido com Step nas demais ondas. A 1.20 trata os saltos identificados no código; **a correção ainda não foi testada fisicamente**. Histórico em [docs/HARDWARE_TESTS.md](docs/HARDWARE_TESTS.md).
 
 | Controle | Valores | Função |
 |---|---|---|
-| Rate | 0–100 | Velocidade do LFO selecionado, 0,08–6 Hz; padrão 35 |
+| Rate | 0–100 | Velocidade do LFO, 0,08–6 Hz; padrão 35 |
 | Color | 0 / 1 / 2 / 3 | 4 normal / 8 normal / 4 invertido / 8 invertido |
 | Level | 0–100 | Ganho de saída, 0–2×; 50 = ganho nominal unitário |
-| Depth | 0–100 | Excursão logarítmica dos filtros em torno de 550 Hz, até ±3 oitavas |
-| Wave | 0–6 | 0 Triangle (padrão), 1 Sine, 2 Square, 3 Saw Up, 4 Saw Down, 5 Random, 6 Step |
+| Depth | 0–100 | Amplitude da varredura em torno de 550 Hz, até ±3 oitavas |
+| Wave | 0–6 | 0 Triangle, 1 Sine, 2 Soft Square, 3 Ramp Up, 4 Ramp Down, 5 Random Glide, 6 Step |
 
-Depth em zero mantém um phaser estático; não mistura seco/molhado. A soma é sempre 50% seco + 50% sinal dos filtros (polaridade definida por Color), multiplicada por Level. Os canais L/R têm memória independente. Rate, Color e Level ficam na primeira página; Depth e Wave na segunda. Color e Wave são mostrados numericamente. [Detalhes e diferenças em relação ao Boss PH-3](docs/WAVE.md).
+Rate/Color/Level ficam na página 1; Depth/Wave na página 2. Wave 0 é o padrão. Depth controla a varredura, não o mix: a soma permanece 50% seco + 50% sinal dos filtros, com polaridade definida por Color e ganho por Level. Canais L/R têm memória independente.
 
-Identidade: categoria Modulation (`gid 6`), `fxid 947`, índice **`0x060003B3`**. Não reutiliza o ID de um Phaser original. A [auditoria](docs/id-audit.json) de 11/11/2026 consultou 581 arquivos de sete coleções públicas, incluindo efeitos Zoom, manifests e bancos de IDs. Não encontrou esse fxid em nenhum grupo nas fontes consultadas. Não existe reserva global de IDs; a lista de efeitos realmente instalados também deve ser conferida.
+## Correção do Wave
 
-## Imagem no pedal
+As ondas 2–6 anteriores tinham mudanças instantâneas de posição, especialmente o retorno das rampas e o Random em sample-and-hold. Com Depth alto, os coeficientes podiam saltar em uma única amostra, produzindo transientes com caráter de degrau.
 
-Capa monocromática 128×64 no estilo da foto da MS-70CDR original fornecida pelo proprietário: pedal grande, três knobs octogonais no topo com Rate/Color/Level, placa PhsDepth no centro e footswitch embaixo. As posições dos valores do firmware foram alinhadas aos knobs no topo. Depth e Wave continuam na segunda página.
+Na 1.20, Square tem transições arredondadas entre dois extremos; as rampas fazem 90% de varredura e 10% de retorno gradual; Random desliza entre alvos aleatórios durante todo o período. O modo 6 continua sendo Step (oito posições), com suavização dos coeficientes para reduzir cliques. Os modos 2–6 têm limite de variação do coeficiente por amostra; **Wave 0 e 1 não passam por essa suavização e permanecem idênticos bit a bit às referências host anteriores**. [Descrição e limites](docs/WAVE.md).
 
-![Prévia da capa PhsDepth na proporção aproximada do LCD](dist/PhsDepth-cover-lcd.png)
+## Aparência preservada
 
-A prévia acima usa a proporção aproximada dos pixels do LCD original (altura/largura 1,4); a [prévia com pixels quadrados](dist/PhsDepth-cover.png) e o [bitmap 128×64](dist/PhsDepth-cover.pbm) também estão incluídos. Não é fotografia nem confirmação física da nova interface.
+![PhaserZeh na proporção aproximada do LCD](dist/PhasrZeh-cover-lcd.png)
 
-A arte gerada a partir da referência está fixada em `zoom/art/stock-style.pbm`; `zoom/cover.py` a codifica para o ZDL e compartilha as posições dos knobs com o linker. A geração da imagem não é uma dependência do build. O objeto C674x do DSP é idêntico byte a byte ao da versão 1.10; esta alteração modifica a arte, suas coordenadas e a versão para 1.11.
+O desenho aprovado do pedal, knobs, footswitch e suas posições foi preservado. Somente a região interna do nome foi alterada para PhaserZeh. A prévia usa a proporção aproximada dos pixels do LCD (altura/largura 1,4); também há [pixels quadrados](dist/PhasrZeh-cover.png) e [bitmap 128×64](dist/PhasrZeh-cover.pbm). A arte fixa em `zoom/art/stock-style.pbm` dispensa serviço de imagem durante o build.
 
-## Validação concluída
-
-- Compilação com **TI C6000 CGT 8.5.0.LTS**, C674x, EABI, dados `far`; sem símbolos DSP externos, heap, BSS ou globais graváveis no DSP.
-- Linker de [repeat98/ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL), fixado em `32f3d6877d892409c6defeeeec57040ad004d31f`. Runtime próprio (`own_runtime`) com handlers para os cinco controles e inicialização dos valores salvos; dispensa blobs extraídos de efeitos Zoom.
-- Invariantes de áudio, limites dos buffers, bypass, instâncias independentes, controles inválidos, comparação host/wrapper, AddressSanitizer e UndefinedBehaviorSanitizer.
-- Verificação independente de ZDL/ELF, arquitetura, exports, relocations, parâmetros, ID e tamanho; testes de rejeição de arquivos corrompidos.
-- **Triangle compatível com 1.00**: 20 renders comparados aos fingerprints do código anterior, áudio host idêntico bit a bit. As sete ondas também passam por oráculos de forma/frequência, limites, profundidade e edição em execução.
-- **Ziddle C674x**: matriz de 252 combinações das sete ondas e quatro Color, com defaults e extremos. Inicialização, cinco handlers e áudio comparados ao DSP host. 9.175.040 amostras de canal, erro máximo 0,000001281 e nenhuma instrução não implementada. Resultados em [dist/emulator-report.json](dist/emulator-report.json).
-
-O emulador usa callbacks de host simulados; não prova a ordem de inicialização do firmware, a paginação na tela, o roteamento estéreo real ou a ausência de travamentos na pedaleira. O custo DSP declarado (40) é uma estimativa provisória, sem medição física; ciclos do emulador não equivalem à carga real.
-
-## Compilar e testar
+## Compilar e validar
 
 Linux x86-64, Python 3.10+, compilador C, Git, curl e sha256sum:
 
 ```sh
-./tools/build.sh                 # baixa TI oficial + referência fixada em work/
-./tools/test.sh                  # testes C, sanitizers e artefato ZDL
+./tools/build.sh
+./tools/test.sh
 python3 tools/validate_zdl.py
 ```
 
-O instalador TI permanece local em `work/`; seus termos próprios se aplicam. Para usar instalações existentes:
+O bootstrap baixa o TI C6000 CGT 8.5.0.LTS oficial e o linker/runtime próprio de [ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL) fixado em `32f3d6877d892409c6defeeeec57040ad004d31f`. Não requer blobs extraídos de efeitos Zoom. Os termos próprios do TI se aplicam; o instalador permanece em `work/`.
 
-```sh
-python3 zoom/build.py --upstream /caminho/ZoomMultistompZDL \
-    --ti-root /caminho/ti-cgt-c6000_8.5.0.LTS
-```
+Instalações existentes: `python3 zoom/build.py --upstream /caminho/ZoomMultistompZDL --ti-root /caminho/ti-cgt-c6000_8.5.0.LTS`.
 
-Para repetir o teste do binário, extraia [Ziddle 1793487371](https://berbasoft.com/ziddle/ziddle-1793487371.zip), instale Rust/cargo e execute:
+A suíte verifica estabilidade, ondas, continuidade, limite real dos coeficientes, buffer/ABI, edição em execução, ASan/UBSan e estrutura ZDL/ELF. Quarenta renders host (20 Triangle + 20 Sine) coincidem com as referências anteriores. O teste do binário C674x usa 252 casos com [Ziddle 1793487371](https://berbasoft.com/ziddle/ziddle-1793487371.zip): `python3 tools/emulator/run.py --ziddle /caminho/ziddle-1793487371`.
 
-```sh
-python3 tools/emulator/run.py --ziddle /caminho/ziddle-1793487371
-```
+Resultados: [VALIDATION.md](docs/VALIDATION.md), [build-report.json](dist/build-report.json), [emulator-report.json](dist/emulator-report.json), [SHA256SUMS](dist/SHA256SUMS). A auditoria pública de identidade de sete coleções está em [docs/id-audit.json](docs/id-audit.json); não é reserva global.
 
-Consulte [dependências e integração](docs/ZDL_INTEGRATION.md), [resultado dos testes](docs/VALIDATION.md) e [procedimento físico pendente](docs/INSTALLATION.md). Os hashes estão em [dist/SHA256SUMS](dist/SHA256SUMS). As licenças do runtime e os avisos TI acompanham o binário em [licenses/](licenses/).
+O custo DSP declarado 40 é provisório, sem medição física. Emulação não reproduz toda a ordem de inicialização, a UI e o roteamento do firmware. Consulte [integração](docs/ZDL_INTEGRATION.md), [atualização na pedaleira](docs/INSTALLATION.md) e [licenças](licenses/).

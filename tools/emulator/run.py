@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the PhsDepth binary differential test against unpacked Ziddle 1793487371.
+"""Build the PhaserZeh binary differential test against unpacked Ziddle 1793487371.
 Requires Rust/cargo on PATH. No firmware, stock handlers or pedal needed.
 """
 import argparse
@@ -20,6 +20,8 @@ def main():
     ap.add_argument('--ziddle',required=True,type=Path)
     args=ap.parse_args()
     zroot=args.ziddle.resolve()
+    manifest=json.loads((ROOT/'zoom/manifest_pedal.json').read_text())
+    artifact=ROOT/'dist'/(manifest['output_basename']+'.ZDL')
     work=ROOT/'work/emulator';work.mkdir(parents=True,exist_ok=True)
     (work/'src').mkdir(exist_ok=True)
     shutil.copy2(Path(__file__).with_name('main.rs'),work/'src/main.rs')
@@ -28,7 +30,7 @@ def main():
         f'ziddle-effect-runtime={{path="{zroot}/ziddle/runtime/effect-runtime"}}\n')
     subprocess.run(['cc','-std=c99','-O2','-ffp-contract=off','-fPIC','-shared',str(ROOT/'src/phsdepth_dsp.c'),'-o',str(work/'host.so')],check=True)
     class State(C.Structure):
-        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int),('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float)]
+        _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),('depth',C.c_float),('level',C.c_float),('color',C.c_int),('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float),('random_previous',C.c_float),('coefficient',C.c_float)]
     lib=C.CDLL(str(work/'host.so'))
     lib.phsdepth_init.argtypes=[C.POINTER(State)]
     lib.phsdepth_set.argtypes=[C.POINTER(State),C.c_float,C.c_int,C.c_float,C.c_float]
@@ -61,13 +63,13 @@ def main():
     vectors=work/'vectors.bin';vectors.write_bytes(vector)
     shutil.copy2(Path(__file__).with_name('Cargo.lock'),work/'Cargo.lock')
     subprocess.run(['cargo','build','--locked','--release','--manifest-path',str(work/'Cargo.toml')],check=True)
-    result=subprocess.run([str(work/'target/release/phsdepth-binary-test'),str(ROOT/'dist/PhsDepth.ZDL'),str(vectors)],text=True,capture_output=True)
+    result=subprocess.run([str(work/'target/release/phsdepth-binary-test'),str(artifact),str(vectors)],text=True,capture_output=True)
     log=result.stdout+result.stderr
     (work/'result.txt').write_text(log);print(log)
     summary=re.search(r'PASS: (\d+) cases, (\d+) channel samples; max TI/host error ([0-9.]+); max packets/block (\d+), emulator cycles/block (\d+)',log)
     metrics={} if not summary else dict(zip(('cases','channel_samples','max_abs_error','max_packets_per_block','max_emulator_cycles_per_block'),(int(summary[1]),int(summary[2]),float(summary[3]),int(summary[4]),int(summary[5]))))
     report={'metrics':metrics,'ziddle_source':'https://berbasoft.com/ziddle/ziddle-1793487371.zip','ziddle_zip_sha256':hashlib.sha256((zroot.parent/'ziddle.zip').read_bytes()).hexdigest() if (zroot.parent/'ziddle.zip').exists() else None,
-            'artifact_sha256':hashlib.sha256((ROOT/'dist/PhsDepth.ZDL').read_bytes()).hexdigest(),
+            'artifact_sha256':hashlib.sha256((artifact).read_bytes()).hexdigest(),
             'passed':result.returncode==0,'cases':len(cases),'result':log,
             'physical_hardware_test':False,'scope':'C674x instruction execution and host audio parity; hermetic runtime callbacks, not MS-70CDR firmware scheduling or loader compatibility'}
     (ROOT/'dist/emulator-report.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -1,4 +1,4 @@
-/* Original blue MS-70CDR 2.10, Wave update NOT physically tested.
+/* Original blue MS-70CDR 2.10, PhaserZeh Wave fix NOT physically tested.
  * Previous 1.00 binary: owner reported successful pedal operation.
  * ctx[5]: planar float L[8],R[8]. ctx[3]: per-instance state descriptor.
  * All controls come from the runtime's normalized parameter block.
@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include "../src/phsdepth_core.h"
 #ifndef PHSDEPTH_AUDIO_FUNC
-#define PHSDEPTH_AUDIO_FUNC Fx_MOD_PhsDepth
+#define PHSDEPTH_AUDIO_FUNC Fx_MOD_PhaserZeh
 #endif
 #ifdef __TI_COMPILER_VERSION__
 #define PD_AUDIO(f) PD_INLINE_PRAGMA_(CODE_SECTION(f, ".audio"))
@@ -20,7 +20,7 @@ typedef unsigned int PdWord;
 #endif
 #define PD_PTR(type, word) ((type)(uintptr_t)(word))
 #define PD_MAGIC 0x50485344u
-#define PD_VERSION 3u
+#define PD_VERSION 4u
 typedef struct {
     uint32_t magic,version,initialized,pad;
     PhsDepth dsp;

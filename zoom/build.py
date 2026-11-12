@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile a real C674x PhsDepth ZDL using a pinned ZoomMultistompZDL linker."""
+"""Compile a real C674x PhaserZeh ZDL using a pinned ZoomMultistompZDL linker."""
 import argparse
 import hashlib
 import json
@@ -64,7 +64,10 @@ def main():
     for section in parsed.sections:
         if section['size'] and section['name'] in ('.bss', '.far', '.fardata', '.text'):
             raise RuntimeError(f'unexpected DSP storage/outlined helpers: {section["name"]}')
-    out = outdir / 'PhsDepth.ZDL'
+    basename=m['output_basename']
+    if not 1<=len(basename)<=8 or not basename.isalnum():
+        ap.error('ZDL basename must be 1..8 ASCII letters/digits')
+    out = outdir / f'{basename}.ZDL'
     cfg = LinkerConfig(effect_name=m['effect_name'], audio_func_name=m['audio_func_name'],
                        gid=m['gid'], fxid=m['fxid'], params=params_from_manifest(m['params']),
                        obj_path=obj, output_path=out,
@@ -75,8 +78,8 @@ def main():
                        use_object_edit_handlers=False)
     link(cfg)
     size, code_data = check(out)
-    save_pbm(outdir / "PhsDepth-cover.pbm")
-    report = {'artifact': out.name, 'sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
+    save_pbm(outdir / f'{basename}-cover.pbm')
+    report = {'artifact': out.name, 'effect_name': m['effect_name'], 'sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
               'bytes': size, 'code_data_bytes': code_data, 'upstream_commit': head,
               'ti_compiler': revision,
               'gid': m['gid'], 'fxid': m['fxid'], 'effect_version': m['fxid_version'],
@@ -85,9 +88,9 @@ def main():
               'dsp_cost_declared': m['dsp_cost'], 'dsp_cost_measured_on_pedal': False,
               'physically_tested': False,
               'dsp_undefined_symbols': undefined,
-              'cover': 'PhsDepth-cover.pbm',
+              'cover': f'{basename}-cover.pbm',
               'knob_positions': KNOB_POSITIONS,
-              'cover_sha256': hashlib.sha256((outdir / 'PhsDepth-cover.pbm').read_bytes()).hexdigest()}
+              'cover_sha256': hashlib.sha256((outdir / f'{basename}-cover.pbm').read_bytes()).hexdigest()}
     (outdir / 'build-report.json').write_text(json.dumps(report, indent=2)+'\n')
     (outdir / 'SHA256SUMS').write_text(f'{report["sha256"]}  {out.name}\n')
     print(f'Generated experimental {"UI-only" if args.ui_only else "phaser"}: {out} (NOT hardware tested)')

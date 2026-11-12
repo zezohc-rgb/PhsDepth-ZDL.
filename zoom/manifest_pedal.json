@@ -1,10 +1,10 @@
 {
-  "effect_name": "PhsDepth",
-  "comment": "Five-control phaser, 1.11 stock-style cover update. Wave DSP unchanged from 1.10. Owner reported 1.00 worked; 1.11 awaits physical validation.",
-  "audio_func_name": "Fx_MOD_PhsDepth",
+  "effect_name": "PhaserZeh",
+  "comment": "PhaserZeh 1.20: continuous modulation and coefficient slew limiting for Wave 2..6. Wave 0/1 preserved. Owner approved 1.11 appearance; rename changes only its label.",
+  "audio_func_name": "Fx_MOD_PhaserZeh",
   "gid": 6,
   "fxid": 947,
-  "fxid_version": "1.11",
+  "fxid_version": "1.20",
   "flags_byte": 1,
   "params": [
     {
@@ -32,12 +32,13 @@
       "name": "Wave",
       "max": 6,
       "default": 0,
-      "comment": "0=Triangle, 1=Sine, 2=Square, 3=Saw Up, 4=Saw Down, 5=Random sample-and-hold, 6=Step (8-level triangle). Handler writes raw/100. Not an emulation of PH-3 Rise/Fall."
+      "comment": "0=Triangle, 1=Sine, 2=Soft Square, 3=Ramp Up, 4=Ramp Down, 5=Random Glide, 6=Step (8 positions, de-clicked). Modes 0/1 are bit-exact to previous host baselines. Handler writes raw/100."
     }
   ],
   "audio_nop": false,
   "own_runtime": true,
   "materialize_init": true,
   "dsp_cost": 40.0,
-  "fxid_comment": "0x060003B3, candidate audited against public stock/community sources; see docs/id-audit.json. No global ID registry exists."
+  "fxid_comment": "0x060003B3, candidate audited against public stock/community sources; see docs/id-audit.json. No global ID registry exists.",
+  "output_basename": "PhasrZeh"
 }

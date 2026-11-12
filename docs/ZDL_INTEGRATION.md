@@ -18,10 +18,16 @@ O build é externo à referência: não copia o linker para este repositório. `
 
 `src/phsdepth_core.h` é o kernel compartilhado com o wrapper em `zoom/phsdepth.c`. A tabela constante de 33 coeficientes substitui `powf` e `tanf`; interpolação linear no domínio logarítmico, LFO selecionável com Triangle como padrão. Uma segunda tabela de 33 valores implementa Sine; Square/rampas/Random/Step dispensam funções matemáticas. O erro absoluto máximo observado contra fórmula analítica é 0,00054717 no coeficiente. O kernel não chama libm ou helpers de divisão.
 
-ABI: 8 frames a 44,1 kHz; `ctx[5]` contém L[8] e R[8]. `ctx[3]` aponta ao descritor host de memória por instância; o wrapper valida base, alinhamento e extensão antes de usar 112 bytes. Não aloca memória global. O shuttle `ctx[11]/ctx[12]` é preservado. Todas as funções auxiliares são obrigatoriamente inline no TI; o build rejeita auxiliares externos, `.text` do DSP e armazenamento global gravável.
+ABI: 8 frames a 44,1 kHz; `ctx[5]` contém L[8] e R[8]. `ctx[3]` aponta ao descritor host de memória por instância; o wrapper valida base, alinhamento e extensão antes de usar 120 bytes. Não aloca memória global. O shuttle `ctx[11]/ctx[12]` é preservado. Todas as funções auxiliares são obrigatoriamente inline no TI; o build rejeita auxiliares externos, `.text` do DSP e armazenamento global gravável.
 
 Os handlers do runtime escrevem os valores brutos /100 em `params[5..9]`. Por isso **Color 0–3 vira 0 / 0,01 / 0,02 / 0,03**. O DSP reconstrói o inteiro; multiplicar diretamente o valor normalizado por três manteria todos os modos em zero. Wave 0–6 chega como 0–0,06 em params[9]; o DSP reconstrói seu inteiro. Rate, Level e Depth usam 0–1 sem heurística ambígua.
 
 O linker emite handlers próprios para os cinco controles, `materialize_init=True` para valores salvos, três posições de knobs e duas páginas. A inicialização do linker e os callbacks da Zoom são um limite de compatibilidade ainda sujeito a teste físico; o passe no emulador não o elimina.
 
 Para renovar a auditoria pública: `python3 tools/audit_ids.py`. A consulta é feita em commits fixados no relatório; reavaliar mudanças de ID antes de recompilar. Não publicar um novo ID sem verificar o banco atual e efeitos instalados. O script não acessa a pedaleira.
+
+## PhaserZeh 1.20
+
+O nome do efeito passa a PhaserZeh (nove caracteres, dentro dos 12 suportados pelo descritor); o basename instalável é `PhasrZeh` (oito, limite de arquivo). `output_basename` no manifest separa os dois nomes. O ID não muda. O símbolo de áudio é `Fx_MOD_PhaserZeh`; os símbolos DLL/descritor são gerados com o novo nome. A API host `phsdepth_*` e os caminhos de fonte permanecem para compatibilidade de desenvolvimento.
+
+As mudanças de modulação estão em [WAVE.md](WAVE.md). Wave 0/1 preservam o processamento anterior. A nova suavização limita o coeficiente realmente aplicado em 2–6; Random guarda dois alvos. A versão do estado é 4, com 120 bytes incluindo cabeçalho. A cobertura C674x/host verifica os novos campos e os cinco parâmetros.

@@ -19,17 +19,17 @@ jobs:
       - name: Build with official TI C6000 and pinned ZoomMultistompZDL
         run: ./tools/build.sh --output-dir work/rebuilt
       - name: Compare the actual DSP binary byte for byte
-        run: cmp dist/PhsDepth.ZDL work/rebuilt/PhsDepth.ZDL
+        run: cmp dist/PhasrZeh.ZDL work/rebuilt/PhasrZeh.ZDL
       - uses: actions/upload-artifact@v4
         with:
-          name: PhsDepth-experimental-MS70CDR-2.10
+          name: PhasrZeh-experimental-MS70CDR-2.10
           path: |
-            work/rebuilt/PhsDepth.ZDL
+            work/rebuilt/PhasrZeh.ZDL
             work/rebuilt/build-report.json
             work/rebuilt/SHA256SUMS
-            work/rebuilt/PhsDepth-cover.pbm
-            dist/PhsDepth-cover.png
-            dist/PhsDepth-cover-lcd.png
+            work/rebuilt/PhasrZeh-cover.pbm
+            dist/PhasrZeh-cover.png
+            dist/PhasrZeh-cover-lcd.png
             licenses/
   emulate:
     runs-on: ubuntu-latest
@@ -45,5 +45,5 @@ jobs:
         run: python3 tools/emulator/run.py --ziddle work/ziddle-1793487371
       - uses: actions/upload-artifact@v4
         with:
-          name: PhsDepth-emulator-report
+          name: PhasrZeh-emulator-report
           path: dist/emulator-report.json

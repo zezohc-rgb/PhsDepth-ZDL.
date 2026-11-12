@@ -6,10 +6,10 @@ import hashlib
 class State(C.Structure):
     _fields_=[('filters',C.c_float*16),('phase',C.c_float),('rate',C.c_float),
               ('depth',C.c_float),('level',C.c_float),('color',C.c_int),
-              ('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float)]
+              ('wave',C.c_int),('random_state',C.c_uint32),('random_value',C.c_float),('random_previous',C.c_float),('coefficient',C.c_float)]
 
 
-def fingerprints(library):
+def fingerprints(library, wave=0):
     lib=C.CDLL(str(library))
     lib.phsdepth_init.argtypes=[C.POINTER(State)]
     lib.phsdepth_set.argtypes=[C.POINTER(State),C.c_float,C.c_int,C.c_float,C.c_float]
@@ -23,6 +23,9 @@ def fingerprints(library):
     for rate,color,level,depth in cases:
         s=State();lib.phsdepth_init(C.byref(s))
         lib.phsdepth_set(C.byref(s),rate,color,level,depth)
+        if wave:
+            lib.phsdepth_set_wave.argtypes=[C.POINTER(State),C.c_int]
+            lib.phsdepth_set_wave(C.byref(s),wave)
         h=hashlib.sha256();rng=0x12345678
         for block in range(4096):
             l=(C.c_float*8)();r=(C.c_float*8)();ol=(C.c_float*8)();orr=(C.c_float*8)()

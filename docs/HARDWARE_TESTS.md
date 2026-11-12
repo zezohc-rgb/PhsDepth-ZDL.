@@ -8,4 +8,10 @@ Esse é um relato de funcionamento geral. Não foram fornecidos medições de ca
 
 A versão anterior permanece disponível no [commit entregue](https://github.com/zezohc-rgb/PhsDepth-ZDL./blob/41530f017c9246016aef3b36cacd739e0ed8d79a/dist/PhsDepth.ZDL).
 
-**A 1.10 acrescenta Wave e a 1.11 atualiza a capa e as posições dos valores; ambas ainda aguardam confirmação física.** Os relatórios do binário atual mantêm `physically_tested: false`. É necessário conferir seleção das sete ondas, página 2, salvar/recarregar patches antigos/novos, bypass, níveis e carga DSP após a atualização.
+A 1.10 acrescentou Wave e a 1.11 atualizou a capa e as posições dos valores. O relato seguinte registra a avaliação parcial da 1.11 pelo proprietário; ele não constitui verificação exaustiva dos sete modos, patches/roteamentos ou medição de carga DSP.
+
+## Relato após a entrega da 1.11
+
+O proprietário informou: **“As opções de wave 0 e 1 ficaram boas. As outras parecem que tem algum tipo efeito step em todas elas. A aparência ficou ótima.”** O relato veio após a entrega do commit `020683f21a14e6581caa6a44aee6b917c07f31e6`, binário 1.11 de hash entregue `7ec8914412f66efa8fd03945d96f746ab28c04ce1f29a6bb8f839c3dfbd48aa8`. O hash realmente instalado não foi confirmado separadamente.
+
+Esse relato aprova a aparência e o som de 0/1 e registra um problema percebido em 2–6; não equivale a medições de carga DSP ou verificação exaustiva de patches/roteamentos. A versão **1.20, agora PhaserZeh**, trata as transições no código e ainda aguarda um novo teste físico. Seus relatórios mantêm `physically_tested: false`.

@@ -11,8 +11,8 @@ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 
 class ZdlTests(unittest.TestCase):
     def setUp(self):
-        self.data=(ROOT/'dist/PhsDepth.ZDL').read_bytes()
         self.manifest=json.loads((ROOT/'zoom/manifest_pedal.json').read_text())
+        self.data=(ROOT/'dist'/(self.manifest['output_basename']+'.ZDL')).read_bytes()
 
     def test_real_artifact_structure(self):
         result=module.validate(self.data,self.manifest)
@@ -22,6 +22,8 @@ class ZdlTests(unittest.TestCase):
         self.assertFalse(report['audio_nop'])
         self.assertFalse(report['physically_tested'])
         self.assertTrue(report['own_runtime'])
+        self.assertEqual(self.manifest['effect_name'],'PhaserZeh')
+        self.assertLessEqual(len(self.manifest['output_basename']),8)
         self.assertTrue(report['materialize_init'])
 
     def test_emulator_evidence_matches_artifact(self):

@@ -1,29 +1,28 @@
-# Validação — versão 1.11 — capa estilo Phaser original
+# Validação — PhaserZeh 1.20
 
-Artefato `dist/PhsDepth.ZDL`: **6.478 bytes**, código + constantes **4.168 bytes**, abaixo dos limites publicados pela referência (32.126 / 29.576). Versão `1.11`, mesmo ID `0x060003B3`. SHA256: `7ec8914412f66efa8fd03945d96f746ab28c04ce1f29a6bb8f839c3dfbd48aa8`.
+Artefato: `dist/PhasrZeh.ZDL`, **7.074 bytes**; código + constantes **4.752 bytes**, abaixo dos limites de 32.126 / 29.576 da referência. Nome na tela `PhaserZeh`, basename `PhasrZeh`, ID preservado `0x060003B3`, versão `1.20`. SHA256: `5093ffac05c7cdf0bfb20367c38f26dd29ae8f75fca84586ad8857fceed726f6`.
 
-O proprietário informou que a versão anterior 1.00 funcionou. Esse relato está em [HARDWARE_TESTS.md](HARDWARE_TESTS.md); **a versão 1.11 com Wave e nova capa ainda não foi testada fisicamente**.
+O proprietário aprovou a aparência e Wave 0/1 da versão anterior, relatando caráter de Step nos demais modos. A correção atual foi validada numericamente e no emulador, **ainda sem teste físico da 1.20**. [Histórico](HARDWARE_TESTS.md).
 
 | Verificação | Resultado | Limite |
 |---|---|---|
-| TI C6000 8.5.0.LTS, C674x EABI far, O2 | Compilação sem erro; `.audio` 1.600 bytes; zero DSP externals | Não prova carregamento/paginação do quinto controle no firmware |
-| Compatibilidade Triangle | 20 renders, 32.768 frames cada, idênticos bit a bit aos fingerprints host capturados da fonte 1.00 entregue | Preserva áudio host com Wave=0; não prova conteúdo de patches antigos no firmware |
-| DSP host | 112 combinações de Wave/Color/Rate/Depth, 3 s cada, finitas e limitadas, canal direito silencioso sem crosstalk | Testes numéricos, sem medição auditiva na pedaleira |
-| Oráculos de ondas | Sine contra fórmula analítica (erro < 0,00061), rampas monotônicas, Square em dois níveis, Step em oito níveis, Random constante até o wrap | Ondas abruptas podem produzir transientes audíveis |
-| Depth e polaridade | Depth=0 estático em todas as ondas; normal + invertido reconstrói seco com mix fixo | Interpolação dos filtros por tabela documentada |
-| Wrapper efetivo | Sete Wave × quatro Color, paridade host, edição em execução e retorno a Wave=0, buffers protegidos, instâncias independentes, fallback de Wave inválido | Ponteiros host de 64 bits; execução TI coberta separadamente |
-| ASan + UBSan | DSP e wrapper sem falhas | Não substituem observação do DSP real |
-| Validador independente | ZDL/ELF, arquitetura, versão, ID, cinco controles, defaults, handlers, relocations, sentinel e limites aprovados | Estrutura, não toda a política de carregamento Zoom |
-| Testes negativos | Rejeita truncamento, ID original, arquitetura e range errados | Casos direcionados |
-| Auditoria pública de identidade | Mesmo efeito e ID da 1.00; auditoria de 581 arquivos/sete coleções preservada | Não é reserva global; esta é atualização do PhsDepth, não efeito adicional com novo ID |
-| Ziddle C674x | **252 casos, 9.175.040 amostras de canal**, erro máximo host/TI **0,000001281**, zero instruções não implementadas | Callbacks herméticos; não reproduz todo o firmware da pedaleira |
+| Compilação TI C6000 8.5.0.LTS | C674x EABI far O2; `.audio` 2.208 bytes; zero DSP externals, zero `.text`/`.fardata` do objeto DSP | Não mede carga na pedaleira |
+| Preservação das ondas aprovadas | 20 renders Triangle coincidem bit a bit com fingerprints da fonte 1.00; 20 Sine coincidem com a fonte 1.11 | Evidência host float32, não captura física |
+| DSP host | 112 combinações Wave/Color/Rate/Depth por 3 s, saídas finitas/limitadas e sem crosstalk | Sinais de teste, sem avaliação auditiva real |
+| Continuidade de modulação | Soft Square e rampas contínuas nas fronteiras; Random interpola entre alvos e reaproveita o alvo no período seguinte | Square/Step conservam suas posições discretas por definição |
+| Variação real do filtro | Nos modos 2–6, variação por amostra ≤ 0,0007501 a Rate=6 Hz/Depth máximo; incluindo ciclos/retornos | Primeiro coeficiente é inicializado diretamente; edição ao voltar a 0/1 mantém o caminho original |
+| Depth/mix | Depth=0 estático desde a inicialização; normal + invertido reconstrói seco nas sete ondas, mantendo mix fixo | Edição de Depth nos modos suavizados pode ter breve transição |
+| Wrapper host | Sete Wave × quatro Color, edição em execução, fallback e tolerância do último valor; buffers/instâncias protegidos | ABI host usa ponteiros de 64 bits; TI coberto separadamente |
+| ASan/UBSan | Invariantes e wrapper sem falhas | Não equivalem à observação física |
+| ZDL/ELF e testes negativos | Nome PhaserZeh/DLL, basename de oito caracteres, versão, ID, cinco controles, handlers, relocations e limites; rejeita corrupções direcionadas | Não reproduz toda a política do carregador Zoom |
+| Arte e posições | Todos os pixels fora do retângulo interno do nome (x35..92/y31..42) coincidem com a arte aprovada; capa embutida e três coordenadas verificadas | Novo texto/alinhamento ainda deve ser visto no LCD real |
+| Rebuild | Dependências fixadas; comparação byte a byte do arquivo reproduzido | Ambiente Linux x64 documentado |
+| C674x Ziddle | **252 casos, 9.175.040 amostras de canal**, erro máximo host/TI **0,000001762**, zero instruções não implementadas | Callbacks herméticos; não emula todo o firmware |
 
-Emulação executa `_init`, materialização dos cinco valores carregados, OnOff e cinco handlers, incluindo Wave após o áudio começar e retorno de Wave 6 para zero. Entrada: impulso num canal, ruído determinístico no outro e cauda silenciosa. Cobre sete Wave e quatro Color, defaults e extremos de Rate/Level/Depth. Renders a Rate máximo incluem mais de dois períodos, alcançando mudanças de Random/Step/rampas. Compara a memória wet produzida pelo DSP com o host, sem depender do mix do firmware simulado. Verifica Level=0 após edição e bypass.
+A maior mudança de coeficiente observada na suíte de 1 s a 6 Hz/Depth máximo foi 0,00075001 nos modos 2/3/4/6 e 0,00010860 em Random Glide. A mudança instantânea por toda a faixa no algoritmo anterior era 0,47982931. Essas grandezas comprovam a redução do salto numérico, **não uma medida de volume de clique nem garantia subjetiva de solução na pedaleira**.
 
-Máximos observados: **1.122 pacotes / 2.136 ciclos de emulador por bloco**. Não equivalem à carga real na pedaleira. O custo declarado 40 permanece uma estimativa provisória.
+A emulação inclui init, materialização dos cinco valores, handlers de edição, mudança de Wave com áudio em execução, Level=0 e bypass. Usa impulso, ruído determinístico e cauda silenciosa, comparando a memória wet com o kernel host. Máximos: **1.409 pacotes / 2.317 ciclos de emulador por bloco**, sem conversão para porcentagem DSP real. Custo declarado 40 continua provisório.
 
-A capa 128×64 reproduz o estilo da foto do Phaser original: pedal grande e knobs no topo. Foram conferidos os 8.192 pixels extraídos do ZDL contra a fonte e as três posições em effectTypeImageInfo: (id 2, x30, y11), (id 3, x54, y11), (id 4, x78, y11). As caixas 20×15 ficam dentro da tela, acima da placa do nome, sem se sobrepor. O contador continua com cinco parâmetros e duas páginas. O objeto de DSP recompilado foi comparado ao da 1.10: idêntico byte a byte. Rebuild independente com dependências fixadas produz binário idêntico byte a byte. Relatórios: `dist/build-report.json`, `dist/emulator-report.json`, `docs/id-audit.json`; a evidência histórica de áudio está em `tests/triangle-v1.00.json`.
+Relatórios: `dist/build-report.json`, `dist/emulator-report.json`, `dist/SHA256SUMS`; referências congeladas `tests/triangle-v1.00.json` e `tests/sine-v1.11.json`. A auditoria pública do ID é mantida em `docs/id-audit.json`. `./tools/test.sh` executa C otimizado, sanitizers e oito testes Python; o CI repete testes, rebuild e emulação.
 
-Repetir: `./tools/build.sh`, `./tools/test.sh` e `python3 tools/emulator/run.py --ziddle /caminho/ziddle-1793487371`. O CI recompila, compara e emula o binário.
-
-**Pendente na 1.11:** aparência e alinhamento real dos valores sobre os knobs, aparência e edição de Wave na página 2, persistência, patches antigos/novos, níveis/transientes e carga DSP real. Nenhum efeito original foi substituído.
+**Pendente:** ouvir a 1.20 no aparelho, especialmente a redução do caráter de Step indesejado em 2–5; conferir nome, patches antigos/novos, persistência e carga real. Atualizar o mesmo efeito personalizado; não instalar versões duplicadas nem substituir efeitos originais.

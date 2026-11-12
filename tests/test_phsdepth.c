@@ -14,7 +14,7 @@ int main(void) {
         float phase=(float)i/20000.0f;
         float f=550.0f*powf(2.0f,(phase*4.0f-1.0f)*3.0f);
         float w=tanf(3.14159265358979323846f*f/44100.0f);
-        float exact=(1-w)/(1+w),err=fabsf(pd_coefficient(pd_lfo(phase,0,0),1)-exact);
+        float exact=(1-w)/(1+w),err=fabsf(pd_coefficient(pd_lfo(phase,0,0,0),1)-exact);
         if(err>max_error)max_error=err;
     }
     assert(max_error<.0009f);
@@ -79,13 +79,13 @@ int main(void) {
         for(i=0;i<10000;i++) {
             float phase=(float)i/10000.0f;
             float sine=.5f-.5f*cosf(6.28318530718f*phase);
-            float err=fabsf(pd_lfo(phase,PHSDEPTH_SINE,0)-sine);
+            float err=fabsf(pd_lfo(phase,PHSDEPTH_SINE,0,0)-sine);
             if(err>max_sine_error)max_sine_error=err;
-            assert(fabsf(pd_lfo(phase,PHSDEPTH_SAW_UP,0)-phase)<1e-7f);
-            assert(fabsf(pd_lfo(phase,PHSDEPTH_SAW_DOWN,0)+phase-1)<1e-7f);
-            assert(pd_lfo(phase,PHSDEPTH_SQUARE,0)==(phase<.5f?0:1));
+            assert(fabsf(pd_lfo(phase,PHSDEPTH_SAW_UP,0,0)+pd_lfo(phase,PHSDEPTH_SAW_DOWN,0,0)-1)<1e-7f);
+            if(phase>=.1f && phase<=.5f)assert(pd_lfo(phase,PHSDEPTH_SQUARE,0,0)==0);
+            if(phase>=.6f)assert(pd_lfo(phase,PHSDEPTH_SQUARE,0,0)==1);
             for(wave=0;wave<PHSDEPTH_WAVE_COUNT;wave++) {
-                float value=pd_lfo(phase,wave,.125f);
+                float value=pd_lfo(phase,wave,.125f,.125f);
                 assert(value>=0 && value<=1);
                 if(wave==PHSDEPTH_RANDOM)assert(value==.125f);
                 if(wave==PHSDEPTH_STEP) {
@@ -96,9 +96,9 @@ int main(void) {
         }
         assert(max_sine_error<.00061f);
         for(i=0;i<8;i++)assert(seen[i]);
-        assert(pd_lfo(.125f,PHSDEPTH_SINE,0)<pd_lfo(.125f,PHSDEPTH_TRIANGLE,0));
+        assert(pd_lfo(.125f,PHSDEPTH_SINE,0,0)<pd_lfo(.125f,PHSDEPTH_TRIANGLE,0,0));
     }
-    /* Random sample-and-hold changes once per wrap, remains per-instance,
+    /* Random targets advance once per wrap; glide is continuous across wraps,
      * uses reproducible unsigned arithmetic and remains independent of stereo. */
     phsdepth_init(&a);phsdepth_init(&b);
     phsdepth_set_wave(&a,PHSDEPTH_RANDOM);phsdepth_set_wave(&b,PHSDEPTH_RANDOM);
@@ -112,7 +112,37 @@ int main(void) {
         pd_frame(&a,0,0,.01f,al,ar);pd_frame(&b,0,0,.01f,bl,br);
         assert(a.phase>=0 && a.phase<1);
         assert(a.random_state!=before && a.random_value!=previous);
+        assert(a.random_previous==previous);
+        assert(fabsf(pd_lfo(1,PHSDEPTH_RANDOM,previous,b.random_previous)-
+                     pd_lfo(0,PHSDEPTH_RANDOM,a.random_value,a.random_previous))<1e-6f);
         assert(a.random_value==b.random_value && a.random_state==b.random_state);
+    }
+    /* Continuous shapes meet at the cycle boundary and at each section join.
+     * Previously Square, ramps and Random had full coefficient jumps there. */
+    for(wave=PHSDEPTH_SQUARE;wave<=PHSDEPTH_RANDOM;wave++) {
+        if(wave!=PHSDEPTH_RANDOM)
+            assert(fabsf(pd_lfo(1-1e-6f,wave,.8f,.2f)-pd_lfo(0,wave,.8f,.2f))<2e-5f);
+    }
+    assert(pd_lfo(.1f,PHSDEPTH_SAW_UP,0,0)<pd_lfo(.8f,PHSDEPTH_SAW_UP,0,0));
+    assert(pd_lfo(.1f,PHSDEPTH_SAW_DOWN,0,0)>pd_lfo(.8f,PHSDEPTH_SAW_DOWN,0,0));
+    assert(fabsf(pd_lfo(.5f,PHSDEPTH_RANDOM,.8f,.2f)-.5f)<1e-6f);
+    assert(pd_lfo(.25f,PHSDEPTH_RANDOM,.8f,.2f)<pd_lfo(.75f,PHSDEPTH_RANDOM,.8f,.2f));
+    /* The actual filter coefficient, not just the LFO, has a bounded per-frame
+     * change in modes 2..6, even at maximum Rate/Depth and during Wave edits. */
+    for(wave=PHSDEPTH_SQUARE;wave<PHSDEPTH_WAVE_COUNT;wave++) {
+        float last=0,peak_delta=0;
+        phsdepth_init(&a);phsdepth_set(&a,6,1,1,1);phsdepth_set_wave(&a,wave);
+        for(i=0;i<44100;i++) {
+            pd_frame(&a,.1f,0,6.0f/44100.0f,al,ar);
+            if(i) {
+                float d=fabsf(a.coefficient-last);
+                if(d>peak_delta)peak_delta=d;
+                assert(d<=.0007501f);
+            }
+            last=a.coefficient;
+        }
+        printf("Wave %d: maximum coefficient change %.8f (legacy full jump %.8f)\n",wave,peak_delta,
+               pd_coefficient(0,1)-pd_coefficient(1,1));
     }
     phsdepth_set_wave(&a,-1);assert(a.wave==PHSDEPTH_TRIANGLE);
     phsdepth_set_wave(&a,99);assert(a.wave==PHSDEPTH_TRIANGLE);

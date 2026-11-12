@@ -1,23 +1,27 @@
-# Wave — disponível desde a versão 1.10
+# Wave — PhaserZeh 1.20
 
-Wave é o quinto parâmetro, na segunda página junto de Depth. Os knobs físicos continuam os mesmos. Os controles anteriores mantêm ordem e faixas: Rate, Color, Level e Depth. Na 1.11, a capa foi atualizada para o estilo da foto do Phaser original, com knobs no topo; o DSP das ondas permanece o da 1.10.
+Wave é o quinto parâmetro, na segunda página junto de Depth. Os quatro primeiros parâmetros e suas posições foram mantidos. O pedal mostra códigos numéricos:
 
-| Wave | Forma | Comportamento |
+| Wave | Forma na 1.20 | Comportamento |
 |---|---|---|
-| 0 | Triangle | Varredura triangular da versão 1.00; padrão |
-| 1 | Sine | Varredura senoidal suave, aproximada por tabela |
-| 2 | Square | Alternância entre os dois extremos da varredura |
-| 3 | Saw Up | Rampa ascendente e retorno ao início |
-| 4 | Saw Down | Rampa descendente e retorno ao início |
-| 5 | Random | Posição aleatória mantida até o próximo período |
-| 6 | Step | Varredura triangular em oito posições discretas |
+| 0 | Triangle | Mesmo áudio da versão original; padrão |
+| 1 | Sine | Mesmo áudio aprovado na 1.11, sem alteração |
+| 2 | Soft Square | Dois extremos, com transições cúbicas em 10% de cada ciclo |
+| 3 | Ramp Up | Subida em 90% do ciclo; retorno gradual nos 10% finais |
+| 4 | Ramp Down | Descida em 90% do ciclo; retorno gradual nos 10% finais |
+| 5 | Random Glide | Movimento cúbico contínuo entre alvos aleatórios, um alvo por período |
+| 6 | Step | Oito posições em subida/descida; coeficientes suavizados para reduzir cliques |
 
-O pedal mostra valores numéricos 0–6 em Wave, como já faz em Color. Rate controla ciclos por segundo (0,08–6 Hz); Random recebe um novo valor por ciclo. Em Step, um ciclo percorre os degraus de subida e descida. Depth continua definindo a amplitude da varredura; Depth=0 é estático em todas as ondas e a mistura seco/molhado permanece fixa. Square, rampas, Random e Step têm mudanças abruptas por definição, que podem produzir transientes audíveis.
+Square alterna duas posições e Step produz degraus por definição; a correção remove os saltos instantâneos dos filtros, sem transformar essas formas em senoide. Ramp Up/Down não são os Rise/Fall contínuos do Boss PH-3: há retorno em todo período, agora gradual. Não se trata de clone do DSP Boss. Color mantém 4/8 estágios normal/invertido.
 
-A referência indicada pelo proprietário é o **Boss PH-3**. Step é inspirado na ideia de modulação em degraus. Saw Up e Saw Down são rampas periódicas com um retorno audível ao início, **não** os modos Rise/Fall contínuos do PH-3. Esta atualização não emula o circuito/DSP Boss nem acrescenta seus modos de 10/12 estágios; Color continua oferecendo 4/8 normal/invertido.
+Na 1.10/1.11, Square mudava instantaneamente, as rampas saltavam do final para o início e Random segurava um valor antes de saltar para o seguinte. Nenhum desses saltos tinha suavização no coeficiente. Isso é compatível com a impressão de Step relatada pelo proprietário, mas não houve medição física independente do problema.
 
-O campo Wave foi acrescentado depois dos quatro parâmetros existentes e seu padrão é zero. Ao abrir patches antigos, confira **Wave=0** e salve novamente se necessário: a materialização de um quinto parâmetro em patches antigos ainda precisa de confirmação física. A comparação de 20 renders host (32.768 frames por caso, todos os Color e extremos de Rate/Depth) com fingerprints capturados do código original 1.00 produz áudio idêntico bit a bit em Triangle.
+Na 1.20 os alvos de Square/rampas/Random são contínuos inclusive nas fronteiras do período. Depois do mapeamento logarítmico, o coeficiente usado pelos filtros nos modos 2–6 varia no máximo aproximadamente **0,00075 por amostra** a 44,1 kHz. Um salto fixo por toda a faixa leva aproximadamente 15 ms para ser percorrido; o acompanhamento de alvos móveis depende da forma e da velocidade. Step conserva seus oito alvos, com bordas suavizadas.
 
-O runtime escreve Wave bruto /100 em `params[9]`; 0–6 chega como 0 / 0,01 / ... / 0,06. Valores inválidos retornam a Triangle. Estado por instância: 112 bytes incluindo cabeçalho de identificação, versão interna 3. Não há heap, estado global gravável ou chamadas libm no pedal. Random usa xorshift32 por instância, seed fixa reproduzível, atualizado só no fechamento de um período. A senoide usa 33 valores de meia cossenoide, com erro máximo absoluto do LFO abaixo de 0,00061.
+Triangle/Sine ignoram esse limitador e mantêm o cálculo anterior. Os 20 renders de Triangle coincidem com fingerprints da fonte 1.00 e os 20 de Sine com a 1.11, bit a bit no host. Rate permanece 0,08–6 Hz; Depth continua controlando a amplitude da varredura, nunca o mix. Depth=0 mantém filtros estáticos após qualquer transição de edição terminar.
 
-**Estado dos testes físicos:** o proprietário informou que a versão anterior funcionou. As versões 1.10/1.11 com Wave ainda não foram confirmadas fisicamente; a 1.11 também altera a arte e as posições dos valores. Os testes locais e a emulação não confirmam aparência/paginação, persistência ou carga DSP real dessa atualização.
+Random usa xorshift32 por instância com seed fixa reproduzível. Guarda o alvo anterior e o próximo, interpolando com `t²(3−2t)` ao longo de todo o ciclo. A fronteira entre ciclos reaproveita o alvo anterior, mantendo continuidade. Estado completo por instância: **120 bytes**, incluindo cabeçalho; versão interna 4. Sem heap, globais graváveis ou libm no pedal.
+
+Wave 0–6 chega como 0–0,06 em `params[9]`, pois os handlers dividem o valor bruto por 100. Valores inválidos retornam a Triangle. A materialização de parâmetros e a paginação continuam no mesmo runtime do projeto de referência.
+
+**Teste físico:** a aparência e Wave 0/1 da versão anterior foram aprovados pelo proprietário. A correção 1.20 ainda precisa ser ouvida na pedaleira, particularmente as transições de 2–5 e a distinção do Step 6.

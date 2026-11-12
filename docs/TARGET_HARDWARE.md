@@ -1,11 +1,10 @@
 # Hardware alvo
 
-- Zoom MS-70CDR original azul (não CDR+).
-- Firmware 2.10, conforme informado pelo proprietário.
-- `PhsDepth.ZDL`, nome de oito caracteres, efeito adicional de Modulation.
-- Identidade `gid 6 / fxid 947`, índice `0x060003B3`.
-- Cinco controles: Rate, Color (4/8 estágios normal/invertido), Level, Depth (largura da varredura) e Wave (sete formas de LFO).
+- Zoom MS-70CDR original azul, firmware 2.10; não MS-70CDR+.
+- Nome do efeito: PhaserZeh. Arquivo: `PhasrZeh.ZDL` (oito caracteres).
+- Mesmo índice `0x060003B3` do PhsDepth, categoria Modulation.
+- Cinco controles: Rate, Color (4/8 normal/invertido), Level, Depth e Wave.
 
-O binário foi compilado, verificado estruturalmente e executado em emulador C674x. **O proprietário relatou funcionamento da versão anterior 1.00. A versão 1.11 com Wave e a nova capa ainda não foi testada fisicamente.** O agente não acessou nem alterou a pedaleira. O código se baseia no ABI documentado da referência; isso não confirma compatibilidade completa com o aparelho.
+O proprietário aprovou a aparência da versão anterior e o som de Wave 0/1, relatando Step nas demais. A versão 1.20 preserva 0/1 e trata as transições de 2–6. **O resultado da correção ainda não foi confirmado fisicamente.** O agente não acessou nem alterou a pedaleira.
 
-Próximo passo: [teste físico controlado](INSTALLATION.md), sem excluir ou substituir efeitos originais.
+[Relatos físicos](HARDWARE_TESTS.md), [atualização do efeito personalizado](INSTALLATION.md) e [validação local](VALIDATION.md).

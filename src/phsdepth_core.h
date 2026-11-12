@@ -36,8 +36,14 @@ static const float pd_sine_table[33] = {
     0.961939766f, 0.978470168f, 0.990392640f, 0.997592363f,
     1.000000000f
 };
+/* Zero derivative at both ends: no jump at a periodic reset or random target. */
+PD_INLINE(pd_ease)
+static inline float pd_ease(float t) {
+    float y=t*t*(3.0f-2.0f*t);
+    return y>1.0f ? 1.0f : (y<0.0f ? 0.0f : y);
+}
 PD_INLINE(pd_lfo)
-static inline float pd_lfo(float phase, int wave, float random_value) {
+static inline float pd_lfo(float phase, int wave, float random_value, float random_previous) {
     float tri = phase < 0.5f ? phase*2.0f : 2.0f-phase*2.0f;
     if (wave == PHSDEPTH_SINE) {
         float pos=tri*32.0f;
@@ -45,10 +51,21 @@ static inline float pd_lfo(float phase, int wave, float random_value) {
         if (i>=32) return 1.0f;
         return pd_sine_table[i]+(pos-(float)i)*(pd_sine_table[i+1]-pd_sine_table[i]);
     }
-    if (wave == PHSDEPTH_SQUARE) return phase<0.5f ? 0.0f : 1.0f;
-    if (wave == PHSDEPTH_SAW_UP) return phase;
-    if (wave == PHSDEPTH_SAW_DOWN) return 1.0f-phase;
-    if (wave == PHSDEPTH_RANDOM) return random_value;
+    /* Soft square: two plateaus, with finite 10%-cycle transitions. */
+    if (wave == PHSDEPTH_SQUARE) {
+        if(phase<0.1f)return 1.0f-pd_ease(phase*10.0f);
+        if(phase<0.5f)return 0.0f;
+        if(phase<0.6f)return pd_ease((phase-0.5f)*10.0f);
+        return 1.0f;
+    }
+    /* 90% sweep, 10% eased return. Pure saw resets caused a full-range
+     * coefficient jump once per cycle and an unwanted step-like transient. */
+    if (wave == PHSDEPTH_SAW_UP || wave == PHSDEPTH_SAW_DOWN) {
+        float ramp=phase<0.9f ? phase*(1.0f/0.9f) : 1.0f-pd_ease((phase-0.9f)*10.0f);
+        return wave==PHSDEPTH_SAW_UP ? ramp : 1.0f-ramp;
+    }
+    /* Random glide instead of sample-and-hold; adjacent periods meet exactly. */
+    if (wave == PHSDEPTH_RANDOM) return random_previous+(random_value-random_previous)*pd_ease(phase);
     /* Eight-position triangular staircase; one complete up/down cycle per Rate.
      * This is stepped modulation, not a clone of the Boss PH-3 DSP. */
     if (wave == PHSDEPTH_STEP) {
@@ -75,7 +92,17 @@ static inline float pd_coefficient(float lfo, float depth) {
 PD_INLINE(pd_frame)
 static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
                             float *ol, float *orr) {
-    float a = pd_coefficient(pd_lfo(s->phase, s->wave, s->random_value), s->depth);
+    float a = pd_coefficient(pd_lfo(s->phase, s->wave, s->random_value, s->random_previous), s->depth);
+    /* Preserve Triangle/Sine bit for bit. Bound only the coefficient changes
+     * of modes 2..6, including intentional Step, to remove single-sample jumps.
+     * At 44.1 kHz a full-range transition takes at most about 15 ms. */
+    if(s->wave>=PHSDEPTH_SQUARE && s->coefficient>=0.0f) {
+        float delta=a-s->coefficient;
+        if(delta>0.00075f)delta=0.00075f;
+        if(delta< -0.00075f)delta= -0.00075f;
+        a=s->coefficient+delta;
+    }
+    s->coefficient=a;
     float wl=l, wr=r;
     int k, stages=(s->color&1)?8:4;
     float sign=(s->color&2)?-1.0f:1.0f;
@@ -91,6 +118,7 @@ static inline void pd_frame(PhsDepth *s, float l, float r, float inc,
     s->phase+=inc;
     if(s->phase>=1.0f) {
         s->phase-=1.0f;
+        s->random_previous=s->random_value;
         pd_next_random(s);
     }
 }
@@ -101,6 +129,9 @@ static inline void pd_reset(PhsDepth *s) {
     s->phase=0.0f; s->rate_hz=2.152f; s->color=0; s->level=1.0f; s->depth=0.5f;
     s->wave=PHSDEPTH_TRIANGLE; s->random_state=0x6d2b79f5u;
     pd_next_random(s);
+    s->random_previous=s->random_value;
+    pd_next_random(s);
+    s->coefficient= -1.0f;
 }
 PD_INLINE(pd_color)
 static inline void pd_color(PhsDepth *s, int color) {

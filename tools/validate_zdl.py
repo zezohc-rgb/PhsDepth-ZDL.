@@ -47,9 +47,9 @@ def validate(data, manifest):
         x=struct.unpack_from('<IIIBBH',tab,i);name=cstr(st,x[0]);syms[name]=x
         require(not(name and x[5]==0 and x[3]>>4 in (1,2)),'undefined dynamic symbol')
     audio=manifest['audio_func_name']
-    for name in (audio,audio+'_init',audio+'_onf','Dll_PhsDepth','SonicStomp','effectTypeImageInfo'):
+    for name in (audio,audio+'_init',audio+'_onf','Dll_'+manifest['effect_name'],'SonicStomp','effectTypeImageInfo'):
         require(name in syms,f'missing export {name}')
-    require(struct.unpack_from('<I',e,24)[0]==syms['Dll_PhsDepth'][1],'entrypoint is not Dll_PhsDepth')
+    require(struct.unpack_from('<I',e,24)[0]==syms['Dll_'+manifest['effect_name']][1],'entrypoint does not match effect name')
     def symbol_bytes(name):
         s=syms[name];sec=sections[s[5]];offset=s[1]-sec[3]
         require(0<=offset<=sec[5] and offset+s[2]<=sec[5],f'{name} outside section')
@@ -80,7 +80,7 @@ def validate(data, manifest):
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('zdl',type=Path,nargs='?',default=ROOT/'dist/PhsDepth.ZDL')
+    ap.add_argument('zdl',type=Path,nargs='?',default=ROOT/'dist/PhasrZeh.ZDL')
     args=ap.parse_args()
     print(json.dumps(validate(args.zdl.read_bytes(),json.loads((ROOT/'zoom/manifest_pedal.json').read_text())),indent=2))
 

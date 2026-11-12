@@ -47,7 +47,7 @@ int main(void) {
                 r[i]=.2f*cosf((float)(b*8+i)*.043f);
                 f.buf[1+i]=l[i]; f.buf[9+i]=r[i];
             }
-            Fx_MOD_PhsDepth(f.ctx);
+            Fx_MOD_PhaserZeh(f.ctx);
             phsdepth_process(&ref,l,r,ol,orr,8,44100);
             for(i=0;i<8;i++) {
                 assert(fabsf(f.buf[1+i]-ol[i])<2e-5f);
@@ -65,36 +65,36 @@ int main(void) {
         if(mode==2)f.desc[0]++;
         if(mode==3)f.desc[1]=f.desc[0];
         if(mode==4)f.desc[1]--;
-        Fx_MOD_PhsDepth(f.ctx); assert(f.buf[1]==.7f); guards(&f);
+        Fx_MOD_PhaserZeh(f.ctx); assert(f.buf[1]==.7f); guards(&f);
     }
     setup(&f); f.params[0]=0; f.buf[1]=.4f;
-    Fx_MOD_PhsDepth(f.ctx); assert(f.buf[1]==.4f); guards(&f);
+    Fx_MOD_PhaserZeh(f.ctx); assert(f.buf[1]==.4f); guards(&f);
     /* Independent instances must not affect one another. */
     setup(&f); setup(&g); f.buf[1]=.8f;
-    Fx_MOD_PhsDepth(f.ctx); Fx_MOD_PhsDepth(g.ctx);
+    Fx_MOD_PhaserZeh(f.ctx); Fx_MOD_PhaserZeh(g.ctx);
     for(i=1;i<=16;i++)assert(g.buf[i]==0);
-    f.params[7]=0; Fx_MOD_PhsDepth(f.ctx);
+    f.params[7]=0; Fx_MOD_PhaserZeh(f.ctx);
     for(i=1;i<=16;i++)assert(f.buf[i]==0);
     /* NaN controls recover to finite defaults, not undefined float->int. */
     for(i=5;i<=9;i++)g.params[i]=NAN;
-    Fx_MOD_PhsDepth(g.ctx); guards(&g);
+    Fx_MOD_PhaserZeh(g.ctx); guards(&g);
     assert(g.guarded.state.dsp.color==0);
     assert(g.guarded.state.dsp.wave==PHSDEPTH_TRIANGLE);
     assert(isfinite(g.guarded.state.dsp.depth));
     /* Regression: exactly 1% is 1%, no sudden 100x jump. */
     g.params[5]=.01f;g.params[7]=.01f;g.params[8]=.01f;
-    Fx_MOD_PhsDepth(g.ctx);
+    Fx_MOD_PhaserZeh(g.ctx);
     assert(fabsf(g.guarded.state.dsp.level-.02f)<1e-6f);
     assert(fabsf(g.guarded.state.dsp.depth-.01f)<1e-6f);
     /* Endpoints tolerate float conversion round-off from the UI callback. */
-    g.params[9]=.060000006f;Fx_MOD_PhsDepth(g.ctx);
+    g.params[9]=.060000006f;Fx_MOD_PhaserZeh(g.ctx);
     assert(g.guarded.state.dsp.wave==PHSDEPTH_STEP);
     /* An invalid Wave must fall back to the known-working Triangle mode. */
-    g.params[9]=1.0f;Fx_MOD_PhsDepth(g.ctx);
+    g.params[9]=1.0f;Fx_MOD_PhaserZeh(g.ctx);
     assert(g.guarded.state.dsp.wave==PHSDEPTH_TRIANGLE);
     /* On-the-fly edits, including return to mode zero, reach the fifth slot. */
     for(wave=PHSDEPTH_WAVE_COUNT-1;wave>=0;wave--) {
-        g.params[9]=wave*.01f;Fx_MOD_PhsDepth(g.ctx);guards(&g);
+        g.params[9]=wave*.01f;Fx_MOD_PhaserZeh(g.ctx);guards(&g);
         assert(g.guarded.state.dsp.wave==wave);
     }
     puts("Zoom wrapper: 7 Wave modes, 4 Color modes, host parity, bounds, bypass, isolation, zero and invalid controls passed");

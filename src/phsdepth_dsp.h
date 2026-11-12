@@ -20,6 +20,8 @@ typedef struct {
     int wave;
     uint32_t random_state;
     float random_value;
+    float random_previous;
+    float coefficient;
 } PhsDepth;
 void phsdepth_init(PhsDepth *s);
 void phsdepth_set(PhsDepth *s, float rate_hz, int color, float level, float depth);
