@@ -59,3 +59,7 @@ O bootstrap usa TI C6000 CGT 8.5.0.LTS oficial e [ZoomMultistompZDL](https://git
 Para o binário C674x, use [Ziddle 1793487371](https://berbasoft.com/ziddle/ziddle-1793487371.zip): `python3 tools/emulator/run.py --ziddle /caminho/ziddle-1793487371`. A matriz tem 108 casos, inclui execução real dos callbacks de texto, init, handlers e áudio. O CI repete testes, rebuild idêntico byte a byte e emulação.
 
 [Validação](docs/VALIDATION.md), [build-report.json](dist/build-report.json), [emulator-report.json](dist/emulator-report.json), [SHA256SUMS](dist/SHA256SUMS), [instalação](docs/INSTALLATION.md), [integração](docs/ZDL_INTEGRATION.md) e [licenças](licenses/). O custo DSP 40 é provisório, sem medição real. Emulação não confirma toda a inicialização, UI, persistência ou carga do firmware.
+
+## CE-2 Soul (projeto separado)
+
+O chorus mono inspirado no Boss CE-2 está em [ce2soul/](ce2soul/README.md), com código próprio, apenas RATE/DEPTH, pesquisa, testes e o arquivo real [CE2Soul.ZDL](ce2soul/build/CE2Soul.ZDL). É experimental e ainda não foi testado fisicamente. O PhaserZeh e seu arquivo aprovado permanecem preservados.

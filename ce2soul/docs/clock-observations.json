@@ -1,0 +1,26 @@
+{
+  "scope": "Published first-person observations; not laboratory calibration or our own hardware measurements",
+  "sources": [
+    {
+      "url": "https://www.diystompboxes.com/smfforum/index.php?topic=89044.0",
+      "post": 6,
+      "author": "Fender3D",
+      "date": "2011-01-05",
+      "measurement_location": "MN3007 clock pins 2 and 6",
+      "depth_zero_clock_hz_approx": 110000,
+      "depth_middle_clock_min_hz": 100000,
+      "depth_middle_clock_max_hz": 128000,
+      "limitations": ["Unit received for repair; working condition not stated", "Instrument, supply, serial number and uncertainty not stated", "Middle treated as normalized 0.5; actual pot position/tolerance unknown", "Slow Rate requested in preceding post; response does not repeat the Rate setting", "No maximum-Depth or full knob sweep given"],
+      "retrieval": "Full relevant posts available through indexed web search; direct forum page returned 403"
+    },
+    {
+      "url": "https://www.diystompboxes.com/smfforum/index.php?topic=128962.0",
+      "post": 14,
+      "author": "Rob Strand",
+      "date": "2022-03-30",
+      "center_delay_ms_recalled": [4.5, 5.0],
+      "limitations": ["First-person recollection of prior CE-2 and analog CH-1 measurements, not original notes", "No controls, traces or instrument uncertainties available"],
+      "use": "Independent order-of-magnitude corroboration only; no extra fit points"
+    }
+  ]
+}

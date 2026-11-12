@@ -1,0 +1,23 @@
+{
+  "artifact_sha256": "be95021ef2aa7634ba29ecfb5b8b34dc29674c805224a569613f67a16733f9fa",
+  "pixels_verified": 8192,
+  "parameter_positions": [
+    [
+      2,
+      42,
+      9
+    ],
+    [
+      3,
+      73,
+      9
+    ]
+  ],
+  "visible_controls": [
+    "RATE",
+    "DEPTH"
+  ],
+  "source": "decoded from executable ZDL; compared against source PBM",
+  "preview": "CE2Soul-cover.png",
+  "hardware_display_test": false
+}

@@ -1,0 +1,190 @@
+{
+  "scope": "synthetic host DSP fixtures, not physical or perceptual loudness measurement",
+  "sample_rate": 44100,
+  "physical_reference": false,
+  "results": [
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0,
+      "depth": 0,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.030401601068238485,
+      "gain_db": -4.321424903672048,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.1446220576763153
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0,
+      "depth": 0.5,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.03049411113412174,
+      "gain_db": -4.295034446552756,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.1498439908027649
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0,
+      "depth": 1,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.03045746531599585,
+      "gain_db": -4.30547885468226,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.14686568081378937
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0.5,
+      "depth": 0,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.030401601068238485,
+      "gain_db": -4.321424903672048,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.1446220576763153
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0.5,
+      "depth": 0.5,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.03041245750844881,
+      "gain_db": -4.318323718033798,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.13585059344768524
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 0.5,
+      "depth": 1,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.030393766146001536,
+      "gain_db": -4.323663668675636,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.14068450033664703
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 1,
+      "depth": 0,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.030401601068238485,
+      "gain_db": -4.321424903672048,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.1446220576763153
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 1,
+      "depth": 0.5,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.030446498988818602,
+      "gain_db": -4.308606805701972,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.16196313500404358
+    },
+    {
+      "signal": "bandlimited_noise",
+      "rate": 1,
+      "depth": 1,
+      "input_rms": 0.04999973482570231,
+      "output_rms": 0.03045345545830521,
+      "gain_db": -4.3066224650881715,
+      "input_peak": 0.2586302161216736,
+      "output_peak": 0.15420770645141602
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0,
+      "depth": 0,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.044536453677629415,
+      "gain_db": -4.897663260151414,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.26413172483444214
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0,
+      "depth": 0.5,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04522915311623932,
+      "gain_db": -4.763606787440211,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.2732703387737274
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0,
+      "depth": 1,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04641755504425023,
+      "gain_db": -4.538330684911074,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.2825470268726349
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0.5,
+      "depth": 0,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.044536453677629415,
+      "gain_db": -4.897663260151414,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.26413172483444214
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0.5,
+      "depth": 0.5,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04352877753908537,
+      "gain_db": -5.096446494465497,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.2529239356517792
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 0.5,
+      "depth": 1,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04364353192063802,
+      "gain_db": -5.073578120882373,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.24079135060310364
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 1,
+      "depth": 0,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.044536453677629415,
+      "gain_db": -4.897663260151414,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.26413172483444214
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 1,
+      "depth": 0.5,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04465416879968571,
+      "gain_db": -4.874735711846619,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.2737996578216553
+    },
+    {
+      "signal": "synthetic_plucks",
+      "rate": 1,
+      "depth": 1,
+      "input_rms": 0.07827062384890093,
+      "output_rms": 0.04494835189571378,
+      "gain_db": -4.817700461787907,
+      "input_peak": 0.26858705282211304,
+      "output_peak": 0.2730330228805542
+    }
+  ],
+  "effect_version": "0.30",
+  "source_commit": "d6a72c598b66c55d5a3f6b137c407bfb5396b4a9",
+  "artifact_sha256": "a6827c6cf59245fe287a3828e535bdc5c49e2be7eff8e61c08e1b8c0a09b36ec"
+}

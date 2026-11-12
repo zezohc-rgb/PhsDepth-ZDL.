@@ -1,0 +1,42 @@
+name: CE-2 Soul DSP and executable ZDL
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ce2-host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install -r ce2soul/requirements-test.txt
+      - name: DSP, independent circuit oracle, sanitizers and ZDL structure
+        run: ./ce2soul/tools/test.sh
+  ce2-binary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild with official TI compiler and pinned linker
+        run: |
+          ./ce2soul/tools/build.sh --output-dir work/rebuilt-ce2
+          cmp ce2soul/build/CE2Soul.ZDL ce2soul/work/rebuilt-ce2/CE2Soul.ZDL
+      - name: Fetch pinned emulator, verify its archive
+        run: |
+          mkdir -p work
+          curl -fL --retry 2 https://berbasoft.com/ziddle/ziddle-1793487371.zip -o work/ziddle.zip
+          echo 'c45f11a0ffa51c327169c3c8c6965043882d39b4a8f5f0ac624603e5941579a3  work/ziddle.zip' | sha256sum -c -
+          unzip -q work/ziddle.zip -d work
+      - name: Execute C674x DSP and compare with host audio
+        run: python3 ce2soul/tools/emulator/run.py --ziddle work/ziddle-1793487371
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CE2Soul-0.43-experimental-original-MS70CDR
+          path: |
+            ce2soul/build/
+            ce2soul/docs/
+            ce2soul/LICENSE
+            licenses/
