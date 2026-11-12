@@ -1,12 +1,14 @@
 # Compatibility and hardware test procedure
 
-Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.10 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner's successful PhaserZeh test validates that earlier effect, not this new chorus.
+Target is **original blue MS-70CDR**, reported firmware **2.10**. ZDL, not ZD2; not MS-70CDR+. CE-2 Soul 0.20 is a real C674x executable built for the known original-MS ABI. Structural and emulator checks do **not** confirm firmware-loader, real-time or physical audio behavior. The owner's successful PhaserZeh test validates that earlier effect, not this new chorus.
+
+Version 0.20 changes the middle of the Rate curve and wet bass filtering. RATE=50 is now approximately 1.89 Hz, compared with 0.59 Hz in 0.10. Review saved presets. Identity, two controls and artwork are unchanged; update the same custom effect, never install two conflicting IDs.
 
 ## Limits
 
 - Physical installation/boot, displayed two knobs, edit callback initialization, repeated activation and patch recall are pending.
 - DSP instruction target is C674x; no claim is made about the exact commercial DSP part inside Zoom's custom chip.
-- 8300 bytes of per-instance descriptor state, with ring priming rather than global arrays. Arena bounds are checked; insufficient memory produces dry passthrough. Hardware allocation and simultaneous instances still need testing.
+- 8308 bytes of per-instance descriptor state, with ring priming rather than global arrays. Arena bounds are checked; insufficient memory produces dry passthrough. Hardware allocation and simultaneous instances still need testing.
 - CPU cost descriptor is provisionally 40.0. Emulator cycles are reported only as emulator counts; actual scheduling margin in a six-effect chain is unknown.
 - RATE minimum/maximum and taper, DEPTH sweep and BBD voltage/clock response remain approximations. This is not a verified CE-2 clone.
 - Only L/Mono input is used when enabled. The same mono output appears at L and R; R-only input is silent, and a stereo effect before it loses its right input. Use it before stereo processing. Bypass preserves incoming L/R unchanged.

@@ -24,32 +24,55 @@ class DesignTests(unittest.TestCase):
    # BLT maps digital omega to analog 2*fs*tan(omega/2).
    f=np.geomspace(20,16000,400);w=2*np.pi*f/44100;s=2j*44100*np.tan(w/2)
    expected=np.polyval(m['analog_b'],s)/np.polyval(m['analog_a'],s)
-   _,actual=signal.freqz(m['b'],m['a'],worN=w)
+   _,actual=signal.sosfreqz(m['sos'],worN=w)
    err=np.max(np.abs(20*np.log10(abs(actual/expected))));errors[name]=float(err)
    self.assertLess(err,.02)
-   self.assertLess(max(abs(np.roots(m['a']))),1)
-  # A separate 3-node KCL solution to the schematic's LP stage.
-  for hz in (100,1000,5000,10000):
-   s=2j*np.pi*hz;g=1/1e4
-   nodal=np.array([[2*g+s*3.3e-9,-g,0],[-g,2*g+s*8.2e-9,-g-s*8.2e-9],[0,-g,g+s*470e-12]])
-   val=np.linalg.solve(nodal,[g,0,0])[2]
-   m=self.models['LP'];self.assertLess(abs(val-np.polyval(m['analog_b'],s)/np.polyval(m['analog_a'],s)),1e-12)
+   for section in m['sos']:self.assertLess(max(abs(np.roots(section[3:]))),1)
+  # Independent four-node KCL: C5/C10 + shunt R + all three LP nodes.
+  for name,r0 in [('BBD_IN',100000),('BBD_OUT',330000)]:
+   for hz in (20,100,1000,5000,10000):
+    v=2j*np.pi*hz;g=1/1e4;c0=33e-9
+    nodal=np.array([[v*c0+1/r0+g,-g,0,0],[-g,2*g+v*3.3e-9,-g,0],[0,-g,2*g+v*8.2e-9,-g-v*8.2e-9],[0,0,-g,g+v*470e-12]])
+    value=np.linalg.solve(nodal,[v*c0,0,0,0])[3]
+    m=self.models[name];self.assertLess(abs(value-np.polyval(m['analog_b'],v)/np.polyval(m['analog_a'],v)),1e-12)
+  # Independent impedance expression includes input C2 and wet R22 load.
+  for hz in (20,100,1000,10000):
+   v=2j*np.pi*hz
+   zi=1/(1/47000+1/(10000+1/(v*6.8e-9)))
+   zf=1/(1/47000+v*100e-12)
+   value=zf/(1/(v*.47e-6)+zi)
+   m=self.models['PRE'];self.assertLess(abs(value-np.polyval(m['analog_b'],v)/np.polyval(m['analog_a'],v)),1e-12)
+  self.assertAlmostEqual(json.loads((ROOT/'docs/design.json').read_text())['wet_coupling_hz'],107.4373,places=3)
   self.metrics={'filter_max_db_error':errors}
  def test_rate_curve(self):
   rate=np.array([self.lib.ce2_rate(i/100) for i in range(101)])
-  expected=(47000/(4*.1e-6*33000*1e6))*10000/(110000-1000*np.arange(101))
+  # Wiper voltage solved from upper/lower pot conductances and R32.
+  x=np.arange(101)/100;top=(1-x)*100000;bottom=10000+x*100000
+  expected=(47000/(4*.1e-6*33000*1e6))*bottom/(top+bottom+top*bottom/1e6)
   self.assertLess(np.max(abs(rate/expected-1)),1e-6);self.assertTrue(np.all(np.diff(rate)>0))
+ def test_loaded_pots(self):
+  data=json.loads((ROOT/'docs/design.json').read_text())
+  fmax=47000/(4*.1e-6*33000*1e6)
+  for raw in (0,1,25,50,75,99):
+   x=raw/100;rt=(1-x)*100000;rb=10000+x*100000
+   # KCL at the loaded Rate wiper, square voltage=1, reference=0.
+   voltage=(1/rt)/(1/rt+1/rb+1/1000000)
+   self.assertAlmostEqual(self.lib.ce2_rate(x)/fmax,voltage,places=6)
+  for raw in range(101):
+   d=raw/100;thevenin=(100000*d)*(100000*(1-d))/100000
+   tau=(220000+thevenin)*10e-9
+   self.assertAlmostEqual(data['lfo_alpha'][raw],1-math.exp(-1/(44100*tau)),places=14)
  def test_static_response(self):
   # Compare rendered, frozen Depth=0 impulse response to independent
   # circuit transfer including cubic fractional-delay response.
   n=16384;x=np.zeros(n,dtype=np.float32);x[2048]=.1;y=self.render(x,depth=0)
   H=np.fft.rfft(y)/np.fft.rfft(x);f=np.fft.rfftfreq(n,1/44100);w=2*np.pi*f/44100
-  h={k:signal.freqz(m['b'],m['a'],worN=w)[1] for k,m in self.models.items()}
+  h={k:signal.sosfreqz(m['sos'],worN=w)[1] for k,m in self.models.items()}
   delay=424.4625;i=int(math.floor(delay));t=delay-i
   # cubic read of delayed signal at n-i-t, taps i-1..i+2.
   taps=np.array([-t*(t-1)*(t-2)/6,(t+1)*(t-1)*(t-2)/2,-(t+1)*t*(t-2)/2,(t+1)*t*(t-1)/6])
   D=sum(taps[j]*np.exp(-1j*w*(i-1+j)) for j in range(4))
-  expected=.5*h['PRE']*h['POST']*(1+h['HP_PRE']*h['LP']**2*h['HP_POST']*h['HP_WET']*D)
+  expected=.5*h['PRE']*h['POST']*(1+h['BBD_IN']*h['BBD_OUT']*h['HP_WET']*D)
   mask=(f>30)&(f<14000)&(abs(expected)>.05)
   err=np.max(abs(H[mask]-expected[mask]));self.assertLess(err,.004)
  def test_modulation_and_linearity(self):

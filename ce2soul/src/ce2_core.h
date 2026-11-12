@@ -16,38 +16,36 @@ typedef struct {
  uint32_t magic,version,ready,warm;
  uint32_t write,read,phase_acc;
  float phase,lfo,rate,depth,delay_samples,clock_sum,clock_error;
- float pre[2],post[2],lp_in[3],lp_out[3],hp_in,hp_out,hp_wet;
+ float pre[4],post[2],lp_in[4],lp_out[4],hp_wet;
  float ring[CE_RING],clock[CE_RING];
 } Ce2;
 CE_INLINE(ce_norm)
 static inline float ce_norm(float x) {return x>=0.0f&&x<=1.0f?x:0.5f;}
-CE_INLINE(ce_rate)
-static inline float ce_rate(float x) {
+CE_INLINE(ce_table)
+static inline float ce_table(const float *table,float x) {
  float p=ce_norm(x)*100.0f;int i=(int)p;
- if(i>=100)return CE_RATE[100];
- return CE_RATE[i]+(p-(float)i)*(CE_RATE[i+1]-CE_RATE[i]);
+ if(i>=100)return table[100];
+ return table[i]+(p-(float)i)*(table[i+1]-table[i]);
 }
+CE_INLINE(ce_rate)
+static inline float ce_rate(float x){return ce_table(CE_RATE,x);}
 CE_INLINE(ce_reset)
 static inline void ce_reset(Ce2 *s,float rate,float depth) {
  unsigned i;
  /* Ring is never read before its current-epoch samples have been written. */
- s->magic=0x43453253u;s->version=1;s->ready=1;s->warm=0;s->write=0;s->read=0;s->clock_sum=0;s->clock_error=0;
+ s->magic=0x43453253u;s->version=2;s->ready=1;s->warm=0;s->write=0;s->read=0;s->clock_sum=0;s->clock_error=0;
  s->phase_acc=0x20000000u;s->phase=0.25f;s->lfo=0;s->rate=rate;s->depth=depth;s->delay_samples=424.4625f;
- for(i=0;i<2;i++)s->pre[i]=s->post[i]=0;
- for(i=0;i<3;i++)s->lp_in[i]=s->lp_out[i]=0;
- s->hp_in=s->hp_out=s->hp_wet=0;
+ for(i=0;i<4;i++)s->pre[i]=s->lp_in[i]=s->lp_out[i]=0;
+ for(i=0;i<2;i++)s->post[i]=0;
+ s->hp_wet=0;
 }
-CE_INLINE(ce_filter1)
-static inline float ce_filter1(float x,float *z,const float *b,const float *a) {
- float y=b[0]*x+*z;*z=b[1]*x-a[1]*y;return y;
+CE_INLINE(ce_sos)
+static inline float ce_sos(float x,float *z,const float *c){
+ float y=c[0]*x+z[0];z[0]=c[1]*x-c[3]*y+z[1];z[1]=c[2]*x-c[4]*y;return y;
 }
-CE_INLINE(ce_filter2)
-static inline float ce_filter2(float x,float *z,const float *b,const float *a) {
- float y=b[0]*x+z[0];z[0]=b[1]*x-a[1]*y+z[1];z[1]=b[2]*x-a[2]*y;return y;
-}
-CE_INLINE(ce_filter3)
-static inline float ce_filter3(float x,float *z,const float *b,const float *a) {
- float y=b[0]*x+z[0];z[0]=b[1]*x-a[1]*y+z[1];z[1]=b[2]*x-a[2]*y+z[2];z[2]=b[3]*x-a[3]*y;return y;
+CE_INLINE(ce_sos2)
+static inline float ce_sos2(float x,float *z,const float c[2][5]){
+ x=ce_sos(x,z,c[0]);return ce_sos(x,z+2,c[1]);
 }
 CE_INLINE(ce_cubic)
 static inline float ce_cubic(float a,float b,float c,float d,float t) {
@@ -72,16 +70,15 @@ static inline float ce_frame(Ce2 *s,float x,float rate,float depth) {
  s->phase_acc=(s->phase_acc+(uint32_t)(int)(s->rate*(2147483648.0f/44100.0f)+.5f))&0x7fffffffu;
  s->phase=(float)(int)s->phase_acc*(1.0f/2147483648.0f);
  tri=s->phase<.5f?4*s->phase-1:3-4*s->phase;
- s->lfo+=CE_LFO_RC*(tri-s->lfo);
- nominal=424.4625f+49.6125f*s->depth*s->lfo;
+ s->lfo+=ce_table(CE_LFO_ALPHA,s->depth)*(s->depth*tri-s->lfo);
+ nominal=424.4625f+49.6125f*s->lfo;
  /* 1024 BBD stages = 512 complete two-phase clock periods. Integrate the
     clock over the actual transit window, rather than applying 512/f(now). */
  s->clock[s->write]=512.0f*ce_recip(nominal,1.0f/425.0f);
  ce_count_add(s,s->clock[s->write]);
  while(s->clock_sum>512.0f){ce_count_add(s,-s->clock[s->read]);s->read=(s->read+1)&CE_MASK;}
- pre=ce_filter2(x,s->pre,CE_PRE_B,CE_PRE_A);
- wet=ce_filter1(pre,&s->hp_in,CE_HP_PRE_B,CE_HP_PRE_A);
- wet=ce_filter3(wet,s->lp_in,CE_LP_B,CE_LP_A);
+ pre=ce_sos2(x,s->pre,CE_PRE);
+ wet=ce_sos2(pre,s->lp_in,CE_BBD_IN);
  s->ring[s->write]=wet;
 
  /* At most 475 historical samples requested; suppress until the complete
@@ -99,11 +96,11 @@ static inline float ce_frame(Ce2 *s,float x,float rate,float depth) {
  /* Short wet fade after priming; direct branch stays present. */
  if(s->warm<CE_RING+256u&&s->warm>CE_RING)wet*=((float)(s->warm-CE_RING))*(1.0f/256.0f);
  s->write=(s->write+1)&CE_MASK;
- wet=ce_filter1(wet,&s->hp_out,CE_HP_POST_B,CE_HP_POST_A);
- wet=ce_filter3(wet,s->lp_out,CE_LP_B,CE_LP_A);
- wet=ce_filter1(wet,&s->hp_wet,CE_HP_WET_B,CE_HP_WET_A);
+ wet=ce_sos2(wet,s->lp_out,CE_BBD_OUT);
+ /* First-order SOS uses a second state identically zero, borrowed local. */
+ {float z[2];z[0]=s->hp_wet;z[1]=0;wet=ce_sos(wet,z,CE_HP_WET[0]);s->hp_wet=z[0];}
  /* Both branches pass through the schematic's summing/de-emphasis stage.
     Common 0.5 normalization keeps relative dry/wet gains equal. No limiter. */
- return ce_filter2(.5f*(pre+wet),s->post,CE_POST_B,CE_POST_A);
+ return ce_sos(.5f*(pre+wet),s->post,CE_POST[0]);
 }
 #endif

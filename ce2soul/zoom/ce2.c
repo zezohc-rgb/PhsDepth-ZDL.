@@ -19,7 +19,7 @@ void Fx_MOD_CE2Soul(CeWord*ctx){
  base=(uintptr_t)desc[0];end=(uintptr_t)desc[1];
  if(!base||end<=base||(base&3u)||end-base<sizeof(Ce2))return;
  s=(Ce2*)base;rate=ce_rate(p[5]);depth=ce_norm(p[6]);
- if(s->magic!=0x43453253u||s->version!=1u||s->ready!=1u)ce_reset(s,rate,depth);
+ if(s->magic!=0x43453253u||s->version!=2u||s->ready!=1u)ce_reset(s,rate,depth);
  /* Mono pedal policy: input L/Mono only, identical processed output L/R.
     R input intentionally ignored; bypass preserves both input channels. */
  for(i=0;i<8;i++){float y=ce_frame(s,b[i],rate,depth);b[i]=y;b[i+8]=y;}

@@ -1,0 +1,71 @@
+{
+  "status": "uncalibrated sensitivity experiment; NOT CE-2 measurements and NOT release delay calibration",
+  "fixed_schematic_components": {
+    "R38_ohm": 150000,
+    "C22_farad": 4.7e-11,
+    "R36_ohm": 4700,
+    "R37_ohm": 4700
+  },
+  "assumptions": {
+    "supply_v": 9,
+    "Q4_vbe_v": 0.65,
+    "D1_drop_v": 0.65,
+    "control_v_range": [
+      2,
+      7
+    ],
+    "unmodeled": "Q5 finite discharge, inverter thresholds/hysteresis/propagation, load currents, component tolerances"
+  },
+  "datasheet_reference": "https://media.digikey.com/pdf/Data%20Sheets/Panasonic%20Semiconductors%20ICs%20PDFs/MN3101.pdf",
+  "oscillator_to_output_frequency_ratio": 2,
+  "cases": [
+    {
+      "threshold_v_assumed": 3.8,
+      "reset_us_assumed": 0.0,
+      "delay_ms_predicted": [
+        1.583098238041547,
+        3.940126081994828
+      ]
+    },
+    {
+      "threshold_v_assumed": 3.8,
+      "reset_us_assumed": 1.0,
+      "delay_ms_predicted": [
+        2.607098238041547,
+        4.964126081994828
+      ]
+    },
+    {
+      "threshold_v_assumed": 4.5,
+      "reset_us_assumed": 0.0,
+      "delay_ms_predicted": [
+        2.626859045074696,
+        4.983886889027976
+      ]
+    },
+    {
+      "threshold_v_assumed": 4.5,
+      "reset_us_assumed": 1.0,
+      "delay_ms_predicted": [
+        3.650859045074696,
+        6.007886889027976
+      ]
+    },
+    {
+      "threshold_v_assumed": 5.2,
+      "reset_us_assumed": 0.0,
+      "delay_ms_predicted": [
+        3.8474548869278644,
+        6.2044827308811445
+      ]
+    },
+    {
+      "threshold_v_assumed": 5.2,
+      "reset_us_assumed": 1.0,
+      "delay_ms_predicted": [
+        4.871454886927864,
+        7.228482730881145
+      ]
+    }
+  ]
+}
