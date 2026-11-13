@@ -1,0 +1,18 @@
+FILTER DELAY BOOST — CANDIDATO EXPERIMENTAL PARA TESTE
+
+Arquivo: FLTDLBS.ZDL
+Nome no menu: FltrDlyB
+Categoria: Delay (8), ID: 958 (0x03BE)
+Controles: Time, F.B, Mix, Rate, Depth, Reso, Level, Tail, BOOST.
+BOOST: 0 a +12 dB. Comece em 0.
+
+Faca backup completo dos patches e efeitos antes do teste.
+Nao force a instalacao se o gerenciador indicar conflito de ID.
+O ID nao apresentou conflito nos catalogos publicos consultados,
+mas nao foi conferido no inventario da sua pedaleira.
+Nenhum teste fisico foi realizado: o candidato pode nao carregar
+ou causar travamento. Nao foi feita gravacao automatica no pedal.
+
+Os bytes de DSP/ELF sao identicos aos do candidato emulado;
+somente os dois bytes de identidade do cabecalho foram alterados.
+SHA-256: 1a6d8dcfa6f9fc6672138dac1081db3afd6f0599a9cbee42966fd65591ce69ad
