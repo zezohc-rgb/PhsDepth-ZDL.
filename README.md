@@ -18,6 +18,10 @@ O adaptador preserva o corpo DSP original, os oito controles e acrescenta BOOST 
 - [Nova validação com rotinas reais do firmware](docs/filter-delay-boost/FIRMWARE_VALIDATION.md)
 - [Relatório original reproduzível](docs/filter-delay-boost/original-analysis.json)
 
+## Instalação por USB no modo normal
+
+O [instalador experimental no navegador](https://multistomp-usb-boost.sturdycypress2.chatgpt.site) confere a identidade da MS-70CDR 2.10, lê os arquivos para backup, verifica conflitos de ID e envia apenas o candidato v0.1.1 e o registro da lista. Não exige iniciar no modo de firmware; depois da gravação concluída, é necessário desligar e ligar normalmente. Sem validação física própria. [Código, uso e recuperação](tools/usb-installer/README.md).
+
 ## Estrutura
 
 `src/filter_delay_boost/`: primitiva C, adaptador TI e especificação do novo controle.

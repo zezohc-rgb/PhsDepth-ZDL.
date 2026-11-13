@@ -1,0 +1,3 @@
+tests/backup-test.zip
+.openai/*.tar.gz
+node_modules/
