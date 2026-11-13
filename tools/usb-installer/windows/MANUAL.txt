@@ -1,5 +1,5 @@
 FILTER DELAY BOOST - PACOTE PARA PC / WINDOWS
-Manual de instruções - pacote v1
+Manual de instruções - pacote v2
 
 COMECE AQUI
 
@@ -115,6 +115,15 @@ Se a v0.1.1 já estiver presente, ele não a grava novamente.
 
 SOLUÇÃO DE PROBLEMAS
 
+- "Nome de arquivo inválido" no pacote antigo:
+  feche a janela do servidor e a aba antigas. Extraia o pacote v2 em
+  uma pasta nova e abra seu INICIAR_WINDOWS.bat. Confira a linha
+  "Instalador PC v2" no registro. A v2 aceita nomes curtos com hífen
+  e outros caracteres permitidos, sem renomear os arquivos.
+  Se a leitura ainda falhar, clique em "Baixar registro" e envie
+  o TXT para análise: ele mostrará o nome recebido e a resposta MIDI.
+  Não prossiga à gravação sem concluir a leitura e o backup.
+
 - O ZIP não abre ou o navegador mostra uma página de código:
   baixe novamente o link direto do ZIP. Se o navegador abrir o arquivo
   em vez de baixá-lo, use "Salvar link como". Extraia o arquivo completo.
@@ -200,7 +209,7 @@ e o controle visual BOOST não altera a pedaleira.
 
 TESTES E LIMITES
 
-27 testes simulados do instalador passaram. O ZIP foi conferido por
+35 testes simulados do instalador passaram. O ZIP foi conferido por
 CRC, nomes, conteúdo e hashes. O servidor foi testado com requisições
 HTTP locais no PowerShell 7 em Linux. Não há validação própria de
 Windows, USB/SysEx real, áudio, LCD, CPU ou instalação na pedaleira.

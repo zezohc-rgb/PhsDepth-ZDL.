@@ -1,4 +1,4 @@
-FILTER DELAY BOOST - PC / WINDOWS
+FILTER DELAY BOOST - PC / WINDOWS - PACOTE v2
 
 1. Extraia TODO o ZIP para uma pasta.
 2. Leia MANUAL.html ou MANUAL.txt.
@@ -13,3 +13,6 @@ Não execute de dentro do ZIP e não abra instalador/index.html diretamente.
 EXPERIMENTAL: ainda sem validação física deste instalador/ZDL na pedaleira.
 Somente MS-70CDR ORIGINAL, firmware 2.10; não serve para MS-70CDR+.
 Se houver falha de recuperação, NÃO reinicie: consulte o manual.
+
+Atualização v2: leitura de nomes menos restritiva e diagnóstico detalhado.
+Se estava usando a v1, feche-a e extraia este pacote em uma NOVA pasta.

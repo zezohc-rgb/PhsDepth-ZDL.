@@ -22,3 +22,5 @@ $('boost').oninput=()=>{const db=Number($('boost').value);$('db').textContent=db
 window.addEventListener('beforeunload',e=>{if(busy){e.preventDefault();e.returnValue='';}});
 if(!navigator.requestMIDIAccess)$('support').textContent='Este navegador não oferece Web MIDI. Abra no Edge ou Opera em um computador.';
 update();
+
+log('Instalador PC v2 — diagnóstico de nomes habilitado.');

@@ -20,7 +20,7 @@ O adaptador preserva o corpo DSP original, os oito controles e acrescenta BOOST 
 
 ## Instalação por USB no modo normal
 
-**[Baixar pacote completo para PC (.zip)](downloads/filter-delay-boost-pc-v1/FILTER_DELAY_BOOST_PC_v1.zip)** — inclui iniciador Windows, ZDL, manual em português, código e documentação. Extraia tudo e abra `INICIAR_WINDOWS.bat`; não requer Python ou Node. Continua experimental, sem validação física própria e sem teste em Windows.
+**[Baixar pacote completo para PC (.zip)](downloads/filter-delay-boost-pc-v2/FILTER_DELAY_BOOST_PC_v2.zip)** — inclui iniciador Windows, ZDL, manual em português, código e documentação. Extraia tudo e abra `INICIAR_WINDOWS.bat`; não requer Python ou Node. Continua experimental, sem validação física própria e sem teste em Windows.
 
 O [instalador experimental no navegador](https://multistomp-usb-boost.sturdycypress2.chatgpt.site) confere a identidade da MS-70CDR 2.10, lê os arquivos para backup, verifica conflitos de ID e envia apenas o candidato v0.1.1 e o registro da lista. Não exige iniciar no modo de firmware; depois da gravação concluída, é necessário desligar e ligar normalmente. Sem validação física própria. [Código, uso e recuperação](tools/usb-installer/README.md).
 

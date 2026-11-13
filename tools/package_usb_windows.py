@@ -13,12 +13,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'tools' / 'usb-installer'
-NAME = 'FILTER_DELAY_BOOST_PC_v1'
+NAME = 'FILTER_DELAY_BOOST_PC_v2'
 SHA = '26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04'
 
 
 def build() -> Path:
-    output = ROOT / 'downloads' / 'filter-delay-boost-pc-v1'
+    output = ROOT / 'downloads' / 'filter-delay-boost-pc-v2'
     output.mkdir(parents=True, exist_ok=True)
     target = output / (NAME + '.zip')
     with tempfile.TemporaryDirectory(prefix='filter-delay-pc-') as temporary:

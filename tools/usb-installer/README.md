@@ -4,7 +4,7 @@ Instalador experimental, sem dependências, para **MS-70CDR original / firmware 
 
 ## Pacote para Windows
 
-Baixe [FILTER_DELAY_BOOST_PC_v1.zip](../../downloads/filter-delay-boost-pc-v1/FILTER_DELAY_BOOST_PC_v1.zip), use **Extrair tudo** e abra `INICIAR_WINDOWS.bat`. Leia `MANUAL.html` ou `MANUAL.txt` antes de conectar. O pacote contém o instalador, o ZDL v0.1.1, o código e a documentação; não requer Python nem Node. O servidor usa Windows PowerShell 5.1 e atende somente a `127.0.0.1`. A política de execução é definida apenas para o processo do iniciador. Não execute como administrador.
+Baixe [FILTER_DELAY_BOOST_PC_v2.zip](../../downloads/filter-delay-boost-pc-v2/FILTER_DELAY_BOOST_PC_v2.zip), use **Extrair tudo** e abra `INICIAR_WINDOWS.bat`. Leia `MANUAL.html` ou `MANUAL.txt` antes de conectar. O pacote contém o instalador, o ZDL v0.1.1, o código e a documentação; não requer Python nem Node. O servidor usa Windows PowerShell 5.1 e atende somente a `127.0.0.1`. A política de execução é definida apenas para o processo do iniciador. Não execute como administrador.
 
 O servidor foi conferido com 7 testes HTTP em PowerShell 7.4.7 no Linux, inclusive caminho com espaços, tipos MIME, ZDL idêntico, HEAD, arquivo ausente e bloqueio de travessia de diretórios. O duplo clique, o navegador e a execução em Windows ainda não foram validados. Para reconstruir o ZIP: `python tools/package_usb_windows.py`, a partir da raiz do repositório.
 
@@ -46,7 +46,7 @@ Arquivos estáticos em `dist/`. Nenhum dado da pedaleira é enviado ao servidor;
 node tests/installer.test.mjs
 ```
 
-27 testes simulados cobrem identidade, CRC, empacotamento, leitura, enquadramento de gravação, cabeçalhos, hash, lista, conflitos, atualização, backup obrigatório, perda de conexão e recuperação. Eles **não validam** temporização USB real, comportamento do LCD, som, CPU ou compatibilidade física. O teste gera `tests/backup-test.zip`, também conferido pelo `zipfile` do Python no desenvolvimento.
+35 testes simulados cobrem identidade, CRC, empacotamento, leitura, enquadramento de gravação, cabeçalhos, hash, lista, conflitos, atualização, backup obrigatório, perda de conexão e recuperação. Eles **não validam** temporização USB real, comportamento do LCD, som, CPU ou compatibilidade física. O teste gera `tests/backup-test.zip`, também conferido pelo `zipfile` do Python no desenvolvimento.
 
 ## Procedência
 

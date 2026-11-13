@@ -5,7 +5,26 @@ export const OLD_SHA='1a6d8dcfa6f9fc6672138dac1081db3afd6f0599a9cbee42966fd65591
 export function assert(ok,message){if(!ok)throw new Error(message);}
 export const equal=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
 export const ascii=b=>String.fromCharCode(...b);
-export const nameBytes=n=>{assert(/^(?:[A-Z0-9_]{1,8}\.[A-Z0-9_]{1,3}|\*)$/i.test(n),'Nome de arquivo inválido.');return [...n].map(c=>c.charCodeAt(0)).concat(0);};
+// Keep the exact basename; never normalize, trim or guess a pedal filename.
+// Printable DOS short-name characters include '-' and other punctuation.
+export function validName(n){
+  if(typeof n!=='string'||n.length>12)return false;
+  const pieces=n.split('.');
+  if(pieces.length>2||pieces[0].length<1||pieces[0].length>8)return false;
+  if(pieces.length===2&&(pieces[1].length<1||pieces[1].length>3))return false;
+  return pieces.every(p=>/^[A-Za-z0-9!#$%&'()@^_`{}~-]+$/.test(p));
+}
+export const nameBytes=n=>{assert(n==='*'||validName(n),'Nome de arquivo não reconhecido: '+JSON.stringify(n)+'.');return [...n].map(c=>c.charCodeAt(0)).concat(0);};
+export const hex=bytes=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join(' ');
+export function directoryEntry(message){
+  const b=body(message);
+  assert(b.length>=31&&b[0]===96&&b[1]===4&&(b[2]===37||b[2]===38),'Resposta de diretório desconhecida.');
+  const raw=b.slice(11,23),zero=raw.indexOf(0),name=ascii(zero<0?raw:raw.slice(0,zero));
+  assert(validName(name),'Nome de arquivo não reconhecido no diretório: '+JSON.stringify(name)+'; campo HEX: '+hex(raw)+'.');
+  const size=unseven(b.slice(26,31));
+  assert(size>0&&size<=4*1024*1024,'Tamanho de arquivo não suportado: '+JSON.stringify(name)+', '+size+' bytes.');
+  return {name,size};
+}
 export const frame=b=>Uint8Array.from([0xf0,0x52,0,0x61,...b,0xf7]);
 export function body(m){assert(m.length>=6&&equal(m.slice(0,4),[0xf0,0x52,0,0x61])&&m.at(-1)===0xf7,'Resposta MIDI inesperada.');return m.slice(4,-1);}
 export function pack(bytes){const out=[];for(let i=0;i<bytes.length;i+=7){const g=bytes.slice(i,i+7);out.push(g.reduce((h,b,j)=>h|((b>>7)<<(6-j)),0),...g.map(b=>b&127));}return out;}
@@ -17,14 +36,35 @@ export async function digest(b){return [...new Uint8Array(await crypto.subtle.di
 export function identity(m){assert(m.length===15&&m[0]===0xf0&&m[1]===0x7e&&m[3]===6&&m[4]===2&&m[5]===0x52&&m.at(-1)===0xf7,'Identificação MIDI desconhecida.');assert(m[6]===0x61,'Somente a MS-70CDR original é aceita.');const version=ascii(m.slice(10,14));assert(version==='2.10','É necessário firmware 2.10; recebido '+version+'.');return {model:'MS-70CDR',version};}
 export function info(b){assert(b.length>=80&&ascii(b.slice(4,8))==='SIZE'&&ascii(b.slice(20,24))==='INFO','Cabeçalho ZDL desconhecido.');const view=new DataView(b.buffer,b.byteOffset,b.byteLength),elf=20+view.getUint32(12,true);assert(elf>=76&&elf+4<=b.length&&equal(b.slice(elf,elf+4),[127,69,76,70]),'ELF ZDL inválido.');return {gid:b[60],id:view.getUint16(64,true)};}
 export async function candidate(b){assert(b.length===18708&&(await digest(b))===SHA,'Arquivo diferente do candidato v0.1.1 autorizado.');const i=info(b);assert(i.gid===8&&i.id===958,'Identidade incorreta.');return i;}
-export function records(list){assert(list.length===4108,'A lista deve ter 4108 bytes.');const rows=[],sections=[];for(let at=0;at+13<=list.length;){if(equal(list.slice(at,at+4),[62,62,62,0])){const gid=list[at+4],start=at+13;let r=start;for(;r+13<=list.length&&!equal(list.slice(r,r+4),[60,60,60,0]);r+=13){const name=ascii(list.slice(r,r+12)).replace(/\0+$/,'');assert(/^[A-Z0-9_]{1,8}\.[A-Z0-9_]{1,3}$/i.test(name)&&list[r+12]===0,'Registro da lista não reconhecido.');rows.push({name,gid,at:r});}assert(r+13<=list.length,'Seção da lista sem fechamento.');sections.push({gid,start,end:r});at=r+13;}else{assert(list[at]===0,'Conteúdo da lista não reconhecido.');at++;}}assert(sections.length>0&&new Set(sections.map(s=>s.gid)).size===sections.length,'Seções ausentes ou duplicadas.');assert(new Set(rows.map(r=>r.name.toUpperCase())).size===rows.length,'A lista contém nomes duplicados.');return {rows,sections};}
+export function records(list){assert(list.length===4108,'A lista deve ter 4108 bytes.');const rows=[],sections=[];for(let at=0;at+13<=list.length;){if(equal(list.slice(at,at+4),[62,62,62,0])){const gid=list[at+4],start=at+13;let r=start;for(;r+13<=list.length&&!equal(list.slice(r,r+4),[60,60,60,0]);r+=13){const name=ascii(list.slice(r,r+12)).replace(/\0+$/,'');assert(validName(name)&&list[r+12]===0,'Registro da lista não reconhecido: '+JSON.stringify(name)+'.');rows.push({name,gid,at:r});}assert(r+13<=list.length,'Seção da lista sem fechamento.');sections.push({gid,start,end:r});at=r+13;}else{assert(list[at]===0,'Conteúdo da lista não reconhecido.');at++;}}assert(sections.length>0&&new Set(sections.map(s=>s.gid)).size===sections.length,'Seções ausentes ou duplicadas.');assert(new Set(rows.map(r=>r.name.toUpperCase())).size===rows.length,'A lista contém nomes duplicados.');return {rows,sections};}
 export function append(list){const {rows,sections}=records(list);assert(!rows.some(r=>r.name.toUpperCase()===FILE),'Efeito já listado.');const s=sections.find(s=>s.gid===8);assert(s,'Categoria Delay ausente.');assert(list.slice(-13).every(b=>b===0),'Lista de efeitos sem espaço.');const rec=new Uint8Array(13);rec.set(nameBytes(FILE));const out=Uint8Array.from([...list.slice(0,s.end),...rec,...list.slice(s.end,-13)]);records(out);return out;}
 export function chunk(m){const b=body(m);assert(b.length>=7&&equal(b.slice(0,3),[96,4,34]),'Bloco de leitura inesperado.');const len=b[5]+b[6]*128;assert(len<=512,'Bloco grande demais.');if(len===0)return null;const packedLen=len+Math.ceil(len/7);assert(b.length===7+packedLen+5,'Bloco truncado ou de formato desconhecido.');const data=unpack(b.slice(7,7+packedLen));assert(data.length===len&&((unseven(b.slice(-5))^0xffffffff)>>>0)===crc32(data),'CRC do bloco inválido.');return data;}
 export class FileSystem{
   constructor(transport,log=()=>{}){this.t=transport;this.log=log;}
   async ask(b,timeout=3000){const r=await this.t.request(frame(b),m=>m.length>=6&&equal(m.slice(0,4),[240,82,0,97])&&m[4]===96,timeout);body(r);return r;}
   async close(){await this.ask([96,33,64,0,0,0,0]);await this.ask([96,9]);}
-  async list(){const files=[];try{let r=await this.ask([96,37,0,0,...nameBytes('*')]);for(let g=0;g<600;g++){const b=body(r);if(equal(b.slice(0,4),[96,3,122,127])){assert(files.length,'Nenhum arquivo listado.');return files;}assert(b[0]===96&&b[1]===4&&b.length>=31,'Resposta de diretório desconhecida.');const raw=b.slice(11,23),z=raw.indexOf(0),name=ascii(z<0?raw:raw.slice(0,z));nameBytes(name);const size=unseven(b.slice(26,31));assert(size>0&&size<=4*1024*1024,'Tamanho de arquivo não suportado.');assert(!files.some(f=>f.name.toUpperCase()===name.toUpperCase()),'Nome repetido no diretório.');files.push({name,size});r=await this.ask([96,38,0,0,...nameBytes('*')]);}throw new Error('Diretório excedeu o limite.');}finally{await this.close();}}
+  async list(){
+    const files=[];let reply=null,failure=null;
+    try{
+      reply=await this.ask([96,37,0,0,...nameBytes('*')]);
+      for(let index=0;index<600;index++){
+        const b=body(reply);
+        if(equal(b.slice(0,4),[96,3,122,127])){assert(files.length,'Nenhum arquivo listado.');return files;}
+        const entry=directoryEntry(reply);
+        assert(!files.some(f=>f.name.toUpperCase()===entry.name.toUpperCase()),'Nome repetido no diretório: '+JSON.stringify(entry.name)+'.');
+        files.push(entry);
+        reply=await this.ask([96,38,0,0,...nameBytes('*')]);
+      }
+      throw new Error('Diretório excedeu o limite.');
+    }catch(error){
+      failure=error;
+      this.log('Diagnóstico PC v2: falha após '+files.length+' entradas. Última resposta MIDI ('+(reply?.length||0)+' bytes): '+(reply?hex(reply.slice(0,128)):'ausente'));
+      this.log('Detalhe da leitura: '+error.message);
+      throw error;
+    }finally{
+      try{await this.close();}catch(error){if(failure)this.log('Falha ao encerrar leitura: '+error.message);else throw error;}
+    }
+  }
   async read(name,size,prefix=false){nameBytes(name);assert(Number.isInteger(size)&&size>0&&size<=4*1024*1024,'Tamanho inválido.');const parts=[];let total=0;await this.ask([96,32,2,0,0,0,0,0,0,0,0,0,...nameBytes(name)]);try{for(let n=0;n<=Math.ceil(size/512);n++){await this.ask([96,5,0]);await this.ask([96,34,20,47,96,0,12,0,4,0,0,0]);const c=chunk(await this.ask([96,5,0]));if(c===null){assert(total===size,'Leitura incompleta de '+name+'.');return Uint8Array.from(parts);}assert(total+c.length<=size,'Leitura maior que o diretório.');parts.push(...c);total+=c.length;if(prefix)return Uint8Array.from(parts);}throw new Error('Fim de arquivo não recebido.');}finally{await this.close();}}
   async free(){const b=body(await this.ask([96,41,0,0,0,0,0]));assert(b[0]===96&&b[1]===4&&b.length>=17,'Não foi possível confirmar o espaço livre.');const free=unseven(b.slice(12,17));assert(free<=4*1024*1024,'Espaço livre não reconhecido.');return free;}
   async write(name,data){assert(name===FILE||name===LIST,'Gravação desse arquivo bloqueada.');assert(data.length>0&&data.length<=32768,'Tamanho de gravação bloqueado.');this.log('Gravando '+name+'…');try{for(const b of [[96,37,0,0,...nameBytes(name)],[96,5,0],[96,39],[96,36,...nameBytes(name)],[96,32,1,0,0,0,0,0,0,0,0,0,...nameBytes(name)],[96,5,0]])await this.ask(b);for(let at=0;at<data.length;at+=512){const p=data.slice(at,at+512);await this.ask([96,35,64,0,0,0,0,p.length&127,p.length>>7,0,0,0,...pack(p),...seven((crc32(p)^0xffffffff)>>>0)]);await this.ask([96,5,0]);}}finally{await this.close();}assert(equal(await this.read(name,data.length),data),'A conferência após gravação falhou para '+name+'.');this.log(name+': leitura de retorno idêntica.');}
