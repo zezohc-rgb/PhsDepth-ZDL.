@@ -15,3 +15,4 @@ original/firmware/
 build/firmware-*.json
 build/coefficient-*.json
 build/loader-*.json
+build/history/

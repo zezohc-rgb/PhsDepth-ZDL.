@@ -63,7 +63,7 @@ Isso **não é rejeição do candidato pelo carregador Zoom**: a ferramenta não
 
 `tools/audit_effect_identity.py` cruzou 804 pares categoria/ID do catálogo upstream fixado no commit `32f3d6877d892409c6defeeeec57040ad004d31f`: efeitos originais, customizados, antigos, probes, manifests e faixas de slots gerados. Há opções entre 958 e 999 sem uso conhecido nessa fotografia do catálogo; isso não reserva um ID globalmente.
 
-O usuário informou que possui efeitos personalizados e não lembra quais. Por isso o candidato continua com ID **experimental 0xFFFE**, fora da faixa usual de customizados. **Não instalar essa versão.** A escolha final depende de ler a lista/exportação dos efeitos instalados, não de adivinhar seus nomes. [identity-audit.json](identity-audit.json) registra a limitação.
+O usuário informou que possui efeitos personalizados e não lembra quais. A pesquisa permaneceu com o ID experimental 0xFFFE. Em seguida o usuário solicitou um arquivo para teste sem fornecer inventário: foi preparado o candidato de ID 958 descrito em [TEST_CANDIDATE.md](TEST_CANDIDATE.md). A ausência de conflito no aparelho continua desconhecida. [identity-audit.json](identity-audit.json) registra a limitação.
 
 A auditoria suporta uma pasta local de ZDLs exportados:
 

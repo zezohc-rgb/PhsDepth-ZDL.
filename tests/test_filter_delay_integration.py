@@ -74,7 +74,7 @@ class IntegrationTests(unittest.TestCase):
     def test_header_identity_separate_from_original(self):
         self.assertEqual(self.after['gid'],8)
         self.assertNotEqual(self.after['fxid'],self.before['fxid'])
-        self.assertEqual(self.after['fxid'],65534) # emulator-only candidate, not reserved for hardware.
+        self.assertEqual(self.after['fxid'],958) # Public-catalogue audit only; hardware inventory unknown.
 
     def test_memory_and_size_envelope(self):
         self.assertLessEqual(len(self.new),32126)

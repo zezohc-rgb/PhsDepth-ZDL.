@@ -1,6 +1,6 @@
 # Integração experimental implementada
 
-**Existe agora `build/FLTRDLY_BOOST.ZDL`, gerado localmente.** É um candidato para testes em emulador; **não está qualificado para instalação na pedaleira**. O ID usado nesta investigação (`0xFFFE`, categoria 8) é experimental, não reservado nem auditado no catálogo de uma pedaleira.
+**Existe agora `build/FLTRDLY_BOOST.ZDL`, gerado localmente.** É um candidato para testes em emulador; **não está qualificado para instalação na pedaleira**. A pesquisa usou o ID 0xFFFE. A pedido do usuário, foi preparado agora um candidato de ID 958, sem conflito público conhecido e com o mesmo ELF/DSP. O inventário da pedaleira não foi auditado; consulte [TEST_CANDIDATE.md](TEST_CANDIDATE.md).
 
 ## Implementação
 

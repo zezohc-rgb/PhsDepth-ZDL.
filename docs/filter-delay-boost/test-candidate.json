@@ -1,0 +1,19 @@
+{
+  "test_candidate": true,
+  "filename_8_3": "FLTDLBS.ZDL",
+  "gid": 8,
+  "fxid": 958,
+  "sha256": "1a6d8dcfa6f9fc6672138dac1081db3afd6f0599a9cbee42966fd65591ce69ad",
+  "size": 18708,
+  "changes_from_emulated_candidate": [
+    64,
+    65
+  ],
+  "dsp_and_elf_identical_to_emulated_candidate": true,
+  "unit_tests_passed": 41,
+  "hardware_tested": false,
+  "installed_inventory_audited": false,
+  "id958_emulator_unity_bit_exact": true,
+  "id958_emulator_12db_max_error": 3.846865034851099e-09,
+  "id958_emulator_unknown_opcodes": 0
+}

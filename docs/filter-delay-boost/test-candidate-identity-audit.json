@@ -1,0 +1,70 @@
+{
+  "research_commit": "32f3d6877d892409c6defeeeec57040ad004d31f",
+  "sources": [
+    {
+      "file": "docs/FXID-REGISTRY.md",
+      "sha256": "0817a16dfc2581532f0bc050b541c9fb4ce73c499338c434735800e037c5fb69"
+    },
+    {
+      "file": "tools/effects_db.json",
+      "sha256": "e03abe519cfd8e47fe81b6ce1cdfbaa0b3272c720bbb85731a52413570b6cd08"
+    }
+  ],
+  "occupied_gid_fxid_pairs": 804,
+  "candidate": {
+    "file": "FLTRDLY_BOOST.ZDL",
+    "gid": 8,
+    "fxid": 958,
+    "known_conflicts": [],
+    "within_common_custom_range_400_999": true
+  },
+  "suggestions_without_known_use_in_any_gid": [
+    958,
+    959,
+    960,
+    961,
+    962,
+    963,
+    964,
+    965,
+    966,
+    967,
+    968,
+    969,
+    970,
+    971,
+    972,
+    973,
+    974,
+    975,
+    976,
+    977,
+    978,
+    979,
+    980,
+    981,
+    982,
+    983,
+    984,
+    985,
+    986,
+    987,
+    988,
+    989,
+    990,
+    991,
+    992,
+    993,
+    994,
+    995,
+    996,
+    997,
+    998,
+    999
+  ],
+  "pedal_inventory_supplied": false,
+  "pedal_inventory": [],
+  "global_reservation_claimed": false,
+  "hardware_compatibility_claimed": false,
+  "limitation": "Pinned public catalogue only; verify current collections and the user pedal inventory before choosing a release ID."
+}

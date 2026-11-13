@@ -1,7 +1,10 @@
 # FILTER DELAY BOOST — Zoom MS-70CDR original, firmware 2.10
 
-**Candidato experimental gerado: `build/FLTRDLY_BOOST.ZDL`. Ainda não qualificado para instalar na pedaleira.**
-O Filter Delay oficial foi extraído legitimamente. O novo adaptador preserva o corpo DSP original, os oito controles e acrescenta BOOST 0 a +12 dB. A estrutura e a execução foram testadas em computador/emulador; carregamento, CPU/RAM, presets e LCD no firmware real continuam pendentes. O ID `0xFFFE` é exclusivo dos testes desta entrega e não deve ser instalado.
+**Arquivo experimental para teste: `build/FLTDLBS.ZDL`, nome FltrDlyB, categoria Delay, ID 958.**
+
+Fornecido para teste a pedido do usuário; não foi validado fisicamente. O ID não tem conflito conhecido nos catálogos consultados, mas o inventário da pedaleira não foi conferido. Faça backup e não force a instalação se houver indicação de ID duplicado. [Detalhes do arquivo atual](docs/filter-delay-boost/TEST_CANDIDATE.md).
+
+O adaptador preserva o corpo DSP original, os oito controles e acrescenta BOOST 0 a +12 dB. A pesquisa anterior usou o ID 0xFFFE; somente os dois bytes de identidade mudaram no candidato atual.
 
 ![Simulação das três páginas com BOOST na última posição](docs/filter-delay-boost/preview/interface.png)
 
@@ -58,7 +61,7 @@ O script exige o hash do original conhecido. O arquivo resultante contém códig
 
 ## Instalação, testes físicos e reversão
 
-**Não instalar o candidato atual de ID experimental `0xFFFE`.** Há um arquivo real para análise/emulação, mas faltam auditoria de identidade, validação de inicialização no firmware e testes físicos. Não enviar um `.obj` à pedaleira nem renomeá-lo como `.ZDL`.
+**O arquivo atual de ID 958 é experimental e foi fornecido para teste solicitado pelo usuário.** A auditoria é limitada aos catálogos públicos; carregamento completo e testes físicos continuam pendentes. Não enviar um `.obj` à pedaleira nem renomeá-lo como `.ZDL`.
 
 Quando houver um candidato validado, exportar e verificar backups de patches e da lista de efeitos antes de qualquer instalação manual. Manter o Filter Delay original; usar identidade e nome 8.3 exclusivos para a variante. Instalar manualmente um candidato por vez com ferramenta compatível com a MS-70CDR original, após validar tamanho, ID e estrutura. Nunca usar instruções de MS-70CDR+ ou ZD2 neste projeto.
 
