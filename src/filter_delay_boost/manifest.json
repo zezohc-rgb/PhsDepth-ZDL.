@@ -1,0 +1,16 @@
+{
+  "status": "DSP primitive only; Zoom integration not implemented",
+  "target": "Zoom MS-70CDR original, firmware 2.10",
+  "original_file": "FLTRDLY.ZDL",
+  "original_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
+  "output_file_requested": "FLTRDLY_BOOST.ZDL",
+  "device_filename_candidate": "FLTDLBS.ZDL",
+  "gid": 8,
+  "fxid": null,
+  "original_parameter_count": 8,
+  "parameter": {"name": "BOOST", "min": 0, "max": 12, "default": 0, "step": 1, "unit": "dB", "user_index": 9},
+  "gain_formula": "10^(dB/20)",
+  "placement": "after complete original output, outside feedback",
+  "limiter": false,
+  "hardware_tested": false
+}
