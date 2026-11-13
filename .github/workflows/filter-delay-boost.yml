@@ -1,0 +1,12 @@
+name: Filter Delay Boost host tests (not hardware or ZDL)
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test gain primitive and parsers
+        run: python3 -m unittest discover -s tests -p test_filter_delay_boost.py -v

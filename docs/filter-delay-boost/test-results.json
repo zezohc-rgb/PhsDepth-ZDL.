@@ -1,0 +1,19 @@
+{
+  "host_tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_available": true,
+  "target_compiler": "TI C6000 CGT 8.5.0.LTS",
+  "target": "C6740, EABI, far data, optimization 2",
+  "target_object_sha256": "defdf90563c678baae1168ba6e5a19de9740e97b18055c7d8ecac9121247b6cf",
+  "target_object_size": 9200,
+  "target_text_bytes": 320,
+  "target_constant_bytes": 52,
+  "target_execution_tested": false,
+  "zdl_build_exit_code": 2,
+  "zdl_build_diagnostic": "BLOCKED: original DSP callback wrapper, BOOST edit/init handler, coefficient allocation,\ndescriptor/relocation rebuild and unique effect ID are not verified/implemented.\nNo FLTRDLY_BOOST.ZDL was produced. See docs/filter-delay-boost/INTEGRATION.md.",
+  "final_zdl_exists": false,
+  "hardware_tested": false,
+  "original_phsdepth_smoke_test": "passed"
+}

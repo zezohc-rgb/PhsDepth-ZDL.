@@ -1,0 +1,22 @@
+test_cycle_size_and_previous_rejected (test_filter_delay_boost.ExtractionTests.test_cycle_size_and_previous_rejected) ... ok
+test_linked_extraction (test_filter_delay_boost.ExtractionTests.test_linked_extraction) ... ok
+test_missing_or_duplicate_signature (test_filter_delay_boost.ExtractionTests.test_missing_or_duplicate_signature) ... ok
+test_all_gains_and_db (test_filter_delay_boost.GainTests.test_all_gains_and_db) ... ok
+test_bounds_canaries (test_filter_delay_boost.GainTests.test_bounds_canaries) ... ok
+test_empty_block (test_filter_delay_boost.GainTests.test_empty_block) ... ok
+test_invalid_controls_no_mutation (test_filter_delay_boost.GainTests.test_invalid_controls_no_mutation) ... ok
+test_no_hidden_limiter_and_headroom (test_filter_delay_boost.GainTests.test_no_hidden_limiter_and_headroom) ... ok
+test_post_mix_linearity (test_filter_delay_boost.GainTests.test_post_mix_linearity) ... ok
+test_stereo_independent_no_crosstalk (test_filter_delay_boost.GainTests.test_stereo_independent_no_crosstalk) ... ok
+test_unity_bit_exact (test_filter_delay_boost.GainTests.test_unity_bit_exact) ... ok
+test_zero_right_remains_zero (test_filter_delay_boost.GainTests.test_zero_right_remains_zero) ... ok
+test_original_identity_structure_and_controls (test_filter_delay_boost.OriginalTests.test_original_identity_structure_and_controls) ... ok
+test_reject_machine_mismatch (test_filter_delay_boost.OriginalTests.test_reject_machine_mismatch) ... ok
+test_reject_missing_descriptor_sentinel (test_filter_delay_boost.OriginalTests.test_reject_missing_descriptor_sentinel) ... ok
+test_reject_section_table_outside_file (test_filter_delay_boost.OriginalTests.test_reject_section_table_outside_file) ... ok
+test_reject_truncation_and_trailing_bytes (test_filter_delay_boost.OriginalTests.test_reject_truncation_and_trailing_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.140s
+
+OK
