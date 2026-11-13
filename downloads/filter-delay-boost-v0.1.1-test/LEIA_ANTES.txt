@@ -1,0 +1,22 @@
+FILTER DELAY BOOST — TESTE v0.1.1
+
+Arquivo: FLTDLBS.ZDL. Nome no menu: FltrDlyB.
+Categoria Delay, ID 958. BOOST: 0 a +12 dB, terceiro controle da terceira pagina.
+
+Corrigida a ambiguidade de identificacao: a tabela antiga inativa nao
+aparece mais primeiro aos leitores legados. Os leitores agora concordam
+com o nome FltrDlyB. O codigo DSP nao foi alterado nesta correcao.
+
+Nao foi confirmado que essa ambiguidade explica o outro efeito que
+apareceu na pedaleira do usuario. Esta versao ainda nao foi testada
+fisicamente e pode nao carregar ou causar travamento.
+
+Faca backup dos patches e efeitos antes de qualquer teste.
+Use somente esta versao na pasta de importacao; nao mantenha junto
+a copia anterior do mesmo ID. Se houver aviso de ID duplicado, nao force.
+Comece com BOOST=0 e volume baixo.
+
+42 testes locais e 78 inicializacoes com callbacks do firmware passaram.
+Nenhuma gravacao no pedal foi feita automaticamente.
+
+SHA-256 do ZDL: 26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04
