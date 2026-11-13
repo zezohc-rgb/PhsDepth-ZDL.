@@ -1,7 +1,7 @@
 {
   "status": "experimental; not hardware validated",
   "original_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
-  "output_sha256": "1a6d8dcfa6f9fc6672138dac1081db3afd6f0599a9cbee42966fd65591ce69ad",
+  "output_sha256": "26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04",
   "output_size": 18708,
   "experimental_fxid": 958,
   "stock_audio_bytes_preserved": 2080,

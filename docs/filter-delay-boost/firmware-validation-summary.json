@@ -1,7 +1,7 @@
 {
   "firmware_sha256": "4353e745b44ad61a1ccdc338166139d72ceb9b8e45cacf30384b58493dc7f6ed",
   "original_zdl_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
-  "candidate_sha256": "1a3ea511453d2551f24975d68592990a909f14ee421b25bd47e5ff5e07768f93",
+  "candidate_sha256": "26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04",
   "actual_firmware_init_comparisons": 78,
   "actual_firmware_copy_tests": 16,
   "actual_firmware_raw_lookup_tests": 66,

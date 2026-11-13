@@ -1,5 +1,5 @@
 {
-  "status": "Experimental candidate provided for user-requested physical testing; no hardware validation",
+  "status": "v0.1.0 suspended after user reports wrong effect; parser fix under investigation",
   "target": "Zoom MS-70CDR original, firmware 2.10",
   "original_file": "FLTRDLY.ZDL",
   "original_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
@@ -32,5 +32,8 @@
   "user_has_custom_effects": true,
   "hardware_test_fxid": 958,
   "hardware_test_gid": 8,
-  "user_requested_test_without_inventory": true
+  "user_requested_test_without_inventory": true,
+  "user_reported_installation_failure": true,
+  "legacy_parser_ambiguity_fixed": true,
+  "physical_fix_verified": false
 }

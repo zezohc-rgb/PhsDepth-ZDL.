@@ -1,0 +1,21 @@
+{
+  "status": "parser ambiguity fixed locally; reported replacement cause not confirmed",
+  "release_v010_status": "suspended after user report",
+  "user_report": "Adding the candidate selects or installs another effect; manager/version, replacement name and location not yet supplied",
+  "confirmed_defect": "legacy first-OnOff parser sees inactive stock descriptor before active descriptor",
+  "legacy_name_before": "FilterDly",
+  "legacy_name_after": "FltrDlyB",
+  "dll_name_after": "FltrDlyB",
+  "bytes_changed_from_v010": [
+    6876,
+    6877,
+    6878,
+    6879,
+    6880
+  ],
+  "new_sha256": "26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04",
+  "unit_tests_passed": 42,
+  "emulated_unity_bit_exact": true,
+  "actual_firmware_init_comparisons_passed": 78,
+  "physical_fix_verified": false
+}

@@ -49,6 +49,11 @@ def build(original, ti_root, fxid, output, dsp_cost=40.0):
     if len(gainbytes)!=52: raise ValueError('unexpected linked gain layout')
     text['data'].extend(bytes(code_va-len(text['data']))+extension)
     const['data'].extend(bytes(desc_off-len(const['data']))+desc)
+    # The old descriptor is no longer referenced by the DLL or by the
+    # relocated FilterDly symbol. Legacy installers scan the FIRST OnOff
+    # marker instead of following the DLL, so remove that inactive marker.
+    # Preserve the rest of its bytes/relocations and all executable code.
+    const['data'][0x270:0x27c] = bytes(12)
     const['data'].extend(bytes(coe_off-len(const['data'])))
     const['data'].extend(const['data'][0x524:0x524+188]+struct.pack('<f',1))
     const['data'].extend(bytes(gains_off-len(const['data']))+gainbytes)

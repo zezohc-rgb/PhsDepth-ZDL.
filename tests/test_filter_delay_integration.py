@@ -41,6 +41,15 @@ class IntegrationTests(unittest.TestCase):
                 self.assertEqual(a[key],b[key])
             self.assertEqual(b['flags'],a['flags']&~4)
 
+    def test_legacy_and_dll_parsers_agree_on_effect_name(self):
+        # Zoom Firmware Editor Patch.extractNameFromContent uses the FIRST
+        # OnOff marker and the following FFFFFFFF name-entry maximum.
+        marker=self.new.find(b'OnOff')
+        self.assertGreaterEqual(marker,0)
+        name_end=self.new.find(b'\xff'*4,marker)
+        legacy=self.new[name_end-12:name_end].rstrip(b'\0').decode('ascii')
+        self.assertEqual(legacy,self.after['descriptor'][1]['name'])
+
     def test_ninth_control_boost(self):
         row=self.after['descriptor'][10]
         self.assertEqual((row['name'],row['max'],row['default'],row['flags'],row['handler']),('BOOST',12,0,4,'FDB_edit'))

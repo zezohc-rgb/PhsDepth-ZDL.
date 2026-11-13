@@ -1,5 +1,7 @@
 # FILTER DELAY BOOST — Zoom MS-70CDR original, firmware 2.10
 
+> **Release v0.1.0 suspensa:** o usuário relatou que outro efeito aparece ao adicionar o arquivo. Uma ambiguidade de identificação foi reproduzida e corrigida no código, mas a solução no aparelho ainda não foi confirmada. Não use o download anterior como versão validada. Veja [diagnóstico](docs/filter-delay-boost/INSTALLATION_DIAGNOSIS.md).
+
 **Arquivo experimental para teste: `build/FLTDLBS.ZDL`, nome FltrDlyB, categoria Delay, ID 958.**
 
 Fornecido para teste a pedido do usuário; não foi validado fisicamente. O ID não tem conflito conhecido nos catálogos consultados, mas o inventário da pedaleira não foi conferido. Faça backup e não force a instalação se houver indicação de ID duplicado. [Detalhes do arquivo atual](docs/filter-delay-boost/TEST_CANDIDATE.md).
