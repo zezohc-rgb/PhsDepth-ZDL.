@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+original/*.ZDL
+original/*.zip
+original/*.exe
+build/*.out
+build/*.asm
+build/*.so
+build/*.obj

@@ -1,0 +1,17 @@
+{
+  "filesystem_offset": 1307176,
+  "filesystem_blocks": 711,
+  "active_table_offset": 1344040,
+  "entry_offset": 1345584,
+  "data_blocks": [
+    245,
+    246,
+    247,
+    248,
+    249
+  ],
+  "size": 16738,
+  "updater_sha256": "7b39a612537f86a24a08fff6972f7b615a9a1dbb6b18905f71174d3556d01829",
+  "effect_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
+  "source_url": "https://zoomcorp.com/documents/93/MS-70CDR_v2.10_Win_E.zip"
+}
