@@ -8,3 +8,6 @@ build/*.asm
 build/*.so
 build/*.obj
 !build/filter_delay_boost.obj
+build/*.ZDL
+build/*.cmd
+build/*.map

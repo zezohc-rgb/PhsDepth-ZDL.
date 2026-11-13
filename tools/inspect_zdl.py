@@ -100,6 +100,11 @@ def inspect(data):
     candidates=[i for i in range(0,len(raw)-95,4) if raw[i:i+6]==b'OnOff\0'
                 and struct.unpack_from('<I',raw,i+12)[0]==1
                 and struct.unpack_from('<I',raw,i+60)[0]==0xffffffff]
+    if len(candidates)>1:
+        # A patch may retain the inactive stock table. Resolve the table
+        # actually exported by the DLL's dynamic descriptor symbol.
+        active={sym['value']-const['address'] for sym in dyn if sym['size']>=96 and sym['size']%48==0}
+        candidates=[off for off in candidates if off in active]
     if len(candidates)!=1: raise ValueError('ambiguous descriptor')
     start=candidates[0]; rows=[]
     for i in range(18):

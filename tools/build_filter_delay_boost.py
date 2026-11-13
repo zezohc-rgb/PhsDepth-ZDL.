@@ -7,12 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--ti-root', type=Path)
-p.add_argument('--zdl', action='store_true', help='Report why final integration is blocked')
+p.add_argument('--zdl', action='store_true', help='Point to the separate experimental integration builder')
 a = p.parse_args()
 if a.zdl:
-    p.exit(2, 'BLOCKED: original DSP callback wrapper, BOOST edit/init handler, coefficient allocation,\n'
-              'descriptor/relocation rebuild and unique effect ID are not verified/implemented.\n'
-              'No FLTRDLY_BOOST.ZDL was produced. See docs/filter-delay-boost/INTEGRATION.md.\n')
+    p.exit(2, 'Use tools/integrate_filter_delay.py with the hash-locked original, --ti-root and\n'
+              '--experimental-fxid to generate the local experimental ZDL. This script builds only the primitive.\n')
 out = ROOT/'build'
 out.mkdir(exist_ok=True)
 if a.ti_root:

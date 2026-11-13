@@ -1,0 +1,9 @@
+# Copy this directory into the Ziddle ziddle-1793487371 workspace as fdbprobe/
+# and add "fdbprobe" to workspace.members. Rename fdbprobe.rs to src/main.rs.
+[package]
+name = "fdbprobe"
+version = "0.1.0"
+edition = "2021"
+[dependencies]
+ziddle-effect-emulator.workspace = true
+ziddle-effect-runtime.workspace = true
