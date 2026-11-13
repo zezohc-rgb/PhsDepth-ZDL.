@@ -11,3 +11,4 @@ build/*.obj
 build/*.ZDL
 build/*.cmd
 build/*.map
+original/firmware/

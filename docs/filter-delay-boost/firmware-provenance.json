@@ -1,0 +1,144 @@
+{
+  "updater_sha256": "7b39a612537f86a24a08fff6972f7b615a9a1dbb6b18905f71174d3556d01829",
+  "source_url": "https://zoomcorp.com/documents/93/MS-70CDR_v2.10_Win_E.zip",
+  "method": "TIPA record walk, boundaries and entry verified; updater never executed",
+  "images": [
+    {
+      "tipa_offset": 311848,
+      "tipa_end": 665564,
+      "entry": 3222132736,
+      "segments": [
+        {
+          "address": 293695488,
+          "size": 15232,
+          "file_offset": 311932,
+          "sha256": "287b6e717a0f60c943945dddad352484e4c6bfc4f40b8c08482b2246fd736ed9"
+        },
+        {
+          "address": 293710720,
+          "size": 5120,
+          "file_offset": 327176,
+          "sha256": "e5146acf3e02b7bbf31ae3463d059fb2311bd2238dc8801f6f9ab4e31325073f"
+        },
+        {
+          "address": 293722336,
+          "size": 1152,
+          "file_offset": 332308,
+          "sha256": "e5ce7787d0b34accade1fce3220ea5a61a1798e73e0a3bfa820249bda37337c7"
+        },
+        {
+          "address": 3221872560,
+          "size": 16,
+          "file_offset": 333472,
+          "sha256": "e7d9a7a3ddb47610f15f5dde2e2fd10d18d338451da974ac135d8bd91070cff5"
+        },
+        {
+          "address": 3221872576,
+          "size": 279008,
+          "file_offset": 333500,
+          "sha256": "5076ae721dd160531dec5b7be06ee4bc5e1530cfcd6336eda25c2ff9da43d813"
+        },
+        {
+          "address": 3222151584,
+          "size": 44996,
+          "file_offset": 612520,
+          "sha256": "c9aa71d4ca4246ad7b9758c7d2540844915b82cd76f7d6cc969eec0ffd3dc8a6"
+        },
+        {
+          "address": 3222203316,
+          "size": 68,
+          "file_offset": 657528,
+          "sha256": "7e365780bb55eceec2327eef094dea9ffd3cc884bf411d3e60e757bb93f79cad"
+        },
+        {
+          "address": 3222203392,
+          "size": 512,
+          "file_offset": 657608,
+          "sha256": "e226cd40924b6cb55bcbea1088cfd6981038c2e5c00c8da3dfd95efc463cea99"
+        },
+        {
+          "address": 3222203904,
+          "size": 1348,
+          "file_offset": 658132,
+          "sha256": "a6ddf74155ee27d445879a7758e17ebe3af3d4e940b64fd7bcdafc00eed8216b"
+        },
+        {
+          "address": 3222207136,
+          "size": 672,
+          "file_offset": 659492,
+          "sha256": "7e7aaae67d10050063ef13bd14b41c7f71d57f979b7590c4d423909e41f84eb6"
+        },
+        {
+          "address": 3222208096,
+          "size": 5380,
+          "file_offset": 660176,
+          "sha256": "b0f32f3607e1999bb1d5d07cf7dc013aa3943d7b11f088c820fa40e80d9767b5"
+        }
+      ],
+      "sha256": "4353e745b44ad61a1ccdc338166139d72ceb9b8e45cacf30384b58493dc7f6ed"
+    },
+    {
+      "tipa_offset": 1045032,
+      "tipa_end": 1193296,
+      "entry": 3225190080,
+      "segments": [
+        {
+          "address": 3225075952,
+          "size": 16,
+          "file_offset": 1045116,
+          "sha256": "9963a423553f6ac61c8f5f8b88b50b14eec401f74c275dda1aa9b0635881abcc"
+        },
+        {
+          "address": 3225075968,
+          "size": 127264,
+          "file_offset": 1045144,
+          "sha256": "2e6cb6f248f4689434688443a84eabd1edf75846fb4e211cfefcf3ce6b647f70"
+        },
+        {
+          "address": 3225203232,
+          "size": 96,
+          "file_offset": 1172420,
+          "sha256": "dea1c582d7a05367dcfc0b1d3608910605f88fdacd1f31edeee9c46f16035e0b"
+        },
+        {
+          "address": 3225288952,
+          "size": 8,
+          "file_offset": 1172528,
+          "sha256": "09f92be33bed68fe309925bf84240a4ffaf3014cf5612cd2c67b72537fb4b149"
+        },
+        {
+          "address": 3225293768,
+          "size": 10628,
+          "file_offset": 1172548,
+          "sha256": "e7a0fb9461e64605def1e27baa3e2b455592e692cc77b7afb78f503a1acd355e"
+        },
+        {
+          "address": 3225304416,
+          "size": 7968,
+          "file_offset": 1183188,
+          "sha256": "3463f5d483fb32ac336da68806106087a2a7256bcd49b1eb79a0cdd5d7a23a17"
+        },
+        {
+          "address": 3225318124,
+          "size": 204,
+          "file_offset": 1191168,
+          "sha256": "91a3961969c062024dbd9a5367d4bde95eff8c131156af8624d829dfb83f231f"
+        },
+        {
+          "address": 3225318400,
+          "size": 512,
+          "file_offset": 1191384,
+          "sha256": "043e986a91ec7d36b8452329343a20941fb8d5ada7ed00d5a14f0b6c0a606736"
+        },
+        {
+          "address": 3225321460,
+          "size": 1380,
+          "file_offset": 1191908,
+          "sha256": "38f2d895d78908625a8b795fc066f791c15c7c6984aa3f8768e6e37830f2ede4"
+        }
+      ],
+      "sha256": "023ee347774e34450a1935a0c3d25a174d9e951e7499166740f2e4f6ebdc5f8e"
+    }
+  ],
+  "hardware_io": false
+}

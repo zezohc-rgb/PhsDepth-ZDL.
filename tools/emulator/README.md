@@ -20,3 +20,15 @@ O probe fornece amostras sintéticas, executa init, verifica o coeficiente BOOST
 **Limitação observada:** sem a passagem de handlers de edição após init, tanto o original quanto o candidato ficam silenciosos neste host sintético. O probe não esconde isso modificando os coeficientes: os testes sonoros executam a passagem de edição explicitamente. Inicialização real/salvamento/restauração de presets no firmware continuam pendentes.
 
 O teste de rebase desloca a imagem em 1 MiB para conferir que chamadas relativas e relocações absolutas acompanham a carga. O motor usa memória própria por engine; isso não certifica duas instâncias no mesmo firmware físico.
+
+## Probes adicionais com os bytes do firmware oficial
+
+Copiar também `firmware_probe.rs` e `firmware_init_probe.rs` para `fdbprobe/src/bin/` no workspace externo. O Cargo.toml desta pasta já inclui as dependências `ziddle-firmware-analysis` e `serde_json` e as duas entradas adicionais.
+
+```sh
+cargo build --release -p fdbprobe --bin firmware_probe --bin firmware_init_probe
+```
+
+No repositório, extrair a imagem com `tools/extract_firmware_research.py`, depois executar `tools/run_firmware_validation.py` com os caminhos dos dois executáveis. Ele valida o hash da imagem oficial e do ZDL original antes dos testes e registra os limites.
+
+Os pools de RAM usados pelos probes são fixtures explícitas. O código dos callbacks é real, o flag de escrita direta e B14 são pré-condições documentadas, e nenhum carregador/RTOS completo é invocado. Um relatório desses probes não autoriza gravação em hardware.

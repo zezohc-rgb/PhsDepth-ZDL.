@@ -1,0 +1,691 @@
+{
+  "cases": [
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 0,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 1,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 2,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 3,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 4,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 0,
+      "gain": 1.0,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 1,
+      "gain": 1.1220184564590454,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 2,
+      "gain": 1.258925437927246,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 3,
+      "gain": 1.4125375747680664,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 4,
+      "gain": 1.5848932266235352,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 5,
+      "gain": 1.778279423713684,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 6,
+      "gain": 1.9952622652053833,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 7,
+      "gain": 2.2387211322784424,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 8,
+      "gain": 2.5118863582611084,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 9,
+      "gain": 2.818382978439331,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 10,
+      "gain": 3.1622776985168457,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 11,
+      "gain": 3.5481338500976562,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    },
+    {
+      "boost_db": 12,
+      "gain": 3.981071710586548,
+      "original_47_words_equal": true,
+      "packets": 1391,
+      "slot": 5,
+      "unknown_opcodes": 0
+    }
+  ],
+  "coefficient_allocations": [
+    {
+      "fits": true,
+      "pointer": 300941312,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 0,
+      "startup_record": 14
+    },
+    {
+      "fits": true,
+      "pointer": 300942152,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 1,
+      "startup_record": 19
+    },
+    {
+      "fits": true,
+      "pointer": 300942992,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 2,
+      "startup_record": 24
+    },
+    {
+      "fits": true,
+      "pointer": 300943832,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 3,
+      "startup_record": 29
+    },
+    {
+      "fits": true,
+      "pointer": 300944672,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 4,
+      "startup_record": 34
+    },
+    {
+      "fits": true,
+      "pointer": 300945512,
+      "requested_bytes": 192,
+      "reserved_bytes": 840,
+      "slot": 5,
+      "startup_record": 39
+    }
+  ],
+  "diagnostics": [],
+  "direct_write_flag_precondition_seeded": true,
+  "full_loader_or_rtos_executed": false,
+  "hardware_tested": false,
+  "mode": "effect initializers and real firmware callbacks with startup RAM fixture",
+  "six_slots_same_image_isolation": {
+    "edited_boost_db": 11,
+    "edited_slot": 2,
+    "only_four_gain_bytes_changed": true,
+    "passed": true,
+    "pool_bytes_checked": 5040
+  },
+  "test_count": 78
+}

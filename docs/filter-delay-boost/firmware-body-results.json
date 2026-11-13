@@ -1,0 +1,158 @@
+{
+  "cinit_method": "auto-initializer 0xc00d7d00 builds records 0xc00f1204..0xc00f1364 (44 records) and handler base 0xc00f10b8 (3 indexed handlers)",
+  "cinit_problems": [],
+  "cinit_region_count": 44,
+  "copy_tests": [
+    {
+      "alignment_offset": 0,
+      "bytes": 188,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 1,
+      "bytes": 188,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 2,
+      "bytes": 188,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 3,
+      "bytes": 188,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 0,
+      "bytes": 192,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 1,
+      "bytes": 192,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 2,
+      "bytes": 192,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 3,
+      "bytes": 192,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 0,
+      "bytes": 196,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 1,
+      "bytes": 196,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 2,
+      "bytes": 196,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 3,
+      "bytes": 196,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 0,
+      "bytes": 256,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 1,
+      "bytes": 256,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 2,
+      "bytes": 256,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    },
+    {
+      "alignment_offset": 3,
+      "bytes": 256,
+      "guard_bytes_unchanged": true,
+      "packets": 16,
+      "unknown_opcodes": 0
+    }
+  ],
+  "full_firmware_boot_tested": false,
+  "hardware_io": false,
+  "initialized_slot_pointers": [
+    {
+      "coefficients": 300941312,
+      "slot": 0,
+      "state": 300946352
+    },
+    {
+      "coefficients": 300942152,
+      "slot": 1,
+      "state": 300947024
+    },
+    {
+      "coefficients": 300942992,
+      "slot": 2,
+      "state": 300947696
+    },
+    {
+      "coefficients": 300943832,
+      "slot": 3,
+      "state": 300948368
+    },
+    {
+      "coefficients": 300944672,
+      "slot": 4,
+      "state": 300949040
+    },
+    {
+      "coefficients": 300945512,
+      "slot": 5,
+      "state": 300949712
+    }
+  ],
+  "memcpy_address": 3222134176,
+  "mode": "selected actual firmware bodies; synthetic memory fixtures; no complete boot",
+  "ninth_control_column": 10,
+  "raw_lookup_address": 3221979660,
+  "raw_lookup_tests": 66
+}

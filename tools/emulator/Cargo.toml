@@ -7,3 +7,14 @@ edition = "2021"
 [dependencies]
 ziddle-effect-emulator.workspace = true
 ziddle-effect-runtime.workspace = true
+
+ziddle-firmware-analysis.workspace = true
+serde_json.workspace = true
+
+[[bin]]
+name = "firmware_probe"
+path = "src/bin/firmware_probe.rs"
+
+[[bin]]
+name = "firmware_init_probe"
+path = "src/bin/firmware_init_probe.rs"

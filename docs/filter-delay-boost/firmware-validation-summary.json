@@ -1,0 +1,59 @@
+{
+  "firmware_sha256": "4353e745b44ad61a1ccdc338166139d72ceb9b8e45cacf30384b58493dc7f6ed",
+  "original_zdl_sha256": "19ea42ed3b37783abfb4440a527e12a6f7ef92f31ed24d881bbb5eed09364c8e",
+  "candidate_sha256": "1a3ea511453d2551f24975d68592990a909f14ee421b25bd47e5ff5e07768f93",
+  "actual_firmware_init_comparisons": 78,
+  "actual_firmware_copy_tests": 16,
+  "actual_firmware_raw_lookup_tests": 66,
+  "six_slot_isolation_passed": true,
+  "coefficient_bytes_requested": 192,
+  "startup_reserved_bytes_per_slot": [
+    840,
+    840,
+    840,
+    840,
+    840,
+    840
+  ],
+  "commands": [
+    [
+      "/tmp/ziddle-1793487371/target/release/firmware_probe",
+      "/workspace/PhsDepth-ZDL/original/firmware/image-0.tipa",
+      "/workspace/PhsDepth-ZDL/build/FLTRDLY_BOOST.ZDL",
+      "/workspace/PhsDepth-ZDL/docs/filter-delay-boost/firmware-body-results.json"
+    ],
+    [
+      "/tmp/ziddle-1793487371/target/release/firmware_init_probe",
+      "/workspace/PhsDepth-ZDL/original/firmware/image-0.tipa",
+      "/workspace/PhsDepth-ZDL/original/FLTRDLY.ZDL",
+      "/workspace/PhsDepth-ZDL/build/FLTRDLY_BOOST.ZDL",
+      "/workspace/PhsDepth-ZDL/docs/filter-delay-boost/firmware-init-results.json"
+    ]
+  ],
+  "full_loader_replayed": false,
+  "full_firmware_boot_tested": false,
+  "physical_hardware_tested": false,
+  "modelled_preconditions": [
+    "mapped startup RAM",
+    "B14 as firmware startup specifies",
+    "B14[98]=1 as the firmware init dispatcher specifies"
+  ],
+  "loader_fit_command": [
+    "/tmp/ziddle-1793487371/target/release/ziddle",
+    "firmware",
+    "fit",
+    "/workspace/PhsDepth-ZDL/original/firmware/image-0.tipa",
+    "/workspace/PhsDepth-ZDL/build/FLTRDLY_BOOST.ZDL",
+    "--json"
+  ],
+  "loader_fit_exit_code": 1,
+  "loader_fit_result": {
+    "command": "firmware fit",
+    "ok": false,
+    "payload": null,
+    "error": {
+      "code": "firmware.fit",
+      "message": "no effect intake is recorded for the image with SHA-256 4353e745b44ad61a1ccdc338166139d72ceb9b8e45cacf30384b58493dc7f6ed; it is recorded for G1on (1.21), MS-70CDR+ (1.20)"
+    }
+  }
+}

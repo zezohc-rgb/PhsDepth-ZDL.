@@ -1,0 +1,8 @@
+{
+  "tests_run": 41,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "command": "python -m unittest discover -s tests -p 'test_*.py' -v",
+  "physical_hardware_tested": false
+}
