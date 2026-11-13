@@ -1,0 +1,215 @@
+FILTER DELAY BOOST - PACOTE PARA PC / WINDOWS
+Manual de instruções - pacote v1
+
+COMECE AQUI
+
+1. Clique com o botão direito no ZIP e escolha "Extrair tudo".
+2. Entre na pasta extraída. Não execute de dentro do ZIP.
+3. Abra INICIAR_WINDOWS.bat com dois cliques.
+4. Mantenha a janela do servidor aberta. O instalador abrirá no Edge.
+   Se não abrir, copie o endereço http://127.0.0.1:... mostrado na janela
+   e cole na barra de endereços do Edge ou Opera, no computador.
+
+Não é necessário instalar Python ou Node. O iniciador usa o Windows
+PowerShell normalmente disponível no Windows 10/11. Não precisa de
+administrador. O servidor atende apenas ao próprio PC, não à rede Wi-Fi.
+A opção de execução do iniciador vale somente para esse processo; ele
+não altera permanentemente a política do Windows.
+
+O pacote é local: após baixar e extrair, os arquivos necessários já estão
+incluídos. A disponibilidade de Web MIDI e as permissões dependem do
+navegador e das políticas do computador.
+
+IMPORTANTE ANTES DO TESTE
+
+Este é um instalador EXPERIMENTAL para a Zoom MS-70CDR ORIGINAL,
+firmware 2.10. Não é para a MS-70CDR+ nem para outros modelos.
+
+O ZDL e a comunicação USB deste instalador ainda não foram validados
+fisicamente nesta pedaleira. Os testes de protocolo foram simulados.
+O servidor foi testado em PowerShell 7 no Linux; o duplo clique e o
+comportamento no Windows ainda precisam de conferência real.
+
+Há risco de falha na gravação se faltar energia ou a conexão for perdida.
+Mantenha alimentação estável, volume baixo e faça backup antes de testar.
+Nenhum firmware é gravado automaticamente. Abrir o programa não instala
+o efeito: são necessárias suas ações explícitas no navegador.
+
+PASSO A PASSO NA PEDALEIRA
+
+1. Salve seus patches pelo editor/gerenciador que você já usa.
+   O backup ZIP deste instalador contém os ARQUIVOS DE EFEITOS,
+   NÃO os patches. Guarde ambos os backups.
+
+2. Feche Zoom Effect Manager e outros programas que usem a porta MIDI.
+   Conecte um cabo USB de dados e ligue a pedaleira NORMALMENTE.
+   Não segure os botões e não entre no modo de firmware.
+
+3. No instalador, clique em "Permitir acesso MIDI".
+   Autorize o acesso MIDI/SysEx solicitado pelo navegador.
+
+4. Selecione a entrada e a saída MIDI correspondentes à Zoom.
+   Clique em "Conectar e conferir aparelho".
+   O programa exige MS-70CDR, firmware 2.10 e status de modo normal.
+
+5. Clique em "Ler arquivos e conferir efeitos".
+   A leitura de todos os arquivos pode levar vários minutos.
+   Não altere controles, não desconecte o cabo e aguarde o término.
+   O programa confere CRC dos blocos, tamanhos, lista e IDs.
+
+6. Clique em "Baixar backup dos arquivos (.zip)".
+   Localize o ZIP na pasta de downloads e confirme que ele abre.
+   Ele contém FLST_SEQ.ZDT, os arquivos lidos e um manifest.json
+   com nomes, tamanhos e SHA-256. Esse ZIP contém seus efeitos;
+   guarde-o privadamente. Não o confunda com este pacote instalador.
+
+7. Marque que conferiu o backup e salvou seus patches.
+   Marque que entende o caráter experimental do teste.
+   A instalação só é liberada após as verificações.
+
+8. Clique em "Instalar Filter Delay Boost".
+   O programa confere novamente o aparelho e os arquivos, grava
+   FLTDLBS.ZDL e relê para comparar os bytes. Numa adição, grava e
+   confere também o novo registro na lista de efeitos.
+   Não feche o navegador nem a janela do servidor durante a operação.
+
+9. Somente após a mensagem de CONCLUSÃO, desligue e ligue a
+   pedaleira normalmente, SEM segurar botões. É necessário reiniciar
+   normalmente para o efeito aparecer; não é necessário modo firmware.
+
+10. Procure "FltrDlyB" na categoria Delay.
+    BOOST é o nono controle, no último espaço da terceira página.
+    Comece com BOOST=0 e volume baixo. Depois teste o aumento aos poucos.
+
+O QUE O BOOST FAZ
+
+Faixa: 0 a +12 dB, em passos de 1 dB; valor inicial 0.
+Ganho: 10^(dB/20), aplicado à saída completa, direto e repetições,
+nos dois canais. +6 dB equivale a aproximadamente 1,995 vezes;
++12 dB equivale a aproximadamente 3,981 vezes.
+
+O projeto mantém o corpo DSP original e seus oito controles.
+A equivalência no aparelho ainda depende de testes reais de áudio.
++12 dB exige pelo menos 12 dB de headroom na saída original;
+se o sinal já estiver alto, poderá ocorrer clipping digital.
+Reduza o nível anterior ao efeito se necessário.
+
+IDENTIFICAÇÃO E COEXISTÊNCIA
+
+Arquivo de teste: efeito/FLTDLBS.ZDL (18.708 bytes).
+Nome no menu: FltrDlyB. Grupo/categoria: 8, Delay. ID: 958 (0x03BE).
+Versão do candidato: v0.1.1 experimental.
+
+SHA-256 do ZDL:
+26de6cf564784aa0453d54d2dc4cf72f1bc98844010c6285a1a8079a2cafec04
+
+O Filter Delay original não é substituído pelo instalador.
+As duas versões podem coexistir se o ID 958 estiver livre.
+Se outro efeito usar esse ID, a instalação será BLOQUEADA.
+Não force a instalação por outro programa para contornar esse aviso.
+Não renomeie o arquivo nem altere o ID sem análise.
+
+O programa só aceita o candidato incluído e reconhece nossa versão
+anterior v0.1.0 por hash para atualização. Não instala ZDLs arbitrários.
+Se a v0.1.1 já estiver presente, ele não a grava novamente.
+
+SOLUÇÃO DE PROBLEMAS
+
+- O ZIP não abre ou o navegador mostra uma página de código:
+  baixe novamente o link direto do ZIP. Se o navegador abrir o arquivo
+  em vez de baixá-lo, use "Salvar link como". Extraia o arquivo completo.
+
+- O Windows bloqueou o iniciador:
+  confira a origem e examine os scripts antes de autorizar a execução.
+  Não desative permanentemente o antivírus ou a segurança do computador.
+  Se houver política corporativa, use o site HTTPS pelo link abaixo
+  ou consulte quem administra o PC.
+
+- O PowerShell foi bloqueado ou não existe:
+  o pacote exige Windows PowerShell 5.1 ou PowerShell compatível.
+  Como alternativa sem servidor local, abra o site no Edge/Opera:
+  https://multistomp-usb-boost.sturdycypress2.chatgpt.site
+  O site pode solicitar login na conta que tem acesso a ele.
+
+- Abri index.html com dois cliques e não conecta:
+  use INICIAR_WINDOWS.bat. O instalador precisa de HTTP local ou HTTPS;
+  a abertura direta por file:// não é o modo de uso suportado.
+
+- O navegador não oferece MIDI ou a permissão não aparece:
+  use Edge ou Opera no PC e abra o endereço local em aba própria.
+  Autorize MIDI/SysEx nas permissões do site. Não use celular,
+  Safari ou Firefox para este fluxo. Políticas do navegador podem bloquear.
+
+- A Zoom não aparece ou não responde:
+  feche outros editores, confira o cabo USB de dados e as duas portas
+  selecionadas. Antes de qualquer gravação, reconecte e tente novamente.
+  Confira se o firmware é 2.10 e se está no modo normal.
+  Durante/após uma falha de gravação, siga a seção de recuperação.
+
+- ID ocupado, cabeçalho desconhecido ou lista inconsistente:
+  o bloqueio é intencional. Baixe o registro técnico e preserve o backup.
+  Não apague efeitos para tentar adivinhar qual deles usa o ID.
+
+- Espaço livre insuficiente:
+  a ferramenta exige pelo menos 32 KiB livres por precaução.
+  Organize os efeitos com seu gerenciador habitual, preservando backup,
+  e depois faça uma NOVA leitura completa no instalador.
+
+FALHA DE GRAVAÇÃO E RECUPERAÇÃO
+
+A gravação de arquivo apaga/recria o arquivo no dispositivo e não é
+atômica. O programa tenta restaurar e conferir a lista original se sua
+gravação falhar. Se uma atualização falhar, tenta restaurar o ZDL anterior.
+Uma queda de conexão pode impedir também essa recuperação.
+
+Se aparecer "Não reinicie" ou falha de recuperação, NÃO desligue/reinicie
+a pedaleira para tentar resolver. Guarde o backup e baixe o registro
+técnico pelo instalador. A restauração dos arquivos exige ferramenta
+externa e um procedimento validado. Não continue tentando gravar.
+
+Uma adição interrompida pode deixar um FLTDLBS.ZDL sem registro na lista.
+O instalador não apaga automaticamente esse arquivo. Uma nova tentativa
+pode ser bloqueada para evitar alterar o sistema às cegas.
+
+O ZIP de backup NÃO é firmware. Não o envie diretamente como firmware.
+Este pacote não inclui uma restauração completa automática da pedaleira.
+Uma recuperação externa pode exigir o modo firmware, diferentemente
+do fluxo normal de instalação deste app. Patches são restaurados à parte.
+
+PARA REVERTER UMA INSTALAÇÃO CONCLUÍDA
+
+Remova apenas FltrDlyB por um gerenciador que reconheça seu ID e mantenha
+o Filter Delay original. Não remova arquivos internos manualmente.
+Se precisar restaurar todo o conjunto de arquivos, use seu backup
+com uma ferramenta de recuperação compatível e procedimento validado.
+
+CONTEÚDO DESTE PACOTE
+
+INICIAR_WINDOWS.bat     - iniciador por duplo clique
+SERVIDOR_LOCAL.ps1     - servidor estático local, sem comandos MIDI
+MANUAL.html            - manual com formatação, pode ser impresso em PDF
+MANUAL.txt             - este manual, abre no Bloco de Notas
+LEIA_PRIMEIRO.txt       - início rápido
+instalador/            - interface e módulos, com o candidato incluído
+efeito/FLTDLBS.ZDL      - mesmo candidato para referência/teste
+codigo-fonte/          - código e documentação do projeto
+SHA256SUMS.txt         - somas SHA-256 dos arquivos do pacote
+
+A prévia no navegador é ilustrativa: não é captura do LCD real
+e o controle visual BOOST não altera a pedaleira.
+
+TESTES E LIMITES
+
+27 testes simulados do instalador passaram. O ZIP foi conferido por
+CRC, nomes, conteúdo e hashes. O servidor foi testado com requisições
+HTTP locais no PowerShell 7 em Linux. Não há validação própria de
+Windows, USB/SysEx real, áudio, LCD, CPU ou instalação na pedaleira.
+Resultados mais completos estão na documentação técnica do código.
+
+Projeto:
+https://github.com/zezohc-rgb/PhsDepth-ZDL.
+
+Protocolo adaptado de repeat98/ZoomMultistompZDL, licença MIT em
+instalador/THIRD_PARTY_LICENSE.txt. Projeto independente, sem vínculo
+com a Zoom. Não contém instalador da Microsoft, Python, Node ou
+firmware oficial da Zoom. Apenas o candidato experimental autorizado.

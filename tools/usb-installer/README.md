@@ -2,6 +2,12 @@
 
 Instalador experimental, sem dependências, para **MS-70CDR original / firmware 2.10**. Usa Web MIDI SysEx com a pedaleira em modo normal. Não se aplica à MS-70CDR+.
 
+## Pacote para Windows
+
+Baixe [FILTER_DELAY_BOOST_PC_v1.zip](../../downloads/filter-delay-boost-pc-v1/FILTER_DELAY_BOOST_PC_v1.zip), use **Extrair tudo** e abra `INICIAR_WINDOWS.bat`. Leia `MANUAL.html` ou `MANUAL.txt` antes de conectar. O pacote contém o instalador, o ZDL v0.1.1, o código e a documentação; não requer Python nem Node. O servidor usa Windows PowerShell 5.1 e atende somente a `127.0.0.1`. A política de execução é definida apenas para o processo do iniciador. Não execute como administrador.
+
+O servidor foi conferido com 7 testes HTTP em PowerShell 7.4.7 no Linux, inclusive caminho com espaços, tipos MIME, ZDL idêntico, HEAD, arquivo ausente e bloqueio de travessia de diretórios. O duplo clique, o navegador e a execução em Windows ainda não foram validados. Para reconstruir o ZIP: `python tools/package_usb_windows.py`, a partir da raiz do repositório.
+
 ## Uso
 
 1. Salve os patches pelo seu editor habitual. O ZIP desta ferramenta contém os arquivos do sistema de efeitos, **não os patches**.

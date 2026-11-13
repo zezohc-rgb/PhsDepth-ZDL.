@@ -1,0 +1,15 @@
+FILTER DELAY BOOST - PC / WINDOWS
+
+1. Extraia TODO o ZIP para uma pasta.
+2. Leia MANUAL.html ou MANUAL.txt.
+3. Abra INICIAR_WINDOWS.bat.
+4. No Edge, conecte a Zoom pelo USB, ligada normalmente.
+5. Salve os patches separadamente. Leia os arquivos e baixe o backup.
+6. Confirme o backup e só então instale.
+
+Não precisa instalar Python ou Node. Mantenha a janela do servidor aberta.
+Não execute de dentro do ZIP e não abra instalador/index.html diretamente.
+
+EXPERIMENTAL: ainda sem validação física deste instalador/ZDL na pedaleira.
+Somente MS-70CDR ORIGINAL, firmware 2.10; não serve para MS-70CDR+.
+Se houver falha de recuperação, NÃO reinicie: consulte o manual.
