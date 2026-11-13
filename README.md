@@ -10,6 +10,7 @@ O Filter Delay oficial foi extraído legitimamente. O novo adaptador preserva o 
 - [Pesquisa e estrutura binária confirmada](docs/filter-delay-boost/RESEARCH.md)
 - [Integração implementada e limites](docs/filter-delay-boost/INTEGRATION.md)
 - [Testes e headroom](docs/filter-delay-boost/TESTS.md)
+- [Nova validação com rotinas reais do firmware](docs/filter-delay-boost/FIRMWARE_VALIDATION.md)
 - [Relatório original reproduzível](docs/filter-delay-boost/original-analysis.json)
 
 ## Estrutura
@@ -26,7 +27,7 @@ Requer Python 3 e compilador C host. Nenhuma dependência Python externa.
 
 ```sh
 python tools/build_filter_delay_boost.py
-python -m unittest discover -s tests -p 'test_filter_delay*.py' -v
+python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 Para análise do original, baixe o [ZIP oficial Zoom 2.10](https://zoomcorp.com/documents/93/MS-70CDR_v2.10_Win_E.zip), descompacte em uma pasta local e execute:
@@ -50,6 +51,8 @@ O `.obj` isolado não é um plugin. Para gerar o candidato experimental **localm
 python tools/integrate_filter_delay.py --ti-root /caminho/ti-cgt-c6000_8.5.0.LTS --experimental-fxid 0xfffe
 python tools/inspect_zdl.py build/FLTRDLY_BOOST.ZDL --output build/modified-analysis.json
 ```
+
+A validação adicional confirmou 840 bytes de coeficientes reservados por slot, 78 inicializações com callbacks reais e isolamento dos seis slots em RAM modelada. Isso não substitui o teste do carregador e da pedaleira.
 
 O script exige o hash do original conhecido. O arquivo resultante contém código proprietário Zoom, permanece fora do Git e não foi publicado na branch. Instruções do emulador: [tools/emulator](tools/emulator/README.md).
 

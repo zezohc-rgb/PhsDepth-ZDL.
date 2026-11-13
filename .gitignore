@@ -12,3 +12,6 @@ build/*.ZDL
 build/*.cmd
 build/*.map
 original/firmware/
+build/firmware-*.json
+build/coefficient-*.json
+build/loader-*.json

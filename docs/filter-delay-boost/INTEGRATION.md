@@ -21,14 +21,14 @@ Com Tail=ON, a desativação deixa as repetições seguirem a lógica original e
 
 ## Testes e limites
 
-[TESTS.md](TESTS.md) distingue testes host, estrutura binária e emulação. O Ziddle usado tem callbacks de host sintéticos; **nenhum Main.bin do firmware real foi executado**. Carregar no emulador não certifica o carregador físico, RAM/CPU ou protocolos USB.
+[TESTS.md](TESTS.md) distingue testes host, estrutura binária e emulação. A etapa inicial usou callbacks sintéticos. A etapa adicional em [FIRMWARE_VALIDATION.md](FIRMWARE_VALIDATION.md) executou rotinas reais da imagem oficial, confirmou as regiões CINIT de 840 bytes e comparou 78 inicializações nos seis slots. Não houve boot/RTOS/carregador completo nem hardware físico.
 
 Limitação importante observada: o original e o candidato ficam silenciosos nesse host se não houver passagem de handlers após init. Os testes sonoros a executam explicitamente. O coeficiente BOOST inicial é inspecionado antes dessa passagem para não esconder falha de inicialização do novo parâmetro. Ainda falta validar o ciclo completo de criação/restauração de preset do firmware 2.10.
 
 Pendências antes de um teste físico:
 
 1. Auditar um ID próprio compatível com ferramentas/patches e sem colisão no catálogo do usuário. **Não instalar a versão de ID 0xFFFE.**
-2. Confirmar no firmware/hardware o registro de 192 bytes e isolamento entre dois slots; o emulador tem uma área de coeficientes suficientemente grande, portanto não prova a capacidade do firmware.
+2. A reserva CINIT de 840 bytes e a inicialização/isolamento de 192 bytes nos seis slots foram confirmados com os bytes do firmware e RAM modelada. Ainda falta a admissão pelo carregador completo e sua execução no aparelho.
 3. Verificar quantidade de entradas, paginação, valor exibido como inteiro dB e persistência do BOOST no LCD real. O formatador numérico padrão mostra o número; a indicação de unidade dB da prévia é ilustrativa.
 4. Medir custo real, headroom, bypass/Tail e transições de ganho. Conferir todos os controles e sincronização com o original.
 5. Fazer backup completo antes de qualquer futura instalação manual; nenhum acesso USB ou flash foi executado.

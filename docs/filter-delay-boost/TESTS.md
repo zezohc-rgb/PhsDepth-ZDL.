@@ -4,7 +4,7 @@ Resultados estruturados: [test-results.json](test-results.json). Saída do unitt
 
 ## Resultados atuais
 
-- **32 testes host/estrutura passaram**, zero falhas/erros/skips no ambiente com original e candidato locais. O smoke test pré-existente de PhsDepth também passou.
+- **41 testes host/estrutura/ferramentas passaram**, zero falhas/erros/skips no ambiente com original e candidato locais. O smoke test pré-existente de PhsDepth também passou.
 - **27 comparações de áudio por emulação passaram**, total de 36 renderizações de 48.000 frames cada. [emulator-results.json](emulator-results.json) inclui comandos, logs e métricas de cada execução.
 - Candidato: **18.708 bytes**, 65 relocações dinâmicas; corpo DSP original de 2.080 bytes preservado byte a byte.
 - Adaptador TI: 544 bytes de código, tabela de ganho de 52 bytes. Coeficientes por instância: 192 bytes (188 originais + ganho float).
@@ -37,7 +37,11 @@ O probe verifica o ganho inicial **antes** da passagem de edição. Porém, sem 
 
 A primeira versão também falhou no teste de bypass; a condição foi corrigida usando o produto K0 × K5, necessário porque o handler original usa caminhos diferentes conforme Tail. A versão reportada passou nos dois modos.
 
-**Não executados:** inicialização/carregador do firmware físico, restauração de presets, LCD/USB, dois slots no mesmo firmware, alocação real de coeficientes, medição física de RAM/ciclos/CPU ou clipping no conversor. O contador de pacotes do emulador não é ciclo de hardware. O custo declarado 40 é uma reserva experimental conservadora, não uma medida.
+**Não executados:** inicialização/carregador do firmware físico, restauração de presets, LCD/USB, dois slots no firmware físico em funcionamento, medição física da memória de coeficientes, medição física de RAM/ciclos/CPU ou clipping no conversor. O contador de pacotes do emulador não é ciclo de hardware. O custo declarado 40 é uma reserva experimental conservadora, não uma medida.
+
+### Etapa adicional: imagem oficial 2.10
+
+[firmware-validation-summary.json](firmware-validation-summary.json) registra 78 comparações de inicialização com callbacks reais, 16 cópias com canários, 66 leituras de controles e isolamento dos seis slots na mesma RAM modelada. Os registros CINIT confirmam reserva de 840 bytes por slot para os 192 necessários. A tentativa de replay do carregador foi bloqueada por falta de perfil da MS-70CDR original na ferramenta, não por recusa do binário pelo firmware. Detalhes e limites: [FIRMWARE_VALIDATION.md](FIRMWARE_VALIDATION.md).
 
 A interface HTML foi capturada com Chromium/Playwright. O slider em +12 mostrou 3,981× e atualizou o controle ilustrado; a prévia permanece uma simulação, não captura do LCD.
 

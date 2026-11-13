@@ -25,5 +25,9 @@
   "hardware_id_audit_complete": false,
   "per_instance_coefficient_word": 47,
   "coefficient_table_bytes": 192,
-  "declared_experimental_dsp_cost": 40
+  "declared_experimental_dsp_cost": 40,
+  "firmware_startup_reserved_bytes_per_slot": 840,
+  "actual_firmware_init_comparisons_passed": 78,
+  "same_image_six_slot_isolation_passed": true,
+  "user_has_custom_effects": true
 }
