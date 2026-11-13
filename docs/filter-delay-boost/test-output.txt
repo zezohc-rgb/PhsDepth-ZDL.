@@ -1,3 +1,5 @@
+HISTORICAL: first-stage isolated primitive/parsers; current run: integration-test-output.txt
+
 test_cycle_size_and_previous_rejected (test_filter_delay_boost.ExtractionTests.test_cycle_size_and_previous_rejected) ... ok
 test_linked_extraction (test_filter_delay_boost.ExtractionTests.test_linked_extraction) ... ok
 test_missing_or_duplicate_signature (test_filter_delay_boost.ExtractionTests.test_missing_or_duplicate_signature) ... ok

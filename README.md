@@ -1,19 +1,23 @@
 # FILTER DELAY BOOST — Zoom MS-70CDR original, firmware 2.10
 
-**Entrega parcial de engenharia: ainda não existe `build/FLTRDLY_BOOST.ZDL` instalável.**
-O Filter Delay oficial foi localizado, extraído legitimamente e analisado. O estágio BOOST 0 a +12 dB foi implementado, compilado para TI C6740 e testado em computador. Sua integração ao efeito original ainda precisa ser implementada e validada.
+**Candidato experimental gerado: `build/FLTRDLY_BOOST.ZDL`. Ainda não qualificado para instalar na pedaleira.**
+O Filter Delay oficial foi extraído legitimamente. O novo adaptador preserva o corpo DSP original, os oito controles e acrescenta BOOST 0 a +12 dB. A estrutura e a execução foram testadas em computador/emulador; carregamento, CPU/RAM, presets e LCD no firmware real continuam pendentes. O ID `0xFFFE` é exclusivo dos testes desta entrega e não deve ser instalado.
+
+![Simulação das três páginas com BOOST na última posição](docs/filter-delay-boost/preview/interface.png)
+
+[Prévia interativa da aparência](docs/filter-delay-boost/preview/index.html). É uma simulação, não uma captura da pedaleira.
 
 - [Pesquisa e estrutura binária confirmada](docs/filter-delay-boost/RESEARCH.md)
-- [Integração pendente e obstáculos](docs/filter-delay-boost/INTEGRATION.md)
+- [Integração implementada e limites](docs/filter-delay-boost/INTEGRATION.md)
 - [Testes e headroom](docs/filter-delay-boost/TESTS.md)
 - [Relatório original reproduzível](docs/filter-delay-boost/original-analysis.json)
 
 ## Estrutura
 
-`src/filter_delay_boost/`: primitiva C e especificação do novo controle.
+`src/filter_delay_boost/`: primitiva C, adaptador TI e especificação do novo controle.
 `tools/`: extrator somente leitura, inspetor ZDL/ELF e compilação da primitiva.
 `original/`: instruções; binário oficial apenas local, sem redistribuição.
-`build/`: objeto TI e instruções; nenhum ZDL final.
+`build/`: objeto TI próprio, relatórios e candidato ZDL local ignorado pelo Git.
 `docs/filter-delay-boost/`: evidências, resultados e próximos passos.
 
 ## Reproduzir
@@ -22,7 +26,7 @@ Requer Python 3 e compilador C host. Nenhuma dependência Python externa.
 
 ```sh
 python tools/build_filter_delay_boost.py
-python -m unittest discover -s tests -p test_filter_delay_boost.py -v
+python -m unittest discover -s tests -p 'test_filter_delay*.py' -v
 ```
 
 Para análise do original, baixe o [ZIP oficial Zoom 2.10](https://zoomcorp.com/documents/93/MS-70CDR_v2.10_Win_E.zip), descompacte em uma pasta local e execute:
@@ -32,7 +36,7 @@ python tools/extract_filter_delay.py '/caminho/ZOOM MS-70CDR v2.10 Updater.exe'
 python tools/inspect_zdl.py original/FLTRDLY.ZDL --output docs/filter-delay-boost/original-analysis.json
 ```
 
-Os cinco testes do original são pulados se o binário local estiver ausente. O relatório versionado registra a análise realmente executada com o original oficial.
+Os testes que dependem do original e do candidato são pulados quando esses binários locais estão ausentes. O relatório versionado registra a análise realmente executada com o original oficial.
 
 Para compilar a primitiva TI após instalar o [CGT C6000 oficial](https://www.ti.com/tool/download/C6000-CGT):
 
@@ -40,11 +44,18 @@ Para compilar a primitiva TI após instalar o [CGT C6000 oficial](https://www.ti
 python tools/build_filter_delay_boost.py --ti-root /caminho/ti-cgt-c6000_8.5.0.LTS
 ```
 
-Para desmontar o original usando o toolchain e o leitor upstream, consulte RESEARCH.md e o relatório de seções. O `.obj` resultante deste repositório não é um plugin completo. A opção `--zdl` retorna erro enquanto a integração não existe.
+O `.obj` isolado não é um plugin. Para gerar o candidato experimental **localmente**:
+
+```sh
+python tools/integrate_filter_delay.py --ti-root /caminho/ti-cgt-c6000_8.5.0.LTS --experimental-fxid 0xfffe
+python tools/inspect_zdl.py build/FLTRDLY_BOOST.ZDL --output build/modified-analysis.json
+```
+
+O script exige o hash do original conhecido. O arquivo resultante contém código proprietário Zoom, permanece fora do Git e não foi publicado na branch. Instruções do emulador: [tools/emulator](tools/emulator/README.md).
 
 ## Instalação, testes físicos e reversão
 
-**Nesta etapa não há arquivo para instalar.** Não enviar o objeto TI à pedaleira nem renomeá-lo como `.ZDL`.
+**Não instalar o candidato atual de ID experimental `0xFFFE`.** Há um arquivo real para análise/emulação, mas faltam auditoria de identidade, validação de inicialização no firmware e testes físicos. Não enviar um `.obj` à pedaleira nem renomeá-lo como `.ZDL`.
 
 Quando houver um candidato validado, exportar e verificar backups de patches e da lista de efeitos antes de qualquer instalação manual. Manter o Filter Delay original; usar identidade e nome 8.3 exclusivos para a variante. Instalar manualmente um candidato por vez com ferramenta compatível com a MS-70CDR original, após validar tamanho, ID e estrutura. Nunca usar instruções de MS-70CDR+ ou ZD2 neste projeto.
 

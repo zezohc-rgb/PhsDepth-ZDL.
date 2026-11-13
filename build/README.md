@@ -1,8 +1,10 @@
 # Artefatos
 
-- `filter_delay_boost.obj`: primitiva de ganho compilada para TI C6740 EABI. **Não instalável**; ainda requer wrapper, handlers, integração e linkedição.
-- `filter_delay_boost.so`: biblioteca local de teste host, gerada pelo script e ignorada pelo Git.
-- `FLTRDLY.out` e `FLTRDLY.asm`: original extraído/desmontado, privados e ignorados.
-- `FLTRDLY_BOOST.ZDL`: **não gerado**. Não instalar um `.obj` renomeado.
+- `filter_delay_boost.obj`: primitiva própria TI C6740 EABI, versionada. Não é plugin isoladamente.
+- `FLTRDLY_BOOST.ZDL`: candidato experimental real, gerado localmente e ignorado pelo Git; ID 0xFFFE não auditado, **não instalar**.
+- `integration-report.json`: hash, tamanho e mapa de integração.
+- `modified-analysis.json`: estrutura do candidato, reproduzível pelo inspetor.
+- `.out`, `.asm`, `.cmd`, `.map`, `zoom_adapter.obj`: intermediários locais ignorados.
 
-Veja [resultados](../docs/filter-delay-boost/TESTS.md) e [integração pendente](../docs/filter-delay-boost/INTEGRATION.md).
+O candidato inclui o original proprietário modificado; a branch pública contém o código próprio, os scripts e relatórios, sem redistribuir esse binário.
+Veja [testes](../docs/filter-delay-boost/TESTS.md) e [limites de integração](../docs/filter-delay-boost/INTEGRATION.md).

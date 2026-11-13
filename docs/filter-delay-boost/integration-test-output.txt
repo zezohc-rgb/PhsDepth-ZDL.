@@ -1,0 +1,37 @@
+test_cycle_size_and_previous_rejected (test_filter_delay_boost.ExtractionTests.test_cycle_size_and_previous_rejected) ... ok
+test_linked_extraction (test_filter_delay_boost.ExtractionTests.test_linked_extraction) ... ok
+test_missing_or_duplicate_signature (test_filter_delay_boost.ExtractionTests.test_missing_or_duplicate_signature) ... ok
+test_all_gains_and_db (test_filter_delay_boost.GainTests.test_all_gains_and_db) ... ok
+test_bounds_canaries (test_filter_delay_boost.GainTests.test_bounds_canaries) ... ok
+test_empty_block (test_filter_delay_boost.GainTests.test_empty_block) ... ok
+test_invalid_controls_no_mutation (test_filter_delay_boost.GainTests.test_invalid_controls_no_mutation) ... ok
+test_no_hidden_limiter_and_headroom (test_filter_delay_boost.GainTests.test_no_hidden_limiter_and_headroom) ... ok
+test_post_mix_linearity (test_filter_delay_boost.GainTests.test_post_mix_linearity) ... ok
+test_stereo_independent_no_crosstalk (test_filter_delay_boost.GainTests.test_stereo_independent_no_crosstalk) ... ok
+test_unity_bit_exact (test_filter_delay_boost.GainTests.test_unity_bit_exact) ... ok
+test_zero_right_remains_zero (test_filter_delay_boost.GainTests.test_zero_right_remains_zero) ... ok
+test_original_identity_structure_and_controls (test_filter_delay_boost.OriginalTests.test_original_identity_structure_and_controls) ... ok
+test_reject_machine_mismatch (test_filter_delay_boost.OriginalTests.test_reject_machine_mismatch) ... ok
+test_reject_missing_descriptor_sentinel (test_filter_delay_boost.OriginalTests.test_reject_missing_descriptor_sentinel) ... ok
+test_reject_section_table_outside_file (test_filter_delay_boost.OriginalTests.test_reject_section_table_outside_file) ... ok
+test_reject_truncation_and_trailing_bytes (test_filter_delay_boost.OriginalTests.test_reject_truncation_and_trailing_bytes) ... ok
+test_all_absolute_relocations_have_matching_initial_contents (test_filter_delay_integration.IntegrationTests.test_all_absolute_relocations_have_matching_initial_contents) ... ok
+test_all_original_controls_preserved (test_filter_delay_integration.IntegrationTests.test_all_original_controls_preserved) ... ok
+test_all_stock_instructions_unchanged_except_relocated_addresses (test_filter_delay_integration.IntegrationTests.test_all_stock_instructions_unchanged_except_relocated_addresses) ... ok
+test_audio_init_and_entry_routed_to_adapter (test_filter_delay_integration.IntegrationTests.test_audio_init_and_entry_routed_to_adapter) ... ok
+test_dynamic_hash_chains_reach_every_named_symbol (test_filter_delay_integration.IntegrationTests.test_dynamic_hash_chains_reach_every_named_symbol) ... ok
+test_dynamic_tags_match_rebuilt_file_offsets (test_filter_delay_integration.IntegrationTests.test_dynamic_tags_match_rebuilt_file_offsets) ... ok
+test_extended_coefficients_preserve_stock_defaults (test_filter_delay_integration.IntegrationTests.test_extended_coefficients_preserve_stock_defaults) ... ok
+test_gain_table_all_13_values (test_filter_delay_integration.IntegrationTests.test_gain_table_all_13_values) ... ok
+test_header_identity_separate_from_original (test_filter_delay_integration.IntegrationTests.test_header_identity_separate_from_original) ... ok
+test_memory_and_size_envelope (test_filter_delay_integration.IntegrationTests.test_memory_and_size_envelope) ... ok
+test_ninth_control_boost (test_filter_delay_integration.IntegrationTests.test_ninth_control_boost) ... ok
+test_official_linker_resolved_original_function_calls (test_filter_delay_integration.IntegrationTests.test_official_linker_resolved_original_function_calls) ... ok
+test_original_graphic_and_three_visible_slots_preserved (test_filter_delay_integration.IntegrationTests.test_original_graphic_and_three_visible_slots_preserved) ... ok
+test_original_hash_locked (test_filter_delay_integration.IntegrationTests.test_original_hash_locked) ... ok
+test_stock_audio_bit_exact (test_filter_delay_integration.IntegrationTests.test_stock_audio_bit_exact) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.160s
+
+OK

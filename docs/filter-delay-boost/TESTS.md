@@ -2,24 +2,44 @@
 
 Resultados estruturados: [test-results.json](test-results.json). Saída do unittest: [test-output.txt](test-output.txt).
 
-## Execução local
+## Resultados atuais
 
-- **17 testes passaram, zero falhas/erros/skips**, incluindo análise do original oficial.
-- Compilação host: C99, O2, Wall/Wextra/Werror, biblioteca de teste.
-- Compilação alvo: TI C6000 8.5.0.LTS, C6740, EABI, far data, O2. Objeto de 9.200 bytes com debug; código 320 bytes e tabela 52 bytes.
-- `readelf` confirmou quatro relocações de código, apenas ABS_L16/ABS_H16 para a tabela de ganhos; nenhum símbolo externo indefinido além da entrada nula.
-- A desmontagem TI da primitiva não contém chamada a powf, heap, jump table ou função matemática externa. Isso não mede tempo de execução nem valida a integração.
-- A extração real verificou encadeamento, limites e tamanho do arquivo oficial. O inspetor conferiu estrutura ZDL/ELF, segmentos, tabelas, símbolos, alvos de relocação e descriptor.
-- O teste C pré-existente de PhsDepth também passou.
-- `--zdl` termina com código **2** e informa integração pendente. É uma barreira explícita contra entregar um arquivo incorreto, não uma compilação final bem-sucedida.
+- **32 testes host/estrutura passaram**, zero falhas/erros/skips no ambiente com original e candidato locais. O smoke test pré-existente de PhsDepth também passou.
+- **27 comparações de áudio por emulação passaram**, total de 36 renderizações de 48.000 frames cada. [emulator-results.json](emulator-results.json) inclui comandos, logs e métricas de cada execução.
+- Candidato: **18.708 bytes**, 65 relocações dinâmicas; corpo DSP original de 2.080 bytes preservado byte a byte.
+- Adaptador TI: 544 bytes de código, tabela de ganho de 52 bytes. Coeficientes por instância: 192 bytes (188 originais + ganho float).
+- TI CGT 8.5.0.LTS compila e faz a linkedição real do adaptador. O parser reconstrói o ELF e valida o ZDL antes de salvar. A primitiva isolada continua disponível, mas não equivale ao plugin.
 
-## O que os testes cobrem
+### Estrutura e preservação
 
-Os nove testes da primitiva verificam as 13 posições de ganho, erro numérico de float32, transparência bit a bit em 0 dB (incluindo zero negativo, subnormais e payloads NaN), canais independentes, canal silencioso, limites do bloco, rejeição de valores inválidos e ganho sobre mistura sintética completa. A entrada 0 dB retorna antes de ler ou regravar amostras.
+Os 15 novos testes conferem DSP original idêntico, demais instruções originais alteradas somente nos campos de relocação, oito controles/formatadores preservados, nono controle BOOST, init/áudio/DLL novos, gráfico original preservado, três posições visíveis, coeficientes iniciais e tabela de ganho, identidade distinta, não sobreposição de segmentos, `.dynamic`, cadeias de hash, 65 relocações absolutas e oito chamadas oficiais ao código original resolvidas pelo linker TI.
 
-Três testes do extrator exercitam cadeia válida e falhas de assinatura, enlace/tamanho e ciclos. Cinco testes do original validam identidade/controles/relocações e rejeitam truncamento, bytes extras, máquina ELF errada, tabela fora de limites e sentinel ausente.
+Os 17 testes anteriores cobrem a primitiva, extração e análise do original: ganho de todas as posições, transparência bit a bit em 0 dB (incluindo NaN/subnormais/zero negativo), canais independentes e canários de memória, além de rejeição de arquivos truncados/malformados. A CI pública pula os testes dependentes dos binários proprietários locais.
 
-**Não foram executados:** comparação sonora com o DSP original, emulação C674x, teste do objeto TI em execução, teste de BOOST no LCD, presets/bypass/Tail, clipping no conversor, medições de CPU/RAM do efeito integrado ou qualquer teste físico. Os testes de estéreo e mistura referem-se à primitiva host, não ao Filter Delay modificado.
+### Execução C674x
+
+Ziddle: fonte `ziddle-1793487371`, sem patches, compilada com Rust 1.100.0. Usado com **callbacks de host sintéticos e sem imagem Main.bin do firmware**. Zero instruções desconhecidas reportadas nas inicializações e renderizações usadas nas comparações.
+
+| Comparação | Resultado |
+|---|---|
+| Original × candidato em 0 dB | Idênticos bit a bit, em todas as configurações comparadas |
+| 13 posições 0..12 dB | Saída acompanha `original × 10^(dB/20)`; erro absoluto máximo nesses sinais < 6e-9 |
+| Somente direto (Mix=0) | Ganho confirmado também no direto |
+| Wet, Tail e configuração alternativa de controles | Ganho confirmado, sem alterar feedback/algoritmo original |
+| Bypass, Tail=OFF e Tail=ON | Saída idêntica à do original, mesmo com BOOST=12 |
+| Rebase em +1 MiB | Unity idêntico e ganho correto após relocações |
+| Entradas L-only e R-only | Mesma relação de ganho aplicada aos canais da saída original |
+| Handler BOOST após edição | Ganho correto |
+| Coeficiente BOOST antes da passagem de edição | Valor inicial correspondente a cada dB confirmado em memória |
+| Teste de clipping | Original pico 0,311104; candidato +12 dB pico 1,238528, 317 valores acima de ±1 |
+
+O probe verifica o ganho inicial **antes** da passagem de edição. Porém, sem essa passagem posterior, tanto o original quanto o candidato renderizam silêncio no host sintético. Esse fato foi detectado e não deve ser interpretado como inicialização de presets validada. Os testes sonoros executam os handlers explicitamente e declaram essa condição no JSON.
+
+A primeira versão também falhou no teste de bypass; a condição foi corrigida usando o produto K0 × K5, necessário porque o handler original usa caminhos diferentes conforme Tail. A versão reportada passou nos dois modos.
+
+**Não executados:** inicialização/carregador do firmware físico, restauração de presets, LCD/USB, dois slots no mesmo firmware, alocação real de coeficientes, medição física de RAM/ciclos/CPU ou clipping no conversor. O contador de pacotes do emulador não é ciclo de hardware. O custo declarado 40 é uma reserva experimental conservadora, não uma medida.
+
+A interface HTML foi capturada com Chromium/Playwright. O slider em +12 mostrou 3,981× e atualizou o controle ilustrado; a prévia permanece uma simulação, não captura do LCD.
 
 ## Headroom
 

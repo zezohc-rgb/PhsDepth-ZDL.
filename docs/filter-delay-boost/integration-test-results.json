@@ -1,0 +1,20 @@
+{
+  "tests_run": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_available": true,
+  "candidate_available": true,
+  "candidate_sha256": "1a3ea511453d2551f24975d68592990a909f14ee421b25bd47e5ff5e07768f93",
+  "candidate_size": 18708,
+  "host_and_structure_test_command": "python -m unittest discover -s tests -p 'test_filter_delay*.py' -v",
+  "emulator_comparisons_passed": 27,
+  "emulator_renders": 36,
+  "hardware_tested": false,
+  "physical_id_audit_complete": false,
+  "preview_slider_12_db": {
+    "gain_text": "3.981\u00d7",
+    "control_text": "12 dB"
+  },
+  "phsdepth_smoke_test": "passed"
+}

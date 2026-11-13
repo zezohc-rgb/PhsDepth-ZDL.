@@ -15,5 +15,10 @@
   "zdl_build_diagnostic": "BLOCKED: original DSP callback wrapper, BOOST edit/init handler, coefficient allocation,\ndescriptor/relocation rebuild and unique effect ID are not verified/implemented.\nNo FLTRDLY_BOOST.ZDL was produced. See docs/filter-delay-boost/INTEGRATION.md.",
   "final_zdl_exists": false,
   "hardware_tested": false,
-  "original_phsdepth_smoke_test": "passed"
+  "original_phsdepth_smoke_test": "passed",
+  "phase": "historical: isolated gain primitive before integration",
+  "superseded_for_current_status_by": [
+    "integration-test-results.json",
+    "emulator-results.json"
+  ]
 }

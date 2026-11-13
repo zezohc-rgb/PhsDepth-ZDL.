@@ -81,4 +81,8 @@ O init em `0xCE0` registra/copia a tabela de 188 bytes via callback de estado +1
 - Não há medição de ciclos, consumo de RAM dinâmico do delay ou orçamento de cadeia neste trabalho.
 - A tabela original de 47 palavras não fornece um slot BOOST demonstradamente livre. Aumentá-la requer validar registro/alocação e todos os usos, não apenas gravar `params[47]`.
 - A identidade `(8,112)` precisa permanecer exclusiva do original. Nenhum ID novo foi reservado sem auditoria do catálogo da pedaleira e coleções usadas.
-- O nome de entrega solicitado `FLTRDLY_BOOST.ZDL` excede 8.3. O protocolo upstream documenta nomes 8.3; o nome de dispositivo proposto é `FLTDLBS.ZDL`. Nenhum desses arquivos foi produzido.
+- O nome de entrega solicitado `FLTRDLY_BOOST.ZDL` excede 8.3. O protocolo upstream documenta nomes 8.3; o nome de dispositivo proposto é `FLTDLBS.ZDL`. O candidato local `FLTRDLY_BOOST.ZDL` foi produzido na etapa seguinte; não foi qualificado para hardware.
+
+## Evolução: integração implementada
+
+O adaptador, reconstrução de ELF e testes de execução foram implementados após esta pesquisa inicial. Consulte [INTEGRATION.md](INTEGRATION.md) e [TESTS.md](TESTS.md). O registro de coeficientes de 192 bytes foi exercitado com os callbacks sintéticos do Ziddle, sem certificar a alocação do firmware real.
